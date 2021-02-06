@@ -1,0 +1,13 @@
+{
+	"files.exclude": {
+		"next-env.d.ts": true,
+		"package-lock.json": true,
+		".next": true
+	},
+	"files.associations": {
+		//"*.css": "postcss"
+	},
+	"files.watcherExclude": {
+		"**/node_modules": true
+	}
+}

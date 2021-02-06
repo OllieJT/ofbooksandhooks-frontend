@@ -1,0 +1,234 @@
+@import "./_reset.scss";
+@import "./normalize.scss";
+
+/**
+ * @license
+ * MyFonts Webfont Build ID 3937232, 2020-08-18T12:36:59-0400
+ *
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are
+ * explicitly restricted from using the Licensed Webfonts(s).
+ *
+ * You may obtain a valid license at the URLs below.
+ *
+ * Webfont: SkyhookMono-Bold by FontomType
+ * URL: https://www.myfonts.com/fonts/fontom-type/skyhook-mono/bold/
+ * Copyright: Copyright (c) 2010 by David Waschbuesch. All rights reserved.
+ *
+ *
+ *
+ * © 2020 MyFonts Inc
+*/
+
+@font-face {
+	font-family: "SkyhookMono";
+	font-feature-settings: "pnum" on, "lnum" on;
+	src: url("/webfont/skyhookmono-bold.woff2") format("woff2"),
+		url("/webfont/skyhookmono-bold.woff") format("woff");
+}
+@font-face {
+	font-family: "Mont";
+	font-weight: 100 450;
+	font-feature-settings: "pnum" on, "lnum" on;
+	src: url("/webfont/mont-hairline.woff2") format("woff2"),
+		url("/webfont/mont-hairline.woff") format("woff");
+}
+@font-face {
+	font-family: "Mont";
+	font-weight: 450 650;
+	font-feature-settings: "pnum" on, "lnum" on;
+	src: url("/webfont/mont-regular.woff2") format("woff2"),
+		url("/webfont/mont-regular.woff") format("woff");
+}
+@font-face {
+	font-family: "Mont";
+	font-weight: 100 650;
+	font-style: italic;
+	font-feature-settings: "pnum" on, "lnum" on;
+	src: url("/webfont/mont-regularitalic.woff2") format("woff2"),
+		url("/webfont/mont-regularitalic.woff") format("woff");
+}
+@font-face {
+	font-family: "Mont";
+	font-weight: 650 900;
+	font-feature-settings: "pnum" on, "lnum" on;
+	src: url("/webfont/mont-bold.woff2") format("woff2"),
+		url("/webfont/mont-bold.woff") format("woff");
+}
+
+:root {
+	/* Primative Colors */
+	--color-base-050: hsl(200deg, 16%, 0%);
+	--color-base-100: hsl(200deg, 14%, 6%);
+	--color-base-100-a: hsla(200deg, 14%, 6%, 0.66);
+	--color-base-200: hsl(200deg, 12%, 11%);
+	--color-base-200-a: hsla(200deg, 12%, 11%, 0.66);
+	--color-base-300: hsl(200deg, 10%, 16%);
+	--color-base-300-a: hsla(200deg, 10%, 16%, 0.66);
+	--color-base-400: hsl(200deg, 10%, 22%);
+	--color-base-500: hsl(200deg, 10%, 28%);
+	--color-base-600: hsl(200deg, 10%, 32%);
+	--color-base-700: hsl(200deg, 8%, 36%);
+	--color-base-800: hsl(200deg, 6%, 40%);
+	--color-base-900: hsl(200deg, 4%, 44%);
+
+	--color-detail: hsl(200deg, 12%, 40%);
+	--color-subtitle: hsl(200deg, 14%, 60%);
+	--color-content: hsl(200deg, 16%, 80%);
+	--color-title: hsl(200deg, 18%, 100%);
+
+	--color-primary-050: hsl(45deg, 100%, 12%);
+	--color-primary-100: hsl(46deg, 100%, 20%);
+	--color-primary-200: hsl(47deg, 100%, 28%);
+	--color-primary-300: hsl(48deg, 100%, 38%);
+	--color-primary-400: hsl(48deg, 100%, 44%);
+	--color-primary-500: hsl(48deg, 100%, 50%);
+	--color-primary-600: hsl(48deg, 100%, 58%);
+	--color-primary-700: hsl(50deg, 98%, 66%);
+	--color-primary-800: hsl(51deg, 94%, 74%);
+	--color-primary-900: hsl(52deg, 90%, 83%);
+
+	/* Theme Colors */
+	--theme-detail: var(--color-detail);
+	--theme-subtitle: var(--color-subtitle);
+	--theme-content: var(--color-content);
+	--theme-title: var(--color-title);
+	--theme-brand: var(--color-primary-500);
+	--theme-background-gradient: radial-gradient(
+		100% 100% at 0% 0%,
+		var(--color-base-400) 0%,
+		transparent 90%
+	);
+	--theme-background-fade: linear-gradient(
+		to top right,
+		var(--color-base-050),
+		var(--color-base-200)
+	);
+
+	/* Sizes */
+	--size-xxsm: 0.4rem;
+	--size-xsm: 0.8rem;
+	--size-sm: 1.2rem;
+	--size-reg: 2rem;
+	--size-lg: 3.2rem;
+	--size-xlg: 4rem;
+	--size-xxlg: 6rem;
+	--size-xxxlg: 8rem;
+	--size-xxxxlg: 16rem;
+	--size-maxwidth: 1200px;
+
+	--radius-sm: 4px;
+	--radius-reg: 8px;
+	--radius-lg: 16px;
+	--radius-full: 4000px;
+
+	/* Font */
+	--font-primary: "Mont";
+	--font-secondary: "SkyhookMono";
+
+	--font-size-xxxlg: 8.8rem;
+	--font-size-xxlg: 5.6rem;
+	--font-size-xlg: 3.2rem;
+	--font-size-lg: 2.4rem;
+	--font-size-reg: 2rem;
+	--font-size-sm: 1.6rem;
+	--font-size-xsm: 1.2rem;
+
+	--font-thin: 300;
+	--font-reg: 500;
+	--font-bold: 800;
+
+	/* Misc */
+
+	--transition-primary: cubic-bezier(0, 1.4, 0.8, 0.9); /* 0.24s */
+	--transition-secondary: cubic-bezier(0, 1, 0.75, 0.9); /* 0.48s */
+}
+
+html {
+	font-size: 56.25%;
+	font-feature-settings: "pnum" on, "lnum" on, "ss03" on;
+	scroll-behavior: smooth;
+}
+
+body {
+	/* position: relative;
+	min-height: 100vh; */
+	font-family: var(--font-primary);
+	font-weight: var(--font-reg);
+	font-size: var(--font-size-reg);
+	line-height: 1em;
+	color: var(--theme-content);
+	background-color: var(--color-base-100);
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: auto;
+		width: 100%;
+		height: 100vh;
+		background: radial-gradient(
+			farthest-side at top left,
+			var(--color-base-300) 0%,
+			var(--color-base-100) 100%
+		);
+		z-index: 0;
+	}
+	--nav-width: 120px;
+	@media screen and (max-width: 2000px) {
+		--nav-width: 6.4vw;
+	}
+	@media screen and (max-width: 1500px) {
+		--nav-width: 88px;
+	}
+}
+
+ul,
+ol,
+li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+}
+
+.backgroundFrosted {
+	background: transparent;
+	background-color: hsla(200, 12%, 12%, 0.5);
+	border: 1px solid hsla(200, 12%, 90%, 0.04);
+	backdrop-filter: blur(28px);
+}
+.backgroundFrostedSubtle {
+	background: transparent;
+	background-color: hsla(200, 24%, 24%, 0.1);
+	border: 1px solid hsla(200, 12%, 90%, 0.1);
+	backdrop-filter: blur(8px);
+}
+
+.withScrim::before {
+	content: "";
+	position: absolute;
+	z-index: 9;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		70deg,
+		hsla(200, 8%, 6%, 0.6) 30%,
+		hsla(200, 8%, 4%, 0) 60%,
+		hsla(200, 8%, 2%, 0) 75%,
+		hsla(200, 8%, 1%, 0.6) 100%
+	);
+}
