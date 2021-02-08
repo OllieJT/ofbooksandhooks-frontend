@@ -1,4 +1,5 @@
 import { resolveSocialIcon } from "../../../utility/resolve-platform";
+import { LayoutEditor } from "../layout-editor";
 import { JustifyMenu, LayoutMenu, MenuLinkProps } from "../layout-menu";
 import style from "./styles.module.scss";
 
@@ -58,6 +59,7 @@ export const Layout = ({ children }: Props): React.ReactElement => {
 				/>
 			</div>
 			<div className={style.background} />
+			<LayoutEditor />
 		</div>
 	);
 };

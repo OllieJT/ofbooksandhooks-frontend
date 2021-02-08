@@ -54,11 +54,7 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 		image,
 	} = page.post;
 
-	//todo: alert user of preview mode -> const editor = useCurrentUser();
-	//const currentUser = useCurrentUser()
 	//todo: use content blocks to populate <NextSeo/>
-
-	const currentUser = useCurrentUser();
 
 	const headerImage =
 		image?.asset &&
@@ -120,9 +116,6 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 				}}
 				image={headerImage}
 			/>
-			<h2>
-				<pre>{JSON.stringify(currentUser, null, 4)}</pre>
-			</h2>
 			<PortableText blocks={content} />
 			{/* <ArticleFooter recommendations={recommended} /> */}
 		</ArticleLayout>
