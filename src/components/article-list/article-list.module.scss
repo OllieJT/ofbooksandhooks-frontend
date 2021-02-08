@@ -1,0 +1,20 @@
+.list {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	width: 100%;
+	max-width: var(--size-maxwidth);
+	margin: var(--size-reg) auto;
+}
+
+.item {
+	padding: var(--size-xxsm);
+	flex-basis: 33%;
+	flex-grow: 1;
+	@media screen and (max-width: 790px) {
+		flex-basis: 100%;
+		width: 100%;
+	}
+}

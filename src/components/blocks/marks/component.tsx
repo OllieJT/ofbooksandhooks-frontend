@@ -8,6 +8,7 @@ export const MarkLinkInternal = ({
 	mark,
 	children,
 }: PortableTextMark<LinkInternal>) => {
+	console.log(mark);
 	return (
 		<Link href={resolveUrl(mark.reference)} passHref>
 			<a>{children}</a>

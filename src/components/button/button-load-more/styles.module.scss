@@ -1,0 +1,36 @@
+.wrapper {
+	width: 100%;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-self: center;
+}
+.button {
+	font-family: var(--font-secondary);
+	font-size: var(--font-size-sm);
+	line-height: 1em;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+
+	padding: var(--size-sm) var(--size-reg);
+	margin: var(--size-lg) auto;
+
+	background-color: var(--color-base-200);
+	color: var(--theme-subtitle);
+
+	border-radius: 100rem;
+	cursor: pointer;
+
+	outline: none;
+	border: none;
+
+	&:hover {
+		background-color: var(--color-base-300);
+		color: var(--theme-title);
+	}
+
+	&.loading {
+		background-color: var(--theme-brand);
+		color: var(--color-base-050);
+	}
+}

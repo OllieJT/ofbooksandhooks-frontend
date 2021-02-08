@@ -7,17 +7,21 @@ import {
 	getArticlePage,
 	getArticlePagePaths,
 	articlePageQuery,
+	ArticleQuery,
 } from "../../lib/groq/groq-article-page";
-import { Article } from "../../lib/schema";
-import { ArticleLayout } from "../../components/article";
+import { ArticleLayout } from "../../components/article-layout";
 import { PortableText } from "../../components/portabletext";
-import { urlFor, usePreviewSubscription } from "../../lib/sanity";
+import { urlFor, useCurrentUser, usePreviewSubscription } from "../../lib/sanity";
 import { NextSeo } from "next-seo";
 import { resolveUrl } from "../../utility/resolve-url";
+import { ArticleFooter } from "../../components/article-footer";
+import { ArticleHeader } from "../../components/article-header";
+import { TagProps } from "../../components/tag";
+import { handleSanityImage } from "../../utility/handle-sanity-image";
 
 interface Props {
 	preview: boolean;
-	data: { post?: Article };
+	data: { post?: ArticleQuery };
 }
 
 export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
@@ -37,11 +41,40 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 		return <Loading message="Loading article..." />;
 	}
 
-	const { metadata, content, _updatedAt, _createdAt, publishAt } = page.post;
+	const {
+		metadata,
+		content,
+		_updatedAt,
+		_createdAt,
+		publishAt,
+		title,
+		author,
+		//recommended,
+		topics,
+		image,
+	} = page.post;
 
 	//todo: alert user of preview mode -> const editor = useCurrentUser();
 	//const currentUser = useCurrentUser()
 	//todo: use content blocks to populate <NextSeo/>
+
+	const currentUser = useCurrentUser();
+
+	const headerImage =
+		image?.asset &&
+		handleSanityImage(image.asset, {
+			width: 1126,
+			height: 563,
+			alt: image?.alt,
+		});
+
+	const topicTags: TagProps[] =
+		topics?.map((topic) => {
+			return {
+				label: topic.label,
+				link: resolveUrl(topic),
+			};
+		}) || [];
 
 	return (
 		<ArticleLayout>
@@ -78,9 +111,20 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 				noindex={metadata?.noindex || false}
 				nofollow={metadata?.nofollow || false}
 			/>
-			{/* todo: Header */}
+			<ArticleHeader
+				title={title}
+				metadata={{
+					date: new Date(publishAt || _createdAt),
+					author: author,
+					topics: topicTags,
+				}}
+				image={headerImage}
+			/>
+			<h2>
+				<pre>{JSON.stringify(currentUser, null, 4)}</pre>
+			</h2>
 			<PortableText blocks={content} />
-			{/* todo: Recommended */}
+			{/* <ArticleFooter recommendations={recommended} /> */}
 		</ArticleLayout>
 	);
 };

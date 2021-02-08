@@ -24,7 +24,7 @@ export const LayoutMenu = ({
 		<ul className={style.list} style={{ justifyContent: justify }}>
 			{links.map(({ label, link, isActive }) => (
 				<li className={style.item} key={label + link}>
-					<Link href={link} passHref prefetch>
+					<Link href={link} passHref>
 						<a className={`${style.link} ${isActive ? style.active : ""}`}>
 							<p>{label}</p>
 						</a>

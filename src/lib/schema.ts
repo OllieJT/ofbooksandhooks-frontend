@@ -137,16 +137,11 @@ export interface Article extends SanityDocument {
   content?: Richtext;
 
   /**
-   * Image — `image`
+   * Image — `img`
    *
    *
    */
-  image?: {
-    _type: "image";
-    asset: SanityAsset;
-    crop?: SanityImageCrop;
-    hotspot?: SanityImageHotspot;
-  };
+  image?: Img;
 
   /**
    * Topics — `array`
@@ -316,16 +311,11 @@ export type Product = {
   url: string;
 
   /**
-   * Thumbnail — `image`
+   * Thumbnail — `img`
    *
    *
    */
-  thumbnail: {
-    _type: "thumbnail";
-    asset: SanityAsset;
-    crop?: SanityImageCrop;
-    hotspot?: SanityImageHotspot;
-  };
+  thumbnail: Img;
 };
 
 export type Products = {
@@ -393,16 +383,11 @@ export type Person = {
   tags?: Array<SanityKeyed<string>>;
 
   /**
-   * Photo — `image`
+   * Photo — `img`
    *
    *
    */
-  photo?: {
-    _type: "photo";
-    asset: SanityAsset;
-    crop?: SanityImageCrop;
-    hotspot?: SanityImageHotspot;
-  };
+  photo?: Img;
 };
 
 export type Book = {
@@ -464,16 +449,11 @@ export type Book = {
   genre: Genre;
 
   /**
-   * Cover — `image`
+   * Cover — `img`
    *
    *
    */
-  cover: {
-    _type: "cover";
-    asset: SanityAsset;
-    crop?: SanityImageCrop;
-    hotspot?: SanityImageHotspot;
-  };
+  cover: Img;
 
   /**
    * Notes — `contentMin`
@@ -507,16 +487,11 @@ export type Author = {
   platforms?: Array<SanityKeyed<Platform>>;
 
   /**
-   * Author Avatar — `image`
+   * Author Avatar — `img`
    *
    *
    */
-  avatar?: {
-    _type: "avatar";
-    asset: SanityAsset;
-    crop?: SanityImageCrop;
-    hotspot?: SanityImageHotspot;
-  };
+  avatar?: Img;
 };
 
 export type Authors = {
@@ -550,14 +525,7 @@ export type Gallery = {
    *
    *
    */
-  images?: Array<
-    SanityKeyed<{
-      _type: "image";
-      asset: SanityAsset;
-      crop?: SanityImageCrop;
-      hotspot?: SanityImageHotspot;
-    }>
-  >;
+  images?: Array<SanityKeyed<Img>>;
 };
 
 export type Video = {
@@ -675,14 +643,7 @@ export type Metadata = {
    *
    *
    */
-  thumbnails?: Array<
-    SanityKeyed<{
-      _type: "image";
-      asset: SanityAsset;
-      crop?: SanityImageCrop;
-      hotspot?: SanityImageHotspot;
-    }>
-  >;
+  thumbnails?: Array<SanityKeyed<Img>>;
 
   /**
    * No follow — `boolean`
@@ -730,16 +691,11 @@ export type JsonLdTodo = {
   cost?: Cost;
 
   /**
-   * Thumbnail — `image`
+   * Thumbnail — `img`
    *
    *
    */
-  thumbnail?: {
-    _type: "thumbnail";
-    asset: SanityAsset;
-    crop?: SanityImageCrop;
-    hotspot?: SanityImageHotspot;
-  };
+  thumbnail?: Img;
 
   /**
    * Supplies — `array`
@@ -879,16 +835,25 @@ export type Biography = {
   description: string;
 
   /**
-   * Photo — `image`
+   * Photo — `img`
    *
    *
    */
-  photo: {
-    _type: "photo";
-    asset: SanityAsset;
-    crop?: SanityImageCrop;
-    hotspot?: SanityImageHotspot;
-  };
+  photo: Img;
+};
+
+export type Img = {
+  _type: "img";
+  asset: SanityAsset;
+  crop?: SanityImageCrop;
+  hotspot?: SanityImageHotspot;
+
+  /**
+   * Alternate Text — `string`
+   *
+   * Descripe this image as if someone couldn't see it.
+   */
+  alt?: string;
 };
 
 export type Documents = Topic | Collection | Article | Homepage | Settings;

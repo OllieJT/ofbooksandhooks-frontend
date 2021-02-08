@@ -17,11 +17,11 @@ const menuLinks: MenuLinkProps[] = [
 	},
 	{
 		label: "Of Books",
-		link: "/",
+		link: "/books",
 	},
 	{
 		label: "Of Hooks",
-		link: "/",
+		link: "/hooks",
 	},
 	{
 		label: "All",
@@ -32,11 +32,11 @@ const menuLinks: MenuLinkProps[] = [
 const platformLinks: MenuLinkProps[] = [
 	{
 		label: <Etsy />,
-		link: "/",
+		link: "/etsy",
 	},
 	{
 		label: <Pinterest />,
-		link: "/",
+		link: "/pinterest",
 	},
 ];
 
