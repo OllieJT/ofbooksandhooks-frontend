@@ -1,25 +1,26 @@
 import { LinkInternal, LinkExternal } from "../../../lib/schema";
 //import style from "./styles.module.scss";
+import Link from "next/link";
+import { resolveUrl } from "../../../utility/resolve-url";
+import { PortableTextMark } from "../utility/types";
 
-interface PortableTextMark<M> {
-	children: string[];
-	mark: M;
-	markKey: string;
-	_key: string;
-	_type: string;
-}
-
-export const MarkLinkInternal = (props: PortableTextMark<LinkInternal>) => {
+export const MarkLinkInternal = ({
+	mark,
+	children,
+}: PortableTextMark<LinkInternal>) => {
 	return (
-		<p>
-			<pre>{JSON.stringify(props, null, 4)}</pre>
-		</p>
+		<Link href={resolveUrl(mark.reference)} passHref>
+			<a>{children}</a>
+		</Link>
 	);
 };
-export const MarkLinkExternal = (props: PortableTextMark<LinkExternal>) => {
+export const MarkLinkExternal = ({
+	mark,
+	children,
+}: PortableTextMark<LinkExternal>) => {
 	return (
-		<p>
-			<pre>{JSON.stringify(props, null, 4)}</pre>
-		</p>
+		<Link href={mark.url} passHref>
+			<a target="_blank">{children}</a>
+		</Link>
 	);
 };

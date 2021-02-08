@@ -1,10 +1,11 @@
 import { Book } from "../../../lib/schema";
+import { PortableTextType } from "../utility/types";
 import style from "./styles.module.scss";
 
-export const BlockBook = (props: Book) => {
+export const BlockBook = ({ node }: PortableTextType<Book>) => {
 	return (
 		<p>
-			<pre>{JSON.stringify(props, null, 4)}</pre>
+			<pre>{JSON.stringify(node, null, 4)}</pre>
 		</p>
 	);
 };

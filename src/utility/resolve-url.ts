@@ -1,6 +1,11 @@
-import { Article, Collection, Homepage, Topic } from "../lib/schema";
+import { Article, Collection, Homepage, SanityReference, Topic } from "../lib/schema";
 
-export type LinkablePage = Topic | Collection | Article | Homepage;
+export type LinkablePage =
+	| Topic
+	| Collection
+	| Article
+	| Homepage
+	| SanityReference<any>;
 
 export const resolveUrl = (page: LinkablePage, absolute?: boolean) => {
 	const PREFIX = absolute ? process.env.URL : "";

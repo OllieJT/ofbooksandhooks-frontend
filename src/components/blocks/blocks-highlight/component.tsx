@@ -1,10 +1,11 @@
 import { Gallery } from "../../../lib/schema";
+import { PortableTextType } from "../utility/types";
 import style from "./styles.module.scss";
 
-export const BlockGallery = (props: Gallery) => {
+export const BlockGallery = ({ node }: PortableTextType<Gallery>) => {
 	return (
 		<p>
-			<pre>{JSON.stringify(props, null, 4)}</pre>
+			<pre>{JSON.stringify(node, null, 4)}</pre>
 		</p>
 	);
 };
