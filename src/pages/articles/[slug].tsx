@@ -11,10 +11,10 @@ import {
 } from "../../lib/groq/groq-article-page";
 import { ArticleLayout } from "../../components/article-layout";
 import { PortableText } from "../../components/portabletext";
-import { urlFor, useCurrentUser, usePreviewSubscription } from "../../lib/sanity";
+import { urlFor, usePreviewSubscription } from "../../lib/sanity";
 import { NextSeo } from "next-seo";
 import { resolveUrl } from "../../utility/resolve-url";
-import { ArticleFooter } from "../../components/article-footer";
+//import { ArticleFooter } from "../../components/article-footer";
 import { ArticleHeader } from "../../components/article-header";
 import { TagProps } from "../../components/tag";
 import { handleSanityImage } from "../../utility/handle-sanity-image";
@@ -24,20 +24,20 @@ interface Props {
 	data: { post?: ArticleQuery };
 }
 
-export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
+export const ArticlePage = ({ data: rawData, preview }: Props): React.ReactElement => {
 	const router = useRouter();
-	if (!router.isFallback && !data.post?.slug) {
+	if (!router.isFallback && !rawData.post?.slug) {
 		return <ErrorPage statusCode={404} />;
 	}
 
-	const { data: page } = usePreviewSubscription(articlePageQuery, {
-		params: { slug: data?.post?.slug },
-		initialData: data,
+	const { data, loading, error } = usePreviewSubscription(articlePageQuery, {
+		params: { slug: rawData?.post?.slug },
+		initialData: rawData,
 		enabled: preview,
 	});
 
-	if (!page?.post) {
-		console.log(page);
+	if (!data?.post) {
+		console.log({ data, loading, error });
 		return <Loading message="Loading article..." />;
 	}
 
@@ -52,7 +52,7 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 		//recommended,
 		topics,
 		image,
-	} = page.post;
+	} = data.post;
 
 	//todo: use content blocks to populate <NextSeo/>
 
@@ -81,7 +81,7 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 					type: metadata?.type,
 					title: metadata?.headline,
 					description: metadata?.description,
-					url: resolveUrl(page.post, true),
+					url: resolveUrl(data.post, true),
 
 					article: {
 						publishedTime: new Date(publishAt || _createdAt).toISOString(),

@@ -11,11 +11,7 @@ interface Props {
 
 export const AllPostsPage = ({}: Props): React.ReactElement => {
 	const handleFetch = (pageNum: number) => getArticleList(pageNum);
-	const { entries, isLoading, nextPage, reset } = useLoadMore<ArticleListQuery>(
-		handleFetch,
-	);
-
-	console.log({ entries });
+	const { entries, isLoading, nextPage } = useLoadMore<ArticleListQuery>(handleFetch);
 
 	return (
 		<>

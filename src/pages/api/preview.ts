@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getArticlePage } from "../../lib/groq/groq-article-page";
-import { Article } from "../../lib/schema";
+import { ArticleQuery, getArticlePage } from "../../lib/groq/groq-article-page";
 import { resolveUrl } from "../../utility/resolve-url";
 
 export default async function preview(req: NextApiRequest, res: NextApiResponse<any>) {
@@ -16,7 +15,9 @@ export default async function preview(req: NextApiRequest, res: NextApiResponse<
 
 	// Fetch the headless CMS to check if the provided `slug` exists
 	const slug = req.query.slug.toString();
-	const post: Article = await getArticlePage(slug, true);
+	const post: ArticleQuery = await getArticlePage(slug, true);
+
+	console.log({ slug, post });
 
 	// If the slug doesn't exist prevent preview mode from being enabled
 	if (!post) {

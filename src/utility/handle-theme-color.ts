@@ -5,7 +5,7 @@ export enum Theme {
 	Default,
 }
 
-export const handleThemeColor = (theme: string): Theme => {
+export const handleThemeColor = (theme?: string): Theme => {
 	switch (theme) {
 		case "primary":
 		case "green":

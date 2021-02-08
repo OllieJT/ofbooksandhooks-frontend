@@ -37,7 +37,7 @@ export interface ArticleQuery extends SanityDocument {
 }
 
 export const getArticlePage = async (slug?: string, preview = false) => {
-	const data: Article = await getClient(preview).fetch(articlePageQuery, {
+	const data: ArticleQuery = await getClient(preview).fetch(articlePageQuery, {
 		slug,
 	});
 	return data;

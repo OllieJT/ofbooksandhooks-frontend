@@ -30,6 +30,6 @@ export const handleSanityImage = (
 		url: imgUrl,
 		width: options.width,
 		height: options.height,
-		alt: options.alt,
+		alt: options.alt || "",
 	};
 };
