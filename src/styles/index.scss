@@ -6,17 +6,17 @@
 
 	--color-yellow-base: hsla(45, 100%, 65%, 1);
 	--color-yellow-text: hsla(45, 100%, 48%, 1);
-	--color-yellow-mask-background: hsla(45, 100%, 65%, 0.3);
+	--color-yellow-mask-background: hsla(45, 100%, 65%, 0.35);
 	--color-yellow-mask-foreground: hsla(45, 100%, 30%, 1);
 
 	--color-blue-base: hsla(200, 75%, 25%, 1);
 	--color-blue-text: hsla(200, 100%, 40%, 1);
-	--color-blue-mask-background: hsla(200, 100%, 30%, 0.2);
+	--color-blue-mask-background: hsla(200, 100%, 30%, 0.25);
 	--color-blue-mask-foreground: hsla(200, 100%, 25%, 1);
 
 	--color-green-base: hsla(175, 60%, 65%, 1);
 	--color-green-text: hsla(175, 60%, 46%, 1);
-	--color-green-mask-background: hsla(175, 60%, 65%, 0.25);
+	--color-green-mask-background: hsla(175, 60%, 65%, 0.3);
 	--color-green-mask-foreground: hsla(175, 60%, 30%, 1);
 
 	--color-background-surface: hsla(180, 0%, 100%, 1);
@@ -29,20 +29,20 @@
 
 	/* Theme Colors */
 
+	--color-primary-base: var(--color-green-base);
+	--color-primary-text: var(--color-green-text);
+	--color-primary-mask-background: var(--color-green-mask-background);
+	--color-primary-mask-foreground: var(--color-green-mask-foreground);
+
+	--color-secondary-base: var(--color-blue-base);
+	--color-secondary-text: var(--color-blue-text);
+	--color-secondary-mask-background: var(--color-blue-mask-background);
+	--color-secondary-mask-foreground: var(--color-blue-mask-foreground);
+
 	--color-accent-base: var(--color-yellow-base);
 	--color-accent-text: var(--color-yellow-text);
 	--color-accent-mask-background: var(--color-yellow-mask-background);
 	--color-accent-mask-foreground: var(--color-yellow-mask-foreground);
-
-	--color-primary-base: var(--color-blue-base);
-	--color-primary-text: var(--color-blue-text);
-	--color-primary-mask-background: var(--color-blue-mask-background);
-	--color-primary-mask-foreground: var(--color-blue-mask-foreground);
-
-	--color-secondary-base: var(--color-green-base);
-	--color-secondary-text: var(--color-green-text);
-	--color-secondary-mask-background: var(--color-green-mask-background);
-	--color-secondary-mask-foreground: var(--color-green-mask-foreground);
 
 	/* Gradients */
 
@@ -53,8 +53,8 @@
 	);
 	--gradient-mask-header: linear-gradient(
 		88deg,
-		var(--color-background-surface) 0%,
-		var(--color-secondary-mask-background) 100%
+		var(--color-background-surface) -25%,
+		var(--color-primary-mask-background) 80%
 	);
 
 	/* Sizes */
@@ -102,8 +102,6 @@ html {
 }
 
 body {
-	/* position: relative;
-	min-height: 100vh; */
 	font-family: var(--font-primary), sans-serif;
 	font-weight: var(--font-reg);
 	font-size: var(--font-size-reg);
@@ -125,38 +123,7 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p {
 	margin: 0;
-}
-
-.backgroundFrosted {
-	background: transparent;
-	background-color: hsla(200, 12%, 12%, 0.5);
-	border: 1px solid hsla(200, 12%, 90%, 0.04);
-	backdrop-filter: blur(28px);
-}
-.backgroundFrostedSubtle {
-	background: transparent;
-	background-color: hsla(200, 24%, 24%, 0.1);
-	border: 1px solid hsla(200, 12%, 90%, 0.1);
-	backdrop-filter: blur(8px);
-}
-
-.withScrim::before {
-	content: "";
-	position: absolute;
-	z-index: 9;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	width: 100%;
-	height: 100%;
-	background: linear-gradient(
-		70deg,
-		hsla(200, 8%, 6%, 0.6) 30%,
-		hsla(200, 8%, 4%, 0) 60%,
-		hsla(200, 8%, 2%, 0) 75%,
-		hsla(200, 8%, 1%, 0.6) 100%
-	);
 }

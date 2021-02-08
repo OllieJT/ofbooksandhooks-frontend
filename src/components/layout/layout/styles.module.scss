@@ -1,0 +1,75 @@
+.container {
+	--columns: 5;
+	--row-chunk: calc(100vh / var(--columns));
+	--size-row: minmax(var(--row-chunk), min-content);
+
+	display: grid;
+	grid-template-columns: repeat(var(--columns), 1fr);
+	grid-template-rows: min-content repeat(2, 80px) 1fr max-content;
+	grid-template-areas:
+		"logo menu menu menu menu"
+		"logo content content content ."
+		"logo content content content ."
+		". content content content ."
+		"footer footer footer footer footer";
+	gap: var(--size-reg);
+	align-items: center;
+	justify-items: center;
+}
+
+.main {
+	position: relative;
+	z-index: 5;
+	grid-area: content;
+	width: 100%;
+	min-height: 100%;
+}
+.menu,
+.platforms {
+	width: 100%;
+	min-height: 100%;
+}
+.menu {
+	//position: sticky;
+	z-index: 20;
+	top: 0;
+
+	grid-area: menu;
+
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+	gap: var(--size-reg);
+	align-items: stretch;
+	justify-items: stretch;
+}
+
+.platforms {
+	position: relative;
+	z-index: 10;
+
+	grid-area: platforms;
+}
+
+.logo {
+	position: relative;
+	z-index: 10;
+
+	grid-area: logo;
+	padding: var(--size-lg);
+}
+
+.background {
+	position: relative;
+	z-index: 0;
+
+	grid-column-start: 1;
+	grid-column-end: calc(var(--columns) + 1);
+	grid-row-start: 1;
+	grid-row-end: 3;
+
+	width: 100%;
+	height: 100%;
+
+	background: var(--gradient-mask-header);
+	border-bottom: 2px solid var(--color-secondary-mask-background);
+}

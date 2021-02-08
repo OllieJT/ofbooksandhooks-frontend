@@ -1,16 +1,19 @@
-import { Platform } from "../../../lib/schema";
-import { LayoutMenu } from "../layout-menu";
-import { LayoutPlatforms } from "../layout-platforms";
+import { resolveSocialIcon } from "../../../utility/resolve-platform";
+import { JustifyMenu, LayoutMenu, MenuLinkProps } from "../layout-menu";
 import style from "./styles.module.scss";
+
+const Etsy = resolveSocialIcon("etsy");
+const Pinterest = resolveSocialIcon("pinterest");
 
 interface Props {
 	children: React.ReactNode;
 }
 
-const menuLinks = [
+const menuLinks: MenuLinkProps[] = [
 	{
 		label: "Home",
 		link: "/",
+		isActive: true,
 	},
 	{
 		label: "Of Books",
@@ -26,33 +29,26 @@ const menuLinks = [
 	},
 ];
 
-const platformLinks: Platform[] = [
+const platformLinks: MenuLinkProps[] = [
 	{
-		_type: "platform",
-		link: {
-			_type: "linkExternal",
-			url: "/",
-		},
-		name: "etsy",
+		label: <Etsy />,
+		link: "/",
 	},
 	{
-		_type: "platform",
-		link: {
-			_type: "linkExternal",
-			url: "/",
-		},
-		name: "pinterest",
+		label: <Pinterest />,
+		link: "/",
 	},
 ];
 
 export const Layout = ({ children }: Props): React.ReactElement => {
 	return (
 		<div className={style.container}>
-			<main className={style.main}>{children}</main>
-			<nav className={style.nav}>
+			<nav className={style.menu}>
 				<LayoutMenu links={menuLinks} />
-				<LayoutPlatforms links={platformLinks} />
+				<LayoutMenu links={platformLinks} justify={JustifyMenu.End} />
+				{/* <LayoutPlatforms links={platformLinks} /> */}
 			</nav>
+			<main className={style.main}>{children}</main>
 			<div className={style.logo}>
 				<img
 					src="/logo.svg"
@@ -61,6 +57,7 @@ export const Layout = ({ children }: Props): React.ReactElement => {
 					alt="Of Books And Hooks Ampersand made of circled and a crochet hook."
 				/>
 			</div>
+			<div className={style.background} />
 		</div>
 	);
 };

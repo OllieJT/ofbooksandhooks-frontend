@@ -1,21 +1,33 @@
 import style from "./styles.module.scss";
 import Link from "next/link";
 
-interface LinkProps {
-	label: string;
-	link: string;
-}
-interface MenuProps {
-	links: LinkProps[];
+export enum JustifyMenu {
+	Start = "flex-start",
+	End = "flex-end",
 }
 
-export const LayoutMenu = ({ links }: MenuProps): React.ReactElement => {
+export interface MenuLinkProps {
+	label: React.ReactNode;
+	link: string;
+	isActive?: boolean;
+}
+interface MenuProps {
+	justify?: JustifyMenu;
+	links: MenuLinkProps[];
+}
+
+export const LayoutMenu = ({
+	justify = JustifyMenu.Start,
+	links,
+}: MenuProps): React.ReactElement => {
 	return (
-		<ul className={style.list}>
-			{links.map(({ label, link }) => (
+		<ul className={style.list} style={{ justifyContent: justify }}>
+			{links.map(({ label, link, isActive }) => (
 				<li className={style.item} key={label + link}>
-					<Link href={link} passHref as="a" prefetch>
-						<p>{label}</p>
+					<Link href={link} passHref prefetch>
+						<a className={`${style.link} ${isActive ? style.active : ""}`}>
+							<p>{label}</p>
+						</a>
 					</Link>
 				</li>
 			))}

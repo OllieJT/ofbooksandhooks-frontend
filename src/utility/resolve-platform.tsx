@@ -1,4 +1,3 @@
-import React from "react";
 import { slugify } from "./transform-text";
 import {
 	RiTwitterFill,
@@ -53,15 +52,9 @@ export const resolveSocialIcon = (platform: string) => {
 		case slugify(SocialPlatform.Pinterest):
 			return FaPinterest;
 
-		case slugify(SocialPlatform.Website):
-			return RiGlobeFill;
-
 		case slugify(SocialPlatform.Tiktok):
+		case slugify(SocialPlatform.Website):
 		default:
-			return (
-				<p style={{ height: "1.2em", lineHeight: "1.2em", fontSize: "1em" }}>
-					{platform[0]}
-				</p>
-			);
+			return RiGlobeFill;
 	}
 };
