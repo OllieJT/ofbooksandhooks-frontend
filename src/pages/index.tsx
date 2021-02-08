@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
-import { ExampleComponent } from "../components/example";
 
 export const getServerSideProps: GetServerSideProps<any> = async () => {
 	// Fetch data from external API
@@ -21,7 +20,6 @@ const Home = ({ data }): React.ReactElement => {
 
 			<main>
 				<pre>{JSON.stringify(data, null, 4)}</pre>
-				<ExampleComponent />
 			</main>
 		</div>
 	);
