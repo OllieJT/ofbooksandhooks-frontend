@@ -10,7 +10,7 @@ const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => {
 		<>
 			<DefaultSeo
 				title="Of Books &amp; Hooks"
-				titleTemplate="%s | 📚&amp;🧶"
+				titleTemplate="%s | 📚🧶"
 				openGraph={{
 					type: "website",
 					locale: "en_US",
