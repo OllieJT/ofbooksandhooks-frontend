@@ -29,7 +29,7 @@ export const PortableText = createPortableTextComponent({
 	// (https://github.com/sanity-io/block-content-to-react)
 	serializers: {
 		types: {
-			//block: BlockRenderer,
+			block: BlockRenderer,
 			book: ({ node }: SerializerBlock_Book) => (
 				<BlockBook
 					title={node.title}
