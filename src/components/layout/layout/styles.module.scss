@@ -17,22 +17,23 @@
 	justify-items: center;
 }
 
+.menu,
+.main {
+	padding: 0 var(--size-reg);
+}
+
 .main {
 	position: relative;
 	z-index: 5;
 	grid-area: content;
+
 	width: 100%;
 	min-height: 100%;
 	max-width: 100%;
-	overflow-x: hidden;
-}
-.menu,
-.platforms {
-	width: 100%;
-	min-height: 100%;
 }
 .menu {
-	//position: sticky;
+	width: 100%;
+	min-height: 100%;
 	z-index: 20;
 	top: 0;
 
@@ -43,13 +44,6 @@
 	gap: var(--size-reg);
 	align-items: stretch;
 	justify-items: stretch;
-}
-
-.platforms {
-	position: relative;
-	z-index: 10;
-
-	grid-area: platforms;
 }
 
 .logo {
