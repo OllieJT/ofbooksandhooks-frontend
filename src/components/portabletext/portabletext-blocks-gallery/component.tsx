@@ -24,7 +24,7 @@ export const BlockGallery = ({ title, images = [] }: Props) => {
 						return null;
 					}
 					return (
-						<li>
+						<li key={asset._ref}>
 							<Image
 								src={image.url}
 								alt={image.alt}

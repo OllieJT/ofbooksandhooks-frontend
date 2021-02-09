@@ -4,8 +4,7 @@ import BlockContent from "@sanity/block-content-to-react";
 import { SerializerBlock_Block } from "../../../lib/schema-serializer";
 
 export const BlockRenderer = (props: SerializerBlock_Block) => {
-	console.log({ BlockRenderer: props });
-	const { style } = props.node;
+	const { style = "normal" } = props.node;
 
 	if (/^h\d/.test(style)) {
 		const level = style.replace(/[^\d]/g, "");
@@ -21,7 +20,7 @@ export const BlockRenderer = (props: SerializerBlock_Block) => {
 	}
 
 	if (style === "normal") {
-		console.log({ RENDER: props.node });
+		console.log({ BlockRenderer: props.node });
 		return props.children;
 	}
 

@@ -5,7 +5,7 @@ import { BlockPeople } from "../portabletext-blocks-people";
 import { BlockProducts } from "../portabletext-blocks-products";
 import { BlockVideo } from "../portabletext-blocks-video";
 import { MarkLink } from "../portabletext-mark-link";
-import { BlockRenderer } from "../portabletext-blockrenderer";
+//import { BlockRenderer } from "../portabletext-blockrenderer";
 import {
 	SerializerBlock_Book,
 	SerializerBlock_Gallery,
@@ -21,7 +21,7 @@ import { handleThemeColor } from "../../../utility/handle-theme-color";
 
 export const serializers = {
 	types: {
-		block: BlockRenderer,
+		//block: BlockRenderer,
 		book: ({ node }: SerializerBlock_Book) => (
 			<BlockBook
 				title={node.title}
@@ -72,13 +72,6 @@ export const serializers = {
 		),
 	},
 
-	container: (props: { children: any[] }) => {
-		console.log({ container: props });
-		return props.children;
-	},
-
-	markFallback: (props: { children: any[] }) => {
-		console.log({ markFallback: props });
-		return props.children;
-	},
+	// container: (props: { children: any[] }) => {console.log({ container: props });return props.children;},
+	// markFallback: (props: { children: any[] }) => {console.log({ markFallback: props });return props.children;},
 };

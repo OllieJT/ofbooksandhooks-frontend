@@ -22,7 +22,7 @@ export const BlockPeople = ({ title, people = [] }: Props) => {
 						});
 
 					return (
-						<li>
+						<li key={knownAs + name}>
 							{avatar && (
 								<Image
 									src={avatar.url}
@@ -37,7 +37,7 @@ export const BlockPeople = ({ title, people = [] }: Props) => {
 							</header>
 							<aside>
 								{tags?.map((tag) => (
-									<p>{tag}</p>
+									<p key={tag}>{tag}</p>
 								))}
 							</aside>
 						</li>

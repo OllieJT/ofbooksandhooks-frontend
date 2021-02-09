@@ -45,7 +45,7 @@ export const BlockProducts = ({ title, products = [] }: Props) => {
 							return null;
 						}
 						return (
-							<li>
+							<li key={title + brand}>
 								{thumb && (
 									<Image
 										src={thumb.url}
