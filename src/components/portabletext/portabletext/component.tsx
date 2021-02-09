@@ -7,6 +7,8 @@ import { BlockProducts } from "../portabletext-blocks-products";
 import { BlockVideo } from "../portabletext-blocks-video";
 import { MarkLink } from "../portabletext-mark-link";
 import { BlockRenderer } from "../../portabletext/portabletext-blockrenderer";
+//@ts-ignore
+import BlockContent from "@sanity/block-content-to-react";
 import {
 	SerializerBlock_Book,
 	SerializerBlock_Gallery,
@@ -27,7 +29,7 @@ export const PortableText = createPortableTextComponent({
 	// (https://github.com/sanity-io/block-content-to-react)
 	serializers: {
 		types: {
-			block: BlockRenderer,
+			//block: BlockRenderer,
 			book: ({ node }: SerializerBlock_Book) => (
 				<BlockBook
 					title={node.title}
@@ -77,9 +79,9 @@ export const PortableText = createPortableTextComponent({
 				<MarkLink url={mark.url}>{children}</MarkLink>
 			),
 		},
-		container: (props: { children: any[] }) => {
+		/* container: (props: { children: any[] }) => {
 			console.log({ props });
 			return <>{props.children}</>;
-		},
+		}, */
 	},
 });

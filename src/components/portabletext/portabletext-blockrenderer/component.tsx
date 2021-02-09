@@ -3,7 +3,7 @@ import React from "react";
 import BlockContent from "@sanity/block-content-to-react";
 
 export const BlockRenderer = (props: any) => {
-	console.log({ BlockRenderer: props });
+	//console.log({ BlockRenderer: props });
 	const { style = "normal" } = props.node;
 
 	if (/^h\d/.test(style)) {
