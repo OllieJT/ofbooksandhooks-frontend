@@ -46,9 +46,11 @@ export const Layout = ({ children }: Props): React.ReactElement => {
 		<div className={style.container}>
 			<nav className={style.menu}>
 				<LayoutMenu links={menuLinks} />
-				<LayoutMenu links={platformLinks} justify={JustifyMenu.End} />
-				{/* <LayoutPlatforms links={platformLinks} /> */}
 			</nav>
+			<div className={style.platforms}>
+				<LayoutMenu links={platformLinks} justify={JustifyMenu.End} />
+			</div>
+			{/* <LayoutPlatforms links={platformLinks} /> */}
 			<main className={style.main}>{children}</main>
 			<div className={style.logo}>
 				<img

@@ -1,3 +1,8 @@
 .container {
 	--article-padding-x: var(--size-xxxlg);
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: flex-start;
+	gap: var(--size-xlg);
 }

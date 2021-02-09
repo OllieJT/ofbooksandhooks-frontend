@@ -2,6 +2,7 @@
 import BlockContent from "@sanity/block-content-to-react";
 import { ContentMin, Richtext } from "../../../lib/schema";
 import { serializers } from "../portabletext-serializer";
+import style from "./styles.module.scss";
 interface Props {
 	blocks?: Richtext | ContentMin;
 }
@@ -16,7 +17,7 @@ interface Props {
 
 export const PortableText = ({ blocks = [] }: Props) => (
 	<BlockContent
-		className="portabletext"
+		className={style.container}
 		blocks={blocks}
 		serializers={serializers}
 		dataset={process.env.NEXT_PUBLIC_SANITY_DATASET}
