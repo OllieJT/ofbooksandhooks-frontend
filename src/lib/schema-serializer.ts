@@ -28,6 +28,13 @@ interface PortableTextMark<M> {
 	_type: string;
 }
 
+export type SerializerBlock_Block = PortableTextType<{
+	children: any[];
+	markDefs: any[];
+	style: string;
+	_key: string;
+	_type: "block";
+}>;
 export type SerializerBlock_Book = PortableTextType<Book>;
 export type SerializerBlock_Gallery = PortableTextType<Gallery>;
 export type SerializerBlock_Highlight = PortableTextType<Highlight>;

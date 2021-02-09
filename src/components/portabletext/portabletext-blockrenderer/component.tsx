@@ -1,9 +1,10 @@
 // @ts-nocheck
 import React from "react";
 import BlockContent from "@sanity/block-content-to-react";
+import { SerializerBlock_Block } from "../../../lib/schema-serializer";
 
-export const BlockRenderer = (props: any) => {
-	//console.log({ BlockRenderer: props });
+export const BlockRenderer = (props: SerializerBlock_Block) => {
+	console.log({ BlockRenderer: props });
 	const { style } = props.node;
 
 	if (/^h\d/.test(style)) {
@@ -20,10 +21,9 @@ export const BlockRenderer = (props: any) => {
 	}
 
 	if (style === "normal") {
+		console.log({ RENDER: props.node });
 		return props.children;
 	}
-
-	console.log({ RENDER: props });
 
 	// Fall back to default handling
 	return BlockContent.defaultSerializers.types.block(props);
