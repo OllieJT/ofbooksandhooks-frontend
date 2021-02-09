@@ -20,3 +20,17 @@ export const handleThemeColor = (theme?: string): Theme => {
 			return Theme.Default;
 	}
 };
+
+export const handleThemeClass = (theme?: Theme): string => {
+	switch (theme) {
+		case Theme.Green:
+			return `theme-green`;
+		case Theme.Blue:
+			return `theme-blue`;
+		case Theme.Yellow:
+			return `theme-yellow`;
+		case Theme.Default:
+		default:
+			return "theme-default";
+	}
+};
