@@ -19,6 +19,11 @@
 	--color-green-mask-background: hsla(175, 60%, 65%, 0.3);
 	--color-green-mask-foreground: hsla(175, 60%, 30%, 1);
 
+	--color-mono-base: hsla(180, 20%, 65%, 1);
+	--color-mono-text: hsla(180, 15%, 50%, 1);
+	--color-mono-mask-background: hsla(180, 20%, 15%, 0.15);
+	--color-mono-mask-foreground: hsla(180, 15%, 30%, 1);
+
 	--color-background-surface: hsla(180, 0%, 100%, 1);
 	--color-background-base: hsla(180, 15%, 95%, 1);
 	--color-background-detail: hsla(180, 25%, 85%, 1);
@@ -43,6 +48,11 @@
 	--color-accent-text: var(--color-yellow-text);
 	--color-accent-mask-background: var(--color-yellow-mask-background);
 	--color-accent-mask-foreground: var(--color-yellow-mask-foreground);
+
+	--theme-base: var(--color-foreground-content);
+	--theme-text: var(--color-foreground-title);
+	--theme-mask-background: transparent;
+	--theme-mask-foreground: var(--color-foreground-detail);
 
 	/* Gradients */
 
@@ -87,6 +97,7 @@
 
 	--font-thin: 400;
 	--font-reg: 400;
+	--font-medium: 700;
 	--font-bold: 800;
 
 	/* Misc */
@@ -133,4 +144,35 @@ h5,
 h6,
 p {
 	margin: 0;
+}
+
+.theme-green {
+	--theme-base: var(--color-green-base);
+	--theme-text: var(--color-green-text);
+	--theme-mask-background: var(--color-green-mask-background);
+	--theme-mask-foreground: var(--color-green-mask-foreground);
+}
+.theme-blue {
+	--theme-base: var(--color-blue-base);
+	--theme-text: var(--color-blue-text);
+	--theme-mask-background: var(--color-blue-mask-background);
+	--theme-mask-foreground: var(--color-blue-mask-foreground);
+}
+.theme-yellow {
+	--theme-base: var(--color-yellow-base);
+	--theme-text: var(--color-yellow-text);
+	--theme-mask-background: var(--color-yellow-mask-background);
+	--theme-mask-foreground: var(--color-yellow-mask-foreground);
+}
+.theme-default {
+	--theme-base: var(--color-mono-base);
+	--theme-text: var(--color-mono-text);
+	--theme-mask-background: var(--color-mono-mask-background);
+	--theme-mask-foreground: var(--color-mono-mask-foreground);
+}
+.theme-none {
+	--theme-base: var(--color-foreground-content);
+	--theme-text: var(--color-foreground-title);
+	--theme-mask-background: transparent;
+	--theme-mask-foreground: var(--color-foreground-detail);
 }

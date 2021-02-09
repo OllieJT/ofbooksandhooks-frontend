@@ -1,7 +1,7 @@
 import style from "./styles.module.scss";
 
 import Link from "next/link";
-import { Theme } from "../../utility/handle-theme-color";
+import { Theme, handleThemeClass } from "../../utility/handle-theme-color";
 
 export interface TagProps {
 	label: string;
@@ -10,15 +10,19 @@ export interface TagProps {
 	theme?: Theme;
 }
 
-export const Tag = ({ label, link, theme = Theme.Default, isExternal }: TagProps) => {
+export const Tag = ({ label, link, theme = Theme.None, isExternal }: TagProps) => {
+	const themeClass = handleThemeClass(theme);
+
 	return (
-		<p className={style.container}>
+		<p className={`${style.container} ${themeClass}`}>
 			{!!link ? (
 				<Link href={link} passHref>
-					<a target={isExternal ? "_blank" : ""}>{label}</a>
+					<a className={style.inner} target={isExternal ? "_blank" : ""}>
+						{label}
+					</a>
 				</Link>
 			) : (
-				<span>{label}</span>
+				<span className={style.inner}>{label}</span>
 			)}
 		</p>
 	);

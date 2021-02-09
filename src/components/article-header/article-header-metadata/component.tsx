@@ -1,6 +1,8 @@
 import { Tag, TagProps } from "../../tag";
 import { Author } from "../../../lib/schema";
 import { Theme } from "../../../utility/handle-theme-color";
+import { handleDate } from "../../../utility";
+import style from "./styles.module.scss";
 
 export interface ArticleHeaderMetadataProps {
 	topics: TagProps[];
@@ -14,21 +16,27 @@ export const ArticleHeaderMetadata = ({
 	author,
 }: ArticleHeaderMetadataProps) => {
 	return (
-		<aside>
+		<aside className={style.container}>
 			{!!author && (
 				<Tag
-					label={author.knownAs}
-					link={author.platforms?.[0].link.url}
+					label="Guest Post"
+					//link={author.platforms?.[0].link.url}
 					theme={Theme.Green}
-					isExternal
+					//isExternal
 				/>
 			)}
 
-			<Tag label={date.toTimeString()} />
-
-			{topics.map((topicTag) => (
-				<Tag key={topicTag.label} {...topicTag} />
+			{topics.map(({ label, link, isExternal, theme }) => (
+				<Tag
+					key={label}
+					label={label}
+					link={link}
+					isExternal={isExternal}
+					theme={theme || Theme.Default}
+				/>
 			))}
+
+			<Tag label={handleDate(date)} theme={Theme.None} />
 		</aside>
 	);
 };

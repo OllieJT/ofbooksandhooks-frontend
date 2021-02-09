@@ -1,4 +1,5 @@
-/* eslint-disable  */
+import { format } from "date-fns";
+
 export function slugify(text: string): string {
 	return text
 		.toString()
@@ -9,3 +10,7 @@ export function slugify(text: string): string {
 		.replace(/^-+/, "") // Trim - from start of text
 		.replace(/-+$/, ""); // Trim - from end of text
 }
+
+export const handleDate = (d: Date): string => {
+	return format(d, "do MMM yyyy");
+};

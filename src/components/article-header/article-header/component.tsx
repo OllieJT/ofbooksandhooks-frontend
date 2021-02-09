@@ -17,6 +17,7 @@ export const ArticleHeader = ({ title, metadata, image }: ArticleHeaderProps) =>
 		<header className={style.container}>
 			<div className={style.content}>
 				<h1>{title}</h1>
+				<h1>{title}</h1>
 				<ArticleHeaderMetadata {...metadata} />
 			</div>
 

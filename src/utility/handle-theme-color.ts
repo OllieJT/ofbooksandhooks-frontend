@@ -3,6 +3,7 @@ export enum Theme {
 	Blue,
 	Yellow,
 	Default,
+	None,
 }
 
 export const handleThemeColor = (theme?: string): Theme => {
@@ -16,8 +17,10 @@ export const handleThemeColor = (theme?: string): Theme => {
 		case "accent":
 		case "yellow":
 			return Theme.Yellow;
-		default:
+		case "default":
 			return Theme.Default;
+		default:
+			return Theme.None;
 	}
 };
 
@@ -30,7 +33,8 @@ export const handleThemeClass = (theme?: Theme): string => {
 		case Theme.Yellow:
 			return `theme-yellow`;
 		case Theme.Default:
-		default:
 			return "theme-default";
+		default:
+			return "theme-none";
 	}
 };
