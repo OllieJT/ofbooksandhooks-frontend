@@ -116,7 +116,7 @@ export const ArticlePage = ({ data: rawData, preview }: Props): React.ReactEleme
 				}}
 				image={headerImage}
 			/>
-			<PortableText blocks={content} />
+			<PortableText blocks={content} renderContainerOnSingleChild />
 			{/* <ArticleFooter recommendations={recommended} /> */}
 		</ArticleLayout>
 	);

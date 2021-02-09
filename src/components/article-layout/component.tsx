@@ -5,5 +5,5 @@ interface Props {
 }
 
 export const ArticleLayout = ({ children }: Props) => {
-	return <div>{children}</div>;
+	return <article className={style.container}>{children}</article>;
 };

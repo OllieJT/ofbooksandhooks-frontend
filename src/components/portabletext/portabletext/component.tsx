@@ -79,9 +79,15 @@ export const PortableText = createPortableTextComponent({
 				<MarkLink url={mark.url}>{children}</MarkLink>
 			),
 		},
-		/* container: (props: { children: any[] }) => {
-			console.log({ props });
-			return <>{props.children}</>;
-		}, */
+
+		container: (props: { children: any[] }) => {
+			console.log({ container: props });
+			return props.children;
+		},
+
+		markFallback: (props: { children: any[] }) => {
+			console.log({ markFallback: props });
+			return props.children;
+		},
 	},
 });
