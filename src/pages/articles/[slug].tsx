@@ -110,7 +110,7 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 					type: metadata?.type,
 					title: metadata?.headline,
 					description: metadata?.description,
-					url: resolveUrl(data.post, true),
+					url: resolveUrl(post, true),
 
 					article: {
 						publishedTime: new Date(publishAt || _createdAt).toISOString(),
