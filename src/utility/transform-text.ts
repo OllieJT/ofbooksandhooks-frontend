@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import { Cost } from "../lib/schema";
 
 export function slugify(text: string): string {
 	return text
@@ -13,4 +14,15 @@ export function slugify(text: string): string {
 
 export const handleDate = (d: Date): string => {
 	return format(d, "do MMM yyyy");
+};
+
+export const handleCurrency = (cost: Cost) => {
+	switch (cost.currency) {
+		case "EUR":
+			return `€${cost.amount}`;
+		case "GBP":
+			return `£${cost.amount}`;
+		case "USD":
+			return `$${cost.amount}`;
+	}
 };
