@@ -48,16 +48,18 @@ export const BlockBook = ({
 			<header className={style.header}>
 				<h3 className={style.title}>{title}</h3>
 				<h4 className={style.subtitle}>{subtitle}</h4>
-				<p className={style.type}>{type}</p>
+				<p className={style.type}>{genre.type}</p>
 				<p className={style.author}>By {authorStr}</p>
-				{image && (
-					<Image
-						src={image.url}
-						alt={image.alt}
-						width={image.width}
-						height={image.height}
-					/>
-				)}
+				<div className={style.cover}>
+					{image && (
+						<Image
+							src={image.url}
+							alt={image.alt}
+							width={image.width}
+							height={image.height}
+						/>
+					)}
+				</div>
 			</header>
 			<article className={style.content}>
 				<PortableText blocks={content} />
