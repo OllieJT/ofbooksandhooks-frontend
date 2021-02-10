@@ -50,7 +50,7 @@ export const Profile = ({ name, subtitle, tags = [], avatar, link }: ProfileProp
 			)}
 			<div className={style.tags}>
 				{tags.map((tag) => (
-					<Tag label={tag} theme={Theme.Yellow} />
+					<Tag label={tag} theme={Theme.Yellow} key={tag} />
 				))}
 			</div>
 		</Wrapper>
