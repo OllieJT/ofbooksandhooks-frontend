@@ -5,6 +5,11 @@ export type LinkablePage = any & {
 export const resolveUrl = (page: LinkablePage, absolute?: boolean) => {
 	const PREFIX = absolute ? process.env.URL : "";
 
+	if (!page?._type) {
+		console.warn(`Could not find page type for ${page}`);
+		return "/4o4";
+	}
+
 	switch (page._type) {
 		case "homepage":
 			return `${PREFIX}/`;

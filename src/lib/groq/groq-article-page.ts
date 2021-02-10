@@ -9,7 +9,7 @@ import {
 	Topic,
 	Img,
 } from "../schema";
-import { getClient } from "../sanity";
+import { getClient } from "../sanity.server";
 
 export const articlePageQuery = groq`*[
 	_type == "article" && slug.current == $slug

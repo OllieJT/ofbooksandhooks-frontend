@@ -2,7 +2,7 @@ import React from "react";
 import ErrorPage from "next/error";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import { Loading } from "../../components/loading";
+//import { Loading } from "../../components/loading";
 import {
 	getArticlePage,
 	getArticlePagePaths,
@@ -11,7 +11,7 @@ import {
 } from "../../lib/groq/groq-article-page";
 import { ArticleLayout } from "../../components/article-layout";
 import { PortableText } from "../../components/portabletext";
-import { urlFor, usePreviewSubscription } from "../../lib/sanity";
+import { urlFor, useCurrentUser, usePreviewSubscription } from "../../lib/sanity";
 import { NextSeo } from "next-seo";
 import { resolveUrl } from "../../utility/resolve-url";
 //import { ArticleFooter } from "../../components/article-footer";
@@ -21,24 +21,53 @@ import { handleSanityImage } from "../../utility/handle-sanity-image";
 
 interface Props {
 	preview: boolean;
-	data: { post?: ArticleQuery };
+	data?: ArticleQuery;
 }
 
-export const ArticlePage = ({ data: rawData, preview }: Props): React.ReactElement => {
+export const getStaticProps: GetStaticProps = async ({ params, preview = false }) => {
+	const slug = params?.slug?.toString();
+	const post = slug && (await getArticlePage(slug, preview));
+	const found = post && post?.slug?.current;
+
+	if (!found) {
+		return {
+			notFound: true,
+		};
+	}
+
+	return {
+		props: {
+			preview,
+			data: post,
+		},
+		revalidate: 1,
+	};
+};
+
+export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 	const router = useRouter();
-	if (!router.isFallback && !rawData.post?.slug) {
+	const slug = data?.slug?.current;
+	console.log({ slugData: data });
+	const currentUser = useCurrentUser();
+
+	const { data: post } = usePreviewSubscription(articlePageQuery, {
+		params: { slug },
+		initialData: data,
+		// note: not using next preview
+		enabled: Boolean(slug && !!currentUser.data),
+	});
+	console.log({
+		data,
+		post,
+	});
+
+	if (!router.isFallback && !slug) {
 		return <ErrorPage statusCode={404} />;
 	}
 
-	const { data, loading, error } = usePreviewSubscription(articlePageQuery, {
-		params: { slug: rawData?.post?.slug },
-		initialData: rawData,
-		enabled: preview,
-	});
-
-	if (!data?.post) {
-		console.log({ data, loading, error });
-		return <Loading message="Loading article..." />;
+	if (!post) {
+		console.log({ post });
+		return <pre>{JSON.stringify({ post }, null, 4)}</pre>;
 	}
 
 	const {
@@ -52,7 +81,7 @@ export const ArticlePage = ({ data: rawData, preview }: Props): React.ReactEleme
 		//recommended,
 		topics,
 		image,
-	} = data.post;
+	} = post;
 
 	//todo: use content blocks to populate <NextSeo/>
 
@@ -122,31 +151,8 @@ export const ArticlePage = ({ data: rawData, preview }: Props): React.ReactEleme
 	);
 };
 
-export const getStaticProps: GetStaticProps = async ({ params, preview = false }) => {
-	const slug = params?.slug?.toString();
-	console.log({ slug, params });
-	const post = slug && (await getArticlePage(slug, preview));
-	const found = post && post?.slug?.current;
-
-	if (!found) {
-		return {
-			notFound: true,
-		};
-	}
-
-	return {
-		props: {
-			preview,
-			data: { post },
-		},
-		revalidate: 1,
-	};
-};
-
 export const getStaticPaths: GetStaticPaths = async () => {
 	const allArticles = await getArticlePagePaths();
-
-	console.log({ allArticles });
 	return {
 		paths:
 			allArticles.map((slug) => ({

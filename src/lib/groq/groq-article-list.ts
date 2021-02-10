@@ -8,7 +8,7 @@ import {
 	Topic,
 	Img,
 } from "../schema";
-import { getClient } from "../sanity";
+import { getClient } from "../sanity.server";
 import { handlePagination } from "../../utility/handle-pagination";
 import { SanityKeyedReference } from "sanity-codegen";
 
