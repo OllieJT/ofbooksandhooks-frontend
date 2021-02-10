@@ -102,8 +102,7 @@
 
 	/* Misc */
 
-	--transition-primary: cubic-bezier(0, 1.4, 0.8, 0.9); /* 0.24s */
-	--transition-secondary: cubic-bezier(0, 1, 0.75, 0.9); /* 0.48s */
+	--transition: cubic-bezier(0, 1, 0.75, 0.9);
 
 	--level-1: 0px 0px 1px rgba(109, 138, 146, 0.2), 0px 0px 2px rgba(36, 59, 66, 0.15),
 		0px 2px 8px rgba(76, 213, 255, 0.15);

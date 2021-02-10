@@ -11,30 +11,29 @@ interface Props {
 
 export const BlockGallery = ({ title, images = [] }: Props) => {
 	return (
-		<section className={style.container} id={slugify(title)}>
-			<ul>
-				{images.map(({ asset, alt }) => {
-					const image = handleSanityImage(asset, {
-						width: 1280,
-						height: 720,
-						alt,
-					});
+		<ul className={style.list} id={slugify(title)}>
+			{images.map(({ asset, alt }) => {
+				const image = handleSanityImage(asset, {
+					width: 1280,
+					height: 720,
+					alt,
+					fluid: true,
+				});
 
-					if (!image) {
-						return null;
-					}
-					return (
-						<li key={asset._ref}>
-							<Image
-								src={image.url}
-								alt={image.alt}
-								width={image.width}
-								height={image.height}
-							/>
-						</li>
-					);
-				})}
-			</ul>
-		</section>
+				if (!image) {
+					return null;
+				}
+				return (
+					<li key={asset._ref} className={style.item}>
+						<img
+							className={style.thumb}
+							src={image.url}
+							alt={image.alt}
+							width={image.width}
+						/>
+					</li>
+				);
+			})}
+		</ul>
 	);
 };
