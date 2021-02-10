@@ -11,16 +11,14 @@ export const getServerSideProps: GetServerSideProps<any> = async () => {
 	return { props: { data } };
 };
 
-const Home = ({ data }): React.ReactElement => {
+const Home = (): React.ReactElement => {
 	return (
 		<div>
 			<Head>
 				<title>Homepage</title>
 			</Head>
 
-			<main>
-				<pre>{JSON.stringify(data, null, 4)}</pre>
-			</main>
+			<main>{/* <pre>{JSON.stringify(data, null, 4)}</pre> */}</main>
 		</div>
 	);
 };

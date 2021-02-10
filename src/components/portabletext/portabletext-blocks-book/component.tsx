@@ -1,4 +1,4 @@
-import { Book, ContentMin, Genre, Img } from "../../../lib/schema";
+import { ContentMin, Genre, Img } from "../../../lib/schema";
 import { handleSanityImage } from "../../../utility/handle-sanity-image";
 import { PortableText } from "..";
 import style from "./styles.module.scss";
@@ -19,14 +19,14 @@ interface Props {
 
 export const BlockBook = ({
 	title,
-	type,
+	// type,
 	authors,
 	cover,
 	genre,
 	content,
-	isbn,
-	narrators,
-	releaseDate,
+	// isbn,
+	// narrators,
+	// releaseDate,
 	subtitle,
 }: Props) => {
 	const authorStr = authors

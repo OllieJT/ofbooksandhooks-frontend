@@ -1,6 +1,5 @@
-import { SanityImage, SanityReference } from "sanity-codegen";
 import { Article, Collection } from "../../../lib/schema";
-import style from "./styles.module.scss";
+//import style from "./styles.module.scss";
 
 type Recommendation = Article | Collection;
 

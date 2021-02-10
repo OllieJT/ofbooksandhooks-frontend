@@ -1,7 +1,6 @@
 import { Img } from "../../../lib/schema";
 import { handleSanityImage } from "../../../utility/handle-sanity-image";
 import style from "./styles.module.scss";
-import Image from "next/image";
 import { slugify } from "../../../utility";
 
 interface Props {

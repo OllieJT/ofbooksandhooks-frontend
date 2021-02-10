@@ -4,7 +4,7 @@ import { SanityAsset } from "../lib/schema";
 export interface CustomImage {
 	url: string;
 	width: number;
-	height: number | null;
+	height: number;
 	alt?: string;
 }
 
@@ -34,17 +34,8 @@ export const handleSanityImage = (
 		return undefined;
 	}
 
-	if (options.fluid) {
-		return {
-			url: imgUrlFluid,
-			width: options.width,
-			height: null,
-			alt: options.alt || "",
-		};
-	}
-
 	return {
-		url: imgUrlFixed,
+		url: options.fluid ? imgUrlFluid : imgUrlFixed,
 		width: options.width,
 		height: options.height,
 		alt: options.alt || "",
