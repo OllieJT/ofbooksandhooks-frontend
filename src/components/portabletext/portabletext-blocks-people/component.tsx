@@ -1,8 +1,8 @@
 import { Person } from "../../../lib/schema";
 import { handleSanityImage } from "../../../utility/handle-sanity-image";
 import style from "./styles.module.scss";
-import Image from "next/image";
 import { slugify } from "../../../utility";
+import { Profile } from "../../profile";
 interface Props {
 	title: string;
 	people: Person[];
@@ -10,40 +10,28 @@ interface Props {
 
 export const BlockPeople = ({ title, people = [] }: Props) => {
 	return (
-		<section className={style.container} id={slugify(title)}>
-			<ul>
-				{people.map(({ knownAs, name, photo, tags }) => {
-					const avatar =
-						photo &&
-						handleSanityImage(photo.asset, {
-							width: 1280,
-							height: 720,
-							alt: photo?.alt,
-						});
+		<ul className={style.list} id={slugify(title)}>
+			{people.map(({ knownAs, name, photo, tags }) => {
+				const avatar =
+					photo &&
+					handleSanityImage(photo.asset, {
+						width: 160,
+						height: 160,
+						alt: photo?.alt,
+					});
 
-					return (
-						<li key={knownAs + name}>
-							{avatar && (
-								<Image
-									src={avatar.url}
-									alt={avatar.alt || name}
-									width={avatar.width}
-									height={avatar.height}
-								/>
-							)}
-							<header>
-								<p>{name}</p>
-								<p>{knownAs}</p>
-							</header>
-							<aside>
-								{tags?.map((tag) => (
-									<p key={tag}>{tag}</p>
-								))}
-							</aside>
-						</li>
-					);
-				})}
-			</ul>
-		</section>
+				return (
+					<li key={knownAs + name} className={style.item}>
+						<Profile
+							name={name}
+							subtitle={knownAs}
+							tags={tags}
+							avatar={avatar}
+							//link="/"
+						/>
+					</li>
+				);
+			})}
+		</ul>
 	);
 };
