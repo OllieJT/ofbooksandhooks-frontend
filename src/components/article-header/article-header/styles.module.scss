@@ -1,6 +1,6 @@
 .container {
 	display: grid;
-	grid-template-columns: var(--article-padding-x) 1fr var(--article-padding-x);
+	grid-template-columns: 1fr var(--size-maxcontent) 1fr;
 	grid-template-rows: auto var(--article-padding-x) auto;
 }
 
