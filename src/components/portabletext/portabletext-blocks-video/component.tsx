@@ -1,4 +1,5 @@
 import VideoPlayer from "react-player";
+import style from "./styles.module.scss";
 
 export type Props = {
 	href: string;
@@ -16,12 +17,16 @@ export const BlockVideo = ({
 	isMuted = false,
 }: Props) => {
 	return (
-		<VideoPlayer
-			url={href}
-			controls={hasControls}
-			playing={isAutoplay}
-			loop={isLoop}
-			muted={isMuted}
-		/>
+		<div className={style.container}>
+			<VideoPlayer
+				url={href}
+				controls={hasControls}
+				playing={isAutoplay}
+				loop={isLoop}
+				muted={isMuted}
+				width={756}
+				height={425}
+			/>
+		</div>
 	);
 };

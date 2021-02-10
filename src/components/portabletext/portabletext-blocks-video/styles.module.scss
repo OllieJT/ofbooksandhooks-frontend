@@ -1,0 +1,10 @@
+.container {
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: center;
+	border-radius: var(--radius-lg);
+	overflow: hidden;
+}
