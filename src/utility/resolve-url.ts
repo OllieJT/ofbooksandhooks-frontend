@@ -7,18 +7,20 @@ export const resolveUrl = (page: LinkablePage, absolute?: boolean) => {
 
 	if (!page?._type) {
 		console.warn(`Could not find page type for ${page}`);
-		return "/4o4";
+		return "/404";
 	}
 
 	switch (page._type) {
 		case "homepage":
 			return `${PREFIX}/`;
 		case "article":
-			return `${PREFIX}/articles/${page.slug?.current}`;
+			return `${PREFIX}/article/${page.slug?.current}`;
 		case "collection":
-			return `${PREFIX}/collections/${page.slug?.current}`;
+			return `${PREFIX}/collection/${page.slug?.current}`;
 		case "topic":
-			return `${PREFIX}/topics/${page.slug?.current}`;
+			return `${PREFIX}/topic/${page.slug?.current}`;
+		case "author":
+			return `${PREFIX}/author/${page.slug?.current}`;
 
 		default:
 			return PREFIX + `404`;
