@@ -42,13 +42,6 @@ export interface Topic extends SanityDocument {
   title: string;
 
   /**
-   * Label — `string`
-   *
-   *
-   */
-  label: string;
-
-  /**
    * Slug — `slug`
    *
    * This determines the URL path for the page
@@ -56,11 +49,11 @@ export interface Topic extends SanityDocument {
   slug: { _type: "slug"; current: string };
 
   /**
-   * Hide — `boolean`
+   * Metadata — `metadata`
    *
-   * This topic will still exist but it will not be used when listing ALL topics.
+   *
    */
-  hidden?: boolean;
+  metadata: Metadata;
 }
 
 /**
@@ -79,13 +72,6 @@ export interface Collection extends SanityDocument {
   title: string;
 
   /**
-   * Label — `string`
-   *
-   *
-   */
-  label?: string;
-
-  /**
    * Slug — `slug`
    *
    * This determines the URL path for the page
@@ -93,18 +79,11 @@ export interface Collection extends SanityDocument {
   slug: { _type: "slug"; current: string };
 
   /**
-   * Hide — `boolean`
-   *
-   * This topic will still exist but it will not be used when listing ALL topics.
-   */
-  hidden?: boolean;
-
-  /**
-   * Theme Color — `string`
+   * theme — `theme`
    *
    *
    */
-  color?: "yellow" | "teal" | "blue";
+  theme?: Theme;
 
   /**
    * Articles — `array`
@@ -112,6 +91,13 @@ export interface Collection extends SanityDocument {
    *
    */
   articles: Array<SanityKeyedReference<Article>>;
+
+  /**
+   * Metadata — `metadata`
+   *
+   *
+   */
+  metadata: Metadata;
 }
 
 /**
@@ -130,18 +116,18 @@ export interface Article extends SanityDocument {
   title: string;
 
   /**
+   * URL Slug — `slug`
+   *
+   * This determines the URL path for the page
+   */
+  slug: { _type: "slug"; current: string };
+
+  /**
    * Content — `richtext`
    *
    *
    */
   content?: Richtext;
-
-  /**
-   * Image — `img`
-   *
-   *
-   */
-  image?: Img;
 
   /**
    * Topics — `array`
@@ -155,28 +141,21 @@ export interface Article extends SanityDocument {
    *
    *
    */
-  recommended?: Array<SanityKeyedReference<Collection | Article>>;
+  recommended: Array<SanityKeyedReference<Collection | Article>>;
 
   /**
-   * Slug — `slug`
-   *
-   * This determines the URL path for the page
-   */
-  slug: { _type: "slug"; current: string };
-
-  /**
-   * Publish Date — `datetime`
+   * Article Image — `img`
    *
    *
    */
-  publishAt: string;
+  thumbnail: Img;
 
   /**
-   * Guest Author — `author`
+   * Author — `reference`
    *
    *
    */
-  author?: Author;
+  author: SanityReference<Author>;
 
   /**
    * Metadata — `metadata`
@@ -184,6 +163,50 @@ export interface Article extends SanityDocument {
    *
    */
   metadata: Metadata;
+}
+
+/**
+ * Author
+ *
+ *
+ */
+export interface Author extends SanityDocument {
+  _type: "author";
+
+  /**
+   * Name — `string`
+   *
+   *
+   */
+  name: string;
+
+  /**
+   * Known As — `string`
+   *
+   *
+   */
+  knownAs: string;
+
+  /**
+   * URL Slug — `slug`
+   *
+   * This determines the URL path for the page
+   */
+  slug: { _type: "slug"; current: string };
+
+  /**
+   * Platforms — `array`
+   *
+   *
+   */
+  platforms?: Array<SanityKeyed<Platform>>;
+
+  /**
+   * Author Avatar — `img`
+   *
+   *
+   */
+  avatar?: Img;
 }
 
 /**
@@ -232,11 +255,11 @@ export interface Settings extends SanityDocument {
   biography: Biography;
 
   /**
-   * Profile — `author`
+   * Profile — `reference`
    *
    *
    */
-  profile: Author;
+  profile: SanityReference<Author>;
 }
 
 export type LinkExternal = {
@@ -283,6 +306,13 @@ export type Product = {
   description?: string;
 
   /**
+   * Notice — `notice`
+   *
+   *
+   */
+  notice?: Notice;
+
+  /**
    * Estimated Cost — `cost`
    *
    *
@@ -295,13 +325,6 @@ export type Product = {
    * If this is a limited time offer, include the time the offer expires
    */
   expiresAt?: string;
-
-  /**
-   * Notice — `notice`
-   *
-   *
-   */
-  notice?: Notice;
 
   /**
    * URL — `string`
@@ -463,53 +486,7 @@ export type Book = {
   content?: ContentMin;
 };
 
-export type Author = {
-  _type: "author";
-  /**
-   * Name — `string`
-   *
-   *
-   */
-  name: string;
-
-  /**
-   * Known As — `string`
-   *
-   *
-   */
-  knownAs: string;
-
-  /**
-   * Platforms — `array`
-   *
-   *
-   */
-  platforms?: Array<SanityKeyed<Platform>>;
-
-  /**
-   * Author Avatar — `img`
-   *
-   *
-   */
-  avatar?: Img;
-};
-
-export type Authors = {
-  _type: "authors";
-  /**
-   * List Title — `string`
-   *
-   *
-   */
-  title: string;
-
-  /**
-   * author — `array`
-   *
-   *
-   */
-  author: Array<SanityKeyed<Author>>;
-};
+export type Theme = "yellow" | "green" | "blue" | "none";
 
 export type Gallery = {
   _type: "gallery";
@@ -576,11 +553,11 @@ export type Highlight = {
   title: string;
 
   /**
-   * Theme Color — `string`
+   * theme — `theme`
    *
    *
    */
-  color?: "yellow" | "teal" | "blue";
+  theme?: Theme;
 
   /**
    * Type — `string`
@@ -597,7 +574,15 @@ export type Highlight = {
   content?: ContentMin;
 };
 
-export type Richtext = Array<SanityKeyed<SanityBlock>>;
+export type Richtext = Array<
+  | SanityKeyed<SanityBlock>
+  | SanityKeyed<Highlight>
+  | SanityKeyed<Gallery>
+  | SanityKeyed<Book>
+  | SanityKeyed<Video>
+  | SanityKeyed<People>
+  | SanityKeyed<Products>
+>;
 
 export type ContentMin = Array<SanityKeyed<SanityBlock>>;
 
@@ -611,16 +596,23 @@ export type Metadata = {
   type: "website" | "article" | "profile" | "book";
 
   /**
-   * Title — `string`
+   * Publish Date — `datetime`
    *
-   * This should be short. It appears in the browser tab.
+   * This will be avalible but hidden on the site until after this date.
+   */
+  publishAt: string;
+
+  /**
+   * Page Label — `string`
+   *
+   * This should be very short as it appears in the browser tab.
    */
   title: string;
 
   /**
-   * Headline — `string`
+   * Page Title — `string`
    *
-   *
+   * This is the main title people see on social media and search engines.
    */
   headline: string;
 
@@ -636,87 +628,35 @@ export type Metadata = {
    *
    *
    */
-  tags: Array<SanityKeyed<string>>;
+  tags?: Array<SanityKeyed<string>>;
 
   /**
-   * Thumbnails — `array`
+   * Images — `array`
    *
-   *
+   * The first image is used on the site, the rest are used for social media sites that support galleries.
    */
-  thumbnails?: Array<SanityKeyed<Img>>;
+  thumbnails: Array<SanityKeyed<Img>>;
+
+  /**
+   * Hidden — `boolean`
+   *
+   * This will be hidden from discovery throughout the site. Bots, and people with the URL will still be able to access it.
+   */
+  hidden: boolean;
 
   /**
    * No follow — `boolean`
    *
    * Tells search engines to not use this page for ranking calculations.
    */
-  nofollow?: boolean;
+  nofollow: boolean;
 
   /**
    * No Index — `boolean`
    *
    * Tells search engines to not crawl this page.
    */
-  noindex?: boolean;
-};
-
-export type JsonLdTodo = {
-  _type: "jsonLdTodo";
-  /**
-   * Title — `string`
-   *
-   *
-   */
-  title: string;
-
-  /**
-   * Description — `text`
-   *
-   *
-   */
-  description?: string;
-
-  /**
-   * Time (Mins) — `number`
-   *
-   *
-   */
-  time?: number;
-
-  /**
-   * Estimated Cost — `cost`
-   *
-   *
-   */
-  cost?: Cost;
-
-  /**
-   * Thumbnail — `img`
-   *
-   *
-   */
-  thumbnail?: Img;
-
-  /**
-   * Supplies — `array`
-   *
-   *
-   */
-  supplies?: Array<SanityKeyed<string>>;
-
-  /**
-   * Tools — `array`
-   *
-   *
-   */
-  tools?: Array<SanityKeyed<string>>;
-
-  /**
-   * Instructions — `array`
-   *
-   *
-   */
-  instructions: Array<SanityKeyed<string>>;
+  noindex: boolean;
 };
 
 export type Platform = {
@@ -739,11 +679,11 @@ export type Platform = {
     | "website";
 
   /**
-   * Link — `linkExternal`
+   * Link — `url`
    *
    *
    */
-  link: LinkExternal;
+  link: string;
 };
 
 export type Notice = {
@@ -756,11 +696,11 @@ export type Notice = {
   label: string;
 
   /**
-   * Theme Color — `string`
+   * theme — `theme`
    *
    *
    */
-  color?: "yellow" | "teal" | "blue";
+  theme?: Theme;
 };
 
 export type Cost = {
@@ -847,13 +787,12 @@ export type Img = {
   asset: SanityAsset;
   crop?: SanityImageCrop;
   hotspot?: SanityImageHotspot;
-
-  /**
-   * Alternate Text — `string`
-   *
-   * Descripe this image as if someone couldn't see it.
-   */
-  alt?: string;
 };
 
-export type Documents = Topic | Collection | Article | Homepage | Settings;
+export type Documents =
+  | Topic
+  | Collection
+  | Article
+  | Author
+  | Homepage
+  | Settings;
