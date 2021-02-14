@@ -19,7 +19,5 @@ export const usePreviewSubscription = createPreviewSubscriptionHook({
 	documentLimit: 3000,
 });
 
-console.log(sanityConfig);
-
 // Helper function for using the current logged in user account
 export const useCurrentUser = createCurrentUserHook(sanityConfig);

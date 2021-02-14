@@ -44,7 +44,6 @@ export const getStaticProps: GetStaticProps = async ({ params, preview = false }
 export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 	const router = useRouter();
 	const slug = data?.slug?.current;
-	console.log({ slugData: data });
 	const currentUser = useCurrentUser();
 
 	const { data: post } = usePreviewSubscription(articlePageQuery, {
@@ -53,11 +52,6 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 		// note: not using next preview
 		enabled: Boolean(slug && !!currentUser.data),
 	});
-	console.log({
-		data,
-		post,
-	});
-
 	if (!router.isFallback && !slug) {
 		return <ErrorPage statusCode={404} />;
 	}
