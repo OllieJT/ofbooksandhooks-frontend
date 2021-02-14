@@ -14,13 +14,13 @@ export const resolveUrl = (page: LinkablePage, absolute?: boolean) => {
 		case "homepage":
 			return `${PREFIX}/`;
 		case "article":
-			return `${PREFIX}/article/${page.slug?.current}`;
+			return `${PREFIX}/articles/${page.slug?.current}`;
 		case "collection":
-			return `${PREFIX}/collection/${page.slug?.current}`;
+			return `${PREFIX}/collections/${page.slug?.current}`;
 		case "topic":
-			return `${PREFIX}/topic/${page.slug?.current}`;
+			return `${PREFIX}/topics/${page.slug?.current}`;
 		case "author":
-			return `${PREFIX}/author/${page.slug?.current}`;
+			return `${PREFIX}/authors/${page.slug?.current}`;
 
 		default:
 			return PREFIX + `404`;
