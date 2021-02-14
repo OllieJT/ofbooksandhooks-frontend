@@ -1,4 +1,7 @@
 .container {
+	position: sticky;
+	z-index: 900;
+	top: 0;
 	width: 100%;
 	padding: var(--layout-gutter);
 

@@ -84,8 +84,8 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 	const headerImage =
 		thumbnail?.asset &&
 		handleSanityImage(thumbnail, {
-			width: 1126,
-			height: 563,
+			width: 1200,
+			height: 1200,
 			alt: thumbnail?.alt,
 		});
 
@@ -98,8 +98,8 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 	return (
 		<ArticlePageLayout
 			title={title}
-			date={new Date(metadata.publishAt || _createdAt)}
 			image={headerImage}
+			date={new Date(metadata.publishAt || _createdAt)}
 			authorLink={resolveUrl(author)}
 			authorName={author.name}
 			tags={topicTags}

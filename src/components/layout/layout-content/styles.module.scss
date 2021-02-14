@@ -18,7 +18,15 @@
 	overflow: hidden;
 }
 
+.banner {
+	max-height: 50vh;
+	overflow: visible;
+}
+
 .image {
+	max-width: 100%;
+	height: auto;
+	min-height: min-content;
 }
 
 .content {
@@ -34,6 +42,7 @@
 
 	background-color: var(--color-background-surface);
 	border-radius: var(--radius-lg);
+	box-shadow: var(--level-2);
 
 	padding: var(--layout-content-padding-y) var(--layout-content-padding-x);
 
