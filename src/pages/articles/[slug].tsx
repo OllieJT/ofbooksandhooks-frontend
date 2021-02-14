@@ -10,7 +10,6 @@ import {
 	ArticleQuery,
 } from "../../lib/groq/groq-article-page";
 import { ArticlePageLayout } from "../../components/article-page";
-import { PortableText } from "../../components/portabletext";
 import { urlFor, useCurrentUser, usePreviewSubscription } from "../../lib/sanity";
 import { NextSeo } from "next-seo";
 import { resolveUrl } from "../../utility/resolve-url";
@@ -102,7 +101,7 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 			date={new Date(metadata.publishAt || _createdAt)}
 			image={headerImage}
 			authorLink={resolveUrl(author)}
-			authorName={`${author.name}`}
+			authorName={author.name}
 			tags={topicTags}
 			content={content}
 		>
