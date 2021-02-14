@@ -1,2 +1,3 @@
 export * from "./layout";
-export * from "./layout-nav";
+export * from "./layout-logo";
+export * from "./layout-content";

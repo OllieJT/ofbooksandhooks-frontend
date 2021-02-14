@@ -1,18 +1,19 @@
 p.container {
 	display: inline-block;
+	width: max-content;
 
 	font-size: var(--font-size-sm);
 	line-height: 1em;
 	text-transform: uppercase;
-	font-weight: var(--font-bold);
-	letter-spacing: 0.1em;
+	font-weight: var(--font-medium);
+	letter-spacing: 0.05em;
 	margin: 0;
 
 	.inner {
 		display: block;
 		text-decoration: none;
 		padding: var(--size-xsm) var(--size-sm);
-		border-radius: var(--radius-reg);
+		border-radius: var(--radius-sm);
 
 		color: var(--theme-mask-foreground);
 		background-color: var(--theme-mask-background);

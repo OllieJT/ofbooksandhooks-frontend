@@ -1,1 +1,2 @@
-export * from "./component";
+export * from "./tag-list";
+export * from "./tag-item";

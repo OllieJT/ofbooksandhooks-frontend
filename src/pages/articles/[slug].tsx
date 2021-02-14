@@ -9,7 +9,7 @@ import {
 	articlePageQuery,
 	ArticleQuery,
 } from "../../lib/groq/groq-article-page";
-import { ArticleLayout, ArticleHeader } from "../../components/article-page";
+import { ArticlePageLayout } from "../../components/article-page";
 import { PortableText } from "../../components/portabletext";
 import { urlFor, useCurrentUser, usePreviewSubscription } from "../../lib/sanity";
 import { NextSeo } from "next-seo";
@@ -91,15 +91,21 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 		});
 
 	const topicTags: TagProps[] =
-		topics?.map((topic) => {
-			return {
-				label: topic.title,
-				link: resolveUrl(topic),
-			};
-		}) || [];
+		topics?.map((topic) => ({
+			label: topic.title,
+			link: resolveUrl(topic),
+		})) || [];
 
 	return (
-		<ArticleLayout>
+		<ArticlePageLayout
+			title={title}
+			date={new Date(metadata.publishAt || _createdAt)}
+			image={headerImage}
+			authorLink={resolveUrl(author)}
+			authorName={`${author.name}`}
+			tags={topicTags}
+			content={content}
+		>
 			<NextSeo
 				title={preview ? `Preview ${metadata?.title}` : metadata?.title}
 				description={metadata?.description}
@@ -135,18 +141,8 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 				noindex={metadata?.noindex || false}
 				nofollow={metadata?.nofollow || false}
 			/>
-			<ArticleHeader
-				title={title}
-				metadata={{
-					date: new Date(metadata.publishAt || _createdAt),
-					author: author,
-					topics: topicTags,
-				}}
-				image={headerImage}
-			/>
-			<PortableText blocks={content} />
 			{/* <ArticleFooter recommendations={recommended} /> */}
-		</ArticleLayout>
+		</ArticlePageLayout>
 	);
 };
 
