@@ -3,7 +3,7 @@ import Image from "next/image";
 import {
 	ArticleHeaderMetadata,
 	ArticleHeaderMetadataProps,
-} from "../article-header-metadata";
+} from "../article-page-header-metadata";
 import { CustomImage } from "../../../utility/handle-sanity-image";
 
 export interface ArticleHeaderProps {
@@ -16,7 +16,6 @@ export const ArticleHeader = ({ title, metadata, image }: ArticleHeaderProps) =>
 	return (
 		<header className={style.container}>
 			<div className={style.content}>
-				<h1>{title}</h1>
 				<h1>{title}</h1>
 				<ArticleHeaderMetadata {...metadata} />
 			</div>

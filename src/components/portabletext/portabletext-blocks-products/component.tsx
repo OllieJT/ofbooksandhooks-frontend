@@ -24,7 +24,7 @@ export const BlockProducts = ({ title, products = [] }: Props) => {
 					// expiresAt,
 					notice,
 				}) => {
-					const thumb = handleSanityImage(thumbnail.asset, {
+					const thumb = handleSanityImage(thumbnail, {
 						width: 160,
 						height: 160,
 						alt: thumbnail.alt || title,
@@ -33,7 +33,7 @@ export const BlockProducts = ({ title, products = [] }: Props) => {
 						return null;
 					}
 
-					const noticeTheme = handleThemeColor(notice?.color);
+					const noticeTheme = handleThemeColor(notice?.theme);
 					const price = handleCurrency(cost);
 					return (
 						<li key={title + brand} className={style.item}>

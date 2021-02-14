@@ -11,19 +11,18 @@ interface Props {
 export const BlockGallery = ({ title, images = [] }: Props) => {
 	return (
 		<ul className={style.list} id={slugify(title)}>
-			{images.map(({ asset, alt }) => {
-				const image = handleSanityImage(asset, {
-					width: 1280,
-					height: 720,
-					alt,
-					fluid: true,
+			{images.map((img) => {
+				const image = handleSanityImage(img, {
+					width: 800,
+					height: 800,
+					alt: img.alt,
 				});
 
 				if (!image) {
 					return null;
 				}
 				return (
-					<li key={asset._ref} className={style.item}>
+					<li key={img.asset._ref} className={style.item}>
 						<img
 							className={style.thumb}
 							src={image.url}

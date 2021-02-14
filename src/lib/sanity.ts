@@ -3,7 +3,7 @@ import {
 	createPreviewSubscriptionHook,
 	createCurrentUserHook,
 } from "next-sanity";
-import { SanityAsset } from "./schema";
+import { Img } from "./schema";
 import { sanityConfig } from "./sanity-config";
 
 /**
@@ -11,8 +11,7 @@ import { sanityConfig } from "./sanity-config";
  * Read more: https://www.sanity.io/docs/image-url
  **/
 export const imageBuilder = createImageUrlBuilder(sanityConfig);
-export const urlFor = (source: SanityAsset) =>
-	imageBuilder.image(source).auto("format").fit("max");
+export const urlFor = (source: Img) => imageBuilder.image(source).auto("format");
 
 // Set up the live preview subsscription hook
 export const usePreviewSubscription = createPreviewSubscriptionHook({

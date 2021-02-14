@@ -14,10 +14,11 @@ export const BlockPeople = ({ title, people = [] }: Props) => {
 			{people.map(({ knownAs, name, photo, tags }) => {
 				const avatar =
 					photo &&
-					handleSanityImage(photo.asset, {
+					handleSanityImage(photo, {
 						width: 160,
 						height: 160,
 						alt: photo?.alt,
+						fit: "min",
 					});
 
 				return (

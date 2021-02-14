@@ -488,6 +488,37 @@ export type Book = {
 
 export type Theme = "yellow" | "green" | "blue" | "none";
 
+export type Cta = {
+  _type: "cta";
+  /**
+   * Title — `string`
+   *
+   *
+   */
+  title?: string;
+
+  /**
+   * Title Size — `string`
+   *
+   *
+   */
+  size?: "xx-large" | "x-large" | "regular";
+
+  /**
+   * Button Label — `string`
+   *
+   *
+   */
+  label: string;
+
+  /**
+   * URL — `url`
+   *
+   *
+   */
+  url: string;
+};
+
 export type Gallery = {
   _type: "gallery";
   /**
@@ -578,10 +609,12 @@ export type Richtext = Array<
   | SanityKeyed<SanityBlock>
   | SanityKeyed<Highlight>
   | SanityKeyed<Gallery>
+  | SanityKeyed<Img>
   | SanityKeyed<Book>
   | SanityKeyed<Video>
   | SanityKeyed<People>
   | SanityKeyed<Products>
+  | SanityKeyed<Cta>
 >;
 
 export type ContentMin = Array<SanityKeyed<SanityBlock>>;
@@ -787,6 +820,27 @@ export type Img = {
   asset: SanityAsset;
   crop?: SanityImageCrop;
   hotspot?: SanityImageHotspot;
+
+  /**
+   * Alternate Text — `string`
+   *
+   * Descripe this image as if someone couldn't see it.
+   */
+  alt?: string;
+
+  /**
+   * Inline — `string`
+   *
+   *
+   */
+  float?: "none" | "left" | "right";
+
+  /**
+   * Max Width — `string`
+   *
+   * Restrict the width of the image. This is useful if you want to force a larger image to sit inline next to text.
+   */
+  maxWidth?: "none" | "large" | "medium" | "small";
 };
 
 export type Documents =

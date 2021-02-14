@@ -15,6 +15,7 @@ export const articlePageQuery = groq`*[
 	_type == "article" && slug.current == $slug
 	][0]{
 		...,
+		author->,
 		topics[]->,
 		recommended[]->,
 		content[]{
@@ -26,13 +27,12 @@ export const articlePageQuery = groq`*[
 export interface ArticleQuery extends SanityDocument {
 	_type: "article";
 	title: string;
-	content?: Richtext;
-	image?: Img;
-	topics?: Array<Topic>;
-	recommended?: Array<Collection | Article>;
 	slug: { _type: "slug"; current: string };
-	publishAt: string;
-	author?: Author;
+	content?: Richtext;
+	topics?: Array<Topic>;
+	recommended: Array<Collection | Article>;
+	thumbnail: Img;
+	author: Author;
 	metadata: Metadata;
 }
 

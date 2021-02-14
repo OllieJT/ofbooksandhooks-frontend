@@ -15,9 +15,14 @@ import {
 	SerializerBlock_Video,
 	SerializerMark_LinkInternal,
 	SerializerMark_LinkExternal,
+	SerializerBlock_Cta,
+	SerializerMark_Marker,
+	SerializerBlock_Image,
 } from "../../../lib/schema-serializer";
 import { resolveUrl } from "../../../utility/resolve-url";
 import { handleThemeColor } from "../../../utility/handle-theme-color";
+import { BlockCta } from "../portabletext-blocks-cta";
+import { BlockImage } from "../portabletext-blocks-img";
 
 export const serializers = {
 	types: {
@@ -40,13 +45,14 @@ export const serializers = {
 			<BlockHighlight
 				content={node.content}
 				title={node.title}
-				theme={handleThemeColor(node.color)}
+				theme={handleThemeColor(node.theme)}
 				type={node.type}
 			/>
 		),
 		gallery: ({ node }: SerializerBlock_Gallery) => (
 			<BlockGallery title={node.title} images={node.images} />
 		),
+		img: ({ node }: SerializerBlock_Image) => <BlockImage img={node} />,
 		people: ({ node }: SerializerBlock_People) => (
 			<BlockPeople title={node.title} people={node.people} />
 		),
@@ -62,6 +68,14 @@ export const serializers = {
 				isMuted={node.isMuted}
 			/>
 		),
+		cta: ({ node }: SerializerBlock_Cta) => (
+			<BlockCta
+				title={node.title}
+				size={node.size}
+				url={node.url}
+				label={node.label}
+			/>
+		),
 	},
 	marks: {
 		linkInternal: ({ children, mark }: SerializerMark_LinkInternal) => (
@@ -70,6 +84,7 @@ export const serializers = {
 		linkExternal: ({ children, mark }: SerializerMark_LinkExternal) => (
 			<MarkLink url={mark.url}>{children}</MarkLink>
 		),
+		marker: ({ children }: SerializerMark_Marker) => <mark>{children}</mark>,
 	},
 
 	// container: (props: { children: any[] }) => {console.log({ container: props });return props.children;},

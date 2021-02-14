@@ -15,14 +15,19 @@ export const BlockRenderer = (props: SerializerBlock_Block) => {
 		);
 	}
 
+	if (style === "marker") {
+		return <mark>{props.children}</mark>;
+	}
+
 	if (style === "blockquote") {
-		return <blockquote>- {props.children}</blockquote>;
+		return <blockquote>{props.children}</blockquote>;
 	}
 
 	if (style === "normal") {
-		console.log({ BlockRenderer: props.node });
 		return props.children;
 	}
+
+	console.log({ style });
 
 	// Fall back to default handling
 	return BlockContent.defaultSerializers.types.block(props);

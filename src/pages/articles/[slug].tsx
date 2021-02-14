@@ -9,13 +9,11 @@ import {
 	articlePageQuery,
 	ArticleQuery,
 } from "../../lib/groq/groq-article-page";
-import { ArticleLayout } from "../../components/article-layout";
+import { ArticleLayout, ArticleHeader } from "../../components/article-page";
 import { PortableText } from "../../components/portabletext";
 import { urlFor, useCurrentUser, usePreviewSubscription } from "../../lib/sanity";
 import { NextSeo } from "next-seo";
 import { resolveUrl } from "../../utility/resolve-url";
-//import { ArticleFooter } from "../../components/article-footer";
-import { ArticleHeader } from "../../components/article-header";
 import { TagProps } from "../../components/tag";
 import { handleSanityImage } from "../../utility/handle-sanity-image";
 
@@ -75,28 +73,27 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 		content,
 		_updatedAt,
 		_createdAt,
-		publishAt,
 		title,
 		author,
 		//recommended,
 		topics,
-		image,
+		thumbnail,
 	} = post;
 
 	//todo: use content blocks to populate <NextSeo/>
 
 	const headerImage =
-		image?.asset &&
-		handleSanityImage(image.asset, {
+		thumbnail?.asset &&
+		handleSanityImage(thumbnail, {
 			width: 1126,
 			height: 563,
-			alt: image?.alt,
+			alt: thumbnail?.alt,
 		});
 
 	const topicTags: TagProps[] =
 		topics?.map((topic) => {
 			return {
-				label: topic.label,
+				label: topic.title,
 				link: resolveUrl(topic),
 			};
 		}) || [];
@@ -113,13 +110,15 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 					url: resolveUrl(post, true),
 
 					article: {
-						publishedTime: new Date(publishAt || _createdAt).toISOString(),
+						publishedTime: new Date(
+							metadata.publishAt || _createdAt,
+						).toISOString(),
 						modifiedTime: new Date(_updatedAt).toISOString(),
 						section: "",
 						tags: metadata?.tags,
 					},
-					images: metadata?.thumbnails?.map(({ asset }) => {
-						const imgUrl = urlFor(asset)
+					images: metadata?.thumbnails?.map((img) => {
+						const imgUrl = urlFor(img)
 							.auto("format")
 							.width(400)
 							.height(400)
@@ -139,7 +138,7 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 			<ArticleHeader
 				title={title}
 				metadata={{
-					date: new Date(publishAt || _createdAt),
+					date: new Date(metadata.publishAt || _createdAt),
 					author: author,
 					topics: topicTags,
 				}}

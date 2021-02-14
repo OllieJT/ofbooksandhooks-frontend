@@ -36,7 +36,7 @@ export const BlockBook = ({
 		.replace(",", " & ")
 		.trim();
 
-	const image = handleSanityImage(cover.asset, {
+	const image = handleSanityImage(cover, {
 		width: 240,
 		height: 360,
 		alt: cover.alt,

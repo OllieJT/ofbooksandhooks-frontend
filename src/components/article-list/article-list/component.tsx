@@ -1,6 +1,6 @@
 import styles from "./article-list.module.scss";
-import { ArticleListQuery } from "../../lib/groq/groq-article-list";
-import { LoadMore } from "../button";
+import { ArticleListQuery } from "../../../lib/groq/groq-article-list";
+import { LoadMore } from "../../button";
 
 export interface ArticleListProps {
 	articles: ArticleListQuery[];

@@ -22,7 +22,7 @@ export const PortableText = ({ blocks = [] }: Props) => (
 		serializers={serializers}
 		dataset={process.env.NEXT_PUBLIC_SANITY_DATASET}
 		projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
-		imageOptions={{ w: 640, h: 480, fit: "max" }}
-		renderContainerOnSingleChild={true}
+		imageOptions={{ w: 1280, h: 1280, fit: "clip" }}
+		renderContainerOnSingleChild={false}
 	/>
 );

@@ -9,6 +9,7 @@ export enum Theme {
 export const handleThemeColor = (theme?: string): Theme => {
 	switch (theme) {
 		case "primary":
+		case "green":
 		case "teal":
 			return Theme.Green;
 		case "secondary":

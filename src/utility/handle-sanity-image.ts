@@ -1,41 +1,63 @@
 import { urlFor } from "../lib/sanity";
-import { SanityAsset } from "../lib/schema";
+import { Img } from "../lib/schema";
 
-export interface CustomImage {
+type Fit = "clip" | "fill" | "max" | "min";
+
+type Dimensions = {
+	width: number;
+	height: number;
+};
+export interface CustomImage extends Dimensions {
 	url: string;
+	alt?: string;
 	width: number;
 	height: number;
-	alt?: string;
 }
 
-export interface CustomImageOptions {
-	width: number;
-	height: number;
+interface CustomImageOptions extends Dimensions {
 	alt?: string;
-	fluid?: boolean;
+	fit?: Fit;
 }
+
+/*
+	clip:
+	The image is resized to fit within the bounds you specified without cropping or distorting the image.
+
+	fill:
+	Like clip, but the any free area not covered by your image is filled with the color specified in the bg parameter.
+
+	max:
+	Fit the image within the box you specify, but never scaling the image up.
+
+	min:
+	Resizes and crops the image to match the aspect ratio of the requested width and height. Will not exceed the original width and height of the image.
+ */
 
 export const handleSanityImage = (
-	asset: SanityAsset,
+	image: Img,
 	options: CustomImageOptions,
 ): CustomImage | undefined => {
-	const imgUrlFixed =
-		asset &&
-		urlFor(asset).auto("format").width(options.width).height(options.height).url();
-	const imgUrlFluid =
-		asset &&
-		urlFor(asset)
-			.auto("format")
-			.maxWidth(options.width)
-			.maxHeight(options.height)
-			.url();
+	let url: string | null = null;
 
-	if (!imgUrlFixed || !imgUrlFluid) {
+	if (!!options.height) {
+		url = urlFor(image)
+			.width(options.width)
+			.height(options.height)
+			.fit(options.fit || "clip")
+			.url();
+	} else {
+		url = urlFor(image)
+			.width(options.width)
+			.fit(options.fit || "min")
+			.url();
+	}
+
+	if (!url) {
 		return undefined;
 	}
 
 	return {
-		url: options.fluid ? imgUrlFluid : imgUrlFixed,
+		url: url,
 		width: options.width,
 		height: options.height,
 		alt: options.alt || "",

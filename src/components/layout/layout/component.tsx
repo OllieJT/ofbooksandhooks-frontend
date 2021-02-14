@@ -1,6 +1,6 @@
 import { resolveSocialIcon } from "../../../utility/resolve-platform";
 import { LayoutEditor } from "../layout-editor";
-import { JustifyMenu, LayoutMenu, MenuLinkProps } from "../layout-menu";
+import { JustifyMenu, LayoutMenu, MenuLinkProps } from "../layout-nav-menu";
 import style from "./styles.module.scss";
 
 const Etsy = resolveSocialIcon("etsy");
