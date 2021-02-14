@@ -37,36 +37,6 @@
 	min-height: 100%;
 	max-width: 100%;
 }
-.menu,
-.platforms {
-	width: 100%;
-	min-height: 100%;
-	z-index: 20;
-
-	display: flex;
-	flex-direction: row;
-	padding: 0 var(--size-reg);
-}
-.menu {
-	grid-area: menu;
-	align-items: stretch;
-	justify-items: stretch;
-	justify-content: stretch;
-}
-.platforms {
-	grid-area: platforms;
-	align-items: flex-start;
-	justify-items: flex-end;
-	justify-content: flex-end;
-}
-
-.logo {
-	position: relative;
-	z-index: 10;
-
-	grid-area: logo;
-	padding: var(--size-lg);
-}
 
 .background {
 	position: relative;

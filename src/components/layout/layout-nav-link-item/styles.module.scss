@@ -1,0 +1,49 @@
+.link,
+.label {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+}
+
+.link {
+	width: auto;
+	height: 100%;
+	min-width: 8rem;
+	min-height: 8rem;
+
+	padding: var(--size-reg) var(--size-lg);
+
+	&.active,
+	&:hover {
+		.label {
+			opacity: 1;
+		}
+	}
+
+	&.active {
+		.label {
+			color: var(--theme-text);
+		}
+	}
+
+	&:hover {
+		.label {
+			color: var(--color-primary-text);
+		}
+	}
+}
+
+.label {
+	font-size: var(--font-size-reg);
+	font-weight: var(--font-medium);
+	line-height: 1.5em;
+	color: var(--color-foreground-detail);
+	opacity: 0.8;
+
+	svg {
+		font-size: 1.15em;
+		line-height: 1em;
+	}
+}

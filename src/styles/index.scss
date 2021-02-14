@@ -19,30 +19,30 @@
 	--color-green-mask-background: hsla(175, 60%, 65%, 0.3);
 	--color-green-mask-foreground: hsla(175, 60%, 30%, 1);
 
-	--color-mono-base: hsla(180, 20%, 65%, 1);
-	--color-mono-text: hsla(180, 15%, 50%, 1);
-	--color-mono-mask-background: hsla(180, 20%, 15%, 0.15);
-	--color-mono-mask-foreground: hsla(180, 15%, 30%, 1);
+	--color-mono-base: hsla(190, 20%, 65%, 1);
+	--color-mono-text: hsla(190, 15%, 50%, 1);
+	--color-mono-mask-background: hsla(190, 20%, 15%, 0.15);
+	--color-mono-mask-foreground: hsla(190, 15%, 30%, 1);
 
-	--color-background-surface: hsla(180, 0%, 100%, 1);
-	--color-background-base: hsla(180, 15%, 95%, 1);
-	--color-background-detail: hsla(180, 25%, 85%, 1);
+	--color-background-surface: hsla(190, 0%, 100%, 1);
+	--color-background-base: hsla(190, 20%, 90%, 1);
+	--color-background-detail: hsla(190, 25%, 85%, 1);
 
-	--color-foreground-detail: hsla(199, 15%, 50%, 1);
-	--color-foreground-content: hsla(199, 15%, 30%, 1);
-	--color-foreground-title: hsla(199, 15%, 10%, 1);
+	--color-foreground-detail: hsla(200, 15%, 50%, 1);
+	--color-foreground-content: hsla(200, 15%, 30%, 1);
+	--color-foreground-title: hsla(200, 15%, 10%, 1);
 
 	/* Theme Colors */
 
-	--color-primary-base: var(--color-green-base);
-	--color-primary-text: var(--color-green-text);
-	--color-primary-mask-background: var(--color-green-mask-background);
-	--color-primary-mask-foreground: var(--color-green-mask-foreground);
+	--color-primary-base: var(--color-blue-base);
+	--color-primary-text: var(--color-blue-text);
+	--color-primary-mask-background: var(--color-blue-mask-background);
+	--color-primary-mask-foreground: var(--color-blue-mask-foreground);
 
-	--color-secondary-base: var(--color-blue-base);
-	--color-secondary-text: var(--color-blue-text);
-	--color-secondary-mask-background: var(--color-blue-mask-background);
-	--color-secondary-mask-foreground: var(--color-blue-mask-foreground);
+	--color-secondary-base: var(--color-green-base);
+	--color-secondary-text: var(--color-green-text);
+	--color-secondary-mask-background: var(--color-green-mask-background);
+	--color-secondary-mask-foreground: var(--color-green-mask-foreground);
 
 	--color-accent-base: var(--color-yellow-base);
 	--color-accent-text: var(--color-yellow-text);
@@ -79,10 +79,12 @@
 	--size-xxxxlg: 16rem;
 	--size-maxwidth: 1200px;
 	--size-maxcontent: 756px;
+	--layout-gap: 1.6rem;
+	--layout-gutter: calc(var(--layout-gap) * 2);
 
 	--radius-sm: 4px;
 	--radius-reg: 8px;
-	--radius-lg: 16px;
+	--radius-lg: 24px;
 	--radius-full: 4000px;
 
 	/* Font */
@@ -144,6 +146,11 @@ h5,
 h6,
 p {
 	margin: 0;
+}
+
+mark {
+	color: var(--color-primary-mask-foreground);
+	background-color: var(--color-primary-mask-background);
 }
 
 .theme-green {

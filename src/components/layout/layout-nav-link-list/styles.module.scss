@@ -1,0 +1,14 @@
+.list {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	min-height: 100%;
+
+	background-color: var(--color-background-surface);
+	border-radius: var(--radius-lg);
+}
+
+.item {
+	position: relative;
+	height: 100%;
+}
