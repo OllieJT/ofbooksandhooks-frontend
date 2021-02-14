@@ -1,22 +1,13 @@
 import { groq } from "next-sanity";
-import {
-	Article,
-	Author,
-	Collection,
-	Metadata,
-	SanityDocument,
-	Topic,
-	Img,
-} from "../schema";
+import { Author, Metadata, SanityDocument, Topic, Img } from "../schema";
 import { getClient } from "../sanity.server";
 import { handlePagination } from "../../utility/handle-pagination";
-import { SanityKeyedReference } from "sanity-codegen";
 
 export const articleListQuery = groq`*[
 	_type == "article"
 	&& defined(slug)
-	&& defined(publishAt)
-	&& publishAt <= now()
+	&& defined(metadata.publishAt)
+	&& metadata.publishAt <= now()
 	] | order(publishAt desc) [$from...$to] {
 		_id,
 		_createdAt,
@@ -25,12 +16,10 @@ export const articleListQuery = groq`*[
 
 		_type,
 		title,
-		image,
-		topics[]->,
-		recommended,
 		slug,
-		publishAt,
-		author,
+		topics[]->,
+		author->,
+		thumbnail,
 		metadata,
 	}
  `;
@@ -38,12 +27,10 @@ export const articleListQuery = groq`*[
 export interface ArticleListQuery extends SanityDocument {
 	_type: "article";
 	title: string;
-	image?: Img;
-	topics?: Array<Topic>;
-	recommended?: Array<SanityKeyedReference<Collection | Article>>;
 	slug: { _type: "slug"; current: string };
-	publishAt: string;
-	author?: Author;
+	topics?: Array<Topic>;
+	author: Author;
+	thumbnail?: Img;
 	metadata: Metadata;
 }
 

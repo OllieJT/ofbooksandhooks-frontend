@@ -16,13 +16,12 @@ export const AllPostsPage = ({}: Props): React.ReactElement => {
 	return (
 		<>
 			<NextSeo title="Articles" />
-			<>
-				<ArticleList
-					articles={entries}
-					isLoading={isLoading}
-					onLoadMore={nextPage}
-				/>
-			</>
+
+			<ArticleList
+				articles={entries}
+				isLoading={isLoading}
+				onLoadMore={nextPage}
+			/>
 		</>
 	);
 };
