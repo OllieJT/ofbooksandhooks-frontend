@@ -8,19 +8,26 @@ p.container {
 	font-weight: var(--font-medium);
 	letter-spacing: 0.05em;
 	margin: 0;
+	background-color: var(--color-background-base);
+	border-radius: var(--radius-reg);
+	overflow: visible;
 
 	.inner {
 		display: block;
 		text-decoration: none;
 		padding: var(--size-xsm) var(--size-sm);
-		border-radius: var(--radius-sm);
+		border-radius: var(--radius-reg);
 
-		color: var(--theme-mask-foreground);
-		background-color: var(--theme-mask-background);
+		color: var(--theme-text);
+		background-color: var(--color-background-surface);
 		border: 2px solid transparent;
 	}
 
-	a.inner:hover {
-		border-color: var(--theme-text);
+	a.inner {
+		box-shadow: var(--level-1);
+		&:hover {
+			border-color: var(--theme-text);
+			box-shadow: var(--level-2);
+		}
 	}
 }

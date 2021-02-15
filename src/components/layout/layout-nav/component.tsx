@@ -22,7 +22,7 @@ const menuLinks: LayoutNavLinkItemProps[] = [
 		link: "/hooks",
 	},
 	{
-		label: "All",
+		label: "Articles",
 		link: "/articles",
 	},
 ];

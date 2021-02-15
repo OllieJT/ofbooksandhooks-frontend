@@ -31,7 +31,7 @@ export const Collection = ({
 					</div>
 					<ul className={style.articles}>
 						{articles.map((image) => (
-							<li>
+							<li key={image.url}>
 								<img
 									src={image.url}
 									width={image.width}

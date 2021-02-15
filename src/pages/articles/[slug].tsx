@@ -85,7 +85,7 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 	const topicTags: TagProps[] =
 		topics?.map((topic) => ({
 			label: topic.title,
-			link: resolveUrl(topic),
+			linkTo: resolveUrl(topic),
 		})) || [];
 
 	return (
