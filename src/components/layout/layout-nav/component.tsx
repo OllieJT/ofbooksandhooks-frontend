@@ -14,15 +14,15 @@ const menuLinks: LayoutNavLinkItemProps[] = [
 		isActive: true,
 	},
 	{
+		label: "Articles",
+		link: "/articles",
+	},
+	{
 		label: "Of Books",
-		link: "/books",
+		link: "/articles",
 	},
 	{
 		label: "Of Hooks",
-		link: "/hooks",
-	},
-	{
-		label: "Articles",
 		link: "/articles",
 	},
 ];
@@ -41,10 +41,17 @@ const platformLinks: LayoutNavLinkItemProps[] = [
 export const LayoutNav = (): React.ReactElement => {
 	return (
 		<nav className={style.container}>
-			<LayoutLogo />
+			<div className={style.logo}>
+				<LayoutLogo />
+			</div>
 
-			<LayoutNavLinkList links={menuLinks} justify={JustifyMenu.Start} />
-			<LayoutNavLinkList links={platformLinks} justify={JustifyMenu.End} />
+			<div className={style.menu}>
+				<LayoutNavLinkList links={menuLinks} justify={JustifyMenu.Start} />
+			</div>
+
+			<div className={style.platforms}>
+				<LayoutNavLinkList links={platformLinks} justify={JustifyMenu.End} />
+			</div>
 		</nav>
 	);
 };

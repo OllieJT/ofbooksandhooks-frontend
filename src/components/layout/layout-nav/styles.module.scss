@@ -12,6 +12,31 @@
 	justify-content: space-between;
 	gap: calc(var(--size-lg) / 2);
 
+	display: grid;
+	grid-template-columns: 1fr max-content 1fr;
+	grid-template-areas: "logo menu platforms";
+
 	// @media screen and (max-width: 1400px) {}
 	// @media screen and (max-width: 960px) {}
+}
+
+.logo,
+.menu,
+.platforms {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.logo {
+	grid-area: logo;
+	justify-content: flex-start;
+}
+.menu {
+	grid-area: menu;
+	justify-content: center;
+}
+.platforms {
+	grid-area: platforms;
+	justify-content: flex-end;
 }
