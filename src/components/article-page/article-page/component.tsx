@@ -1,6 +1,6 @@
 import { Richtext } from "../../../lib/schema";
 import { CustomImage } from "../../../utility/handle-sanity-image";
-import { LayoutContent } from "../../layout";
+import { ViewContent } from "../../view";
 import { PortableText } from "../../portabletext";
 import { ArticleHeader, ArticleHeaderProps } from "../article-page-header";
 import style from "./styles.module.scss";
@@ -23,7 +23,7 @@ export const ArticlePageLayout = ({
 	content,
 }: Props) => {
 	return (
-		<LayoutContent image={image}>
+		<ViewContent image={image}>
 			<ArticleHeader
 				title={title}
 				date={date}
@@ -35,6 +35,6 @@ export const ArticlePageLayout = ({
 				<PortableText blocks={content} />
 			</div>
 			{children}
-		</LayoutContent>
+		</ViewContent>
 	);
 };

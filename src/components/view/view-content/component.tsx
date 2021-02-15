@@ -7,7 +7,7 @@ interface Props {
 	children: React.ReactNode;
 }
 
-export const LayoutContent = ({ image, children }: Props): React.ReactElement => {
+export const ViewContent = ({ image, children }: Props): React.ReactElement => {
 	return (
 		<article className={style.container}>
 			{image && (

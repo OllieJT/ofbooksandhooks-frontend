@@ -5,7 +5,7 @@ interface Props {
 	sidebar?: React.ReactNode;
 }
 
-export const LayoutSidebar = ({ sidebar, children }: Props): React.ReactElement => {
+export const ViewSidebar = ({ sidebar, children }: Props): React.ReactElement => {
 	return (
 		<div className={style.container}>
 			<div className={style.content}>{children}</div>

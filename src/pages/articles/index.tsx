@@ -3,7 +3,7 @@ import { GetStaticProps } from "next";
 import { ArticleList, ArticleListColumns } from "../../components/article-list";
 import { useLoadMore } from "../../hooks/use-load-more";
 import { getArticleList, ArticleListQuery } from "../../lib/groq/groq-article-list";
-import { LayoutSidebar } from "../../components/layout/layout-sidebar";
+import { ViewSidebar } from "../../components/view";
 import { ArticlePageSidebar } from "../../components/article-page/article-page-sidebar";
 import { handleThemeColor, Theme } from "../../utility/handle-theme-color";
 import {
@@ -36,7 +36,7 @@ export const AllPostsPage = ({
 	return (
 		<>
 			<NextSeo title="Articles" />
-			<LayoutSidebar
+			<ViewSidebar
 				sidebar={
 					<ArticlePageSidebar
 						collections={collections.map((collection) => ({
@@ -60,7 +60,7 @@ export const AllPostsPage = ({
 					onLoadMore={nextPage}
 					columns={ArticleListColumns.Two}
 				/>
-			</LayoutSidebar>
+			</ViewSidebar>
 		</>
 	);
 };
