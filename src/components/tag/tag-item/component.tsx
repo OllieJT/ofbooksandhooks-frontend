@@ -5,18 +5,18 @@ import { Theme, handleThemeClass } from "../../../utility/handle-theme-color";
 
 export interface TagProps {
 	label: string;
-	link?: string;
+	linkTo?: string;
 	isExternal?: boolean;
 	theme?: Theme;
 }
 
-export const Tag = ({ label, link, theme = Theme.None, isExternal }: TagProps) => {
+export const Tag = ({ label, linkTo, theme = Theme.None, isExternal }: TagProps) => {
 	const themeClass = handleThemeClass(theme);
 
 	return (
 		<p className={`${style.container} ${themeClass}`}>
-			{!!link ? (
-				<Link href={link} passHref>
+			{!!linkTo ? (
+				<Link href={linkTo} passHref>
 					<a className={style.inner} target={isExternal ? "_blank" : ""}>
 						{label}
 					</a>

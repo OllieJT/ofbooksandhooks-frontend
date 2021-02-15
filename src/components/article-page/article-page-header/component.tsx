@@ -14,8 +14,6 @@ export interface ArticleHeaderProps {
 	tags?: TagProps[];
 }
 
-type MetaTag = TagProps | false;
-
 export const ArticleHeader = ({
 	title,
 	authorName,
@@ -23,16 +21,20 @@ export const ArticleHeader = ({
 	date,
 	tags: additionalTags,
 }: ArticleHeaderProps) => {
-	const authorTag: MetaTag = !!authorName && {
-		label: "Guest Post",
-		link: authorLink,
-		isExternal: false,
-		theme: Theme.Blue,
-	};
-	const dateTag: MetaTag = !!authorName && {
-		label: handleDate(date),
-		theme: Theme.None,
-	};
+	const authorTag: TagProps | undefined = !!authorName
+		? {
+				label: "Guest Post",
+				linkTo: authorLink,
+				isExternal: false,
+				theme: Theme.Blue,
+		  }
+		: undefined;
+	const dateTag: TagProps | undefined = !!authorName
+		? {
+				label: handleDate(date),
+				theme: Theme.None,
+		  }
+		: undefined;
 
 	//@ts-ignore
 	const allTags: TagProps[] = [authorTag, ...additionalTags, dateTag].filter(

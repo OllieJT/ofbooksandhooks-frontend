@@ -27,7 +27,6 @@ export const BlockProducts = ({ title, products = [] }: Props) => {
 					const thumb = handleSanityImage(thumbnail, {
 						width: 160,
 						height: 160,
-						alt: thumbnail.alt || title,
 					});
 					if (!thumb) {
 						return null;

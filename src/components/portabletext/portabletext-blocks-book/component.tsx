@@ -39,7 +39,6 @@ export const BlockBook = ({
 	const image = handleSanityImage(cover, {
 		width: 240,
 		height: 360,
-		alt: cover.alt,
 	});
 
 	//todo: add JSONLD

@@ -3,7 +3,7 @@ import { Img } from "../lib/schema";
 
 type Fit = "clip" | "fill" | "max" | "min";
 
-type Dimensions = {
+export type Dimensions = {
 	width: number;
 	height: number;
 };
@@ -15,7 +15,6 @@ export interface CustomImage extends Dimensions {
 }
 
 interface CustomImageOptions extends Dimensions {
-	alt?: string;
 	fit?: Fit;
 }
 
@@ -60,6 +59,6 @@ export const handleSanityImage = (
 		url: url,
 		width: options.width,
 		height: options.height,
-		alt: options.alt || "",
+		alt: image.alt || "",
 	};
 };

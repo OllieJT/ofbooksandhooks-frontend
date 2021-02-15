@@ -80,7 +80,6 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 		handleSanityImage(thumbnail, {
 			width: 1200,
 			height: 1200,
-			alt: thumbnail?.alt,
 		});
 
 	const topicTags: TagProps[] =

@@ -44,7 +44,6 @@ export const ArticleList = ({
 					handleSanityImage(article.thumbnail, {
 						width: 400,
 						height: 400,
-						alt: article.thumbnail.alt,
 						fit: "max", //min
 					});
 

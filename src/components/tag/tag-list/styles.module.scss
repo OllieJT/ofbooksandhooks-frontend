@@ -1,3 +1,18 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.header {
+	padding: var(--size-reg) 0;
+}
+
+.title {
+	font-size: var(--font-size-lg);
+	color: var(--color-foreground-title);
+	line-height: 1em;
+}
+
 .list {
 	display: flex;
 	flex-direction: row;

@@ -35,7 +35,6 @@ export const BlockImage = ({ img }: Props) => {
 	const image = handleSanityImage(img, {
 		width: 800,
 		height: 800,
-		alt: img.alt,
 		fit: "max",
 	});
 

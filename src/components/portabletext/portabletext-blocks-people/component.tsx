@@ -17,7 +17,6 @@ export const BlockPeople = ({ title, people = [] }: Props) => {
 					handleSanityImage(photo, {
 						width: 160,
 						height: 160,
-						alt: photo?.alt,
 						fit: "min",
 					});
 
