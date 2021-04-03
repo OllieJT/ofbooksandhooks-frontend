@@ -14,6 +14,8 @@ import {
 } from "../../lib/groq/groq-page-articles";
 import { resolveUrl } from "../../utility/resolve-url";
 import { handleCollectionImages } from "../../utility/handle-collection-images";
+import { fetchArticleList } from "../../hooks/fetch-article-list";
+import { Fragment } from "react";
 
 interface Props {
 	preview: boolean;
@@ -32,6 +34,8 @@ export const AllPostsPage = ({
 	const { entries, isLoading, nextPage } = useLoadMore<ArticleListQuery>(handleFetch);
 
 	console.log({ topics });
+
+	const handleFetcher = fetchArticleList({});
 
 	return (
 		<>
@@ -54,6 +58,20 @@ export const AllPostsPage = ({
 					/>
 				}
 			>
+				{handleFetcher.data?.pages.map(({ results, page }) => {
+					return (
+						<Fragment key={"articles" + page}>
+							{" "}
+							<ArticleList
+								articles={results}
+								isLoading={isLoading}
+								onLoadMore={nextPage}
+								columns={ArticleListColumns.Two}
+							/>
+						</Fragment>
+					);
+				})}
+
 				<ArticleList
 					articles={entries}
 					isLoading={isLoading}
