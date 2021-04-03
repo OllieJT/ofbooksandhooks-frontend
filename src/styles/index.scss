@@ -114,6 +114,20 @@
 		0px 10px 20px rgba(76, 213, 255, 0.2);
 }
 
+html,
+body {
+	min-height: 100vh;
+}
+body,
+#__next,
+#__next > div {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: stretch;
+	flex-grow: 1;
+}
+
 html {
 	font-size: 56.25%;
 	font-feature-settings: "tnum" on, "lnum" on, "zero" on, "case" on;
