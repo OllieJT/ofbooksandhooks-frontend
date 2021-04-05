@@ -1,5 +1,5 @@
 import { ContentMin, Genre, Img } from "../../../lib/schema";
-import { handleSanityImage } from "../../../utility/handle-sanity-image";
+import { handleSanityImageFixed } from "../../../utility/handle-sanity-image";
 import { PortableText } from "..";
 import style from "./styles.module.scss";
 import Image from "next/image";
@@ -36,10 +36,7 @@ export const BlockBook = ({
 		.replace(",", " & ")
 		.trim();
 
-	const image = handleSanityImage(cover, {
-		width: 240,
-		height: 360,
-	});
+	const image = handleSanityImageFixed({ asset: cover, width: 240, height: 360 });
 
 	//todo: add JSONLD
 	return (

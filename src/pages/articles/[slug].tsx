@@ -14,7 +14,7 @@ import { urlFor, useCurrentUser, usePreviewSubscription } from "../../lib/sanity
 import { NextSeo } from "next-seo";
 import { resolveUrl } from "../../utility/resolve-url";
 import { TagProps } from "../../components/tag";
-import { handleSanityImage } from "../../utility/handle-sanity-image";
+import { handleSanityImageFluid } from "../../utility/handle-sanity-image";
 
 interface Props {
 	preview: boolean;
@@ -77,10 +77,7 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 
 	const headerImage =
 		thumbnail?.asset &&
-		handleSanityImage(thumbnail, {
-			width: 1200,
-			height: 1200,
-		});
+		handleSanityImageFluid({ asset: thumbnail, maxWidth: 1200 });
 
 	const topicTags: TagProps[] =
 		topics?.map((topic) => ({

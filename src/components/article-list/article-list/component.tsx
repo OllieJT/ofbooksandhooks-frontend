@@ -2,7 +2,7 @@ import style from "./article-list.module.scss";
 import { ArticleListQuery } from "../../../lib/groq/groq-article-list";
 import { LoadMore } from "../../button";
 import { ArticleListCard } from "../article-list-card";
-import { handleSanityImage } from "../../../utility/handle-sanity-image";
+import { handleSanityImageFixed, ImageFit } from "../../../utility/handle-sanity-image";
 import { resolveUrl } from "../../../utility/resolve-url";
 import { handleDate } from "../../../utility";
 
@@ -41,10 +41,11 @@ export const ArticleList = ({
 			{articles.map((article) => {
 				const image =
 					article.thumbnail &&
-					handleSanityImage(article.thumbnail, {
+					handleSanityImageFixed({
+						asset: article.thumbnail,
 						width: 400,
 						height: 400,
-						fit: "max", //min
+						fit: ImageFit.Max,
 					});
 
 				return (

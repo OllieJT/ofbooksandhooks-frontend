@@ -2,14 +2,14 @@ import style from "./styles.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { Theme } from "../../utility/handle-theme-color";
-import { CustomImage } from "../../utility/handle-sanity-image";
+import { FixedImage } from "../../utility/handle-sanity-image";
 import { Tag } from "../tag";
 
 export interface ProfileProps {
 	name: string;
 	subtitle?: string;
 	tags?: string[];
-	avatar?: CustomImage;
+	avatar?: FixedImage;
 	link?: string;
 }
 

@@ -1,7 +1,7 @@
 import { Product } from "../../../lib/schema";
 import { handleCurrency, slugify } from "../../../utility";
 import style from "./styles.module.scss";
-import { handleSanityImage } from "../../../utility/handle-sanity-image";
+import { handleSanityImageFixed } from "../../../utility/handle-sanity-image";
 import { ProductCard } from "../../product";
 import { handleThemeColor } from "../../../utility/handle-theme-color";
 
@@ -24,7 +24,8 @@ export const BlockProducts = ({ title, products = [] }: Props) => {
 					// expiresAt,
 					notice,
 				}) => {
-					const thumb = handleSanityImage(thumbnail, {
+					const thumb = handleSanityImageFixed({
+						asset: thumbnail,
 						width: 160,
 						height: 160,
 					});

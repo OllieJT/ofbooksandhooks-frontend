@@ -1,5 +1,5 @@
 import { Img } from "../../../lib/schema";
-import { handleSanityImage } from "../../../utility/handle-sanity-image";
+import { handleSanityImageFixed, ImageFit } from "../../../utility/handle-sanity-image";
 import style from "./styles.module.scss";
 
 interface Props {
@@ -32,10 +32,11 @@ const handleMaxWidth = (align?: "none" | "large" | "medium" | "small"): string =
 };
 
 export const BlockImage = ({ img }: Props) => {
-	const image = handleSanityImage(img, {
+	const image = handleSanityImageFixed({
+		asset: img,
 		width: 800,
 		height: 800,
-		fit: "max",
+		fit: ImageFit.Max,
 	});
 
 	if (!image) {

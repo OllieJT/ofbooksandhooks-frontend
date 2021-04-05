@@ -1,12 +1,17 @@
 import { Article } from "../lib/schema";
-import { CustomImage, handleSanityImage, Dimensions } from "./handle-sanity-image";
+import {
+	handleSanityImageFixed,
+	FixedImage,
+	ImageDimensions,
+} from "./handle-sanity-image";
 
 export const handleCollectionImages = (
 	articles: Article[],
-	size: Dimensions = { width: 200, height: 200 },
-): CustomImage[] => {
+	size: ImageDimensions = { width: 200, height: 200 },
+): FixedImage[] => {
 	const images = articles.map((article) => {
-		const articleImage = handleSanityImage(article.thumbnail, {
+		const articleImage = handleSanityImageFixed({
+			asset: article.thumbnail,
 			width: size.width,
 			height: size.height,
 		});
@@ -21,7 +26,7 @@ export const handleCollectionImages = (
 
 	console.log({ images });
 
-	const isCustomImage = (obj: any): obj is CustomImage => {
+	const isCustomImage = (obj: any): obj is FixedImage => {
 		return !!obj;
 	};
 

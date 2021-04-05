@@ -1,5 +1,5 @@
 import { Img } from "../../../lib/schema";
-import { handleSanityImage } from "../../../utility/handle-sanity-image";
+import { handleSanityImageFixed } from "../../../utility/handle-sanity-image";
 import style from "./styles.module.scss";
 import { slugify } from "../../../utility";
 
@@ -12,7 +12,8 @@ export const BlockGallery = ({ title, images = [] }: Props) => {
 	return (
 		<ul className={style.list} id={slugify(title)}>
 			{images.map((img) => {
-				const image = handleSanityImage(img, {
+				const image = handleSanityImageFixed({
+					asset: img,
 					width: 800,
 					height: 800,
 				});

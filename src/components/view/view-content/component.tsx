@@ -1,9 +1,9 @@
-import { CustomImage } from "../../../utility/handle-sanity-image";
+import { FixedImage } from "../../../utility/handle-sanity-image";
 import style from "./styles.module.scss";
 import Image from "next/image";
 
 interface Props {
-	image?: CustomImage;
+	image?: FixedImage;
 	children: React.ReactNode;
 }
 

@@ -1,5 +1,5 @@
 import { Person } from "../../../lib/schema";
-import { handleSanityImage } from "../../../utility/handle-sanity-image";
+import { handleSanityImageFixed, ImageFit } from "../../../utility/handle-sanity-image";
 import style from "./styles.module.scss";
 import { slugify } from "../../../utility";
 import { Profile } from "../../profile";
@@ -14,10 +14,11 @@ export const BlockPeople = ({ title, people = [] }: Props) => {
 			{people.map(({ knownAs, name, photo, tags }) => {
 				const avatar =
 					photo &&
-					handleSanityImage(photo, {
+					handleSanityImageFixed({
+						asset: photo,
 						width: 160,
 						height: 160,
-						fit: "min",
+						fit: ImageFit.Min,
 					});
 
 				return (

@@ -2,7 +2,7 @@ import style from "./styles.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { Theme, handleThemeClass } from "../../utility/handle-theme-color";
-import { CustomImage } from "../../utility/handle-sanity-image";
+import { FixedImage } from "../../utility/handle-sanity-image";
 
 export interface ProductCardProps {
 	title: string;
@@ -11,7 +11,7 @@ export interface ProductCardProps {
 	price: string;
 	noteText?: string;
 	noteTheme: Theme;
-	thumb?: CustomImage;
+	thumb?: FixedImage;
 }
 
 interface Wrapper {
