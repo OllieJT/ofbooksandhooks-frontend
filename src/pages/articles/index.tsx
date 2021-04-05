@@ -2,25 +2,24 @@ import { NextSeo } from "next-seo";
 import { GetStaticProps } from "next";
 import { ArticleList, ArticleListColumns } from "../../components/article-list";
 import { useLoadMore } from "../../hooks/use-load-more";
-import { getArticleList, ArticleListQuery } from "../../lib/groq/groq-article-list";
+import { getArticleList } from "../../lib/groq/groq-article-list";
 import { ViewSidebar } from "../../components/view";
 import { ArticlePageSidebar } from "../../components/article-page/article-page-sidebar";
 import { handleThemeColor, Theme } from "../../utility/handle-theme-color";
-import {
-	getPageArticles,
-	PageArticlesArticleListQuery,
-	PageArticlesCollectionListQuery,
-	PageArticlesTopicListQuery,
-} from "../../lib/groq/groq-page-articles";
+import { getPageArticles } from "../../lib/groq/groq-page-articles";
 import { resolveUrl } from "../../utility/resolve-url";
-import { handleCollectionImages } from "../../utility/handle-collection-images";
+import { CardSize, handleCardCollection } from "../../components/card";
+import { GroqArticleList } from "../../lib/db/groq-article-list";
+import { GroqCollectionList } from "../../lib/db/groq-collection-list";
+import { GroqTopicListLite } from "../../lib/db/groq-topic-list";
+import { GroqCardArticle } from "../../lib/db/groq-partial-card";
 
 interface Props {
 	preview: boolean;
 	//data: { articles: ArticleListQuery[] };
-	articles: PageArticlesArticleListQuery[];
-	collections: PageArticlesCollectionListQuery[];
-	topics: PageArticlesTopicListQuery[];
+	articles: GroqArticleList;
+	collections: GroqCollectionList;
+	topics: GroqTopicListLite;
 }
 
 export const AllPostsPage = ({
@@ -29,9 +28,7 @@ export const AllPostsPage = ({
 	topics,
 }: Props): React.ReactElement => {
 	const handleFetch = (pageNum: number) => getArticleList(pageNum);
-	const { entries, isLoading, nextPage } = useLoadMore<ArticleListQuery>(handleFetch);
-
-	console.log({ topics });
+	const { entries, isLoading, nextPage } = useLoadMore<GroqCardArticle>(handleFetch);
 
 	return (
 		<>
@@ -39,14 +36,16 @@ export const AllPostsPage = ({
 			<ViewSidebar
 				sidebar={
 					<ArticlePageSidebar
-						collections={collections.map((collection) => ({
-							title: collection.title,
-							subtitle: "Featured Collection",
+						featureCollection={handleCardCollection({
+							document: collections[0],
+							size: CardSize.Small,
+						})}
+						collectionList={collections.map((collection) => ({
+							label: collection.title,
 							linkTo: resolveUrl(collection),
-							articles: handleCollectionImages(collection.articles),
 							theme: handleThemeColor(collection.theme),
 						}))}
-						topics={topics.map((topic) => ({
+						topicList={topics.map((topic) => ({
 							label: topic.title,
 							linkTo: resolveUrl(topic),
 							theme: Theme.Default,

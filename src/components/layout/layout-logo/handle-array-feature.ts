@@ -4,7 +4,7 @@ interface Output<T> {
 	featured?: T;
 	items: T[];
 }
-
+//todo:Delete?
 export const useArrayFeature = <T>(arr: T[]): Output<T> => {
 	const initialItems = arr.splice(0, 1);
 	const initialFeatured = arr[0];

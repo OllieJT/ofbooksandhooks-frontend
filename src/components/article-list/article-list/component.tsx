@@ -1,10 +1,10 @@
 import style from "./article-list.module.scss";
-import { ArticleListQuery } from "../../../lib/groq/groq-article-list";
 import { LoadMore } from "../../button";
 import { ArticleListCard } from "../article-list-card";
 import { handleSanityImageFixed, ImageFit } from "../../../utility/handle-sanity-image";
 import { resolveUrl } from "../../../utility/resolve-url";
 import { handleDate } from "../../../utility";
+import { GroqArticleList } from "../../../lib/db/groq-article-list";
 
 export enum ArticleListColumns {
 	Two,
@@ -13,7 +13,7 @@ export enum ArticleListColumns {
 }
 
 export interface ArticleListProps {
-	articles: ArticleListQuery[];
+	articles: GroqArticleList;
 	onLoadMore?: () => void;
 	isLoading?: boolean;
 	columns?: ArticleListColumns;

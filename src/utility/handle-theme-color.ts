@@ -1,9 +1,9 @@
 export enum Theme {
-	Green,
-	Blue,
-	Yellow,
-	Default,
-	None,
+	Green = "green",
+	Blue = "blue",
+	Yellow = "yellow",
+	Default = "default",
+	None = "none",
 }
 
 export const handleThemeColor = (theme?: string): Theme => {

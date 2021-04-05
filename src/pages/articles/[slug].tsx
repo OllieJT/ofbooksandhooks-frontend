@@ -3,34 +3,23 @@ import ErrorPage from "next/error";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 //import { Loading } from "../../components/loading";
-import {
-	getArticlePage,
-	getArticlePagePaths,
-	articlePageQuery,
-	ArticleQuery,
-} from "../../lib/groq/groq-article-page";
+import { getArticlePage, getArticlePagePaths } from "../../lib/groq/groq-article-page";
 import { ArticlePageLayout } from "../../components/article-page";
 import { urlFor, useCurrentUser, usePreviewSubscription } from "../../lib/sanity";
 import { NextSeo } from "next-seo";
 import { resolveUrl } from "../../utility/resolve-url";
 import { TagProps } from "../../components/tag";
-import { handleSanityImageFluid } from "../../utility/handle-sanity-image";
+import { handleSanityImageFixed } from "../../utility/handle-sanity-image";
+import { groqArticle, GroqArticle } from "../../lib/db/groq-article-page";
 
 interface Props {
 	preview: boolean;
-	data?: ArticleQuery;
+	data?: GroqArticle;
 }
 
 export const getStaticProps: GetStaticProps = async ({ params, preview = false }) => {
 	const slug = params?.slug?.toString();
 	const post = slug && (await getArticlePage(slug, preview));
-	const found = post && post?.slug?.current;
-
-	if (!found) {
-		return {
-			notFound: true,
-		};
-	}
 
 	return {
 		props: {
@@ -43,10 +32,10 @@ export const getStaticProps: GetStaticProps = async ({ params, preview = false }
 
 export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 	const router = useRouter();
-	const slug = data?.slug?.current;
+	const slug = data?.slug;
 	const currentUser = useCurrentUser();
 
-	const { data: post } = usePreviewSubscription(articlePageQuery, {
+	const { data: post } = usePreviewSubscription(groqArticle, {
 		params: { slug },
 		initialData: data,
 		// note: not using next preview
@@ -77,7 +66,7 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 
 	const headerImage =
 		thumbnail?.asset &&
-		handleSanityImageFluid({ asset: thumbnail, maxWidth: 1200 });
+		handleSanityImageFixed({ asset: thumbnail, width: 1920, height: 720 });
 
 	const topicTags: TagProps[] =
 		topics?.map((topic) => ({

@@ -1,41 +1,16 @@
-import { groq } from "next-sanity";
-import { Article, Metadata, SanityDocument, Theme } from "../schema";
 import { getClient } from "../sanity.server";
+import { GroqCollectionList, groqCollectionList } from "../db/groq-collection-list";
+import { handlePagination } from "../../utility/handle-pagination";
 
-export const collectionListQuery = groq`*[
-	_type == "collection"
-	&& defined(slug)
-	&& defined(metadata.publishAt)
-	&& metadata.publishAt <= now()
-	] | order(title desc)  {
-		_id,
-		_createdAt,
-		_rev,
-		_updatedAt,
+export const getCollectionList = async (page: number = 1, preview = false) => {
+	const { from, to } = handlePagination(12, page);
 
-		_type,
-		title,
-		slug,
-		metadata,
-
-		articles[]->,
-		theme
-	}
- `;
-
-export interface CollectionListQuery extends SanityDocument {
-	_type: "article";
-	title: string;
-	slug: { _type: "slug"; current: string };
-	metadata: Metadata;
-
-	articles: Article[];
-	theme: Theme;
-}
-
-export const getCollectionList = async (preview = false) => {
-	const data: CollectionListQuery[] = await getClient(preview).fetch(
-		collectionListQuery,
+	const data: GroqCollectionList = await getClient(preview).fetch(
+		groqCollectionList,
+		{
+			from,
+			to,
+		},
 	);
 
 	return data;

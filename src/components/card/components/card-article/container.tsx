@@ -14,9 +14,9 @@ export interface CardArticleProps extends CardBase<CardType.Article> {
 	tags?: string[];
 }
 
-export const CardArticleContainer = ({
-	type,
-	size,
+const CardArticleContainer = ({
+	// type,
+	// size,
 	theme,
 	title,
 	linkTo,

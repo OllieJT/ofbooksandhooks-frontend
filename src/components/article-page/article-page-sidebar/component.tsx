@@ -1,35 +1,23 @@
 import style from "./styles.module.scss";
 import { TagList, TagProps } from "../../tag";
-import { Collection, CollectionProps } from "../../collection";
-import { useArrayFeature } from "../../layout/layout-logo/handle-array-feature";
+import { CardCollection, CardCollectionProps } from "../../card";
 
 export interface ArticlePageSidebarProps {
-	collections?: CollectionProps[];
-	topics?: TagProps[];
+	featureCollection?: CardCollectionProps;
+	collectionList?: TagProps[];
+	topicList?: TagProps[];
 }
 
 export const ArticlePageSidebar = ({
-	collections,
-	topics,
+	featureCollection,
+	collectionList,
+	topicList,
 }: ArticlePageSidebarProps) => {
-	const collection = collections && useArrayFeature(collections);
-
 	return (
 		<aside className={style.container}>
-			{collection?.featured && <Collection {...collection.featured} />}
-
-			{collection && (
-				<TagList
-					title="Collections"
-					tags={collection?.items.map(({ linkTo, title, theme }) => ({
-						label: title,
-						theme,
-						linkTo,
-					}))}
-				/>
-			)}
-
-			{topics && <TagList title="Topics" tags={topics} />}
+			{featureCollection && <CardCollection {...featureCollection} />}
+			{collectionList && <TagList title="Collections" tags={collectionList} />}
+			{topicList && <TagList title="Topics" tags={topicList} />}
 		</aside>
 	);
 };

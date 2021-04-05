@@ -1,51 +1,17 @@
 import { groq } from "next-sanity";
-import {
-	Article,
-	Author,
-	Collection,
-	Metadata,
-	Richtext,
-	SanityDocument,
-	Topic,
-	Img,
-} from "../schema";
 import { getClient } from "../sanity.server";
-
-export const articlePageQuery = groq`*[
-	_type == "article" && slug.current == $slug
-	][0]{
-		...,
-		author->,
-		topics[]->,
-		recommended[]->,
-		content[]{
-			...,
-			markDefs[]{...,reference->},
-		}
-	}
-`;
-export interface ArticleQuery extends SanityDocument {
-	_type: "article";
-	title: string;
-	slug: { _type: "slug"; current: string };
-	content?: Richtext;
-	topics?: Array<Topic>;
-	recommended: Array<Collection | Article>;
-	thumbnail: Img;
-	author: Author;
-	metadata: Metadata;
-}
+import { GroqArticle, groqArticle } from "../db/groq-article-page";
 
 export const getArticlePage = async (slug?: string, preview = false) => {
-	const data: ArticleQuery = await getClient(preview).fetch(articlePageQuery, {
+	const data: GroqArticle = await getClient(preview).fetch(groqArticle, {
 		slug,
 	});
 	return data;
 };
 
-const articlePathsQuery = groq`*[_type == "article" && defined(slug)].slug.current`;
-
 export const getArticlePagePaths = async () => {
-	const data: string[] = await getClient(false).fetch(articlePathsQuery);
+	const data: string[] = await getClient(false).fetch(
+		groq`*[_type == "article" && defined(slug)].slug.current`,
+	);
 	return data;
 };

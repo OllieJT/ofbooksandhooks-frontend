@@ -13,8 +13,8 @@ export interface CardCollectionProps extends CardBase<CardType.Collection> {
 }
 
 const CardCollectionContainer = ({
-	type,
-	size,
+	// type,
+	// size,
 	theme,
 	title,
 	subtitle = "Featured Collection",
