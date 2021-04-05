@@ -13,10 +13,6 @@
 		"sidebar feature feature tall_1 small_3"
 		"bio bio small_4 tall_1 small_5";
 
-	div {
-		border: 1px solid red;
-	}
-
 	@media screen and (max-width: 1450px) {
 		grid-template-columns: repeat(4, 1fr);
 		grid-template-rows: repeat(4, minmax(min-content, 1fr));

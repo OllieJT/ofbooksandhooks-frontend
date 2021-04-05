@@ -9,9 +9,8 @@
 	align-items: stretch;
 	justify-content: flex-end;
 
-	padding: var(--size-xxsm);
 	border-radius: var(--radius-lg);
-	padding: var(--size-lg);
+	padding: var(--size-reg);
 	overflow: hidden;
 
 	text-decoration: none;
@@ -47,52 +46,9 @@
 }
 
 .content {
-	position: relative;
 	z-index: 1;
 
-	margin-top: 15vh;
-
-	background-color: var(--color-background-surface);
 	box-shadow: var(--level-2);
-	border-radius: var(--radius-reg);
-
-	padding: var(--size-reg);
-
-	display: flex;
-	flex-direction: column;
-	gap: var(--size-sm);
 
 	transition: transform 0.12s var(--transition);
-}
-
-.title {
-	font-size: var(--font-size-lg);
-	font-weight: var(--font-medium);
-	color: var(--color-foreground-title);
-	line-height: 1.15em;
-}
-
-.label {
-	font-size: var(--font-size-sm);
-	font-weight: var(--font-medium);
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-}
-
-.date {
-	font-size: var(--font-size-sm);
-	font-weight: var(--font-medium);
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-	color: var(--color-foreground-detail);
-}
-
-.tags {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: var(--size-xsm);
-}
-.tag {
-	color: var(--color-primary-text);
 }

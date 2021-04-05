@@ -1,6 +1,7 @@
 import style from "./styles.module.scss";
 import Link from "next/link";
 import { FluidImage } from "../../../../utility/handle-sanity-image";
+import { CardTitle } from "../../common";
 
 export interface CardCollectionComponentProps {
 	title: string;
@@ -17,11 +18,9 @@ export const CardCollectionComponent = ({
 }: CardCollectionComponentProps) => {
 	return (
 		<Link href={linkTo} passHref>
-			<a className={style.link}>
-				<div className={style.header}>
-					<h5 className={style.title}>{title}</h5>
-					<p className={style.subtitle}>{subtitle}</p>
-				</div>
+			<a className={style.container}>
+				<CardTitle className={style.header} title={title} subtitle={subtitle} />
+
 				<ul className={style.articles}>
 					{articles.map((image) => (
 						<li key={image.url}>

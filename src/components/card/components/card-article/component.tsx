@@ -1,6 +1,7 @@
 import { FixedImage } from "../../../../utility/handle-sanity-image";
 import Link from "next/link";
 import style from "./article-list.module.scss";
+import { CardTitle } from "../../common";
 
 export interface CardArticleComponentProps {
 	linkTo: string;
@@ -29,17 +30,13 @@ export const CardArticleComponent = ({
 						alt={image.alt}
 					/>
 				)}
-				<div className={style.content}>
-					<ul className={style.tags}>
-						{tags.map((tag) => (
-							<li key={tag} className={style.tag}>
-								<p className={style.label}>{tag}</p>
-							</li>
-						))}
-					</ul>
-					<h5 className={style.title}>{title}</h5>
-					<p className={`${style.label} ${style.date}`}>{date}</p>
-				</div>
+
+				<CardTitle
+					className={style.content}
+					title={title}
+					date={date}
+					tags={tags}
+				/>
 			</a>
 		</Link>
 	);

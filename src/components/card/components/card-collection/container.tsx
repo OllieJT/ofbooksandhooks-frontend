@@ -1,7 +1,7 @@
 import { handleSanityImageFluid } from "../../../../utility/handle-sanity-image";
 import { CardBase, CardType } from "../../models";
 import { CardCollectionComponent } from "./component";
-import { CardWrapper } from "../card-wrapper";
+import { CardWrapper } from "../../common";
 import { Img } from "../../../../lib/schema";
 import { memo } from "react";
 

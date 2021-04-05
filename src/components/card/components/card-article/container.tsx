@@ -1,7 +1,7 @@
 import { handleSanityImageFixed } from "../../../../utility/handle-sanity-image";
 import { CardBase, CardType } from "../../models";
 import { CardArticleComponent } from "./component";
-import { CardWrapper } from "../card-wrapper";
+import { CardWrapper } from "../../common";
 import { Img } from "../../../../lib/schema";
 import { handleDate } from "../../../../utility";
 import { memo } from "react";

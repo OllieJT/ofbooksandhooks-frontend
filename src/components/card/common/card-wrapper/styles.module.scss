@@ -1,0 +1,12 @@
+.container {
+	background-color: var(--color-background-base);
+	border-radius: var(--radius-reg);
+	overflow: hidden;
+
+	display: flex;
+	align-items: stretch;
+	justify-content: stretch;
+
+	width: 100%;
+	height: 100%;
+}
