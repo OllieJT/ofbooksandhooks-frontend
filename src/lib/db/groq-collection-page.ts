@@ -6,13 +6,13 @@ import { GroqCardArticle, groqCardArticle } from "./groq-partial-card";
 export const groqCollection = groq`*[
 		_type == "collection" && slug.current == $slug
 	][0] {
-		${groqSanityDocument},
+		${groqSanityDocument}
 		title,
 		metadata,
 		"slug":slug.current,
 		theme,
 		articles[]->{
-			${groqCardArticle},
+			${groqCardArticle}
 		},
 	}
  `;

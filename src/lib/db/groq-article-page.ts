@@ -16,9 +16,9 @@ export const groqArticle = groq`*[
 		content[]{
 			...,
 			markDefs[]{...,reference->},
-		}
+		},
 		topics[]->{
-			${groqSanityDocument},
+			${groqSanityDocument}
 			title,
 			"slug":slug.current,
 		},
@@ -30,14 +30,14 @@ export const groqArticle = groq`*[
 			${groqCardCollection}
 		},
 		author->{
-			${groqSanityDocument},
+			${groqSanityDocument}
 			avatar,
 			name,
 			knownAs,
 			platforms[]{
 				${groqSanityPlatform}
 			}
-		}
+		},
 	}
  `;
 

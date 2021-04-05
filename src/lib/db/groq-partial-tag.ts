@@ -5,7 +5,7 @@ import { groqSanityDocument, GroqSanityDocument } from "./groq";
 export type GroqAnyTag = GroqTagCollection;
 
 export const groqTagCollection = groq`
-	${groqSanityDocument},
+	${groqSanityDocument}
 	title,
 	metadata,
 	"slug":slug.current,
@@ -21,7 +21,7 @@ export interface GroqTagCollection extends GroqSanityDocument<"collection"> {
 }
 
 export const groqTagTopic = groq`
-	${groqSanityDocument},
+	${groqSanityDocument}
 	title,
 	metadata,
 	"slug":slug.current,

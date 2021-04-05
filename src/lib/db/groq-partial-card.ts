@@ -5,10 +5,10 @@ import { groqSanityDocument, GroqSanityDocument } from "./groq";
 export type GroqAnyCard = GroqCardArticle | GroqCardCollection;
 
 export const groqCardArticle = groq`
-	${groqSanityDocument},
+	${groqSanityDocument}
 	title,
 	topics[]->{
-		${groqSanityDocument},
+		${groqSanityDocument}
 		title,
 		"slug":slug.current,
 	},
@@ -30,13 +30,13 @@ export interface GroqCardArticle extends GroqSanityDocument<"article"> {
 }
 
 export const groqCardCollection = groq`
-	${groqSanityDocument},
+	${groqSanityDocument}
 	title,
 	metadata,
 	"slug":slug.current,
 	theme,
 	articles[0...4]->{
-		${groqSanityDocument},
+		${groqSanityDocument}
 		title,
 		"slug":slug.current,
 		thumbnail,

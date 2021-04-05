@@ -1,5 +1,6 @@
-export type LinkablePage = any & {
+export type LinkablePage = unknown & {
 	_type: string;
+	slug: string;
 };
 
 export const resolveUrl = (page: LinkablePage, absolute?: boolean) => {
@@ -14,13 +15,13 @@ export const resolveUrl = (page: LinkablePage, absolute?: boolean) => {
 		case "homepage":
 			return `${PREFIX}/`;
 		case "article":
-			return `${PREFIX}/articles/${page.slug?.current}`;
+			return `${PREFIX}/articles/${page.slug}`;
 		case "collection":
-			return `${PREFIX}/collections/${page.slug?.current}`;
+			return `${PREFIX}/collections/${page.slug}`;
 		case "topic":
-			return `${PREFIX}/topics/${page.slug?.current}`;
+			return `${PREFIX}/topics/${page.slug}`;
 		case "author":
-			return `${PREFIX}/authors/${page.slug?.current}`;
+			return `${PREFIX}/authors/${page.slug}`;
 
 		default:
 			return PREFIX + `404`;
