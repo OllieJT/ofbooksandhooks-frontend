@@ -68,8 +68,6 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 		thumbnail?.asset &&
 		handleSanityImageFixed({ asset: thumbnail, width: 1920, height: 720 });
 
-	console.log({ headerImage });
-
 	const topicTags: TagProps[] =
 		topics?.map((topic) => ({
 			label: topic.title,

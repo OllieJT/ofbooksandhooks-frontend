@@ -16,15 +16,11 @@ export const handleCollectionImages = (
 			height: size.height,
 		});
 
-		console.log({ articleImage, article });
-
 		if (!articleImage) {
 			return null;
 		}
 		return articleImage;
 	});
-
-	console.log({ images });
 
 	const isCustomImage = (obj: any): obj is FixedImage => {
 		return !!obj;

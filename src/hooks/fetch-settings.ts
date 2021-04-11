@@ -16,8 +16,6 @@ export const fetchSettings = () => {
 
 	if (error) {
 		console.warn({ fetch: "settings", error });
-	} else {
-		console.log({ data });
 	}
 
 	return data;

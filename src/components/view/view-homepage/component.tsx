@@ -62,12 +62,14 @@ export const ViewHomepage = ({ featured, cards }: Props): React.ReactElement => 
 				</div>
 			)}
 
-			<div className={style.sidebar}>
-				<AuthorInstagram
-					photo={biography.photo!}
-					url="https://www.instagram.com/ofbooksandhooks/"
-				/>
-			</div>
+			{biography.photo && (
+				<div className={style.sidebar}>
+					<AuthorInstagram
+						photo={biography.photo}
+						url="https://www.instagram.com/ofbooksandhooks/"
+					/>
+				</div>
+			)}
 		</div>
 	);
 };

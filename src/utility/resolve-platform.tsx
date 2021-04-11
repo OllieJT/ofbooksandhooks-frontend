@@ -50,7 +50,6 @@ export const allPlatforms = [
 ];
 
 export const resolveSocialIcon = (platform: SocialPlatform) => {
-	console.log({ platform });
 	switch (platform) {
 		case slugify("twitter"):
 			return RiTwitterFill;
