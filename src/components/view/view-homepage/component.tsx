@@ -1,5 +1,7 @@
+import { settings } from "node:cluster";
 import { useSettings } from "../../../hooks/use-settings";
 import { AuthorBio } from "../../author-bio";
+import { AuthorInstagram } from "../../author-instagram";
 import { Card, CardSize } from "../../card";
 import { AnyCard, CardArticleProps } from "../../card";
 import style from "./styles.module.scss";
@@ -61,7 +63,12 @@ export const ViewHomepage = ({ featured, cards }: Props): React.ReactElement => 
 				</div>
 			)}
 
-			<div className={style.sidebar}>instagram</div>
+			<div className={style.sidebar}>
+				<AuthorInstagram
+					photo={biography.photo!}
+					url="https://www.instagram.com/ofbooksandhooks/"
+				/>
+			</div>
 		</div>
 	);
 };

@@ -49,7 +49,7 @@ export const allPlatforms = [
 	"website",
 ];
 
-export const resolveSocialIcon = (platform: string) => {
+export const resolveSocialIcon = (platform: SocialPlatform) => {
 	console.log({ platform });
 	switch (platform) {
 		case slugify("twitter"):
