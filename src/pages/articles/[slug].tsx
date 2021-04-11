@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 //import { Loading } from "../../components/loading";
 import { getArticlePage, getArticlePagePaths } from "../../lib/groq/groq-article-page";
-import { ArticlePageLayout } from "../../components/article-page";
+import { ArticlePageContent, ArticlePageLayout } from "../../components/article-page";
 import { urlFor, useCurrentUser, usePreviewSubscription } from "../../lib/sanity";
 import { NextSeo } from "next-seo";
 import { resolveUrl } from "../../utility/resolve-url";
@@ -68,6 +68,8 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 		thumbnail?.asset &&
 		handleSanityImageFixed({ asset: thumbnail, width: 1920, height: 720 });
 
+	console.log({ headerImage });
+
 	const topicTags: TagProps[] =
 		topics?.map((topic) => ({
 			label: topic.title,
@@ -78,18 +80,7 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 		})) || [];
 
 	return (
-		<ArticlePageLayout
-			title={title}
-			image={headerImage}
-			date={new Date(metadata.publishAt || _createdAt)}
-			authorLink={resolveUrl({
-				slug: author.slug,
-				type: author._type,
-			})}
-			authorName={author.name}
-			tags={topicTags}
-			content={content}
-		>
+		<>
 			<NextSeo
 				title={preview ? `Preview ${metadata?.title}` : metadata?.title}
 				description={metadata?.description}
@@ -129,8 +120,21 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 				noindex={metadata?.noindex || false}
 				nofollow={metadata?.nofollow || false}
 			/>
-			{/* <ArticleFooter recommendations={recommended} /> */}
-		</ArticlePageLayout>
+			<ArticlePageLayout
+				title={title}
+				image={headerImage}
+				date={new Date(metadata.publishAt || _createdAt)}
+				authorLink={resolveUrl({
+					slug: author.slug,
+					type: author._type,
+				})}
+				authorName={author.name}
+				tags={topicTags}
+			>
+				<ArticlePageContent content={content} />
+				{/* <ArticleFooter recommendations={recommended} /> */}
+			</ArticlePageLayout>
+		</>
 	);
 };
 

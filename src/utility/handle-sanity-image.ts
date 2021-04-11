@@ -96,8 +96,8 @@ export const handleSanityImageFixed = ({
 	return {
 		url: url || "",
 		alt: alt || asset.alt,
-		width: 100,
-		height: 100,
+		width,
+		height,
 	};
 };
 
