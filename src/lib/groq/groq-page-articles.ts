@@ -4,7 +4,7 @@ import { GroqCollectionList, groqCollectionList } from "../db/groq-collection-li
 import { GroqTopicListLite, groqTopicListLite } from "../db/groq-topic-list";
 import { getClient } from "../sanity.server";
 
-export const getPageArticles = async (page: number = 1, preview = false) => {
+export const getPageArticles = async (preview = false) => {
 	const client = getClient(preview);
 	//const { from, to } = handlePagination(12, page);
 

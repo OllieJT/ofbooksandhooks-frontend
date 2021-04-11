@@ -70,7 +70,7 @@ export const AllPostsPage = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-	const { collections, topics } = await getPageArticles(1, preview);
+	const { collections, topics } = await getPageArticles(preview);
 
 	return {
 		props: {
