@@ -1,4 +1,3 @@
-import { settings } from "node:cluster";
 import { useSettings } from "../../../hooks/use-settings";
 import { AuthorBio } from "../../author-bio";
 import { AuthorInstagram } from "../../author-instagram";
