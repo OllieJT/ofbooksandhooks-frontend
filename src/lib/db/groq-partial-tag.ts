@@ -10,7 +10,7 @@ export const groqTagCollection = groq`
 	metadata,
 	"slug":slug.current,
 	theme,
-	articles[]->title,
+	"articles": articles[]->{title}.title,
  `;
 export interface GroqTagCollection extends GroqSanityDocument<"collection"> {
 	title: string;

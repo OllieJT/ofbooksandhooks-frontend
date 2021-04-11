@@ -16,7 +16,6 @@ import { GroqCardArticle } from "../../lib/db/groq-partial-card";
 
 interface Props {
 	preview: boolean;
-	//data: { articles: ArticleListQuery[] };
 	articles: GroqArticleList;
 	collections: GroqCollectionList;
 	topics: GroqTopicListLite;
@@ -71,13 +70,15 @@ export const AllPostsPage = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-	const articles = await getPageArticles(1, preview);
+	const { collections, topics } = await getPageArticles(1, preview);
 
 	return {
 		props: {
 			//data: { articles },
 			preview,
-			...articles,
+
+			collections,
+			topics,
 		},
 		revalidate: 1,
 	};

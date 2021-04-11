@@ -127,6 +127,10 @@ export const handleSanityImageFluid = ({
 	| SanityImageFluidProps
 	| SanityImageFluidProps_mWidth
 	| SanityImageFluidProps_mHeight): FluidImage => {
+	if (!asset) {
+		console.warn("No asset was passed to handleSanityImageFluid()");
+	}
+
 	let url: string | null = "";
 	if (maxWidth) {
 		url = urlFor(asset).maxWidth(maxWidth).fit(fit).url();
@@ -138,7 +142,7 @@ export const handleSanityImageFluid = ({
 
 	return {
 		url: url || "",
-		alt: alt || asset.alt,
+		alt: alt || asset?.alt,
 		fit,
 	};
 };
