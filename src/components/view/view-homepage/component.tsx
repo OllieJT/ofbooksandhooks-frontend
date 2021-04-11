@@ -1,3 +1,5 @@
+import { useSettings } from "../../../hooks/use-settings";
+import { AuthorBio } from "../../author-bio";
 import { Card, CardSize } from "../../card";
 import { AnyCard, CardArticleProps } from "../../card";
 import style from "./styles.module.scss";
@@ -9,13 +11,25 @@ interface Props {
 }
 
 export const ViewHomepage = ({ featured, cards }: Props): React.ReactElement => {
+	const { biography } = useSettings();
+
 	return (
 		<div className={style.container}>
 			<div className={style.feature}>
 				<Card {...featured} size={CardSize.Large} />
 			</div>
 
-			<div className={style.bio}>{/* <AuthorBio  /> */}</div>
+			{biography.title && biography.description && (
+				<div className={style.bio}>
+					{" "}
+					<AuthorBio
+						title={biography.title}
+						subtitle={biography.description}
+						avatar={biography.photo}
+						//cta={{label: "Learn More",url: '/about'}}
+					/>
+				</div>
+			)}
 			{cards[0] && (
 				<div className={style.small_1}>
 					<Card {...cards[0]} size={CardSize.Small} />

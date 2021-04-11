@@ -1,12 +1,11 @@
 import style from "./styles.module.scss";
 import Link from "next/link";
-import { handleSanityImageFixed, ImageFit } from "../../utility/handle-sanity-image";
-import { Img } from "../../lib/schema";
+import { FixedImage } from "../../utility/handle-sanity-image";
 
 export interface AuthorBioProps {
 	title: string;
 	subtitle: string;
-	avatar: Img;
+	avatar?: FixedImage;
 	cta?: {
 		label: string;
 		url: string;
@@ -14,26 +13,14 @@ export interface AuthorBioProps {
 }
 
 export const AuthorBio = ({ title, subtitle, avatar, cta }: AuthorBioProps) => {
-	const avatarImage = handleSanityImageFixed({
-		asset: avatar,
-		width: 80,
-		height: 80,
-		fit: ImageFit.Fill,
-	});
-
 	return (
 		<article className={style.container}>
-			{avatarImage && (
-				<img
-					src={avatarImage.url}
-					alt={avatarImage.alt}
-					width={avatarImage.width}
-					height={avatarImage.height}
-				/>
+			{avatar && (
+				<img src={avatar.url} alt={avatar.alt} width={120} height={120} />
 			)}
 			<div>
-				<h4>{title}</h4>
-				<p>{subtitle}</p>
+				<h4 className={style.title}>{title}</h4>
+				<p className={style.subtitle}>{subtitle}</p>
 
 				{cta && (
 					<Link href={cta.url} passHref>
