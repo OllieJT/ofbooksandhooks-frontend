@@ -42,12 +42,18 @@ export const AllPostsPage = ({
 						})}
 						collectionList={collections.map((collection) => ({
 							label: collection.title,
-							linkTo: resolveUrl(collection),
+							linkTo: resolveUrl({
+								slug: collection.slug,
+								type: collection._type,
+							}),
 							theme: handleThemeColor(collection.theme),
 						}))}
 						topicList={topics.map((topic) => ({
 							label: topic.title,
-							linkTo: resolveUrl(topic),
+							linkTo: resolveUrl({
+								slug: topic.slug,
+								type: topic._type,
+							}),
 							theme: Theme.Default,
 						}))}
 					/>

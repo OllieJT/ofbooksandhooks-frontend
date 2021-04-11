@@ -20,29 +20,39 @@ interface TypeArticle extends Options {
 export const handleCardArticle = ({
 	document,
 	theme,
-}: TypeArticle): CardArticleProps => ({
-	type: CardType.Article,
-	size: CardSize.Small,
-	theme,
+}: TypeArticle): CardArticleProps => {
+	return {
+		type: CardType.Article,
+		size: CardSize.Small,
+		theme,
 
-	linkTo: resolveUrl(document),
-	title: document.title,
-	publishAt: new Date(document.metadata.publishAt),
-	image: document.thumbnail,
-	tags: document.topics.map((topic) => topic.title),
-});
+		linkTo: resolveUrl({
+			slug: document.slug,
+			type: document._type,
+		}),
+		title: document.title,
+		publishAt: new Date(document.metadata.publishAt),
+		image: document.thumbnail,
+		tags: document.topics.map((topic) => topic.title),
+	};
+};
 
 export const handleCardCollection = ({
 	document,
 	size,
 	theme,
-}: TypeCollection): CardCollectionProps => ({
-	type: CardType.Collection,
-	size: size,
-	theme: theme || handleThemeColor(document.theme),
+}: TypeCollection): CardCollectionProps => {
+	return {
+		type: CardType.Collection,
+		size: size,
+		theme: theme || handleThemeColor(document.theme),
 
-	title: document.title,
-	subtitle: "Featured Collection",
-	linkTo: resolveUrl(document),
-	images: document.articles.map((article) => article.thumbnail),
-});
+		title: document.title,
+		subtitle: "Featured Collection",
+		linkTo: resolveUrl({
+			slug: document.slug,
+			type: document._type,
+		}),
+		images: document.articles.map((article) => article.thumbnail),
+	};
+};

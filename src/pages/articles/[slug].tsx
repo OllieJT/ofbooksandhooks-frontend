@@ -71,7 +71,10 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 	const topicTags: TagProps[] =
 		topics?.map((topic) => ({
 			label: topic.title,
-			linkTo: resolveUrl(topic),
+			linkTo: resolveUrl({
+				slug: topic.slug,
+				type: topic._type,
+			}),
 		})) || [];
 
 	return (
@@ -79,7 +82,10 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 			title={title}
 			image={headerImage}
 			date={new Date(metadata.publishAt || _createdAt)}
-			authorLink={resolveUrl(author)}
+			authorLink={resolveUrl({
+				slug: author.slug,
+				type: author._type,
+			})}
 			authorName={author.name}
 			tags={topicTags}
 			content={content}
@@ -91,7 +97,11 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 					type: metadata?.type,
 					title: metadata?.headline,
 					description: metadata?.description,
-					url: resolveUrl(post, true),
+					url: resolveUrl({
+						slug: post.slug,
+						type: post._type,
+						isAbsolute: true,
+					}),
 
 					article: {
 						publishedTime: new Date(

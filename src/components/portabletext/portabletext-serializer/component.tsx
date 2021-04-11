@@ -79,7 +79,15 @@ export const serializers = {
 	},
 	marks: {
 		linkInternal: ({ children, mark }: SerializerMark_LinkInternal) => (
-			<MarkLink url={resolveUrl(mark.reference)}>{children}</MarkLink>
+			<MarkLink
+				url={resolveUrl({
+					type: mark.reference._type,
+					slug: "",
+				})}
+			>
+				{console.log({ mark: mark.reference })}
+				{children}
+			</MarkLink>
 		),
 		linkExternal: ({ children, mark }: SerializerMark_LinkExternal) => (
 			<MarkLink url={mark.url}>{children}</MarkLink>

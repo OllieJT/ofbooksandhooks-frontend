@@ -34,6 +34,7 @@ export const groqArticle = groq`*[
 			avatar,
 			name,
 			knownAs,
+			"slug":slug.current,
 			platforms[]{
 				${groqSanityPlatform}
 			}
@@ -50,6 +51,7 @@ export interface GroqArticle_Author extends GroqSanityDocument<"author"> {
 	knownAs: string;
 	avatar: Img;
 	platforms: GroqSanityPlatform[];
+	slug: string;
 }
 
 export interface GroqArticle extends GroqSanityDocument<"article"> {

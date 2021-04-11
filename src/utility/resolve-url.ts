@@ -3,25 +3,38 @@ export type LinkablePage = unknown & {
 	slug: string;
 };
 
-export const resolveUrl = (page: LinkablePage, absolute?: boolean) => {
-	const PREFIX = absolute ? process.env.URL : "";
+interface Props {
+	slug: string;
+	type?:
+		| string
+		| "topic"
+		| "collection"
+		| "article"
+		| "author"
+		| "homepage"
+		| "settings";
+	isAbsolute?: boolean;
+}
 
-	if (!page?._type) {
-		console.warn(`Could not find page type for ${page}`);
+export const resolveUrl = ({ slug, type, isAbsolute = false }: Props) => {
+	const PREFIX = isAbsolute ? process.env.URL : "";
+
+	if (!type) {
+		console.warn(`Could not find page type for ${slug}`);
 		return "/404";
 	}
 
-	switch (page._type) {
+	switch (type) {
 		case "homepage":
 			return `${PREFIX}/`;
 		case "article":
-			return `${PREFIX}/articles/${page.slug}`;
+			return `${PREFIX}/articles/${slug}`;
 		case "collection":
-			return `${PREFIX}/collections/${page.slug}`;
+			return `${PREFIX}/collections/${slug}`;
 		case "topic":
-			return `${PREFIX}/topics/${page.slug}`;
+			return `${PREFIX}/topics/${slug}`;
 		case "author":
-			return `${PREFIX}/authors/${page.slug}`;
+			return `${PREFIX}/authors/${slug}`;
 
 		default:
 			return PREFIX + `404`;

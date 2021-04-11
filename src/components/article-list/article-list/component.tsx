@@ -51,7 +51,10 @@ export const ArticleList = ({
 				return (
 					<li key={article._id} className={style.item}>
 						<ArticleListCard
-							link={resolveUrl(article)}
+							link={resolveUrl({
+								slug: article.slug,
+								type: article._type,
+							})}
 							title={article.title}
 							date={handleDate(new Date(article.metadata.publishAt))}
 							image={image?.url}
