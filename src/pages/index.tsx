@@ -11,8 +11,6 @@ interface Props {
 }
 
 const Home = ({ homepage }: Props): React.ReactElement => {
-	console.log({ homepage });
-
 	return (
 		<>
 			<Head>

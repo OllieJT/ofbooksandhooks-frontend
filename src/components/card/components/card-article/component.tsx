@@ -1,6 +1,6 @@
 import { FixedImage } from "../../../../utility/handle-sanity-image";
 import Link from "next/link";
-import style from "./article-list.module.scss";
+import style from "./styles.module.scss";
 import { CardTitle } from "../../common";
 
 export interface CardArticleComponentProps {
@@ -32,7 +32,7 @@ export const CardArticleComponent = ({
 				)}
 
 				<CardTitle
-					className={style.content}
+					className={style.title}
 					title={title}
 					date={date}
 					tags={tags}

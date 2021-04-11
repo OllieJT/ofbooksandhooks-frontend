@@ -16,11 +16,11 @@
 	text-decoration: none;
 
 	&:hover {
+		.title {
+			transform: translateY(calc(var(--size-sm) * -1));
+		}
 		.thumb {
 			transform: scale(1.2);
-		}
-		.content {
-			transform: translateY(calc(var(--size-reg) * -1));
 		}
 	}
 
@@ -45,10 +45,8 @@
 	transition: transform 0.12s var(--transition);
 }
 
-.content {
+.title {
 	z-index: 1;
-
 	box-shadow: var(--level-2);
-
 	transition: transform 0.12s var(--transition);
 }

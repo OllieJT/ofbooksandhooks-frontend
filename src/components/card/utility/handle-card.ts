@@ -29,7 +29,7 @@ export const handleCardArticle = ({
 	title: document.title,
 	publishAt: new Date(document.metadata.publishAt),
 	image: document.thumbnail,
-	tags: [],
+	tags: document.topics.map((topic) => topic.title),
 });
 
 export const handleCardCollection = ({
