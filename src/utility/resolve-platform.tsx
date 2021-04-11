@@ -11,49 +11,73 @@ import {
 
 import { FaEtsy, FaPinterest } from "react-icons/fa";
 
-export enum SocialPlatform {
-	Twitter = "Twitter",
-	Instagram = "Instagram",
-	Youtube = "YouTube",
-	Facebook = "Facebook",
-	Reddit = "Reddit",
-	Discord = "Discord",
-	Tiktok = "TikTok",
-	Etsy = "Etsy",
-	Pinterest = "Pinterest",
-	Website = "Website",
-}
+export type SocialPlatform =
+	| "twitter"
+	| "instagram"
+	| "youtube"
+	| "facebook"
+	| "reddit"
+	| "discord"
+	| "tiktok"
+	| "etsy"
+	| "pinterest"
+	| "website";
 
-export const allPlatforms = Object.values(SocialPlatform);
+/* export enum SocialPlatform {
+	Twitter = "twitter",
+	Instagram = "instagram",
+	Youtube = "youtube",
+	Facebook = "facebook",
+	Reddit = "reddit",
+	Discord = "discord",
+	Tiktok = "tiktok",
+	Etsy = "etsy",
+	Pinterest = "pinterest",
+	Website = "website",
+} */
+
+export const allPlatforms = [
+	"twitter",
+	"instagram",
+	"youtube",
+	"facebook",
+	"reddit",
+	"discord",
+	"tiktok",
+	"etsy",
+	"pinterest",
+	"website",
+];
 
 export const resolveSocialIcon = (platform: string) => {
+	console.log({ platform });
 	switch (platform) {
-		case slugify(SocialPlatform.Twitter):
+		case slugify("twitter"):
 			return RiTwitterFill;
 
-		case slugify(SocialPlatform.Instagram):
+		case slugify("instagram"):
 			return RiInstagramFill;
 
-		case slugify(SocialPlatform.Youtube):
+		case slugify("youtube"):
 			return RiYoutubeFill;
 
-		case slugify(SocialPlatform.Facebook):
+		case slugify("facebook"):
 			return RiFacebookBoxFill;
 
-		case slugify(SocialPlatform.Reddit):
+		case slugify("reddit"):
 			return RiRedditFill;
 
-		case slugify(SocialPlatform.Discord):
+		case slugify("discord"):
 			return RiDiscordFill;
 
-		case slugify(SocialPlatform.Etsy):
+		case slugify("etsy"):
 			return FaEtsy;
 
-		case slugify(SocialPlatform.Pinterest):
+		case slugify("pinterest"):
 			return FaPinterest;
 
-		case slugify(SocialPlatform.Tiktok):
-		case slugify(SocialPlatform.Website):
+		case slugify("tiktok"):
+		case slugify("website"):
 		default:
 			return RiGlobeFill;
 	}

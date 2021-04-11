@@ -4,10 +4,15 @@ import Head from "next/head";
 import type { AppProps /* , AppContext */ } from "next/app";
 import { DefaultSeo } from "next-seo";
 import { Layout } from "../components/layout";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient({
+	defaultOptions: { queries: { staleTime: 900000 } },
+});
 
 const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => {
 	return (
-		<>
+		<QueryClientProvider client={queryClient}>
 			<DefaultSeo
 				title="Of Books &amp; Hooks"
 				titleTemplate="%s | 📚🧶"
@@ -72,7 +77,7 @@ const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => {
 			<Layout>
 				<Component {...pageProps} />
 			</Layout>
-		</>
+		</QueryClientProvider>
 	);
 };
 

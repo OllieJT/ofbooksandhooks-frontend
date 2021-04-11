@@ -1,11 +1,9 @@
+import { useSettings } from "../../../hooks/use-settings";
 import { resolveSocialIcon } from "../../../utility/resolve-platform";
 import { LayoutLogo } from "../layout-logo";
 import { LayoutNavLinkItemProps } from "../layout-nav-link-item";
 import { JustifyMenu, LayoutNavLinkList } from "../layout-nav-link-list";
 import style from "./styles.module.scss";
-
-const Etsy = resolveSocialIcon("etsy");
-const Pinterest = resolveSocialIcon("pinterest");
 
 const menuLinks: LayoutNavLinkItemProps[] = [
 	{
@@ -27,18 +25,18 @@ const menuLinks: LayoutNavLinkItemProps[] = [
 	},
 ];
 
-const platformLinks: LayoutNavLinkItemProps[] = [
-	{
-		label: <Etsy />,
-		link: "/etsy",
-	},
-	{
-		label: <Pinterest />,
-		link: "/pinterest",
-	},
-];
-
 export const LayoutNav = (): React.ReactElement => {
+	const settings = useSettings();
+
+	const platformLinks: LayoutNavLinkItemProps[] =
+		settings.profile.platforms?.map((platform) => {
+			const Icon = resolveSocialIcon(platform.platform);
+			return {
+				label: <Icon />,
+				link: platform.url,
+			};
+		}) || [];
+
 	return (
 		<nav className={style.container}>
 			<div className={style.logo}>
