@@ -1,9 +1,8 @@
-import { Theme } from "../../../lib/schema";
 import { handleThemeColor } from "../../../utility/handle-theme-color";
 import { resolveUrl } from "../../../utility/resolve-url";
 import { CardArticleProps, CardCollectionProps } from "../";
 import { CardSize, CardType } from "../models";
-import { GroqCardArticle, GroqCardCollection } from "../../../lib/db/groq-partial-card";
+import { GroqArticleCard, GroqCollectionCard, Theme } from "../../../lib/groq/models";
 
 interface Options {
 	size: CardSize;
@@ -11,10 +10,10 @@ interface Options {
 }
 
 interface TypeCollection extends Options {
-	document: GroqCardCollection;
+	document: GroqCollectionCard;
 }
 interface TypeArticle extends Options {
-	document: GroqCardArticle;
+	document: GroqArticleCard;
 }
 
 export const handleCardArticle = ({
@@ -24,10 +23,10 @@ export const handleCardArticle = ({
 	return {
 		type: CardType.Article,
 		size: CardSize.Small,
-		theme,
+		theme: handleThemeColor(theme),
 
 		linkTo: resolveUrl({
-			slug: document.slug,
+			slug: document.slug.current,
 			type: document._type,
 		}),
 		title: document.title,
@@ -45,12 +44,12 @@ export const handleCardCollection = ({
 	return {
 		type: CardType.Collection,
 		size: size,
-		theme: theme || handleThemeColor(document.theme),
+		theme: (theme && handleThemeColor(theme)) || handleThemeColor(document.theme),
 
 		title: document.title,
 		subtitle: "Featured Collection",
 		linkTo: resolveUrl({
-			slug: document.slug,
+			slug: document.slug.current,
 			type: document._type,
 		}),
 		images: document.articles.map((article) => article.thumbnail),

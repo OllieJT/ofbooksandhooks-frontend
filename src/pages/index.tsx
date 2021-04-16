@@ -1,16 +1,15 @@
 import React from "react";
 import Head from "next/head";
 import { ViewHomepage } from "../components/view/view-homepage";
-import { getPageHome } from "../lib/groq/groq-page-home";
+import { getPageHome, GroqHome } from "../lib/groq/homepage";
 import { GetStaticProps } from "next";
 import { CardSize, handleCardArticle, handleCardCollection } from "../components/card";
-import { GroqHome } from "../lib/db/groq-home";
 
 interface Props {
-	homepage: GroqHome;
+	data: GroqHome;
 }
 
-const Home = ({ homepage }: Props): React.ReactElement => {
+const Home = ({ data }: Props): React.ReactElement => {
 	return (
 		<>
 			<Head>
@@ -18,10 +17,10 @@ const Home = ({ homepage }: Props): React.ReactElement => {
 			</Head>
 			<ViewHomepage
 				featured={handleCardArticle({
-					document: homepage.featured,
+					document: data.featured,
 					size: CardSize.Large,
 				})}
-				cards={homepage.blocks.map((doc) => {
+				cards={data.blocks.map((doc) => {
 					switch (doc._type) {
 						case "article":
 							return handleCardArticle({
@@ -48,7 +47,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
 	return {
 		props: {
 			preview,
-			...data,
+			data,
 		},
 		revalidate: 1,
 	};

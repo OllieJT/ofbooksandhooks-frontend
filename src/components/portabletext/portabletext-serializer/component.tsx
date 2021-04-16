@@ -18,7 +18,7 @@ import {
 	SerializerBlock_Cta,
 	SerializerMark_Marker,
 	SerializerBlock_Image,
-} from "../../../lib/schema-serializer";
+} from "../../../lib/groq/models";
 import { resolveUrl } from "../../../utility/resolve-url";
 import { handleThemeColor } from "../../../utility/handle-theme-color";
 import { BlockCta } from "../portabletext-blocks-cta";

@@ -1,7 +1,7 @@
-import { ContentMin } from "../../../lib/schema";
 import { Theme, handleThemeClass } from "../../../utility/handle-theme-color";
 import { PortableText } from "..";
 import style from "./styles.module.scss";
+import { ContentMin } from "../../../lib/groq";
 
 interface Props {
 	title: string;

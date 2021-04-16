@@ -1,5 +1,5 @@
+import { Img } from "../lib/groq";
 import { urlFor } from "../lib/sanity";
-import { Img } from "../lib/schema";
 
 export enum ImageFit {
 	Clip = "clip",

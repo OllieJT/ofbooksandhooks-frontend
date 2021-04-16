@@ -1,9 +1,9 @@
-import { Product } from "../../../lib/schema";
 import { handleCurrency, slugify } from "../../../utility";
 import style from "./styles.module.scss";
 import { handleSanityImageFixed } from "../../../utility/handle-sanity-image";
 import { ProductCard } from "../../product";
 import { handleThemeColor } from "../../../utility/handle-theme-color";
+import { Product } from "../../../lib/groq";
 
 export type Props = {
 	title: string;

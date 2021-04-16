@@ -1,10 +1,9 @@
 import style from "./article-list.module.scss";
-import { LoadMore } from "../../button";
 import { ArticleListCard } from "../article-list-card";
+import { GroqArticleList } from "../../../lib/groq/article-list";
 import { handleSanityImageFixed, ImageFit } from "../../../utility/handle-sanity-image";
 import { resolveUrl } from "../../../utility/resolve-url";
 import { handleDate } from "../../../utility";
-import { GroqArticleList } from "../../../lib/db/groq-article-list";
 
 export enum ArticleListColumns {
 	Two,
@@ -14,8 +13,6 @@ export enum ArticleListColumns {
 
 export interface ArticleListProps {
 	articles: GroqArticleList;
-	onLoadMore?: () => void;
-	isLoading?: boolean;
 	columns?: ArticleListColumns;
 }
 
@@ -32,8 +29,6 @@ const articleListColumnStyle = (columns: ArticleListColumns) => {
 
 export const ArticleList = ({
 	articles,
-	onLoadMore: loadMore,
-	isLoading = false,
 	columns = ArticleListColumns.Three,
 }: ArticleListProps) => {
 	return (
@@ -52,7 +47,7 @@ export const ArticleList = ({
 					<li key={article._id} className={style.item}>
 						<ArticleListCard
 							link={resolveUrl({
-								slug: article.slug,
+								slug: article.slug.current,
 								type: article._type,
 							})}
 							title={article.title}
@@ -63,7 +58,6 @@ export const ArticleList = ({
 					</li>
 				);
 			})}
-			{loadMore && <LoadMore isLoading={isLoading} onClick={loadMore} />}
 		</ul>
 	);
 };

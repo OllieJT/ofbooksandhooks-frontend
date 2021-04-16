@@ -1,4 +1,4 @@
-import { Article } from "../lib/schema";
+import { Article } from "../lib/groq";
 import {
 	handleSanityImageFixed,
 	FixedImage,

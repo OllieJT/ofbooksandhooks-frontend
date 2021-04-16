@@ -2,9 +2,9 @@ import { handleSanityImageFixed } from "../../../../utility/handle-sanity-image"
 import { CardBase, CardType } from "../../models";
 import { CardArticleComponent } from "./component";
 import { CardWrapper } from "../../common";
-import { Img } from "../../../../lib/schema";
 import { handleDate } from "../../../../utility";
 import { memo } from "react";
+import { Img } from "../../../../lib/groq";
 
 export interface CardArticleProps extends CardBase<CardType.Article> {
 	linkTo: string;

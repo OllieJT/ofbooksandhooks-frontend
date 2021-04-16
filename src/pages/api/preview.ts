@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { groq } from "next-sanity";
-import { previewClient } from "../../lib/sanity.server";
-import { Article } from "../../lib/schema";
+import { Article } from "../../lib/groq";
+import { previewClient } from "../../lib/sanity";
 import { resolveUrl } from "../../utility/resolve-url";
 
 export default async function preview(req: NextApiRequest, res: NextApiResponse<any>) {
