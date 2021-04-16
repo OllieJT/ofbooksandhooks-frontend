@@ -1,5 +1,6 @@
-import { Article, Collection } from "../../../lib/schema";
 //import style from "./styles.module.scss";
+
+import { Article, Collection } from "../../../lib/groq";
 
 type Recommendation = Article | Collection;
 

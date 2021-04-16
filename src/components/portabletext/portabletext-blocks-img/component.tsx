@@ -1,4 +1,4 @@
-import { Img } from "../../../lib/schema";
+import { Img } from "../../../lib/groq";
 import { handleSanityImageFixed, ImageFit } from "../../../utility/handle-sanity-image";
 import style from "./styles.module.scss";
 

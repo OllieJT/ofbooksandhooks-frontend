@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from "react";
 import BlockContent from "@sanity/block-content-to-react";
-import { SerializerBlock_Block } from "../../../lib/schema-serializer";
+import { SerializerBlock_Block } from "../../../lib/groq/models";
 
 export const BlockRenderer = (props: SerializerBlock_Block) => {
 	const { style = "normal" } = props.node;

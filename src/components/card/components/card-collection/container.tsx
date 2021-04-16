@@ -2,8 +2,8 @@ import { handleSanityImageFluid } from "../../../../utility/handle-sanity-image"
 import { CardBase, CardSize, CardType } from "../../models";
 import { CardArticleComponentLayout, CardCollectionComponent } from "./component";
 import { CardWrapper } from "../../common";
-import { Img } from "../../../../lib/schema";
 import { memo } from "react";
+import { Img } from "../../../../lib/groq";
 
 export interface CardCollectionProps extends CardBase<CardType.Collection> {
 	title: string;

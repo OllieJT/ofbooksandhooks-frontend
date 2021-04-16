@@ -3,7 +3,7 @@ import {
 	createPreviewSubscriptionHook,
 	createCurrentUserHook,
 } from "next-sanity";
-import { Img } from "../schema";
+import { Img } from "../groq/models";
 import { sanityConfig } from "./config";
 
 /**

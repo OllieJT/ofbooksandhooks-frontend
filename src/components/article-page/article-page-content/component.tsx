@@ -1,4 +1,4 @@
-import { Richtext } from "../../../lib/schema";
+import { Richtext } from "../../../lib/groq";
 import { PortableText } from "../../portabletext";
 import style from "./styles.module.scss";
 

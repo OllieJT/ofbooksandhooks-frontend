@@ -8,7 +8,7 @@ export interface ProductCardProps {
 	title: string;
 	subtitle?: string;
 	link?: string;
-	price: string;
+	price?: string;
 	noteText?: string;
 	noteTheme: Theme;
 	thumb?: FixedImage;
@@ -58,10 +58,12 @@ export const ProductCard = ({
 					/>
 				</div>
 			)}
-			<p className={`${style.price} ${themeClass}`}>
-				<strong>{price}</strong>
-				<span>{noteText}</span>
-			</p>
+			{price && (
+				<p className={`${style.price} ${themeClass}`}>
+					<strong>{price}</strong>
+					<span>{noteText}</span>
+				</p>
+			)}
 		</Wrapper>
 	);
 };
