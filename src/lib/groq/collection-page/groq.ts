@@ -2,10 +2,7 @@ import groq from "groq";
 import { GroqArticleCard } from "../models";
 import type * as Schema from "../models/schema";
 
-export type GroqCollectionPage = Pick<
-	Schema.Collection,
-	"title" | "slug" | "metadata" | "theme" | "_id" | "_type" | "_createdAt"
-> & {
+export type GroqCollectionPage = Omit<Schema.Collection, "articles"> & {
 	articles: GroqArticleCard[];
 };
 

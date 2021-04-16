@@ -48,7 +48,7 @@ export const useSettings = () => {
 					height: 240,
 				}),
 			platforms:
-				settings?.profile.platforms.map((platform) => ({
+				settings?.profile.platforms?.map((platform) => ({
 					platform: platform.name,
 					url: platform.link,
 				})) || [],

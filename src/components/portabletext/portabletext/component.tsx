@@ -1,6 +1,6 @@
 //@ts-ignore
 import BlockContent from "@sanity/block-content-to-react";
-import { ContentMin, Richtext } from "../../../lib/schema";
+import { ContentMin, Richtext } from "../../../lib/groq";
 import { serializers } from "../portabletext-serializer";
 import style from "./styles.module.scss";
 interface Props {
