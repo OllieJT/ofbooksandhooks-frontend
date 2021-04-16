@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { groq } from "next-sanity";
-import { previewClient } from "../../lib/sanity.server";
+import { previewClient } from "../../lib/sanity";
 import { Article } from "../../lib/schema";
 import { resolveUrl } from "../../utility/resolve-url";
 

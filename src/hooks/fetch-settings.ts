@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { groqSettings, GroqSettings } from "../lib/db/groq-settings";
-import { getClient } from "../lib/sanity.server";
+import { getClient } from "../lib/sanity";
 
 export const fetchSettings = () => {
 	const { error, data } = useQuery(

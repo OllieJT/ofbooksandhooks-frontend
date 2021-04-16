@@ -1,4 +1,4 @@
-import { getClient } from "../sanity.server";
+import { getClient } from "../sanity/api";
 import { handlePagination } from "../../utility/handle-pagination";
 import { groqArticleList, GroqArticleList } from "../db/groq-article-list";
 

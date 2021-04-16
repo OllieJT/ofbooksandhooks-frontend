@@ -1,6 +1,6 @@
 import { groq } from "next-sanity";
 import { Metadata, SanityDocument } from "../schema";
-import { getClient } from "../sanity.server";
+import { getClient } from "../sanity/api";
 
 export const topicListQuery = groq`*[
 	_type == "topic"

@@ -3,8 +3,8 @@ import {
 	createPreviewSubscriptionHook,
 	createCurrentUserHook,
 } from "next-sanity";
-import { Img } from "./schema";
-import { sanityConfig } from "./sanity-config";
+import { Img } from "../schema";
+import { sanityConfig } from "./config";
 
 /**
  * Set up a helper function for generating Image URLs with only the asset reference data in your documents.

@@ -2,7 +2,7 @@
 // import { GroqArticleList, groqArticleList } from "../db/groq-article-list";
 import { GroqCollectionList, groqCollectionList } from "../db/groq-collection-list";
 import { GroqTopicListLite, groqTopicListLite } from "../db/groq-topic-list";
-import { getClient } from "../sanity.server";
+import { getClient } from "../sanity/api";
 
 export const getPageArticles = async (preview = false) => {
 	const client = getClient(preview);

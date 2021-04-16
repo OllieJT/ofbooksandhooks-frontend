@@ -1,5 +1,5 @@
 import { groq } from "next-sanity";
-import { getClient } from "../sanity.server";
+import { getClient } from "../sanity/api";
 import { GroqCollection, groqCollection } from "../db/groq-collection-page";
 
 export const getCollectionPage = async (slug?: string, preview = false) => {
