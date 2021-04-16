@@ -1,0 +1,10 @@
+{
+	"root": false,
+	"project": {
+		"name": "Of Books & Hooks"
+	},
+	"api": {
+		"projectId": "wasyg3ri",
+		"dataset": "production"
+	}
+}
