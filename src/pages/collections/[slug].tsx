@@ -10,6 +10,9 @@ import {
 	GroqCollectionPage,
 	getCollectionPage,
 } from "../../lib/groq/collection-page";
+import { ArticleList, ArticleListColumns } from "../../components/article-list";
+import { ViewNaked } from "../../components/view";
+import { Title } from "../../components/title";
 
 interface Props {
 	preview: boolean;
@@ -83,8 +86,15 @@ export const CollectionPage = ({ data, preview }: Props): React.ReactElement => 
 				noindex={data.metadata.noindex || false}
 				nofollow={data.metadata.nofollow || false}
 			/>
-			{data.title}
-			<pre>{JSON.stringify({ data }, null, 4)}</pre>;
+
+			<ViewNaked>
+				<Title title={data.title} theme={data.theme} />
+
+				<ArticleList
+					articles={data.articles}
+					columns={ArticleListColumns.Three}
+				/>
+			</ViewNaked>
 		</>
 	);
 };

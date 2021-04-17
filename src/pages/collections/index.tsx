@@ -1,7 +1,6 @@
 import { NextSeo } from "next-seo";
 import { GetStaticProps } from "next";
-import { ViewSidebar } from "../../components/view";
-import { resolveUrl } from "../../utility/resolve-url";
+import { ViewNaked } from "../../components/view";
 import {
 	groqCollectionList,
 	GroqCollectionList,
@@ -10,7 +9,9 @@ import { fetchArticleList } from "../../hooks/fetch-infinite-list";
 import { Fragment } from "react";
 import { LoadMore } from "../../components/button";
 import { getCollectionList } from "../../lib/groq/collection-list";
-import Link from "next/link";
+import { CollectionList } from "../../components/collection-list";
+import { CardListColumns } from "../../components/card-list";
+import { Title } from "../../components/title";
 
 interface Props {
 	preview: boolean;
@@ -22,25 +23,22 @@ export const AllCollectionsPage = ({ collections }: Props): React.ReactElement =
 	const handleFetch = fetchArticleList({
 		id: "collections-list",
 		fetchDocs: groqCollectionList,
+		initialData: collections,
 	});
 
 	return (
 		<>
 			<NextSeo title="Articles" />
-			<ViewSidebar>
+			<ViewNaked>
+				<Title title="All Collections" />
+
 				{handleFetch.data?.pages.map(({ data, page }) => {
 					return (
 						<Fragment key={"articles" + page}>
-							{data.map((x) => (
-								<Link
-									href={resolveUrl({
-										slug: x.slug.current,
-										type: x._type,
-									})}
-								>
-									{x.title}
-								</Link>
-							))}
+							<CollectionList
+								collections={data}
+								columns={CardListColumns.Three}
+							/>
 						</Fragment>
 					);
 				})}
@@ -49,7 +47,7 @@ export const AllCollectionsPage = ({ collections }: Props): React.ReactElement =
 					isLoading={handleFetch.isFetching}
 					onClick={() => handleFetch.fetchNextPage()}
 				/>
-			</ViewSidebar>
+			</ViewNaked>
 		</>
 	);
 };

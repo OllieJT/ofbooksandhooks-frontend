@@ -11,9 +11,10 @@ interface FetchProps {
 interface Props<Type> {
 	id: string;
 	fetchDocs: (q: FetchProps) => Promise<Type>;
+	initialData?: Type;
 }
 
-export const fetchArticleList = <T>({ id, fetchDocs }: Props<T>) => {
+export const fetchArticleList = <T>({ id, fetchDocs, initialData }: Props<T>) => {
 	const {
 		refetch,
 
@@ -44,6 +45,10 @@ export const fetchArticleList = <T>({ id, fetchDocs }: Props<T>) => {
 		{
 			getPreviousPageParam: (firstPage) => firstPage.page - 1,
 			getNextPageParam: (lastPage) => lastPage.page + 1,
+			initialData: initialData && {
+				pageParams: [1],
+				pages: [{ page: 1, data: initialData }],
+			},
 		},
 	);
 

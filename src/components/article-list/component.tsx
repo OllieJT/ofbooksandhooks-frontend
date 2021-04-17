@@ -1,9 +1,7 @@
+import { GroqArticleList } from "../../lib/groq/article-list";
+import { resolveUrl } from "../../utility/resolve-url";
+import { Card, CardSize, CardType } from "../card";
 import style from "./article-list.module.scss";
-import { ArticleListCard } from "../article-list-card";
-import { GroqArticleList } from "../../../lib/groq/article-list";
-import { handleSanityImageFixed, ImageFit } from "../../../utility/handle-sanity-image";
-import { resolveUrl } from "../../../utility/resolve-url";
-import { handleDate } from "../../../utility";
 
 export enum ArticleListColumns {
 	Two,
@@ -34,25 +32,19 @@ export const ArticleList = ({
 	return (
 		<ul className={`${style.list} ${articleListColumnStyle(columns)}`}>
 			{articles.map((article) => {
-				const image =
-					article.thumbnail &&
-					handleSanityImageFixed({
-						asset: article.thumbnail,
-						width: 400,
-						height: 400,
-						fit: ImageFit.Max,
-					});
-
 				return (
 					<li key={article._id} className={style.item}>
-						<ArticleListCard
-							link={resolveUrl({
+						<Card
+							type={CardType.Article}
+							size={CardSize.Small}
+							title={article.title}
+							// subtitle={collection}
+							linkTo={resolveUrl({
 								slug: article.slug.current,
 								type: article._type,
 							})}
-							title={article.title}
-							date={handleDate(new Date(article.metadata.publishAt))}
-							image={image?.url}
+							publishAt={new Date(article.metadata.publishAt)}
+							image={article.thumbnail}
 							tags={["Tag", "Here"]}
 						/>
 					</li>

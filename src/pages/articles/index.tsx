@@ -26,13 +26,14 @@ interface Props {
 }
 
 export const AllPostsPage = ({
-	// articles,
+	articles,
 	collections,
 	topics,
 }: Props): React.ReactElement => {
 	const handleFetch = fetchArticleList({
 		id: "article-list",
 		fetchDocs: groqArticleList,
+		initialData: articles,
 	});
 
 	return (
