@@ -17,11 +17,15 @@ const menuLinks: LayoutNavLinkItemProps[] = [
 	},
 	{
 		label: "Of Books",
-		link: "/articles",
+		link: "/topics/books",
 	},
 	{
 		label: "Of Hooks",
-		link: "/articles",
+		link: "/topics/hooks",
+	},
+	{
+		label: "Collections",
+		link: "/collections",
 	},
 ];
 
