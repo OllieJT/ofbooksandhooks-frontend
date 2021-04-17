@@ -2,7 +2,7 @@ import { useInfiniteQuery } from "react-query";
 import { getClient } from "../lib/sanity";
 import { handlePagination } from "../utility/handle-pagination";
 
-interface FetchProps {
+export interface FetchProps {
 	client: import("picosanity").PicoSanity;
 	from: number;
 	to: number;

@@ -88,7 +88,7 @@ export const CollectionPage = ({ data, preview }: Props): React.ReactElement => 
 			/>
 
 			<ViewNaked>
-				<Title title={data.title} theme={data.theme} />
+				<Title title={data.title} subtitle="Collection" theme={data.theme} />
 
 				<ArticleList
 					articles={data.articles}
