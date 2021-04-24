@@ -3,12 +3,13 @@
 
 	padding: var(--size-reg);
 	border-radius: var(--radius-reg);
-	margin-top: var(--size-reg);
 	background-color: var(--color-background-surface);
 
 	display: flex;
 	flex-direction: column;
 	gap: var(--size-xsm);
+
+	margin: var(--size-reg);
 }
 
 .title,
