@@ -1,13 +1,24 @@
 .container {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+
 	padding: var(--size-reg);
+	box-shadow: var(--level-2);
+	background-color: var(--color-background-surface);
+	border-radius: var(--radius-reg);
+
+	margin-top: var(--size-xxxlg);
 	img {
 		margin-right: var(--size-reg);
 		border-radius: 100%;
 	}
+}
+
+.avatar {
+	margin-bottom: var(--size-reg);
+	margin-top: calc(var(--size-xxxlg) * -1);
 }
 
 .title,
@@ -16,6 +27,15 @@
 }
 
 .title {
-	font-size: var(--font-size-lg);
+	font-size: var(--font-size-reg);
+	font-weight: var(--font-medium);
+	line-height: 1.3em;
 	color: var(--color-foreground-title);
+}
+
+.subtitle {
+	font-size: var(--font-size-reg);
+	font-weight: var(--font-reg);
+	line-height: 1.3em;
+	color: var(--color-foreground-content);
 }

@@ -16,7 +16,13 @@ export const AuthorBio = ({ title, subtitle, avatar, cta }: AuthorBioProps) => {
 	return (
 		<article className={style.container}>
 			{avatar && (
-				<img src={avatar.url} alt={avatar.alt} width={120} height={120} />
+				<img
+					className={style.avatar}
+					src={avatar.url}
+					alt={avatar.alt}
+					width={120}
+					height={120}
+				/>
 			)}
 			<div>
 				<h4 className={style.title}>{title}</h4>

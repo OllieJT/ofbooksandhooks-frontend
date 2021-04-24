@@ -22,7 +22,6 @@ export const ViewHomepage = ({ featured, cards }: Props): React.ReactElement => 
 
 			{biography.title && biography.description && (
 				<div className={style.bio}>
-					{" "}
 					<AuthorBio
 						title={biography.title}
 						subtitle={biography.description}
