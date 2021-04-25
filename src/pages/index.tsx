@@ -1,56 +1,62 @@
-import React from "react";
-import Head from "next/head";
-import { ViewHomepage } from "../components/view/view-homepage";
-import { getPageHome, GroqHome } from "../lib/groq/homepage";
+import { NextSeo } from "next-seo";
 import { GetStaticProps } from "next";
-import { CardSize, handleCardArticle, handleCardCollection } from "../components/card";
+import { ArticleList, ArticleListColumns } from "../components/article-list";
+import { ViewSidebar } from "../components/view";
+import { SidebarTaxonomy } from "../components/sidebar";
+import {
+	getArticleList,
+	groqArticleList,
+	GroqArticleList,
+} from "../lib/groq/article-list";
+import { fetchArticleList } from "../hooks/fetch-infinite-list";
+import { LoadMore } from "../components/button";
 
 interface Props {
-	data: GroqHome;
+	preview: boolean;
+	articles: GroqArticleList;
 }
 
-const Home = ({ data }: Props): React.ReactElement => {
+export const HomePage = ({ articles }: Props): React.ReactElement => {
+	const handleFetch = fetchArticleList({
+		id: "article-list",
+		fetchDocs: groqArticleList,
+		initialData: articles,
+	});
+
 	return (
 		<>
-			<Head>
-				<title>Homepage</title>
-			</Head>
-			<ViewHomepage
-				featured={handleCardArticle({
-					document: data.featured,
-					size: CardSize.Large,
+			<NextSeo title="Articles" />
+			<ViewSidebar sidebar={<SidebarTaxonomy />}>
+				{handleFetch.data?.pages.map(({ data, page }) => {
+					return (
+						<ArticleList
+							key={"articles-page" + page}
+							articles={data}
+							columns={ArticleListColumns.Two}
+						/>
+					);
 				})}
-				cards={data.blocks.map((doc) => {
-					switch (doc._type) {
-						case "article":
-							return handleCardArticle({
-								document: doc,
-								size: CardSize.Small,
-							});
-						case "collection":
-							return handleCardCollection({
-								document: doc,
-								size: CardSize.Small,
-							});
-					}
-				})}
-			>
-				<main>{/* <pre>{JSON.stringify(data, null, 4)}</pre> */}</main>
-			</ViewHomepage>
+
+				<LoadMore
+					isLoading={handleFetch.isFetching}
+					onClick={() => handleFetch.fetchNextPage()}
+				/>
+			</ViewSidebar>
 		</>
 	);
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-	const data = await getPageHome(preview);
+	const { articles } = await getArticleList(1, preview);
 
 	return {
 		props: {
 			preview,
-			data,
+
+			articles,
 		},
 		revalidate: 1,
 	};
 };
 
-export default Home;
+export default HomePage;
