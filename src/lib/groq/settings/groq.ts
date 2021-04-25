@@ -1,8 +1,14 @@
 import groq from "groq";
+import { GroqArticleCard, GroqCollectionCard } from "../models";
 import type * as Schema from "../models/schema";
 
-export type GroqSettings = Omit<Schema.Settings, "profile"> & {
+export type GroqSettings = Omit<
+	Schema.Settings,
+	"profile" | "featureCollection" | "featureArticle"
+> & {
 	profile: Schema.Author;
+	featureCollection: GroqCollectionCard;
+	featureArticle: GroqArticleCard;
 };
 
 interface Props {
@@ -16,6 +22,22 @@ export const groqSettings = async ({ client }: Props) =>
 		{
 			...,
 			profile->,
+
+			featureCollection->{
+				...,
+				articles[0...4]->{
+					title,
+					slug,
+					thumbnail,
+					_id,
+					_type,
+					_createdAt,
+				},
+			},
+			featureArticle->{
+				...,
+				topics[]->,
+			},
 		}
 	`,
 		{},

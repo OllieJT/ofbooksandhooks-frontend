@@ -267,6 +267,20 @@ export interface Settings extends SanityDocument {
    *
    */
   profile: SanityReference<Author>;
+
+  /**
+   * Featured Collection — `reference`
+   *
+   *
+   */
+  featureCollection: SanityReference<Collection>;
+
+  /**
+   * Featured Article — `reference`
+   *
+   *
+   */
+  featureArticle: SanityReference<Article>;
 }
 
 export type LinkExternal = {

@@ -1,4 +1,4 @@
-import { useSettings } from "../../../hooks/use-settings";
+import { useSettings } from "../../../providers/settings";
 import { resolveSocialIcon } from "../../../utility/resolve-platform";
 import { LayoutLogo } from "../layout-logo";
 import { LayoutNavLinkItemProps } from "../layout-nav-link-item";

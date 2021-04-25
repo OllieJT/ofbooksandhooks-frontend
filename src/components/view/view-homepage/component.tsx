@@ -1,4 +1,4 @@
-import { useSettings } from "../../../hooks/use-settings";
+import { useSettings } from "../../../providers/settings";
 import { AuthorBio } from "../../author-bio";
 import { AuthorInstagram } from "../../author-instagram";
 import { Card, CardSize } from "../../card";
