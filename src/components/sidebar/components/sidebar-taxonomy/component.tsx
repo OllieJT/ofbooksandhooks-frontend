@@ -1,4 +1,3 @@
-import style from "./styles.module.scss";
 import { TagList, TagProps } from "../../../tag";
 import { CardCollection, CardSize, handleCardCollection } from "../../../card";
 import { AuthorBio } from "../../../author-bio";
