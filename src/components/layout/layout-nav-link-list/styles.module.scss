@@ -3,6 +3,7 @@
 	flex-direction: row;
 	align-items: stretch;
 	min-height: 100%;
+	flex-wrap: wrap;
 
 	background-color: var(--color-background-surface);
 	border-radius: var(--radius-lg);

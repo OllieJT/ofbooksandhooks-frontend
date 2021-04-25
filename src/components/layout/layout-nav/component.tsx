@@ -4,6 +4,9 @@ import { LayoutLogo } from "../layout-logo";
 import { LayoutNavLinkItemProps } from "../layout-nav-link-item";
 import { JustifyMenu, LayoutNavLinkList } from "../layout-nav-link-list";
 import style from "./styles.module.scss";
+import { useEffect, useState } from "react";
+import { LayoutNavToggle } from "../layout-nav-toggle";
+import { useRouter } from "next/router";
 
 const menuLinks: LayoutNavLinkItemProps[] = [
 	{
@@ -25,7 +28,16 @@ const menuLinks: LayoutNavLinkItemProps[] = [
 ];
 
 export const LayoutNav = (): React.ReactElement => {
+	const [isMenuOpen, setMenuOpen] = useState(false);
 	const settings = useSettings();
+	const router = useRouter();
+
+	useEffect(() => {
+		router.events.on("routeChangeStart", () => setMenuOpen(false));
+		return () => router.events.off("routeChangeStart", () => setMenuOpen(false));
+	}, []);
+
+	const toggleMenu = () => setMenuOpen(!isMenuOpen);
 
 	const platformLinks: LayoutNavLinkItemProps[] =
 		settings.profile.platforms?.map((platform) => {
@@ -42,13 +54,19 @@ export const LayoutNav = (): React.ReactElement => {
 				<LayoutLogo />
 			</div>
 
-			<div className={style.menu}>
-				<LayoutNavLinkList links={menuLinks} justify={JustifyMenu.Start} />
+			<div className={`${style.menu} ${isMenuOpen ? style.open : style.closed}`}>
+				<LayoutNavLinkList links={menuLinks} justify={JustifyMenu.End} />
 			</div>
 
-			<div className={style.platforms}>
+			<div
+				className={`${style.platforms} ${
+					isMenuOpen ? style.open : style.closed
+				}`}
+			>
 				<LayoutNavLinkList links={platformLinks} justify={JustifyMenu.End} />
 			</div>
+
+			<LayoutNavToggle isOpen={isMenuOpen} handleClick={toggleMenu} />
 		</nav>
 	);
 };
