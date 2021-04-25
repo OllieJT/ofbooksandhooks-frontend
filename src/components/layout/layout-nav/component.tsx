@@ -8,11 +8,6 @@ import style from "./styles.module.scss";
 const menuLinks: LayoutNavLinkItemProps[] = [
 	{
 		label: "Home",
-		link: "/",
-		isActive: true,
-	},
-	{
-		label: "Articles",
 		link: "/articles",
 	},
 	{
