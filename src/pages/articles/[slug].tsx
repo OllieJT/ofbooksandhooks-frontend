@@ -39,8 +39,6 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 	const slug = data?.slug.current;
 	const currentUser = useCurrentUser();
 
-	console.log({ slug });
-
 	const { data: post, loading, error } = usePreviewSubscription(
 		groqArticlePageQuery,
 		{
@@ -84,9 +82,6 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 				type: _type,
 			}),
 		})) || [];
-	{
-		console.log(topicTags);
-	}
 
 	return (
 		<>
