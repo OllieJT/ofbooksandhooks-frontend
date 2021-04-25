@@ -44,7 +44,7 @@ export const CollectionPage = ({
 	preview,
 }: Props): React.ReactElement => {
 	const router = useRouter();
-	const slug = topic.slug.current;
+	const slug = topic?.slug?.current;
 
 	if (!router.isFallback && !slug) {
 		return <ErrorPage statusCode={404} />;
@@ -59,7 +59,7 @@ export const CollectionPage = ({
 		id: "topic-article-list",
 		fetchDocs: (q: FetchProps) =>
 			groqTopicArticleList({
-				slug: topic.slug.current,
+				slug,
 				from: q.from,
 				to: q.to,
 				client: q.client,
@@ -79,7 +79,7 @@ export const CollectionPage = ({
 					title: topic.metadata.headline,
 					description: topic.metadata.description,
 					url: resolveUrl({
-						slug: topic.slug.current,
+						slug,
 						type: topic._type,
 						isAbsolute: true,
 					}),
