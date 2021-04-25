@@ -20,20 +20,18 @@ export const AuthorBio = ({ title, subtitle, avatar, cta }: AuthorBioProps) => {
 					className={style.avatar}
 					src={avatar.url}
 					alt={avatar.alt}
-					width={120}
-					height={120}
+					width={88}
+					height={88}
 				/>
 			)}
-			<div>
-				<h4 className={style.title}>{title}</h4>
-				<p className={style.subtitle}>{subtitle}</p>
+			<h4 className={style.title}>{title}</h4>
+			<p className={style.subtitle}>{subtitle}</p>
 
-				{cta && (
-					<Link href={cta.url} passHref>
-						<a className={style.link}>{cta.label}</a>
-					</Link>
-				)}
-			</div>
+			{cta && (
+				<Link href={cta.url} passHref>
+					<a className={style.link}>{cta.label}</a>
+				</Link>
+			)}
 		</article>
 	);
 };
