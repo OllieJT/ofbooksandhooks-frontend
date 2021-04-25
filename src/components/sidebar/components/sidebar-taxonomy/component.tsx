@@ -41,10 +41,8 @@ const SidebarTaxonomyComponent = () => {
 		});
 
 	return (
-		<aside className={style.container}>
+		<>
 			{featureCollection && <CardCollection {...featureCollection} />}
-			<TagList title="Collections" tags={collectionTags} />
-			<TagList title="Topics" tags={topicTags} />
 
 			{biography.title && biography.description && (
 				<AuthorBio
@@ -54,7 +52,10 @@ const SidebarTaxonomyComponent = () => {
 					//cta={{label: "Learn More", url: '/about'}}
 				/>
 			)}
-		</aside>
+
+			<TagList title="Collections" tags={collectionTags} />
+			<TagList title="Topics" tags={topicTags} />
+		</>
 	);
 };
 export const SidebarTaxonomy = memo(SidebarTaxonomyComponent);

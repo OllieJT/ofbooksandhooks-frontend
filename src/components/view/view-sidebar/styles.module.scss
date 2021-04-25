@@ -8,6 +8,21 @@
 	display: grid;
 	grid-template-columns: 1fr 320px;
 	grid-template-areas: "content sidebar";
+
+	@media screen and (max-width: 1060px) {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto;
+		grid-template-areas: "content" "sidebar";
+
+		.sidebar {
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: repeat(10, auto);
+			@media screen and (max-width: 720px) {
+				grid-template-columns: 1fr;
+				grid-template-rows: repeat(10, auto);
+			}
+		}
+	}
 }
 
 .content,
@@ -21,4 +36,20 @@
 
 .sidebar {
 	grid-area: sidebar;
+
+	position: relative;
+	z-index: 20;
+
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(10, auto);
+	grid-auto-flow: dense;
+
+	align-items: start;
+	align-content: start;
+	justify-items: stretch;
+	justify-content: stretch;
+
+	margin-bottom: var(--size-xlg);
+	gap: var(--size-lg);
 }
