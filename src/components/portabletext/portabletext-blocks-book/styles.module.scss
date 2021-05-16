@@ -4,6 +4,7 @@
 	align-items: stretch;
 	justify-content: center;
 	grid-gap: var(--size-reg);
+	overflow-y: hidden;
 }
 
 .header {
@@ -50,9 +51,11 @@
 
 	.cover {
 		grid-area: cover;
-		border-radius: var(--radius-lg);
-		overflow: hidden;
-		background-color: var(--color-background-detail);
+		img {
+			border-radius: var(--radius-lg);
+			overflow: hidden;
+			background-color: var(--color-background-detail);
+		}
 	}
 }
 
@@ -63,7 +66,7 @@
 	&::before {
 		content: "";
 		position: absolute;
-		top: -80px;
+		top: -400px;
 		left: var(--size-sm);
 		bottom: 0;
 		width: 8px;
