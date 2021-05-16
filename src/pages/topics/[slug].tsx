@@ -22,6 +22,7 @@ interface Props {
 	preview: boolean;
 	topic: GroqTopicPage;
 	articles: GroqTopic_ArticleList;
+	slug: string;
 }
 
 export const getStaticProps: GetStaticProps = async ({ params, preview = false }) => {
@@ -33,6 +34,7 @@ export const getStaticProps: GetStaticProps = async ({ params, preview = false }
 			preview,
 			topic,
 			articles,
+			slug,
 		},
 		revalidate: 1,
 	};
@@ -42,9 +44,9 @@ export const CollectionPage = ({
 	topic,
 	articles,
 	preview,
+	slug,
 }: Props): React.ReactElement => {
 	const router = useRouter();
-	const slug = topic?.slug?.current;
 
 	if (!router.isFallback && !slug) {
 		return <ErrorPage statusCode={404} />;
@@ -56,7 +58,7 @@ export const CollectionPage = ({
 	}
 
 	const handleFetch = fetchArticleList({
-		id: "topic-article-list",
+		id: `topic-article-list-${slug}`,
 		fetchDocs: (q: FetchProps) =>
 			groqTopicArticleList({
 				slug,
