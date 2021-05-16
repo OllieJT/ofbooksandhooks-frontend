@@ -12,8 +12,14 @@
 	// align-items: flex-start;
 	// justify-content: flex-start;
 	// gap: var(--size-xsm);
-	& > *:not(:last-child) {
-		margin-bottom: var(--size-reg);
+	& > {
+		*:not(:first-child) {
+			margin-top: 0.6em;
+		}
+
+		*:not(:last-child) {
+			margin-bottom: 0.2em;
+		}
 	}
 
 	max-width: var(--size-maxcontent);
@@ -75,6 +81,12 @@
 			color: var(--color-primary-mask-foreground);
 			background-color: var(--color-primary-mask-background);
 		}
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+		margin: auto;
 	}
 
 	ul,
