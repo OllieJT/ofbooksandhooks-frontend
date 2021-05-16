@@ -1,72 +1,43 @@
-import { useSettings } from "../../../providers/settings";
-import { resolveSocialIcon } from "../../../utility/resolve-platform";
 import { LayoutLogo } from "../layout-logo";
 import { LayoutNavLinkItemProps } from "../layout-nav-link-item";
 import { JustifyMenu, LayoutNavLinkList } from "../layout-nav-link-list";
 import style from "./styles.module.scss";
-import { useEffect, useState } from "react";
 import { LayoutNavToggle } from "../layout-nav-toggle";
+import { memo, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-const menuLinks: LayoutNavLinkItemProps[] = [
-	{
-		label: "Home",
-		link: "/articles",
-	},
-	{
-		label: "Of Books",
-		link: "/topics/books",
-	},
-	{
-		label: "Of Hooks",
-		link: "/topics/hooks",
-	},
-	{
-		label: "Collections",
-		link: "/collections",
-	},
-];
+interface Props {
+	menuLinks: LayoutNavLinkItemProps[];
+	platformLinks: LayoutNavLinkItemProps[];
+}
 
-export const LayoutNav = (): React.ReactElement => {
-	const [isMenuOpen, setMenuOpen] = useState(false);
-	const settings = useSettings();
+const LayoutNav = ({ menuLinks, platformLinks }: Props): React.ReactElement => {
+	const [isOpen, setIsOpen] = useState(false);
 	const router = useRouter();
 
 	useEffect(() => {
-		router.events.on("routeChangeStart", () => setMenuOpen(false));
-		return () => router.events.off("routeChangeStart", () => setMenuOpen(false));
+		router.events.on("routeChangeStart", () => setIsOpen(false));
+		return () => router.events.off("routeChangeStart", () => setIsOpen(false));
 	}, []);
 
-	const toggleMenu = () => setMenuOpen(!isMenuOpen);
-
-	const platformLinks: LayoutNavLinkItemProps[] =
-		settings.profile.platforms?.map((platform) => {
-			const Icon = resolveSocialIcon(platform.platform);
-			return {
-				label: <Icon />,
-				link: platform.url,
-			};
-		}) || [];
+	const toggleMenu = () => setIsOpen(!isOpen);
 
 	return (
-		<nav className={style.container}>
+		<nav className={`${style.container}  ${isOpen ? style.open : ""}`}>
 			<div className={style.logo}>
 				<LayoutLogo />
 			</div>
 
-			<div className={`${style.menu} ${isMenuOpen ? style.open : style.closed}`}>
-				<LayoutNavLinkList links={menuLinks} justify={JustifyMenu.End} />
-			</div>
+			<LayoutNavLinkList
+				menuClass={style.menu}
+				links={[...menuLinks, ...platformLinks]}
+				justify={JustifyMenu.End}
+				isOpen={isOpen}
+			/>
 
-			<div
-				className={`${style.platforms} ${
-					isMenuOpen ? style.open : style.closed
-				}`}
-			>
-				<LayoutNavLinkList links={platformLinks} justify={JustifyMenu.End} />
-			</div>
-
-			<LayoutNavToggle isOpen={isMenuOpen} handleClick={toggleMenu} />
+			<LayoutNavToggle isOpen={isOpen} onClick={toggleMenu} />
 		</nav>
 	);
 };
+
+export const LayoutNavComponent = memo(LayoutNav);

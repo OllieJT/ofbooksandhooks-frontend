@@ -1,5 +1,6 @@
 .link,
-.label {
+.label,
+.icon {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -7,40 +8,65 @@
 	text-decoration: none;
 }
 
+button.link {
+	background-color: rgb(50 65 85 / 0.08);
+	border-bottom: 1px solid rgb(50 65 85 / 0.12);
+}
+
 .link {
 	width: auto;
 	height: 100%;
-	min-width: 8rem;
 	min-height: 8rem;
+	min-width: 100%;
+	border: none;
+	cursor: pointer;
 
-	padding: var(--size-reg) var(--size-lg);
+	padding: var(--size-sm) var(--size-reg);
+
+	@media screen and (max-width: 960px) {
+		justify-content: flex-start;
+	}
 
 	&.active,
 	&:hover {
-		.label {
+		.label,
+		.icon {
 			opacity: 1;
 		}
 	}
 
 	&.active {
-		.label {
+		.label,
+		.icon {
 			color: var(--theme-text);
 		}
 	}
 
 	&:hover {
-		.label {
+		.label,
+		.icon {
 			color: var(--color-primary-text);
 		}
 	}
 }
 
-.label {
+.icon {
+	margin-right: 0.5em;
+}
+
+.label,
+.icon {
 	font-size: var(--font-size-reg);
 	font-weight: var(--font-medium);
 	line-height: 1.5em;
 	color: var(--color-foreground-detail);
 	opacity: 0.8;
+	text-transform: capitalize;
+	@media screen and (min-width: 960px) {
+		&.withIcon {
+			display: none;
+		}
+	}
 
 	svg {
 		font-size: 1.15em;

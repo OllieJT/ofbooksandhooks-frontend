@@ -10,30 +10,37 @@ export enum JustifyMenu {
 export interface LayoutNavLinkListProps {
 	justify?: JustifyMenu;
 	links: LayoutNavLinkItemProps[];
+	isOpen: boolean;
+	menuClass: string;
 }
 
 export const LayoutNavLinkList = ({
 	justify = JustifyMenu.Start,
 	links,
+	isOpen,
+	menuClass,
 }: LayoutNavLinkListProps): React.ReactElement => {
 	const { asPath } = useRouter();
 
 	return (
-		<ul className={style.list} style={{ justifyContent: justify }}>
-			{links.map(({ label, link }) => {
-				const isActive =
-					asPath === link || (link === "/articles" && asPath === "/");
+		<div className={`${style.container} ${menuClass} ${isOpen ? style.open : ""}`}>
+			<ul className={style.list} style={{ justifyContent: justify }}>
+				{links.map(({ label, link, icon }) => {
+					const isActive =
+						asPath === link || (link === "/articles" && asPath === "/");
 
-				return (
-					<li className={style.item} key={label + link}>
-						<LayoutNavLinkItem
-							label={label}
-							link={link}
-							isActive={isActive}
-						/>
-					</li>
-				);
-			})}
-		</ul>
+					return (
+						<li className={style.item} key={label + link}>
+							<LayoutNavLinkItem
+								label={label}
+								link={link}
+								icon={icon}
+								isActive={isActive}
+							/>
+						</li>
+					);
+				})}
+			</ul>
+		</div>
 	);
 };

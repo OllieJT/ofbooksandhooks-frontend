@@ -2,11 +2,14 @@ import style from "./styles.module.scss";
 import { RiMenuFill, RiCloseFill } from "react-icons/ri";
 
 interface Props {
-	handleClick: () => void;
+	onClick: () => void;
 	isOpen: boolean;
 }
 
-export const LayoutNavToggle = ({ isOpen, handleClick }: Props): React.ReactElement => {
+export const LayoutNavToggle = ({
+	isOpen,
+	onClick: handleClick,
+}: Props): React.ReactElement => {
 	return (
 		<button
 			className={`${style.container} ${isOpen ? style.open : style.closed}`}
