@@ -19,7 +19,7 @@ const handleTextSize = (size: TextSize) => {
 			return `var(--font-size-xlg)`;
 	}
 };
-
+//todo:Finish implementing!!!
 export const BlockCta = ({ size = "x-large", title, url, label }: Props) => {
 	return (
 		<div className={style.container}>

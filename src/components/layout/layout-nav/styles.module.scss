@@ -9,7 +9,6 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	gap: calc(var(--size-lg) / 2);
 
 	.menu {
 		transition: transform 0.32s var(--transition);

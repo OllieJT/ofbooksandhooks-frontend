@@ -3,7 +3,6 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: var(--size-reg);
 	padding: var(--size-lg) var(--size-reg);
 
 	background-color: var(--color-background-surface);
@@ -49,7 +48,10 @@
 		align-items: center;
 		justify-content: center;
 		flex-wrap: wrap;
-		gap: var(--size-sm);
+		ul,
+		li,
+		p {
+		}
 	}
 }
 a.container:hover {

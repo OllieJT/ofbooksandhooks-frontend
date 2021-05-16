@@ -5,9 +5,9 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	gap: var(--size-reg);
+	//gap: var(--size-reg);
 	padding: var(--size-lg) var(--size-reg);
-
+	border: 10px solid pink !important;
 	.title {
 		font-weight: var(--font-bold);
 		color: var(--color-foreground-title);

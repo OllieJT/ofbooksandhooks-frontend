@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Theme } from "../../utility/handle-theme-color";
 import { FixedImage } from "../../utility/handle-sanity-image";
-import { Tag } from "../tag";
+import { Tag, TagList } from "../tag";
 
 export interface ProfileProps {
 	name: string;
@@ -49,9 +49,12 @@ export const Profile = ({ name, subtitle, tags = [], avatar, link }: ProfileProp
 				</div>
 			)}
 			<div className={style.tags}>
-				{tags.map((tag) => (
-					<Tag label={tag} theme={Theme.Yellow} key={tag} />
-				))}
+				<TagList
+					tags={tags.map((tag) => ({
+						label: tag,
+						theme: Theme.Yellow,
+					}))}
+				/>
 			</div>
 		</Wrapper>
 	);

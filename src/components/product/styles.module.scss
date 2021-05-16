@@ -3,7 +3,6 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: var(--size-sm);
 	padding: var(--size-lg) var(--size-reg);
 
 	background-color: var(--color-background-surface);
@@ -30,7 +29,7 @@
 		border-radius: var(--radius-reg);
 		overflow: hidden;
 		border: 2px solid transparent;
-		padding: 2px;
+		padding: var(--size-xsm) 0;
 		img {
 			border-radius: var(--radius-reg);
 		}

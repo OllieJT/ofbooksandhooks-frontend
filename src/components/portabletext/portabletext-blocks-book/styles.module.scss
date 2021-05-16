@@ -3,8 +3,8 @@
 	flex-direction: column;
 	align-items: stretch;
 	justify-content: center;
-	grid-gap: var(--size-reg);
 	overflow-y: hidden;
+	border: 5px solid red;
 }
 
 .header {
@@ -63,6 +63,7 @@
 	position: relative;
 	z-index: 5;
 	padding-left: 40px;
+	padding-top: var(--size-sm);
 	&::before {
 		content: "";
 		position: absolute;

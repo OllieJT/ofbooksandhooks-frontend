@@ -1,20 +1,4 @@
 .container {
-	/* --columns: 5;
-	--row-chunk: calc(100vh / var(--columns));
-	--size-row: minmax(var(--row-chunk), min-content);
-
-	display: grid;
-	grid-template-columns: 1fr 1120px 1fr;
-	grid-template-rows: min-content repeat(2, 80px) 1fr max-content;
-	grid-template-areas:
-		"logo menu platforms"
-		"logo main platforms"
-		"logo main platforms"
-		". main ."
-		"footer footer footer";
-	gap: var(--size-sm);
-	align-items: center;
-	justify-items: center; */
 	@media screen and (max-width: 1400px) {
 		grid-template-columns: 1fr auto 1fr;
 	}

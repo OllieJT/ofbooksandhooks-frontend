@@ -3,7 +3,7 @@ ul.list {
 	flex-direction: row;
 	align-items: stretch;
 	justify-content: stretch;
-	gap: var(--size-xxsm);
+	margin: 0 calc(var(--size-xxsm) * -1);
 
 	padding: var(--size-lg) 0;
 	min-height: 50vh;
@@ -16,6 +16,7 @@ ul.list {
 		margin: 0;
 		flex-basis: calc(100% / 10);
 		transition: all 0.32s var(--transition);
+		padding: var(--size-xxsm);
 		&:hover {
 			flex-grow: 4;
 			flex-shrink: 0;
