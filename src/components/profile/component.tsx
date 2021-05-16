@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Theme } from "../../utility/handle-theme-color";
 import { FixedImage } from "../../utility/handle-sanity-image";
-import { Tag, TagList } from "../tag";
+import { TagList } from "../tag";
 
 export interface ProfileProps {
 	name: string;
