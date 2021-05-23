@@ -7,13 +7,13 @@ import { ArticleCard } from "../../article/article-card";
 import { CollectionCard } from "../../collection";
 
 interface Props {
-	recommendations: GroqArticlePage_Recommended[];
+	recommendations?: GroqArticlePage_Recommended[];
 }
 
 export const ArticleFooter = ({ recommendations }: Props) => {
 	return (
 		<ul className={style.list}>
-			{recommendations.map((rec) => {
+			{recommendations?.map((rec) => {
 				switch (rec._type) {
 					case "article":
 						const topics = rec.topics.map((topic) => topic.title);
