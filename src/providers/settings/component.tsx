@@ -21,7 +21,7 @@ export const SettingsProvider = ({ children }: Props) => {
 			value={{
 				biography: {
 					description: data?.biography.description,
-					title: data?.biography.description,
+					title: data?.biography.title,
 					photo:
 						data?.biography.photo &&
 						handleSanityImageFixed({

@@ -15,16 +15,18 @@ export interface AuthorBioProps {
 export const AuthorBio = ({ title, subtitle, avatar, cta }: AuthorBioProps) => {
 	return (
 		<article className={style.container}>
-			{avatar && (
-				<img
-					className={style.avatar}
-					src={avatar.url}
-					alt={avatar.alt}
-					width={88}
-					height={88}
-				/>
-			)}
-			<h4 className={style.title}>{title}</h4>
+			<header className={style.header}>
+				{avatar && (
+					<img
+						className={style.avatar}
+						src={avatar.url}
+						alt={avatar.alt}
+						width={88}
+						height={88}
+					/>
+				)}
+				<h4 className={style.title}>{title}</h4>
+			</header>
 			<p className={style.subtitle}>{subtitle}</p>
 
 			{cta && (
