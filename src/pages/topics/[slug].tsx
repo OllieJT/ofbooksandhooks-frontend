@@ -15,7 +15,7 @@ import {
 	GroqTopic_ArticleList,
 } from "../../lib/groq/topic-page";
 import { fetchArticleList, FetchProps } from "../../hooks/fetch-infinite-list";
-import { LoadMore } from "../../components/button";
+import { Button } from "../../components/button";
 import { ArticleList, ArticleListColumns } from "../../components/article";
 
 interface Props {
@@ -126,9 +126,10 @@ export const CollectionPage = ({
 					);
 				})}
 
-				<LoadMore
+				<Button
 					isLoading={handleFetch.isFetching}
 					onClick={() => handleFetch.fetchNextPage()}
+					label="Load More"
 				/>
 			</ViewNaked>
 		</>

@@ -6,17 +6,17 @@
 	justify-self: center;
 }
 .button {
-	font-family: var(--font-secondary);
 	font-size: var(--font-size-sm);
+	font-weight: var(--font-medium);
 	line-height: 1em;
-	letter-spacing: 0.2em;
+	letter-spacing: 0.08em;
 	text-transform: uppercase;
 
 	padding: var(--size-sm) var(--size-reg);
 	margin: var(--size-lg) auto;
 
-	background-color: var(--color-base-200);
-	color: var(--theme-subtitle);
+	background-color: var(--color-blue-base);
+	color: var(--color-background-surface);
 
 	border-radius: 100rem;
 	cursor: pointer;
@@ -25,12 +25,12 @@
 	border: none;
 
 	&:hover {
-		background-color: var(--color-base-300);
-		color: var(--theme-title);
+		background-color: var(--color-yellow-base);
+		color: var(--color-foreground-title);
 	}
 
 	&.loading {
-		background-color: var(--theme-brand);
-		color: var(--color-base-050);
+		background-color: var(--color-background-base);
+		color: var(--color-blue-text);
 	}
 }

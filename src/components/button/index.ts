@@ -1,1 +1,1 @@
-export * from "./button-load-more";
+export * from "./button";
