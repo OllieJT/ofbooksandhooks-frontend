@@ -26,6 +26,7 @@
 		"react-icons": "^4.2.0",
 		"react-player": "^2.9.0",
 		"react-query": "^3.13.6",
+		"react-scroll-percentage": "^4.2.0",
 		"sass": "^1.32.8"
 	},
 	"devDependencies": {
