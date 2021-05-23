@@ -1,6 +1,7 @@
+import { TagList } from "../../../../tag";
 import style from "./styles.module.scss";
 
-export interface CardTitleProps {
+interface Props {
 	title: string;
 	subtitle?: string;
 
@@ -10,15 +11,10 @@ export interface CardTitleProps {
 	tags?: string[];
 }
 
-export const CardTitle = ({
-	className,
-	date,
-	title,
-	subtitle,
-	tags,
-}: CardTitleProps) => {
+export const ArticleCardTitle = ({ className, date, title, subtitle, tags }: Props) => {
 	return (
 		<div className={`${style.container} ${className}`}>
+			{tags && <TagList tags={tags.map((t) => ({ label: t }))} />}
 			{tags && (
 				<ul className={style.tags}>
 					{tags.map((tag) => (

@@ -1,9 +1,9 @@
 import style from "./article-list.module.scss";
-import { resolveUrl } from "../../utility/resolve-url";
-import { Card, CardSize, CardType } from "../card";
-import { GroqCollectionList } from "../../lib/groq/collection-list";
-import { handleThemeColor } from "../../utility/handle-theme-color";
-import { CardList, CardListColumns } from "../card-list";
+import { resolveUrl } from "../../../utility/resolve-url";
+import { GroqCollectionList } from "../../../lib/groq/collection-list";
+import { handleThemeColor } from "../../../utility/handle-theme-color";
+import { CardList, CardListColumns } from "../../card-list";
+import { CollectionCard } from "../collection-card";
 
 export interface CollectionListProps {
 	collections: GroqCollectionList;
@@ -24,9 +24,7 @@ export const CollectionList = ({
 
 				return (
 					<li key={collection._id} className={style.item}>
-						<Card
-							type={CardType.Collection}
-							size={CardSize.Small}
+						<CollectionCard
 							theme={themeClass}
 							title={collection.title}
 							// subtitle={collection}

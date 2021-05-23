@@ -1,11 +1,11 @@
 import { TagList, TagProps } from "../../../tag";
-import { CardCollection, CardSize, handleCardCollection } from "../../../card";
 import { AuthorBio } from "../../../author-bio";
 import { useSettings } from "../../../../providers/settings";
 import { useTaxonomy } from "../../../../providers/taxonomy";
 import { resolveUrl } from "../../../../utility/resolve-url";
 import { handleThemeColor, Theme } from "../../../../utility/handle-theme-color";
 import { memo } from "react";
+import { CollectionCard } from "../../../collection";
 
 const SidebarTaxonomyComponent = () => {
 	const {
@@ -32,16 +32,20 @@ const SidebarTaxonomyComponent = () => {
 		theme: Theme.Default,
 	}));
 
-	const featureCollection =
-		collection &&
-		handleCardCollection({
-			document: collection,
-			size: CardSize.Small,
-		});
-
 	return (
 		<>
-			{featureCollection && <CardCollection {...featureCollection} />}
+			{collection && (
+				<CollectionCard
+					theme={handleThemeColor(collection.theme)}
+					title={collection?.title}
+					//subtitle
+					linkTo={resolveUrl({
+						slug: collection.slug.current,
+						type: collection._type,
+					})}
+					images={collection.articles.map((article) => article.thumbnail)}
+				/>
+			)}
 
 			{biography.title && biography.description && (
 				<AuthorBio

@@ -1,6 +1,5 @@
 import { NextSeo } from "next-seo";
 import { GetStaticProps } from "next";
-import { ArticleList, ArticleListColumns } from "../components/article-list";
 import { ViewSidebar } from "../components/view";
 import { SidebarTaxonomy } from "../components/sidebar";
 import {
@@ -10,6 +9,7 @@ import {
 } from "../lib/groq/article-list";
 import { fetchArticleList } from "../hooks/fetch-infinite-list";
 import { LoadMore } from "../components/button";
+import { ArticleList, ArticleListColumns } from "../components/article";
 
 interface Props {
 	preview: boolean;

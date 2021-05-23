@@ -1,6 +1,6 @@
-import { GroqArticleList } from "../../lib/groq/article-list";
-import { resolveUrl } from "../../utility/resolve-url";
-import { Card, CardSize, CardType } from "../card";
+import { GroqArticleList } from "../../../lib/groq/article-list";
+import { resolveUrl } from "../../../utility/resolve-url";
+import { ArticleCard } from "../article-card";
 import style from "./article-list.module.scss";
 
 export enum ArticleListColumns {
@@ -9,7 +9,7 @@ export enum ArticleListColumns {
 	Four,
 }
 
-export interface ArticleListProps {
+interface Props {
 	articles: GroqArticleList;
 	columns?: ArticleListColumns;
 }
@@ -28,15 +28,13 @@ const articleListColumnStyle = (columns: ArticleListColumns) => {
 export const ArticleList = ({
 	articles,
 	columns = ArticleListColumns.Three,
-}: ArticleListProps) => {
+}: Props) => {
 	return (
 		<ul className={`${style.list} ${articleListColumnStyle(columns)}`}>
 			{articles.map((article) => {
 				return (
 					<li key={article._id} className={style.item}>
-						<Card
-							type={CardType.Article}
-							size={CardSize.Small}
+						<ArticleCard
 							title={article.title}
 							// subtitle={collection}
 							linkTo={resolveUrl({

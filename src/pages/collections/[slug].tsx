@@ -10,9 +10,9 @@ import {
 	GroqCollectionPage,
 	getCollectionPage,
 } from "../../lib/groq/collection-page";
-import { ArticleList, ArticleListColumns } from "../../components/article-list";
 import { ViewNaked } from "../../components/view";
 import { Title } from "../../components/title";
+import { ArticleList, ArticleListColumns } from "../../components/article";
 
 interface Props {
 	preview: boolean;

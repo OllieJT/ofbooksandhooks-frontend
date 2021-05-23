@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import { urlFor } from "../../lib/sanity";
 import { NextSeo } from "next-seo";
 import { resolveUrl } from "../../utility/resolve-url";
-import { ArticleList, ArticleListColumns } from "../../components/article-list";
 import { ViewNaked } from "../../components/view";
 import { Title } from "../../components/title";
 import {
@@ -17,6 +16,7 @@ import {
 } from "../../lib/groq/topic-page";
 import { fetchArticleList, FetchProps } from "../../hooks/fetch-infinite-list";
 import { LoadMore } from "../../components/button";
+import { ArticleList, ArticleListColumns } from "../../components/article";
 
 interface Props {
 	preview: boolean;
