@@ -4,6 +4,7 @@ import Link from "next/link";
 export interface LayoutNavLinkItemProps {
 	label: string;
 	icon?: React.ReactNode;
+
 	link: string;
 	isActive?: boolean;
 }
@@ -23,6 +24,42 @@ export const LayoutNavLinkItem = ({
 				</p>
 			</a>
 		</Link>
+	);
+};
+
+interface LayoutNavLinkAdminProps extends LayoutNavLinkItemProps {
+	image: string;
+	imageAlt: string;
+}
+export const LayoutNavLinkAdmin = ({
+	label,
+	icon,
+	image,
+	imageAlt,
+	link,
+	isActive,
+}: LayoutNavLinkAdminProps): React.ReactElement => {
+	return (
+		<a
+			href={link}
+			className={`${style.link} ${isActive ? style.active : ""}`}
+			target="_blank"
+		>
+			<p className={`${style.label} ${!!icon ? style.withIcon : ""}`}>
+				<img
+					style={{
+						display: "inline-block",
+						borderRadius: "100%",
+						marginRight: "8px",
+					}}
+					src={image}
+					alt={imageAlt}
+					width={26}
+					height={26}
+				/>
+				{label}
+			</p>
+		</a>
 	);
 };
 
