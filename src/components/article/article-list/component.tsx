@@ -32,6 +32,12 @@ export const ArticleList = ({
 	return (
 		<ul className={`${style.list} ${articleListColumnStyle(columns)}`}>
 			{articles.map((article) => {
+				const topics = article.topics.map((topic) => topic.title);
+
+				if (topics.length > 3) {
+					topics.length = 3;
+				}
+
 				return (
 					<li key={article._id} className={style.item}>
 						<ArticleCard
@@ -43,7 +49,7 @@ export const ArticleList = ({
 							})}
 							publishAt={new Date(article.metadata.publishAt)}
 							image={article.thumbnail}
-							tags={["Tag", "Here"]}
+							tags={topics}
 						/>
 					</li>
 				);

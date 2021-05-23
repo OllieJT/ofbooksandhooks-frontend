@@ -1,13 +1,13 @@
 import { FixedImage } from "../../../../../utility/handle-sanity-image";
 import Link from "next/link";
 import style from "./styles.module.scss";
-import { ArticleCardTitle } from "../article-card-title";
 import { ArticleCardWrapper } from "../article-card-wrapper";
 import { Theme } from "../../../../../utility/handle-theme-color";
 
 interface Props {
 	linkTo: string;
 	title: string;
+	subtitle?: string;
 	date: string;
 
 	image?: FixedImage;
@@ -30,12 +30,22 @@ export const ArticleCardComponent = (props: Props) => {
 						/>
 					)}
 
-					<ArticleCardTitle
-						className={style.title}
-						title={props.title}
-						date={props.date}
-						tags={props.tags}
-					/>
+					<div className={style.details}>
+						<h4 className={style.title}>{props.title}</h4>
+						<p className={`${style.date} ${style.label}`}>{props.date}</p>
+
+						{props.tags && (
+							<ul className={style.tagList}>
+								{props.tags.map((tag) => (
+									<li key={tag} className={style.tagItem}>
+										<p className={`${style.tag} ${style.label}`}>
+											{tag}
+										</p>
+									</li>
+								))}
+							</ul>
+						)}
+					</div>
 				</a>
 			</Link>
 		</ArticleCardWrapper>

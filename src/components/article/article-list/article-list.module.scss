@@ -1,46 +1,57 @@
 .list {
+	--column-gap: var(--size-xsm);
+	--column-count: 3;
+
+	--column-use-gap-width: calc(var(--column-count) - 1) * var(--column-gap);
+	--column-use-total-width: calc(100% - var(--column-use-gap-width));
+
+	--column-width: calc(var(--column-use-total-width) / var(--column-count));
 	width: 100%;
 
 	align-items: stretch;
 	justify-content: space-between;
 
 	display: grid;
-	gap: var(--size-xsm);
-	grid-template-columns: repeat(3, 1fr);
+	gap: var(--column-gap);
+	grid-template-columns: repeat(var(--column-count), var(--column-width));
 	grid-auto-flow: dense;
 
+	&.one {
+		--column-width: 100%;
+	}
+
 	&.two {
-		grid-template-columns: repeat(2, 1fr);
+		--column-count: 2;
 	}
 
 	&.three {
-		grid-template-columns: repeat(3, 1fr);
+		--column-count: 3;
 	}
 
 	&.four {
-		grid-template-columns: repeat(4, 1fr);
+		--column-count: 4;
 	}
 
 	@media screen and (max-width: 1060px) {
-		grid-template-columns: repeat(3, 1fr);
 		&.four {
-			grid-template-columns: repeat(3, 1fr);
+			--column-count: 3;
 		}
 	}
 
 	@media screen and (max-width: 960px) {
-		grid-template-columns: repeat(2, 1fr);
+		--column-count: 2;
 		&.three,
 		&.four {
-			grid-template-columns: repeat(2, 1fr);
+			--column-count: 2;
 		}
 	}
 
 	@media screen and (max-width: 680px) {
+		--column-width: 100%;
 		&.two,
 		&.three,
 		&.four {
-			grid-template-columns: 1fr;
+			--column-width: 100%;
 		}
 	}
 }

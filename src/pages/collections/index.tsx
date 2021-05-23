@@ -9,7 +9,7 @@ import { fetchArticleList } from "../../hooks/fetch-infinite-list";
 import { Fragment } from "react";
 import { LoadMore } from "../../components/button";
 import { getCollectionList } from "../../lib/groq/collection-list";
-import { CollectionList } from "../../components/collection/collection-list";
+import { CollectionList } from "../../components/collection";
 import { CardListColumns } from "../../components/card-list";
 import { Title } from "../../components/title";
 
