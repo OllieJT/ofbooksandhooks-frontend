@@ -18,15 +18,21 @@ export const BlockVideo = ({
 }: Props) => {
 	return (
 		<div className={style.container}>
-			<VideoPlayer
-				url={href}
-				controls={hasControls}
-				playing={isAutoplay}
-				loop={isLoop}
-				muted={isMuted}
-				width={756}
-				height={425}
-			/>
+			<div className={style.outer}>
+				<div className={style.inner}>
+					<VideoPlayer
+						url={href}
+						controls={hasControls}
+						playing={isAutoplay}
+						loop={isLoop}
+						muted={isMuted}
+						width="100%"
+						height="100%"
+						//width={756}
+						//height={425}
+					/>
+				</div>
+			</div>
 		</div>
 	);
 };
