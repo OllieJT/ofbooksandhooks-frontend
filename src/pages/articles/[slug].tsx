@@ -135,9 +135,9 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 				})}
 				authorName={post.author.name}
 				tags={topicTags}
+				recommendations={post.recommended}
 			>
 				<ArticlePageContent content={post.content} />
-				{/* <ArticleFooter recommendations={recommended} /> */}
 			</ArticlePageLayout>
 		</>
 	);
