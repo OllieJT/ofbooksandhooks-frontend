@@ -1,7 +1,7 @@
 import style from "./styles.module.scss";
 import { TagList, TagProps } from "../../tag";
-import { Theme } from "../../../utility/handle-theme-color";
-import { handleDate } from "../../../utility";
+import { Theme } from "@lib/utility/handle-theme-color";
+import { handleDate } from "@lib/utility";
 
 export interface ArticleHeaderProps {
 	title: string;
@@ -37,9 +37,7 @@ export const ArticleHeader = ({
 		: undefined;
 
 	//@ts-ignore
-	const allTags: TagProps[] = [authorTag, ...additionalTags, dateTag].filter(
-		(x) => !!x,
-	);
+	const allTags: TagProps[] = [authorTag, ...additionalTags, dateTag].filter((x) => !!x);
 
 	return (
 		<header className={style.container}>

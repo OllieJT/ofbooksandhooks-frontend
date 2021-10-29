@@ -1,5 +1,5 @@
-import { GroqArticlePage_Recommended } from "../../../lib/groq/article-page";
-import { FixedImage } from "../../../utility/handle-sanity-image";
+import type { GroqArticlePage_Recommended } from "@lib/groq/article-page";
+import type { FixedImage } from "@lib/utility/handle-sanity-image";
 import { ViewContent } from "../../view";
 import { ArticleFooter } from "../article-page-footer";
 import { ArticleHeader, ArticleHeaderProps } from "../article-page-header";

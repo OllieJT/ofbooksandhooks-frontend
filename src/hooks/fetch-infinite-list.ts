@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "react-query";
-import { getClient } from "../lib/sanity";
-import { handlePagination } from "../utility/handle-pagination";
+import { getClient } from "@lib/sanity";
+import { handlePagination } from "@lib/utility/handle-pagination";
 
 export interface FetchProps {
 	client: import("picosanity").PicoSanity;

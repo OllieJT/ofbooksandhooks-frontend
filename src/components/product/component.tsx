@@ -1,8 +1,8 @@
 import style from "./styles.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import { Theme, handleThemeClass } from "../../utility/handle-theme-color";
-import { FixedImage } from "../../utility/handle-sanity-image";
+import { Theme, handleThemeClass } from "@lib/utility/handle-theme-color";
+import type { FixedImage } from "@lib/utility/handle-sanity-image";
 
 export interface ProductCardProps {
 	title: string;

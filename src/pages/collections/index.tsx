@@ -1,17 +1,14 @@
 import { NextSeo } from "next-seo";
-import { GetStaticProps } from "next";
-import { ViewNaked } from "../../components/view";
-import {
-	groqCollectionList,
-	GroqCollectionList,
-} from "../../lib/groq/collection-list/groq";
+import type { GetStaticProps } from "next";
+import { ViewNaked } from "@components/view";
+import { groqCollectionList, GroqCollectionList } from "@lib/groq/collection-list/groq";
 import { fetchArticleList } from "../../hooks/fetch-infinite-list";
 import { Fragment } from "react";
-import { Button } from "../../components/button";
-import { getCollectionList } from "../../lib/groq/collection-list";
-import { CollectionList } from "../../components/collection";
-import { CardListColumns } from "../../components/card-list";
-import { Title } from "../../components/title";
+import { Button } from "@components/button";
+import { getCollectionList } from "@lib/groq/collection-list";
+import { CollectionList } from "@components/collection";
+import { CardListColumns } from "@components/card-list";
+import { Title } from "@components/title";
 
 interface Props {
 	preview: boolean;

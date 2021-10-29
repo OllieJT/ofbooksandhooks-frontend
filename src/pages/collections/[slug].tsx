@@ -1,18 +1,18 @@
 import React from "react";
 import ErrorPage from "next/error";
-import { GetStaticPaths, GetStaticProps } from "next";
+import type { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import { urlFor } from "../../lib/sanity";
+import { urlFor } from "@lib/sanity";
 import { NextSeo } from "next-seo";
-import { resolveUrl } from "../../utility/resolve-url";
+import { resolveUrl } from "@lib/utility/resolve-url";
 import {
 	getCollectionPagePaths,
 	GroqCollectionPage,
 	getCollectionPage,
-} from "../../lib/groq/collection-page";
-import { ViewNaked } from "../../components/view";
-import { Title } from "../../components/title";
-import { ArticleList, ArticleListColumns } from "../../components/article";
+} from "@lib/groq/collection-page";
+import { ViewNaked } from "@components/view";
+import { Title } from "@components/title";
+import { ArticleList, ArticleListColumns } from "@components/article";
 
 interface Props {
 	preview: boolean;
@@ -90,10 +90,7 @@ export const CollectionPage = ({ data, preview }: Props): React.ReactElement => 
 			<ViewNaked>
 				<Title title={data.title} subtitle="Collection" theme={data.theme} />
 
-				<ArticleList
-					articles={data.articles}
-					columns={ArticleListColumns.Three}
-				/>
+				<ArticleList articles={data.articles} columns={ArticleListColumns.Three} />
 			</ViewNaked>
 		</>
 	);

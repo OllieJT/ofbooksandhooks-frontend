@@ -1,7 +1,7 @@
 import style from "./styles.module.scss";
 import { TagList, TagProps } from "../tag";
-import { handleThemeClass, handleThemeColor } from "../../utility/handle-theme-color";
-import { Theme } from "../../lib/groq";
+import { handleThemeClass, handleThemeColor } from "@lib/utility/handle-theme-color";
+import type { Theme } from "@lib/groq";
 
 export interface TitleProps {
 	title: string;

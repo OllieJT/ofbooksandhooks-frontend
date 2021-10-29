@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
-import { groqCollectionList } from "../../lib/groq/collection-list";
-import { groqTopicList } from "../../lib/groq/topic-list";
-import { getClient } from "../../lib/sanity";
+import { groqCollectionList } from "@lib/groq/collection-list";
+import { groqTopicList } from "@lib/groq/topic-list";
+import { getClient } from "@lib/sanity";
 import { TaxonomyContext } from "./context";
 
 interface Props {
@@ -20,13 +20,9 @@ const getTaxonomies = async (preview: boolean) => {
 };
 
 export const TaxonomyProvider = ({ children }: Props) => {
-	const { error, data } = useQuery(
-		"taxonomy",
-		async () => await getTaxonomies(false),
-		{
-			staleTime: 900000,
-		},
-	);
+	const { error, data } = useQuery("taxonomy", async () => await getTaxonomies(false), {
+		staleTime: 900000,
+	});
 
 	if (error) {
 		console.warn({ fetch: "taxonomy", error });
@@ -37,8 +33,7 @@ export const TaxonomyProvider = ({ children }: Props) => {
 			value={{
 				collections: data?.collections || [],
 				topics: data?.topics || [],
-			}}
-		>
+			}}>
 			{children}
 		</TaxonomyContext.Provider>
 	);

@@ -1,7 +1,7 @@
-import { handleSanityImageFixed } from "../../../utility/handle-sanity-image";
+import { handleSanityImageFixed } from "@lib/utility/handle-sanity-image";
 import style from "./styles.module.scss";
-import { slugify } from "../../../utility";
-import { Img } from "../../../lib/groq";
+import { slugify } from "@lib/utility";
+import type { Img } from "@lib/groq";
 
 interface Props {
 	title: string;

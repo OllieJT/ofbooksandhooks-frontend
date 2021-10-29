@@ -1,7 +1,7 @@
 import style from "./article-list.module.scss";
-import { resolveUrl } from "../../../utility/resolve-url";
-import { GroqCollectionList } from "../../../lib/groq/collection-list";
-import { handleThemeColor } from "../../../utility/handle-theme-color";
+import { resolveUrl } from "@lib/utility/resolve-url";
+import type { GroqCollectionList } from "@lib/groq/collection-list";
+import { handleThemeColor } from "@lib/utility/handle-theme-color";
 import { CardList, CardListColumns } from "../../card-list";
 import { CollectionCard } from "../collection-card";
 

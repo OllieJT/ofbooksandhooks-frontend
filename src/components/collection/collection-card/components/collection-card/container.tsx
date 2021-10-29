@@ -1,8 +1,8 @@
 import { CollectionCardComponent } from "./component";
 import { memo } from "react";
-import { Img } from "../../../../../lib/groq";
-import { handleSanityImageFluid } from "../../../../../utility/handle-sanity-image";
-import { Theme } from "../../../../../utility/handle-theme-color";
+import type { Img } from "@lib/groq";
+import { handleSanityImageFluid } from "@lib/utility/handle-sanity-image";
+import type { Theme } from "@lib/utility/handle-theme-color";
 
 interface Props {
 	title: string;

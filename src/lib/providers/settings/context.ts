@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
-import { GroqArticleCard, GroqCollectionCard } from "../../lib/groq";
-import { FixedImage } from "../../utility/handle-sanity-image";
-import { SocialPlatform } from "../../utility/resolve-platform";
+import type { GroqArticleCard, GroqCollectionCard } from "@lib/groq";
+import type { FixedImage } from "@lib/utility/handle-sanity-image";
+import type { SocialPlatform } from "@lib/utility/resolve-platform";
 
 interface Platform {
 	url: string;

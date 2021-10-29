@@ -1,8 +1,8 @@
-import { handleSanityImageFixed, ImageFit } from "../../../utility/handle-sanity-image";
+import { handleSanityImageFixed, ImageFit } from "@lib/utility/handle-sanity-image";
 import style from "./styles.module.scss";
-import { slugify } from "../../../utility";
+import { slugify } from "@lib/utility";
 import { Profile } from "../../profile";
-import { Person } from "../../../lib/groq";
+import type { Person } from "@lib/groq";
 interface Props {
 	title: string;
 	people: Person[];

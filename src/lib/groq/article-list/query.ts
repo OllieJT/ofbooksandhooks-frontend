@@ -1,4 +1,4 @@
-import { handlePagination } from "../../../utility/handle-pagination";
+import { handlePagination } from "../../utility/handle-pagination";
 import { getClient } from "../../sanity";
 import { groqArticleList } from "./groq";
 

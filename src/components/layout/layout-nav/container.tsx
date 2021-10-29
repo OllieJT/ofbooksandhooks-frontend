@@ -1,6 +1,6 @@
-import { useSettings } from "../../../providers/settings";
-import { resolveSocialIcon } from "../../../utility/resolve-platform";
-import { LayoutNavLinkItemProps } from "../layout-nav-link-item";
+import { useSettings } from "@lib/providers/settings";
+import { resolveSocialIcon } from "@lib/utility/resolve-platform";
+import type { LayoutNavLinkItemProps } from "../layout-nav-link-item";
 import { LayoutNavComponent } from "./component";
 
 const menuLinks: LayoutNavLinkItemProps[] = [

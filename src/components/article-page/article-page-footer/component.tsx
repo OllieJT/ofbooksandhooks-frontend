@@ -1,8 +1,8 @@
 import style from "./styles.module.scss";
 
-import { GroqArticlePage_Recommended } from "../../../lib/groq/article-page";
-import { handleThemeColor } from "../../../utility/handle-theme-color";
-import { resolveUrl } from "../../../utility/resolve-url";
+import type { GroqArticlePage_Recommended } from "@lib/groq/article-page";
+import { handleThemeColor } from "@lib/utility/handle-theme-color";
+import { resolveUrl } from "@lib/utility/resolve-url";
 import { ArticleCard } from "../../article/article-card";
 import { CollectionCard } from "../../collection";
 

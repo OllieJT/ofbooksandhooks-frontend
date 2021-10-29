@@ -1,8 +1,8 @@
-import { FixedImage } from "../../../../../utility/handle-sanity-image";
+import type { FixedImage } from "@lib/utility/handle-sanity-image";
 import Link from "next/link";
 import style from "./styles.module.scss";
 import { ArticleCardWrapper } from "../article-card-wrapper";
-import { Theme } from "../../../../../utility/handle-theme-color";
+import type { Theme } from ".@lib/utility/handle-theme-color";
 
 interface Props {
 	linkTo: string;
@@ -38,9 +38,7 @@ export const ArticleCardComponent = (props: Props) => {
 							<ul className={style.tagList}>
 								{props.tags.map((tag) => (
 									<li key={tag} className={style.tagItem}>
-										<p className={`${style.tag} ${style.label}`}>
-											{tag}
-										</p>
+										<p className={`${style.tag} ${style.label}`}>{tag}</p>
 									</li>
 								))}
 							</ul>

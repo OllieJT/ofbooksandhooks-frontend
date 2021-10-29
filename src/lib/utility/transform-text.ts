@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { Cost } from "../lib/groq";
+import type { Cost } from "../groq";
 
 export function slugify(text: string): string {
 	return text

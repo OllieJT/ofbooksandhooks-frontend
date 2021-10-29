@@ -1,6 +1,6 @@
 import style from "./styles.module.scss";
 import Link from "next/link";
-import { FixedImage } from "../../utility/handle-sanity-image";
+import type { FixedImage } from "@lib/utility/handle-sanity-image";
 
 export interface AuthorBioProps {
 	title: string;

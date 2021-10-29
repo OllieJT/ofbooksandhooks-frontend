@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
-import { getSettings } from "../../lib/groq/settings";
-import { handleSanityImageFixed } from "../../utility/handle-sanity-image";
+import { getSettings } from "@lib/groq/settings";
+import { handleSanityImageFixed } from "@lib/utility/handle-sanity-image";
 import { SettingsContext } from "./context";
 
 interface Props {
@@ -50,8 +50,7 @@ export const SettingsProvider = ({ children }: Props) => {
 					article: data?.featureArticle,
 					collection: data?.featureCollection,
 				},
-			}}
-		>
+			}}>
 			{children}
 		</SettingsContext.Provider>
 	);

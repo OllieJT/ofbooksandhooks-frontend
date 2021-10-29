@@ -1,8 +1,8 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import { groq } from "next-sanity";
-import { Article } from "../../lib/groq";
-import { previewClient } from "../../lib/sanity";
-import { resolveUrl } from "../../utility/resolve-url";
+import type { Article } from "@lib/groq";
+import { previewClient } from "@lib/sanity";
+import { resolveUrl } from "@lib/utility/resolve-url";
 
 export default async function preview(req: NextApiRequest, res: NextApiResponse<any>) {
 	// Check the secret and next parameters
@@ -17,9 +17,7 @@ export default async function preview(req: NextApiRequest, res: NextApiResponse<
 
 	// Fetch the headless CMS to check if the provided `slug` exists
 	//const post: ArticleQuery = await getArticlePage(slug, true);
-	const post:
-		| Article
-		| undefined = await previewClient.fetch(
+	const post: Article | undefined = await previewClient.fetch(
 		groq`*[_type == "article"&& slug.current == $slug][0]`,
 		{ slug: req.query.slug.toString() },
 	);

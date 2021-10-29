@@ -1,9 +1,9 @@
 import { TagList, TagProps } from "../../../tag";
 import { AuthorBio } from "../../../author-bio";
-import { useSettings } from "../../../../providers/settings";
-import { useTaxonomy } from "../../../../providers/taxonomy";
-import { resolveUrl } from "../../../../utility/resolve-url";
-import { handleThemeColor, Theme } from "../../../../utility/handle-theme-color";
+import { useSettings } from "@lib/providers/settings";
+import { useTaxonomy } from "@lib/providers/taxonomy";
+import { resolveUrl } from "@lib/utility/resolve-url";
+import { handleThemeColor, Theme } from "@lib/utility/handle-theme-color";
 import { memo } from "react";
 import { CollectionCard } from "../../../collection";
 

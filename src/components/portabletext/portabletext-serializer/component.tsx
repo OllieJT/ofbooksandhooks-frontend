@@ -6,7 +6,7 @@ import { BlockProducts } from "../portabletext-blocks-products";
 import { BlockVideo } from "../portabletext-blocks-video";
 import { MarkLink } from "../portabletext-mark-link";
 //import { BlockRenderer } from "../portabletext-blockrenderer";
-import {
+import type {
 	SerializerBlock_Book,
 	SerializerBlock_Gallery,
 	SerializerBlock_Highlight,
@@ -18,9 +18,9 @@ import {
 	SerializerBlock_Cta,
 	SerializerMark_Marker,
 	SerializerBlock_Image,
-} from "../../../lib/groq/models";
-import { resolveUrl } from "../../../utility/resolve-url";
-import { handleThemeColor } from "../../../utility/handle-theme-color";
+} from "@lib/groq/models";
+import { resolveUrl } from "@lib/utility/resolve-url";
+import { handleThemeColor } from "@lib/utility/handle-theme-color";
 import { BlockCta } from "../portabletext-blocks-cta";
 import { BlockImage } from "../portabletext-blocks-img";
 
@@ -69,12 +69,7 @@ export const serializers = {
 			/>
 		),
 		cta: ({ node }: SerializerBlock_Cta) => (
-			<BlockCta
-				title={node.title}
-				size={node.size}
-				url={node.url}
-				label={node.label}
-			/>
+			<BlockCta title={node.title} size={node.size} url={node.url} label={node.label} />
 		),
 	},
 	marks: {
@@ -83,8 +78,7 @@ export const serializers = {
 				url={resolveUrl({
 					type: mark.reference._type,
 					slug: "",
-				})}
-			>
+				})}>
 				{console.log({ mark: mark.reference })}
 				{children}
 			</MarkLink>

@@ -1,9 +1,5 @@
-import { Article } from "../lib/groq";
-import {
-	handleSanityImageFixed,
-	FixedImage,
-	ImageDimensions,
-} from "./handle-sanity-image";
+import type { Article } from "../groq";
+import { handleSanityImageFixed, FixedImage, ImageDimensions } from "./handle-sanity-image";
 
 export const handleCollectionImages = (
 	articles: Article[],

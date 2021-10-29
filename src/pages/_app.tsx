@@ -3,10 +3,10 @@ import React from "react";
 import Head from "next/head";
 import type { AppProps /* , AppContext */ } from "next/app";
 import { DefaultSeo } from "next-seo";
-import { Layout } from "../components/layout";
+import { Layout } from "@components/layout";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { SettingsProvider } from "../providers/settings";
-import { TaxonomyProvider } from "../providers/taxonomy";
+import { SettingsProvider } from "@lib/providers/settings";
+import { TaxonomyProvider } from "@lib/providers/taxonomy";
 
 const queryClient = new QueryClient({
 	defaultOptions: { queries: { staleTime: 900000 } },

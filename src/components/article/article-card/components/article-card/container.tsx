@@ -1,9 +1,9 @@
 import { ArticleCardComponent } from "./component";
 import { memo } from "react";
-import { Img } from "../../../../../lib/groq";
-import { handleDate } from "../../../../../utility";
-import { handleSanityImageFixed } from "../../../../../utility/handle-sanity-image";
-import { Theme } from "../../../../../utility/handle-theme-color";
+import type { Img } from "@lib/groq";
+import { handleDate } from "@lib/utility";
+import { handleSanityImageFixed } from "@lib/utility/handle-sanity-image";
+import type { Theme } from "@lib/utility/handle-theme-color";
 
 export enum CardSize {
 	Small = "Small",
@@ -20,14 +20,7 @@ interface Props {
 	theme?: Theme;
 }
 
-const ArticleCardContainer = ({
-	linkTo,
-	title,
-	publishAt,
-	image,
-	tags,
-	theme,
-}: Props) => {
+const ArticleCardContainer = ({ linkTo, title, publishAt, image, tags, theme }: Props) => {
 	const articleImage =
 		image && handleSanityImageFixed({ asset: image, width: 400, height: 400 });
 

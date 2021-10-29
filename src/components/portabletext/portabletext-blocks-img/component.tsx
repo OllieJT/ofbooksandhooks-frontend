@@ -1,5 +1,5 @@
-import { Img } from "../../../lib/groq";
-import { handleSanityImageFixed, ImageFit } from "../../../utility/handle-sanity-image";
+import type { Img } from "@lib/groq";
+import { handleSanityImageFixed, ImageFit } from "@lib/utility/handle-sanity-image";
 import style from "./styles.module.scss";
 
 interface Props {

@@ -1,4 +1,4 @@
-import { Theme } from "../../../utility/handle-theme-color";
+import { Theme } from "@lib/utility/handle-theme-color";
 import style from "./styles.module.scss";
 import { Tag, TagProps } from "../tag-item";
 

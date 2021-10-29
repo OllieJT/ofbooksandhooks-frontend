@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
-import { GroqCollectionList } from "../../lib/groq/collection-list";
-import { GroqTopicList } from "../../lib/groq/topic-list";
+import { GroqCollectionList } from "@lib/groq/collection-list";
+import { GroqTopicList } from "@lib/groq/topic-list";
 
 export interface TaxonomyContextProps {
 	collections: GroqCollectionList;

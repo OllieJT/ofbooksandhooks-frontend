@@ -1,4 +1,4 @@
-import { handleThemeClass, Theme } from "../../../../../utility/handle-theme-color";
+import { handleThemeClass, Theme } from "@lib/utility/handle-theme-color";
 import style from "./styles.module.scss";
 
 interface Props {

@@ -1,12 +1,8 @@
 import { NextSeo } from "next-seo";
-import { GetStaticProps } from "next";
+import type { GetStaticProps } from "next";
 import { ViewSidebar } from "../components/view";
 import { SidebarTaxonomy } from "../components/sidebar";
-import {
-	getArticleList,
-	groqArticleList,
-	GroqArticleList,
-} from "../lib/groq/article-list";
+import { getArticleList, groqArticleList, GroqArticleList } from "@lib/groq/article-list";
 import { fetchArticleList } from "../hooks/fetch-infinite-list";
 import { Button } from "../components/button";
 import { ArticleList, ArticleListColumns } from "../components/article";

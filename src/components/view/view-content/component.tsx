@@ -1,4 +1,4 @@
-import { FixedImage } from "../../../utility/handle-sanity-image";
+import type { FixedImage } from "@lib/utility/handle-sanity-image";
 import style from "./styles.module.scss";
 import Image from "next/image";
 
@@ -22,9 +22,7 @@ export const ViewContent = ({ image, children }: Props): React.ReactElement => {
 					/>
 				</div>
 			)}
-			<div
-				className={`${style.content} ${!!image ? style.offset : style.spaced}`}
-			>
+			<div className={`${style.content} ${!!image ? style.offset : style.spaced}`}>
 				{children}
 			</div>
 		</article>

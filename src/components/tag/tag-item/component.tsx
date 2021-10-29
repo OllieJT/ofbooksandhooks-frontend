@@ -1,7 +1,7 @@
 import style from "./styles.module.scss";
 
 import Link from "next/link";
-import { Theme, handleThemeClass } from "../../../utility/handle-theme-color";
+import { Theme, handleThemeClass } from "@lib/utility/handle-theme-color";
 
 export interface TagProps {
 	label: string;

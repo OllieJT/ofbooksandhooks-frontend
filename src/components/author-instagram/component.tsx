@@ -1,7 +1,7 @@
 import style from "./styles.module.scss";
 import Link from "next/link";
-import { FixedImage } from "../../utility/handle-sanity-image";
-import { resolveSocialIcon } from "../../utility/resolve-platform";
+import type { FixedImage } from "@lib/utility/handle-sanity-image";
+import { resolveSocialIcon } from "@lib/utility/resolve-platform";
 
 export interface AuthorBioProps {
 	cta?: string;

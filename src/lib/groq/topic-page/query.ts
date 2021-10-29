@@ -1,5 +1,5 @@
 import { groq } from "next-sanity";
-import { handlePagination } from "../../../utility/handle-pagination";
+import { handlePagination } from "../../utility/handle-pagination";
 import { getClient } from "../../sanity/api";
 import { groqTopicArticleList, groqTopicPage } from "./groq";
 

@@ -1,8 +1,8 @@
-import { handleSanityImageFixed } from "../../../utility/handle-sanity-image";
+import { handleSanityImageFixed } from "@lib/utility/handle-sanity-image";
 import { PortableText } from "..";
 import style from "./styles.module.scss";
 import Image from "next/image";
-import { ContentMin, Genre, Img } from "../../../lib/groq";
+import type { ContentMin, Genre, Img } from "@lib/groq";
 
 interface Props {
 	title: string;

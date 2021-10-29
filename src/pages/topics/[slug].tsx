@@ -1,22 +1,22 @@
 import React, { Fragment } from "react";
 import ErrorPage from "next/error";
-import { GetStaticPaths, GetStaticProps } from "next";
+import type { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import { urlFor } from "../../lib/sanity";
+import { urlFor } from "@lib/sanity";
 import { NextSeo } from "next-seo";
-import { resolveUrl } from "../../utility/resolve-url";
-import { ViewNaked } from "../../components/view";
-import { Title } from "../../components/title";
+import { resolveUrl } from "@lib/utility/resolve-url";
+import { ViewNaked } from "@components/view";
+import { Title } from "@components/title";
 import {
 	getTopicPage,
 	getTopicPagePaths,
 	groqTopicArticleList,
 	GroqTopicPage,
 	GroqTopic_ArticleList,
-} from "../../lib/groq/topic-page";
+} from "@lib/groq/topic-page";
 import { fetchArticleList, FetchProps } from "../../hooks/fetch-infinite-list";
-import { Button } from "../../components/button";
-import { ArticleList, ArticleListColumns } from "../../components/article";
+import { Button } from "@components/button";
+import { ArticleList, ArticleListColumns } from "@components/article";
 
 interface Props {
 	preview: boolean;
@@ -72,9 +72,7 @@ export const CollectionPage = ({
 	return (
 		<>
 			<NextSeo
-				title={
-					preview ? `Preview ${topic.metadata.title}` : topic.metadata.title
-				}
+				title={preview ? `Preview ${topic.metadata.title}` : topic.metadata.title}
 				description={topic.metadata.description}
 				openGraph={{
 					type: topic.metadata.type,
@@ -118,10 +116,7 @@ export const CollectionPage = ({
 				{handleFetch.data?.pages.map(({ data, page }) => {
 					return (
 						<Fragment key={"articles" + page}>
-							<ArticleList
-								articles={data}
-								columns={ArticleListColumns.Three}
-							/>
+							<ArticleList articles={data} columns={ArticleListColumns.Three} />
 						</Fragment>
 					);
 				})}

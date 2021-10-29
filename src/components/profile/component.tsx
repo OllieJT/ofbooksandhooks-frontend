@@ -1,8 +1,8 @@
 import style from "./styles.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import { Theme } from "../../utility/handle-theme-color";
-import { FixedImage } from "../../utility/handle-sanity-image";
+import { Theme } from "@lib/utility/handle-theme-color";
+import type { FixedImage } from "@lib/utility/handle-sanity-image";
 import { TagList } from "../tag";
 
 export interface ProfileProps {

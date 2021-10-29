@@ -1,20 +1,20 @@
 import React from "react";
 import ErrorPage from "next/error";
-import { GetStaticPaths, GetStaticProps } from "next";
+import type { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
-//import { Loading } from "../../components/loading";
+//import { Loading } from "@components/loading";
 import {
 	getArticlePage,
 	getArticlePagePaths,
 	GroqArticlePage,
 	groqArticlePageQuery,
-} from "../../lib/groq/article-page";
-import { ArticlePageContent, ArticlePageLayout } from "../../components/article-page";
-import { urlFor, useCurrentUser, usePreviewSubscription } from "../../lib/sanity";
+} from "@lib/groq/article-page";
+import { ArticlePageContent, ArticlePageLayout } from "@components/article-page";
+import { urlFor, useCurrentUser, usePreviewSubscription } from "@lib/sanity";
 import { NextSeo } from "next-seo";
-import { resolveUrl } from "../../utility/resolve-url";
-import { TagProps } from "../../components/tag";
-import { handleSanityImageFixed } from "../../utility/handle-sanity-image";
+import { resolveUrl } from "@lib/utility/resolve-url";
+import type { TagProps } from "@components/tag";
+import { handleSanityImageFixed } from "@lib/utility/handle-sanity-image";
 
 interface Props {
 	preview: boolean;
@@ -39,15 +39,16 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 	const slug = data?.slug.current;
 	const currentUser = useCurrentUser();
 
-	const { data: post, loading, error } = usePreviewSubscription(
-		groqArticlePageQuery,
-		{
-			params: { slug },
-			initialData: data,
-			// note: not using next preview
-			enabled: false && Boolean(slug && !!currentUser.data),
-		},
-	);
+	const {
+		data: post,
+		loading,
+		error,
+	} = usePreviewSubscription(groqArticlePageQuery, {
+		params: { slug },
+		initialData: data,
+		// note: not using next preview
+		enabled: false && Boolean(slug && !!currentUser.data),
+	});
 
 	//const post = data;
 
@@ -135,8 +136,7 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 				})}
 				authorName={post.author.name}
 				tags={topicTags}
-				recommendations={post.recommended}
-			>
+				recommendations={post.recommended}>
 				<ArticlePageContent content={post.content} />
 			</ArticlePageLayout>
 		</>

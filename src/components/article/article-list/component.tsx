@@ -1,5 +1,5 @@
-import { GroqArticleList } from "../../../lib/groq/article-list";
-import { resolveUrl } from "../../../utility/resolve-url";
+import type { GroqArticleList } from "@lib/groq/article-list";
+import { resolveUrl } from "@lib/utility/resolve-url";
 import { ArticleCard } from "../article-card";
 import style from "./article-list.module.scss";
 
@@ -25,10 +25,7 @@ const articleListColumnStyle = (columns: ArticleListColumns) => {
 	}
 };
 
-export const ArticleList = ({
-	articles,
-	columns = ArticleListColumns.Three,
-}: Props) => {
+export const ArticleList = ({ articles, columns = ArticleListColumns.Three }: Props) => {
 	return (
 		<ul className={`${style.list} ${articleListColumnStyle(columns)}`}>
 			{articles.map((article) => {

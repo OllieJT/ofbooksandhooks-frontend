@@ -5,7 +5,7 @@ import {
 	LayoutNavLinkAdmin,
 } from "../layout-nav-link-item";
 import { useRouter } from "next/router";
-import { useCurrentUser } from "../../../lib/sanity";
+import { useCurrentUser } from "@lib/sanity";
 
 export enum JustifyMenu {
 	Start = "flex-start",
