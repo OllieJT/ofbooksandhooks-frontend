@@ -131,7 +131,7 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 				image={headerImage}
 				date={new Date(post.metadata.publishAt || post._createdAt)}
 				authorLink={resolveUrl({
-					slug: post.author.slug.current,
+					slug: post.author.slug?.current,
 					type: post.author._type,
 				})}
 				authorName={post.author.name}
