@@ -4,6 +4,10 @@
 	"recommendations": [
 		"esbenp.prettier-vscode",
 		"coenraads.bracket-pair-colorizer-2",
-		"aaron-bond.better-comments"
+		"aaron-bond.better-comments",
+		"gruntfuggly.todo-tree",
+		"mikestead.dotenv"
+
+		//"sanity-io.vscode-sanity"
 	]
 }

@@ -1,13 +1,21 @@
 {
 	"files.exclude": {
-		"next-env.d.ts": true,
-		"package-lock.json": true,
-		".next": true
+		"**/*-lock.json": true,
+		"**/*.map": true,
+		"**/.cache": true,
+		"**/.DS_Store": true,
+		"**/.gitattributes": true,
+		"**/*.Identifier": true,
+		"**/node_modules": true,
+		"**/.next": true
 	},
 	"files.associations": {
+		"**/*.env*": "dotenv",
+		"**/*.md": "mdx"
 		//"*.css": "postcss"
 	},
 	"files.watcherExclude": {
-		"**/node_modules": true
+		"**/node_modules": true,
+		"**/.next": true
 	}
 }

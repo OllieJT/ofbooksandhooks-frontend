@@ -1,4 +1,5 @@
 module.exports = {
+	reactStrictMode: true,
 	/* async rewrites() {
 		return [
 			{
@@ -9,5 +10,6 @@ module.exports = {
 	}, */
 	images: {
 		domains: ["cdn.sanity.io"],
+		imageSizes: [24, 64, 300],
 	},
 };
