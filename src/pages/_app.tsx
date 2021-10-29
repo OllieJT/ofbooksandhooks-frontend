@@ -72,11 +72,6 @@ const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => {
 							rel="bookmark"
 							title="Of Books &amp; Hooks"
 						/>
-						<link rel="preconnect" href="https://fonts.gstatic.com" />
-						<link
-							rel="stylesheet"
-							href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap"
-						/>
 					</Head>
 					<Layout>
 						<Component {...pageProps} />

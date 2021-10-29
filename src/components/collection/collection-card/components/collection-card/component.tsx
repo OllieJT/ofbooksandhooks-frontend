@@ -4,6 +4,7 @@ import type { FluidImage } from "@lib/utility/handle-sanity-image";
 import { CollectionCardWrapper } from "../collection-card-wrapper";
 import type { Theme } from "@lib/utility/handle-theme-color";
 import { CollectionCardTitle } from "../collection-card-title";
+import Image from "next/image";
 
 interface Props {
 	linkTo: string;
@@ -28,7 +29,7 @@ export const CollectionCardComponent = (props: Props) => {
 					<ul className={style.articles}>
 						{props.articles.map((image) => (
 							<li key={image.url}>
-								<img src={image.url} alt={image.alt} />
+								<Image src={image.url} alt={image.alt} />
 							</li>
 						))}
 					</ul>

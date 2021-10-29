@@ -1,6 +1,7 @@
 import style from "./styles.module.scss";
 import Link from "next/link";
 import type { FixedImage } from "@lib/utility/handle-sanity-image";
+import Image from "next/image";
 
 export interface AuthorBioProps {
 	title: string;
@@ -17,7 +18,7 @@ export const AuthorBio = ({ title, subtitle, avatar, cta }: AuthorBioProps) => {
 		<article className={style.container}>
 			<header className={style.header}>
 				{avatar && (
-					<img
+					<Image
 						className={style.avatar}
 						src={avatar.url}
 						alt={avatar.alt}

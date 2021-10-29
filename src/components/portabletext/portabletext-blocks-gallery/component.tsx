@@ -2,6 +2,7 @@ import { handleSanityImageFixed } from "@lib/utility/handle-sanity-image";
 import style from "./styles.module.scss";
 import { slugify } from "@lib/utility";
 import type { Img } from "@lib/groq";
+import Image from "next/image";
 
 interface Props {
 	title: string;
@@ -23,7 +24,7 @@ export const BlockGallery = ({ title, images = [] }: Props) => {
 				}
 				return (
 					<li key={img.asset._ref} className={style.item}>
-						<img
+						<Image
 							className={style.thumb}
 							src={image.url}
 							alt={image.alt}

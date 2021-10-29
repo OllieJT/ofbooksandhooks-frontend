@@ -27,7 +27,7 @@ export const BlockCta = ({ size = "x-large", title, url, label }: Props) => {
 				{title}
 			</h5>
 			<h6 className={style.button}>
-				<a href={url} target="_blank">
+				<a href={url} target="_blank" rel="noreferrer">
 					{label}
 				</a>
 			</h6>

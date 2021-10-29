@@ -1,4 +1,5 @@
 import style from "./styles.module.scss";
+import Image from "next/image";
 
 interface Props {
 	linkTo?: string;
@@ -7,7 +8,7 @@ interface Props {
 export const LayoutLogo = ({ linkTo = "/" }: Props): React.ReactElement => {
 	return (
 		<a className={style.container} href={linkTo}>
-			<img
+			<Image
 				src="/logo.svg"
 				width={67}
 				height={80}

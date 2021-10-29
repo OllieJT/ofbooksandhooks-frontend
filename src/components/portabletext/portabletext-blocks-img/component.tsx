@@ -1,11 +1,13 @@
 import type { Img } from "@lib/groq";
 import { handleSanityImageFixed, ImageFit } from "@lib/utility/handle-sanity-image";
 import style from "./styles.module.scss";
+import Image from "next/image";
 
 interface Props {
 	img: Img;
 }
 
+/* TODO: handle constraints for inline images
 const handleInline = (align?: "left" | "right" | "none"): "left" | "right" | false => {
 	switch (align) {
 		case "left":
@@ -30,6 +32,7 @@ const handleMaxWidth = (align?: "none" | "large" | "medium" | "small"): string =
 			return "none";
 	}
 };
+*/
 
 export const BlockImage = ({ img }: Props) => {
 	const image = handleSanityImageFixed({
@@ -43,11 +46,12 @@ export const BlockImage = ({ img }: Props) => {
 		return null;
 	}
 
-	const alignImage = handleInline(img.float);
+	//const alignImage = handleInline(img.float);
 
 	return (
-		<img
+		<Image
 			className={style.image}
+			/* TODO: Fix inline styles for Image element
 			style={
 				alignImage
 					? {
@@ -58,7 +62,7 @@ export const BlockImage = ({ img }: Props) => {
 							marginRight: alignImage === "right" ? "var(--size-reg)" : 0,
 					  }
 					: {}
-			}
+			} */
 			src={image.url}
 			alt={image.alt}
 			width={image.width}

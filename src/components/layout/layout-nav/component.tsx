@@ -1,5 +1,5 @@
 import { LayoutLogo } from "../layout-logo";
-import { LayoutNavLinkItemProps } from "../layout-nav-link-item";
+import type { LayoutNavLinkItemProps } from "../layout-nav-link-item";
 import { JustifyMenu, LayoutNavLinkList } from "../layout-nav-link-list";
 import style from "./styles.module.scss";
 import { LayoutNavToggle } from "../layout-nav-toggle";
@@ -18,7 +18,7 @@ const LayoutNav = ({ menuLinks, platformLinks }: Props): React.ReactElement => {
 	useEffect(() => {
 		router.events.on("routeChangeStart", () => setIsOpen(false));
 		return () => router.events.off("routeChangeStart", () => setIsOpen(false));
-	}, []);
+	}, [router.events]);
 
 	const toggleMenu = () => setIsOpen(!isOpen);
 

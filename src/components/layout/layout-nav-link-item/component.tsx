@@ -1,5 +1,6 @@
 import style from "./styles.module.scss";
 import Link from "next/link";
+import Image from "next/image";
 
 export interface LayoutNavLinkItemProps {
 	label: string;
@@ -19,9 +20,7 @@ export const LayoutNavLinkItem = ({
 		<Link href={link} passHref>
 			<a className={`${style.link} ${isActive ? style.active : ""}`}>
 				{icon && <p className={style.icon}>{icon}</p>}
-				<p className={`${style.label} ${!!icon ? style.withIcon : ""}`}>
-					{label}
-				</p>
+				<p className={`${style.label} ${!!icon ? style.withIcon : ""}`}>{label}</p>
 			</a>
 		</Link>
 	);
@@ -44,14 +43,16 @@ export const LayoutNavLinkAdmin = ({
 			href={link}
 			className={`${style.link} ${isActive ? style.active : ""}`}
 			target="_blank"
-		>
+			rel="noreferrer">
 			<p className={`${style.label} ${!!icon ? style.withIcon : ""}`}>
-				<img
+				<Image
+					/*
+					TODO: Fix inline styles for image
 					style={{
 						display: "inline-block",
 						borderRadius: "100%",
 						marginRight: "8px",
-					}}
+					}} */
 					src={image}
 					alt={imageAlt}
 					width={26}

@@ -6,7 +6,9 @@
 		"coenraads.bracket-pair-colorizer-2",
 		"aaron-bond.better-comments",
 		"gruntfuggly.todo-tree",
-		"mikestead.dotenv"
+		"mikestead.dotenv",
+
+		"dbaeumer.vscode-eslint"
 
 		//"sanity-io.vscode-sanity"
 	]

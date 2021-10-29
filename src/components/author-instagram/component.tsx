@@ -2,6 +2,7 @@ import style from "./styles.module.scss";
 import Link from "next/link";
 import type { FixedImage } from "@lib/utility/handle-sanity-image";
 import { resolveSocialIcon } from "@lib/utility/resolve-platform";
+import Image from "next/image";
 
 export interface AuthorBioProps {
 	cta?: string;
@@ -17,7 +18,7 @@ export const AuthorInstagram = ({
 	const Instagram = resolveSocialIcon("instagram");
 	return (
 		<article className={style.container}>
-			<img
+			<Image
 				className={style.image}
 				src={photo.url}
 				alt={photo.alt}

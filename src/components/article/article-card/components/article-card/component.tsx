@@ -2,7 +2,8 @@ import type { FixedImage } from "@lib/utility/handle-sanity-image";
 import Link from "next/link";
 import style from "./styles.module.scss";
 import { ArticleCardWrapper } from "../article-card-wrapper";
-import type { Theme } from ".@lib/utility/handle-theme-color";
+import type { Theme } from "@lib/utility/handle-theme-color";
+import Image from "next/image";
 
 interface Props {
 	linkTo: string;
@@ -21,7 +22,7 @@ export const ArticleCardComponent = (props: Props) => {
 			<Link href={props.linkTo} passHref>
 				<a className={style.container}>
 					{props.image && (
-						<img
+						<Image
 							className={style.thumb}
 							src={props.image.url}
 							width={props.image.width}
