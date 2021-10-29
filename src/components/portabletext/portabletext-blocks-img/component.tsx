@@ -66,6 +66,7 @@ export const BlockImage = ({ img }: Props) => {
 			src={image.url}
 			alt={image.alt}
 			width={image.width}
+			layout="fill"
 		/>
 	);
 };

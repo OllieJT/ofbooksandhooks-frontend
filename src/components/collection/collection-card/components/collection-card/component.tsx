@@ -29,7 +29,7 @@ export const CollectionCardComponent = (props: Props) => {
 					<ul className={style.articles}>
 						{props.articles.map((image) => (
 							<li key={image.url}>
-								<Image src={image.url} alt={image.alt} />
+								<Image src={image.url} alt={image.alt} layout="fill" />
 							</li>
 						))}
 					</ul>
