@@ -1,50 +1,59 @@
 {
-	"name": "ofbooksandhooks-frontend",
-	"version": "0.2.0",
-	"private": true,
-	"license": "NONE",
-	"author": {
-		"name": "Ollie Taylor <OllieJT>",
-		"email": "hey@olliejt.com",
-		"url": "https://olliejt.com/"
-	},
-	"scripts": {
-		"analyze:browser": "BUNDLE_ANALYZE=browser next build",
-		"analyze:server": "BUNDLE_ANALYZE=server next build",
-		"analyze": "ANALYZE=true next build",
-		"build": "next build",
-		"dev": "NODE_ENV=development next dev",
-		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
-		"start": "next start",
-		"ts": "tsc --pretty --noImplicitAny",
-		"lint": "next lint"
-	},
-	"dependencies": {
-		"@fontsource/sen": "^4.5.0",
-		"@sanity/block-content-to-react": "^3.0.0",
-		"babel": "^6.23.0",
-		"date-fns": "^2.25.0",
-		"just-split": "^2.2.1",
-		"next": "^12.0.1",
-		"next-sanity": "^0.4.0",
-		"next-seo": "^4.28.1",
-		"react": "17.0.2",
-		"react-dom": "17.0.2",
-		"react-icons": "^4.3.1",
-		"react-player": "^2.9.0",
-		"react-query": "^3.29.0",
-		"react-scroll-percentage": "^4.2.0",
-		"sass": "^1.43.4"
-	},
-	"devDependencies": {
-		"@next/bundle-analyzer": "^12.0.1",
-		"@types/node": "^16.11.6",
-		"@types/react": "^17.0.33",
-		"autoprefixer": "^10.4.0",
-		"eslint": "^7.32.0",
-		"eslint-config-next": "^12.0.1",
-		"prettier": "^2.4.1",
-		"sanity-codegen": "^0.9.6",
-		"typescript": "^4.4.4"
-	}
+  "name": "ofbooksandhooks-frontend",
+  "version": "0.2.0",
+  "private": true,
+  "license": "NONE",
+  "author": {
+    "name": "Ollie Taylor <OllieJT>",
+    "email": "hey@olliejt.com",
+    "url": "https://olliejt.com/"
+  },
+  "scripts": {
+    "analyze:browser": "BUNDLE_ANALYZE=browser next build",
+    "analyze:server": "BUNDLE_ANALYZE=server next build",
+    "analyze": "ANALYZE=true next build",
+    "build": "next build",
+    "dev": "NODE_ENV=development next dev",
+    "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
+    "start": "next start",
+    "ts": "tsc --pretty --noImplicitAny",
+    "lint": "next lint",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "dependencies": {
+    "@fontsource/sen": "^4.5.0",
+    "@sanity/block-content-to-react": "^3.0.0",
+    "babel": "^6.23.0",
+    "date-fns": "^2.25.0",
+    "just-split": "^2.2.1",
+    "next": "^12.0.1",
+    "next-sanity": "^0.4.0",
+    "next-seo": "^4.28.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-icons": "^4.3.1",
+    "react-player": "^2.9.0",
+    "react-query": "^3.29.0",
+    "react-scroll-percentage": "^4.2.0",
+    "sass": "^1.43.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@next/bundle-analyzer": "^12.0.1",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/react": "^6.3.12",
+    "@types/node": "^16.11.6",
+    "@types/react": "^17.0.33",
+    "autoprefixer": "^10.4.0",
+    "babel-loader": "^8.2.3",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "^12.0.1",
+    "prettier": "^2.4.1",
+    "sanity-codegen": "^0.9.6",
+    "tsconfig-paths-webpack-plugin": "^3.5.1",
+    "typescript": "^4.4.4"
+  }
 }
