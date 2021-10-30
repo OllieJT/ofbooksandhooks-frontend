@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Theme } from "@lib/utility/handle-theme-color";
 import type { FixedImage } from "@lib/utility/handle-sanity-image";
-import { TagList } from "../../components/common/tag";
+import { TagList } from "@components/common/tag";
 
 export interface CardProfileProps {
 	name: string;
