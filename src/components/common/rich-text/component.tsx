@@ -1,15 +1,11 @@
-import type { Richtext } from "@lib/groq";
-import { PortableText } from "@components/portabletext";
 import style from "./styles.module.scss";
 
 interface Props {
-	content?: Richtext;
+	constrain?: boolean;
+	children: React.ReactNode;
 }
 
-export const RichText = ({ content }: Props) => {
-	return (
-		<div className={style.content}>
-			<PortableText blocks={content} />
-		</div>
-	);
+export const RichText = ({ children, constrain }: Props) => {
+	const classNames = constrain ? `${style.container} ${style.constrain}` : style.container;
+	return <div className={classNames}>{children}</div>;
 };

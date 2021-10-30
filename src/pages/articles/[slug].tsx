@@ -12,6 +12,7 @@ import { handleSanityImageFixed } from "@lib/utility/handle-sanity-image";
 import type { TagProps } from "@components/common/tag";
 import { RecommendedContent } from "@components/common/recommended-content";
 import { RichText } from "@components/common/rich-text";
+import { PortableText } from "@components/portabletext";
 
 interface Props {
 	preview: boolean;
@@ -125,7 +126,9 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 				authorName={post.author.name}
 				tags={topicTags}
 			>
-				<RichText content={post.content} />
+				<RichText>
+					<PortableText blocks={post.content} />
+				</RichText>
 				<RecommendedContent recommendations={post.recommended} />
 			</ArticlePageLayout>
 		</>
