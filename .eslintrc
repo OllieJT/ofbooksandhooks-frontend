@@ -1,7 +1,3 @@
 {
-	"extends": "next/core-web-vitals",
-	"plugins": ["@emotion"],
-	"rules": {
-		"@emotion/jsx-import": "error"
-	}
+	"extends": "next/core-web-vitals"
 }
