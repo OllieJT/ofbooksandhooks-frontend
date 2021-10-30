@@ -3,18 +3,15 @@ import ErrorPage from "next/error";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 //import { Loading } from "@components/loading";
-import {
-	getArticlePage,
-	getArticlePagePaths,
-	GroqArticlePage,
-	groqArticlePageQuery,
-} from "@lib/groq/article-page";
-import { ArticlePageContent, ArticlePageLayout } from "@components/article-page";
+import { getArticlePage, getArticlePagePaths, GroqArticlePage, groqArticlePageQuery } from "@lib/groq/article-page";
+import { ArticlePageLayout } from "@components/layout/layout-article";
 import { urlFor, useCurrentUser, usePreviewSubscription } from "@lib/sanity";
 import { NextSeo } from "next-seo";
 import { resolveUrl } from "@lib/utility/resolve-url";
-import type { TagProps } from "@components/tag";
 import { handleSanityImageFixed } from "@lib/utility/handle-sanity-image";
+import type { TagProps } from "@components/common/tag";
+import { RecommendedContent } from "@components/common/recommended-content";
+import { RichText } from "@components/common/rich-text";
 
 interface Props {
 	preview: boolean;
@@ -71,9 +68,7 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 
 	//todo: use content blocks to populate <NextSeo/>
 
-	const headerImage =
-		post.thumbnail?.asset &&
-		handleSanityImageFixed({ asset: post.thumbnail, width: 1920, height: 720 });
+	const headerImage = post.thumbnail?.asset && handleSanityImageFixed({ asset: post.thumbnail, width: 1920, height: 720 });
 
 	const topicTags: TagProps[] =
 		post.topics?.map(({ title, slug, _type }) => ({
@@ -100,20 +95,13 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 					}),
 
 					article: {
-						publishedTime: new Date(
-							post.metadata.publishAt || post._createdAt,
-						).toISOString(),
+						publishedTime: new Date(post.metadata.publishAt || post._createdAt).toISOString(),
 						modifiedTime: new Date(post._updatedAt).toISOString(),
 						section: "",
 						tags: post.metadata.tags,
 					},
 					images: post.metadata.thumbnails?.map((img) => {
-						const imgUrl = urlFor(img)
-							.auto("format")
-							.width(400)
-							.height(400)
-							.quality(70)
-							.url();
+						const imgUrl = urlFor(img).auto("format").width(400).height(400).quality(70).url();
 
 						return {
 							url: imgUrl || "",
@@ -136,8 +124,9 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 				})}
 				authorName={post.author.name}
 				tags={topicTags}
-				recommendations={post.recommended}>
-				<ArticlePageContent content={post.content} />
+			>
+				<RichText content={post.content} />
+				<RecommendedContent recommendations={post.recommended} />
 			</ArticlePageLayout>
 		</>
 	);

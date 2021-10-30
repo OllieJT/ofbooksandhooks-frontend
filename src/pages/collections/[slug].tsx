@@ -2,17 +2,14 @@ import React from "react";
 import ErrorPage from "next/error";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import { urlFor } from "@lib/sanity";
+import { urlFor } from "../../lib/sanity";
 import { NextSeo } from "next-seo";
 import { resolveUrl } from "@lib/utility/resolve-url";
-import {
-	getCollectionPagePaths,
-	GroqCollectionPage,
-	getCollectionPage,
-} from "@lib/groq/collection-page";
-import { ViewNaked } from "@components/view";
-import { Title } from "@components/title";
-import { ArticleList, ArticleListColumns } from "@components/article";
+import { getCollectionPagePaths, GroqCollectionPage, getCollectionPage } from "@lib/groq/collection-page";
+import { PageHeader } from "@components/common/page-header";
+import { LayoutSimple } from "@components/layout/layout-simple";
+import { Feed, FeedColumns } from "@components/common/feed";
+import { handleFeedArticles } from "@lib/utility/handle-feed-articles";
 
 interface Props {
 	preview: boolean;
@@ -61,20 +58,13 @@ export const CollectionPage = ({ data, preview }: Props): React.ReactElement => 
 					}),
 
 					article: {
-						publishedTime: new Date(
-							data.metadata.publishAt || data._createdAt,
-						).toISOString(),
+						publishedTime: new Date(data.metadata.publishAt || data._createdAt).toISOString(),
 						modifiedTime: new Date(data._updatedAt).toISOString(),
 						section: "",
 						tags: data.metadata.tags,
 					},
 					images: data.metadata.thumbnails?.map((img) => {
-						const imgUrl = urlFor(img)
-							.auto("format")
-							.width(400)
-							.height(400)
-							.quality(70)
-							.url();
+						const imgUrl = urlFor(img).auto("format").width(400).height(400).quality(70).url();
 
 						return {
 							url: imgUrl || "",
@@ -87,11 +77,10 @@ export const CollectionPage = ({ data, preview }: Props): React.ReactElement => 
 				nofollow={data.metadata.nofollow || false}
 			/>
 
-			<ViewNaked>
-				<Title title={data.title} subtitle="Collection" theme={data.theme} />
-
-				<ArticleList articles={data.articles} columns={ArticleListColumns.Three} />
-			</ViewNaked>
+			<LayoutSimple>
+				<PageHeader title={data.title} subtitle="Collection" theme={data.theme} />
+				<Feed items={handleFeedArticles(data.articles)} columns={FeedColumns.Three} />
+			</LayoutSimple>
 		</>
 	);
 };

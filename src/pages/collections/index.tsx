@@ -1,14 +1,13 @@
 import { NextSeo } from "next-seo";
 import type { GetStaticProps } from "next";
-import { ViewNaked } from "@components/view";
 import { groqCollectionList, GroqCollectionList } from "@lib/groq/collection-list/groq";
 import { fetchArticleList } from "../../hooks/fetch-infinite-list";
-import { Fragment } from "react";
-import { Button } from "@components/button";
+import { ButtonText } from "@components/button/button-text";
 import { getCollectionList } from "@lib/groq/collection-list";
-import { CollectionList } from "@components/collection";
-import { CardListColumns } from "@components/card-list";
-import { Title } from "@components/title";
+import { LayoutSimple } from "@components/layout/layout-simple";
+import { PageHeader } from "@components/common/page-header";
+import { handleFeedCollections } from "@lib/utility/handle-feed-collections";
+import { Feed, FeedColumns } from "@components/common/feed";
 
 interface Props {
 	preview: boolean;
@@ -26,26 +25,21 @@ export const AllCollectionsPage = ({ collections }: Props): React.ReactElement =
 	return (
 		<>
 			<NextSeo title="Articles" />
-			<ViewNaked>
-				<Title title="All Collections" />
+			<LayoutSimple>
+				<PageHeader title="All Collections" />
 
 				{handleFetch.data?.pages.map(({ data, page }) => {
-					return (
-						<Fragment key={"articles" + page}>
-							<CollectionList
-								collections={data}
-								columns={CardListColumns.Three}
-							/>
-						</Fragment>
-					);
+					return <Feed key={"collections" + page} items={handleFeedCollections(data)} columns={FeedColumns.Three} />;
 				})}
 
-				<Button
+				<ButtonText
 					isLoading={handleFetch.isFetching}
 					onClick={() => handleFetch.fetchNextPage()}
-					label="Load More"
+					resting={{
+						label: "Load More",
+					}}
 				/>
-			</ViewNaked>
+			</LayoutSimple>
 		</>
 	);
 };

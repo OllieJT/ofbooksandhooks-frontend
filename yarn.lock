@@ -2645,6 +2645,11 @@ json5@^1.0.1:
     array-includes "^3.1.3"
     object.assign "^4.1.2"
 
+just-split@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/just-split/-/just-split-2.2.1.tgz#09d10529bf91b3b4f0ea156a0e29d2d4c5da79b7"
+  integrity sha512-QlZVyA7MRuzd20MeXqBudQX9Mt7J3d175qsQrHWdbYtc0ry9c5BloHvux7B5xLmvv3ewIPa14XNCy99Kwa3EbQ==
+
 kind-of@^6.0.2:
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"

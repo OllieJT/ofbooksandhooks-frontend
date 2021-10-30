@@ -1,22 +1,17 @@
-import React, { Fragment } from "react";
+import React from "react";
 import ErrorPage from "next/error";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import { urlFor } from "@lib/sanity";
+import { urlFor } from "../../lib/sanity";
 import { NextSeo } from "next-seo";
 import { resolveUrl } from "@lib/utility/resolve-url";
-import { ViewNaked } from "@components/view";
-import { Title } from "@components/title";
-import {
-	getTopicPage,
-	getTopicPagePaths,
-	groqTopicArticleList,
-	GroqTopicPage,
-	GroqTopic_ArticleList,
-} from "@lib/groq/topic-page";
+import { getTopicPage, getTopicPagePaths, groqTopicArticleList, GroqTopicPage, GroqTopic_ArticleList } from "@lib/groq/topic-page";
 import { fetchArticleList, FetchProps } from "../../hooks/fetch-infinite-list";
-import { Button } from "@components/button";
-import { ArticleList, ArticleListColumns } from "@components/article";
+import { ButtonText } from "@components/button/button-text";
+import { LayoutSimple } from "@components/layout/layout-simple";
+import { PageHeader } from "@components/common/page-header";
+import { Feed, FeedColumns } from "@components/common/feed";
+import { handleFeedArticles } from "@lib/utility/handle-feed-articles";
 
 interface Props {
 	preview: boolean;
@@ -40,12 +35,7 @@ export const getStaticProps: GetStaticProps = async ({ params, preview = false }
 	};
 };
 
-export const CollectionPage = ({
-	topic,
-	articles,
-	preview,
-	slug,
-}: Props): React.ReactElement => {
+export const CollectionPage = ({ topic, articles, preview, slug }: Props): React.ReactElement => {
 	const router = useRouter();
 
 	if (!router.isFallback && !slug) {
@@ -85,20 +75,13 @@ export const CollectionPage = ({
 					}),
 
 					article: {
-						publishedTime: new Date(
-							topic.metadata.publishAt || topic._createdAt,
-						).toISOString(),
+						publishedTime: new Date(topic.metadata.publishAt || topic._createdAt).toISOString(),
 						modifiedTime: new Date(topic._updatedAt).toISOString(),
 						section: "",
 						tags: topic.metadata.tags,
 					},
 					images: topic.metadata.thumbnails?.map((img) => {
-						const imgUrl = urlFor(img)
-							.auto("format")
-							.width(400)
-							.height(400)
-							.quality(70)
-							.url();
+						const imgUrl = urlFor(img).auto("format").width(400).height(400).quality(70).url();
 
 						return {
 							url: imgUrl || "",
@@ -111,22 +94,20 @@ export const CollectionPage = ({
 				nofollow={topic.metadata.nofollow || false}
 			/>
 
-			<ViewNaked>
-				<Title title={topic.title} subtitle="Topic" />
+			<LayoutSimple>
+				<PageHeader title={topic.title} subtitle="Topic" />
 				{handleFetch.data?.pages.map(({ data, page }) => {
-					return (
-						<Fragment key={"articles" + page}>
-							<ArticleList articles={data} columns={ArticleListColumns.Three} />
-						</Fragment>
-					);
+					return <Feed key={"articles" + page} items={handleFeedArticles(data)} columns={FeedColumns.Three} />;
 				})}
 
-				<Button
+				<ButtonText
 					isLoading={handleFetch.isFetching}
 					onClick={() => handleFetch.fetchNextPage()}
-					label="Load More"
+					resting={{
+						label: "Load More",
+					}}
 				/>
-			</ViewNaked>
+			</LayoutSimple>
 		</>
 	);
 };

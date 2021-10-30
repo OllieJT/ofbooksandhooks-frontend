@@ -1,7 +1,7 @@
 import "../styles/index.scss";
 import React from "react";
 import type { AppProps /* , AppContext */ } from "next/app";
-import { Layout } from "@components/layout";
+import { LayoutGlobal } from "@components/layout/layout-global";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { SettingsProvider } from "@lib/providers/settings";
 import { TaxonomyProvider } from "@lib/providers/taxonomy";
@@ -18,7 +18,7 @@ const queryClient = new QueryClient({
 
 const isDev = process.env.NODE_ENV === "development";
 const configuration: MetadataConfiguration = {
-	color: "#FF00FF",
+	color: "#105070",
 
 	site_name: "Of Books &amp; Hooks",
 	site_url: isDev ? "http://localhost:3000" : "todo.todo",
@@ -126,9 +126,9 @@ const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => {
 						/>
 						<link rel="manifest" href="/manifest.json" />
 					</Head>
-					<Layout>
+					<LayoutGlobal>
 						<Component {...pageProps} />
-					</Layout>
+					</LayoutGlobal>
 				</TaxonomyProvider>
 			</SettingsProvider>
 		</QueryClientProvider>

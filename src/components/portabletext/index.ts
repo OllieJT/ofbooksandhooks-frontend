@@ -1,1 +1,1 @@
-export * from "./portabletext";
+export * from "./component";
