@@ -3,7 +3,7 @@ import { CardAuthor } from "../../../card/card-author";
 import { useSettings } from "@lib/providers/settings";
 import { useTaxonomy } from "@lib/providers/taxonomy";
 import { resolveUrl } from "@lib/utility/resolve-url";
-import { handleThemeColor, Theme } from "@lib/utility/handle-theme-color";
+import { handleThemeColor, ThemeClass } from "@lib/utility/handle-theme-color";
 import { memo } from "react";
 import { CardCollection } from "@components/card/card-collection";
 
@@ -20,7 +20,7 @@ const SidebarTaxonomyComponent = () => {
 			slug: collection.slug.current,
 			type: collection._type,
 		}),
-		theme: handleThemeColor(collection.theme),
+		theme: handleThemeClass(collection.theme),
 	}));
 
 	const topicTags: TagProps[] = topics.map((topic) => ({
@@ -36,7 +36,7 @@ const SidebarTaxonomyComponent = () => {
 		<>
 			{collection && (
 				<CardCollection
-					theme={handleThemeColor(collection.theme)}
+					theme={handleThemeClass(collection.theme)}
 					title={collection.title}
 					//subtitle
 					href={resolveUrl({

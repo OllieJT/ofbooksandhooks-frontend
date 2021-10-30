@@ -1,5 +1,5 @@
 import { handleSanityImageFixed } from "@lib/utility/handle-sanity-image";
-import { handleThemeClass, Theme } from "@lib/utility/handle-theme-color";
+import { handleThemeClass, ThemeClass } from "@lib/utility/handle-theme-color";
 import Link from "next/link";
 import style from "./styles.module.scss";
 import Image from "next/image";

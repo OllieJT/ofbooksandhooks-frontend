@@ -1,7 +1,7 @@
 import style from "./styles.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import { Theme, handleThemeClass } from "@lib/utility/handle-theme-color";
+import { ThemeClass, handleThemeClass } from "@lib/utility/handle-theme-color";
 import type { FixedImage } from "@lib/utility/handle-sanity-image";
 
 export interface CardProductProps {
@@ -10,7 +10,7 @@ export interface CardProductProps {
 	link?: string;
 	price?: string;
 	noteText?: string;
-	noteTheme: Theme;
+	noteTheme: ThemeClass;
 	thumb?: FixedImage;
 }
 

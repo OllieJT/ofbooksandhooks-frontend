@@ -5,7 +5,7 @@ import { handleThemeColor } from "./handle-theme-color";
 
 export function handleFeedCollections(collections: GroqCollectionList): FeedItem[] {
 	return collections.map((collection) => {
-		const theme = handleThemeColor(collection.theme);
+		const theme = handleThemeClass(collection.theme);
 		const images = collection.articles.map((article) => article.thumbnail);
 
 		const feedItem: FeedItemCollection = {

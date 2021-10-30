@@ -1,7 +1,7 @@
 import style from "./styles.module.scss";
 import Link from "next/link";
 import { FluidImage, handleSanityImageFluid } from "@lib/utility/handle-sanity-image";
-import type { Theme } from "@lib/utility/handle-theme-color";
+import type { ThemeClass } from "@lib/utility/handle-theme-color";
 import { CollectionCardWrapper } from "./components/collection-card-wrapper";
 import { CollectionCardTitle } from "./components/collection-card-title";
 import Image from "next/image";
@@ -13,7 +13,7 @@ export interface CardCollectionProps {
 	subtitle?: string;
 	images: Img[];
 
-	theme?: Theme;
+	theme?: ThemeClass;
 }
 
 export const CardCollection = (props: CardCollectionProps) => {

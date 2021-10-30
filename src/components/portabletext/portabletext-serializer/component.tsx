@@ -16,7 +16,7 @@ export const serializers = {
 	types: {
 		//block: BlockRenderer,
 		book: ({ node }: SerializerBlock_Book) => <BlockBook title={node.title} type={node.type} authors={node.authors} cover={node.cover} genre={node.genre} content={node.content} isbn={node.isbn} narrators={node.narrators} releaseDate={node.releaseDate} subtitle={node.subtitle} />,
-		highlight: ({ node }: SerializerBlock_Highlight) => <BlockHighlight content={node.content} title={node.title} theme={handleThemeColor(node.theme)} type={node.type} />,
+		highlight: ({ node }: SerializerBlock_Highlight) => <BlockHighlight content={node.content} title={node.title} theme={handleThemeClass(node.theme)} type={node.type} />,
 		gallery: ({ node }: SerializerBlock_Gallery) => <BlockGallery title={node.title} images={node.images} />,
 		img: ({ node }: SerializerBlock_Image) => <BlockImage img={node} />,
 		people: ({ node }: SerializerBlock_People) => <BlockPeople title={node.title} people={node.people} />,

@@ -37,7 +37,7 @@ export const RecommendedContent = ({ recommendations }: Props) => {
 							</li>
 						);
 					case "collection":
-						const themeClass = handleThemeColor(rec.theme);
+						const themeClass = handleThemeClass(rec.theme);
 						const collectionArticles = rec.articles.map((article) => article.thumbnail);
 						return (
 							<li className={style.listItem}>

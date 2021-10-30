@@ -1,7 +1,7 @@
 import { TagList, TagProps } from "@components/common/tag";
 import { handleDate } from "@lib/utility";
 import type { FixedImage } from "@lib/utility/handle-sanity-image";
-import { Theme } from "@lib/utility/handle-theme-color";
+import { ThemeClass } from "@lib/utility/handle-theme-color";
 import style from "./styles.module.scss";
 import Image from "next/image";
 

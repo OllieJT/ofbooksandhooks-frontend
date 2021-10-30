@@ -1,9 +1,9 @@
-import { handleThemeClass, Theme } from "@lib/utility/handle-theme-color";
+import { handleThemeClass, ThemeClass } from "@lib/utility/handle-theme-color";
 import style from "./styles.module.scss";
 
 interface Props {
 	children: React.ReactNode;
-	theme?: Theme;
+	theme?: ThemeClass;
 }
 
 export const CollectionCardWrapper = (props: Props) => {

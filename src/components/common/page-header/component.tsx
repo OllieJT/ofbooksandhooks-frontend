@@ -12,7 +12,7 @@ export interface TitleProps {
 
 export const PageHeader = ({ title, subtitle, tags, theme }: TitleProps) => {
 	const allTags = tags?.filter((x) => !!x);
-	const themeClass = handleThemeClass(handleThemeColor(theme));
+	const themeClass = handleThemeClass(handleThemeClass(theme));
 
 	return (
 		<header className={`${style.container} ${themeClass}`}>

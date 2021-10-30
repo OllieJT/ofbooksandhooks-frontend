@@ -1,4 +1,3 @@
-import { Theme } from "@lib/utility/handle-theme-color";
 import style from "./styles.module.scss";
 import { Tag, TagProps } from "../tag-item";
 
@@ -18,13 +17,8 @@ export const TagList = ({ title, tags }: TagListProps) => {
 
 			<ul className={style.list}>
 				{tags.map(({ label, linkTo, isExternal, theme }) => (
-					<li className={style.item} key={label}>
-						<Tag
-							label={label}
-							linkTo={linkTo}
-							theme={theme || Theme.Default}
-							isExternal={isExternal}
-						/>
+					<li className={style.item} key={label + linkTo}>
+						<Tag label={label} linkTo={linkTo} theme={theme} isExternal={isExternal} />
 					</li>
 				))}
 			</ul>

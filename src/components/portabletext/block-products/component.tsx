@@ -33,7 +33,7 @@ export const BlockProducts = ({ title, products = [] }: Props) => {
 						return null;
 					}
 
-					const noticeTheme = handleThemeColor(notice?.theme);
+					const noticeTheme = handleThemeClass(notice?.theme);
 					const price = handleCurrency(cost);
 					return (
 						<li key={title + brand} className={style.item}>

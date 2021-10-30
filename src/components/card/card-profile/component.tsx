@@ -1,9 +1,9 @@
 import style from "./styles.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import { Theme } from "@lib/utility/handle-theme-color";
+import { ThemeClass } from "@lib/utility/handle-theme-color";
 import type { FixedImage } from "@lib/utility/handle-sanity-image";
-import { TagList } from "@components/common/tag";
+import { TagList, TagProps } from "@components/common/tag";
 
 export interface CardProfileProps {
 	name: string;
@@ -32,6 +32,9 @@ const Wrapper = ({ children, url }: Wrapper) => {
 };
 
 export const CardProfile = ({ name, subtitle, tags = [], avatar, link }: CardProfileProps) => {
+	const cardTags = tags.map((tag) => ({
+		label: tag,
+	}));
 	return (
 		<Wrapper url={link}>
 			<header className={style.header}>
@@ -44,12 +47,7 @@ export const CardProfile = ({ name, subtitle, tags = [], avatar, link }: CardPro
 				</div>
 			)}
 			<div className={style.tags}>
-				<TagList
-					tags={tags.map((tag) => ({
-						label: tag,
-						theme: Theme.Yellow,
-					}))}
-				/>
+				<TagList tags={cardTags} />
 			</div>
 		</Wrapper>
 	);

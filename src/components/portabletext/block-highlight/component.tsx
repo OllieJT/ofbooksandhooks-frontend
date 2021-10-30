@@ -1,11 +1,11 @@
-import { Theme, handleThemeClass } from "@lib/utility/handle-theme-color";
+import { ThemeClass, handleThemeClass } from "@lib/utility/handle-theme-color";
 import { PortableText } from "..";
 import style from "./styles.module.scss";
 import type { ContentMin } from "@lib/groq";
 
 interface Props {
 	title: string;
-	theme: Theme;
+	theme: ThemeClass;
 	type: "fill" | "outline";
 	content?: ContentMin;
 }
