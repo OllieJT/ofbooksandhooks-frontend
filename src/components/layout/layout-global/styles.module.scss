@@ -11,9 +11,11 @@
 	align-items: center;
 	justify-content: space-between;
 
-	background-image: url("/img/tile/holo-alt.png");
+	//background-image: url("/img/tile/holo-alt.png");
+	//background-image: url("/pattern.svg");
+	background-image: url("/pattern-o.svg");
 	background-position: left center;
-	background-size: 200px 233px;
+	background-size: 600px 600px;
 	background-attachment: fixed;
 }
 

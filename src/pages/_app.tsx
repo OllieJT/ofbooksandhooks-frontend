@@ -100,10 +100,7 @@ const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => {
 					/>
 					<Head>
 						<link href={configuration.site_url} rel="bookmark" title={configuration.site_name} />
-						<link rel="icon" href="/img/favicon.svg" />
-						<link rel="apple-touch-icon" sizes="180x180" href="/img/icon/apple-touch-icon.png" />
-						<link rel="icon" type="image/png" sizes="32x32" href="/img/icon/favicon-32x32.png" />
-						<link rel="icon" type="image/png" sizes="16x16" href="/img/icon/favicon-16x16.png" />
+						<link rel="icon" href="/favicon.svg" />
 						<link rel="manifest" href="/manifest.json" />
 					</Head>
 					<LayoutGlobal>
