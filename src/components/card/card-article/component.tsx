@@ -5,6 +5,7 @@ import style from "./styles.module.scss";
 import Image from "next/image";
 import { handleDate } from "@lib/utility";
 import type { Img } from "@lib/groq";
+import { CardTags } from "../common/card-tags";
 
 export interface CardArticleProps {
 	href: string;
@@ -13,7 +14,7 @@ export interface CardArticleProps {
 
 	image?: Img;
 	tags?: string[];
-	theme?: Theme;
+	theme?: ThemeClass;
 }
 
 export const CardArticle = ({ image, theme, href, date, title, tags }: CardArticleProps) => {
@@ -31,15 +32,7 @@ export const CardArticle = ({ image, theme, href, date, title, tags }: CardArtic
 						<h4 className={style.title}>{title}</h4>
 						<p className={`${style.date} ${style.label}`}>{articleDate}</p>
 
-						{tags && (
-							<ul className={style.tagList}>
-								{tags.map((tag) => (
-									<li key={tag} className={style.tagItem}>
-										<p className={`${style.tag} ${style.label}`}>{tag}</p>
-									</li>
-								))}
-							</ul>
-						)}
+						{tags && <CardTags tags={tags} />}
 					</div>
 				</a>
 			</Link>

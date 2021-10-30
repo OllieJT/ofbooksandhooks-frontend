@@ -3,9 +3,9 @@ import { CardAuthor } from "../../../card/card-author";
 import { useSettings } from "@lib/providers/settings";
 import { useTaxonomy } from "@lib/providers/taxonomy";
 import { resolveUrl } from "@lib/utility/resolve-url";
-import { handleThemeColor, ThemeClass } from "@lib/utility/handle-theme-color";
 import { memo } from "react";
 import { CardCollection } from "@components/card/card-collection";
+import { handleThemeClass } from "@lib/utility/handle-theme-color";
 
 const SidebarTaxonomyComponent = () => {
 	const {
@@ -29,7 +29,6 @@ const SidebarTaxonomyComponent = () => {
 			slug: topic.slug.current,
 			type: topic._type,
 		}),
-		theme: Theme.Default,
 	}));
 
 	return (

@@ -1,7 +1,7 @@
 import type { FeedItem, FeedItemCollection } from "@components/common/feed";
 import { resolveUrl } from "./resolve-url";
 import type { GroqCollectionList } from "@lib/groq/collection-list";
-import { handleThemeColor } from "./handle-theme-color";
+import { handleThemeClass } from "./handle-theme-color";
 
 export function handleFeedCollections(collections: GroqCollectionList): FeedItem[] {
 	return collections.map((collection) => {
