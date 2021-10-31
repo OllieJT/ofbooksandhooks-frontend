@@ -5,27 +5,27 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	//gap: var(--size-reg);
-	padding: var(--size-lg) var(--size-reg);
+	//gap: var(--space-medium);
+	padding: var(--space-large) var(--space-medium);
 	border: 10px solid pink !important;
 	.title {
-		font-weight: var(--font-bold);
-		color: var(--color-foreground-title);
+		font-weight: var(--font-weight-bold);
+		color: var(--fg);
 	}
 
 	.button {
 		a {
-			font-size: var(--font-size-sm);
+			font-size: var(--font-size-small);
 			line-height: 1em;
 			padding: 0.8em 1.2em;
-			border-radius: var(--radius-reg);
+			border-radius: var(--radius-tiny);
 
-			background-color: var(--color-primary-text);
+			background-color: var(--brand-fg);
 			color: white;
 
 			&:hover {
-				background-color: var(--color-primary-mask-background);
-				color: var(--color-primary-mask-foreground);
+				background-color: var(--brand-bg);
+				color: var(--brand-fg);
 			}
 		}
 	}

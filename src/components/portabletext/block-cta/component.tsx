@@ -12,11 +12,11 @@ export type Props = {
 const handleTextSize = (size: TextSize) => {
 	switch (size) {
 		case "regular":
-			return `var(--font-size-reg)`;
+			return `var(--font-size-small)`;
 		case "x-large":
-			return `var(--font-size-lg)`;
+			return `var(--font-size-medium)`;
 		case "xx-large":
-			return `var(--font-size-xlg)`;
+			return `var(--font-size-large)`;
 	}
 };
 //todo:Finish implementing!!!

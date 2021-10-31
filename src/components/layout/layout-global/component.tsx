@@ -19,16 +19,18 @@ export const LayoutGlobal = ({ children }: Props): React.ReactElement => {
 			<nav className={style.navbar}>
 				<GlobalMenuList />
 
-				<Link href="/" passHref>
-					<a className={style.logo}>
-						<Image
-							src="/logo.svg"
-							width={67}
-							height={80}
-							alt="The Of Books And Hooks logo is an Ampersand made of circles and a crochet hook."
-						/>
-					</a>
-				</Link>
+				<div className={style.masthead}>
+					<Link href="/" passHref>
+						<a>
+							<Image
+								src="/logo.svg"
+								width={67}
+								height={80}
+								alt="The Of Books And Hooks logo is an Ampersand made of circles and a crochet hook."
+							/>
+						</a>
+					</Link>
+				</div>
 			</nav>
 
 			<main id="top" className={style.main} ref={ref}>

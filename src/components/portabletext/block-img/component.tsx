@@ -59,8 +59,8 @@ export const BlockImage = ({ img }: Props) => {
 								display: "inline-block",
 								float: alignImage,
 								maxWidth: handleMaxWidth(img.maxWidth),
-								marginLeft: alignImage === "left" ? "var(--size-reg)" : 0,
-								marginRight: alignImage === "right" ? "var(--size-reg)" : 0,
+								marginLeft: alignImage === "left" ? "var(--space-medium)" : 0,
+								marginRight: alignImage === "right" ? "var(--space-medium)" : 0,
 						}
 						: {}
 				} */

@@ -2,31 +2,31 @@ p.container {
 	display: inline-block;
 	width: max-content;
 
-	font-size: var(--font-size-sm);
+	font-size: var(--font-size-small);
 	line-height: 1em;
 	text-transform: uppercase;
-	font-weight: var(--font-medium);
+	font-weight: var(--font-weight-medium);
 	letter-spacing: 0.05em;
 	margin: 0;
-	background-color: var(--color-background-base);
-	border-radius: var(--radius-reg);
+	background-color: var(--bg-alt);
+	border-radius: var(--radius-medium);
 	overflow: visible;
 
 	.inner {
 		display: block;
 		text-decoration: none;
-		padding: var(--size-xsm) var(--size-sm);
-		border-radius: var(--radius-reg);
+		padding: var(--space-small) var(--space-small);
+		border-radius: var(--radius-medium);
 
-		color: var(--theme-text);
-		background-color: var(--color-background-surface);
+		color: var(--brand-fg);
+		background-color: var(--bg);
 		border: 2px solid transparent;
 	}
 
 	a.inner {
 		box-shadow: var(--level-1);
 		&:hover {
-			border-color: var(--theme-text);
+			border-color: var(--brand-fg);
 			box-shadow: var(--level-2);
 		}
 	}

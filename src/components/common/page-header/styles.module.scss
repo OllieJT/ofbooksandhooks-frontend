@@ -4,7 +4,7 @@
 
 	display: flex;
 	flex-direction: column;
-	margin-bottom: var(--size-xlg);
+	margin-bottom: var(--space-large);
 }
 
 .metadata {
@@ -13,21 +13,21 @@
 
 .title {
 	order: 2;
-	font-size: var(--font-size-xxlg);
-	font-weight: var(--font-medium);
+	font-size: var(--font-size-large);
+	font-weight: var(--font-weight-medium);
 	line-height: 1em;
-	color: var(--color-foreground-title);
-	margin: var(--size-reg) 0;
+	color: var(--fg);
+	margin: var(--space-medium) 0;
 }
 
 .author {
 	order: 3;
-	font-size: var(--font-size-reg);
-	font-weight: var(--font-reg);
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-base);
 	line-height: 1em;
-	color: var(--color-foreground-title);
+	color: var(--fg);
 	a {
 		text-decoration: none;
-		color: var(--color-primary-text);
+		color: var(--brand-fg);
 	}
 }

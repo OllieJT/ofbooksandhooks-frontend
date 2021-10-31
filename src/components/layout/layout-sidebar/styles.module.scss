@@ -2,8 +2,8 @@
 	width: 100%;
 	max-width: var(--size-maxcontent);
 	margin: 0 auto;
-	padding: 0 var(--size-reg);
-	gap: var(--size-reg);
+	padding: 0 var(--space-medium);
+	gap: var(--space-medium);
 
 	display: grid;
 	grid-template-columns: 1fr 320px;
@@ -50,6 +50,6 @@
 	justify-items: stretch;
 	justify-content: stretch;
 
-	margin-bottom: var(--size-xlg);
-	gap: var(--size-lg);
+	margin-bottom: var(--space-large);
+	gap: var(--space-large);
 }

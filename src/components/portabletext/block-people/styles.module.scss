@@ -5,7 +5,7 @@ ul.list {
 	align-items: flex-start;
 	justify-content: center;
 	flex-wrap: wrap;
-	margin: 0 calc(var(--size-xsm) * -1);
+	margin: 0 calc(var(--space-small) * -1);
 
 	li.item {
 		flex-grow: 1;
@@ -15,6 +15,6 @@ ul.list {
 		max-width: 320px;
 		list-style: none;
 		margin: 0;
-		padding: var(--size-xsm);
+		padding: var(--space-small);
 	}
 }

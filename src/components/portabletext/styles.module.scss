@@ -21,41 +21,41 @@
 	margin: 0 auto;
 
 	h1 {
-		font-size: var(--font-size-xxlg);
-		font-weight: var(--font-bold);
+		font-size: var(--font-size-large);
+		font-weight: var(--font-weight-bold);
 	}
 
 	h2 {
-		font-size: var(--font-size-xlg);
-		font-weight: var(--font-bold);
+		font-size: var(--font-size-large);
+		font-weight: var(--font-weight-bold);
 	}
 
 	h3 {
-		font-size: var(--font-size-xlg);
-		font-weight: var(--font-reg);
+		font-size: var(--font-size-large);
+		font-weight: var(--font-weight-base);
 	}
 
 	h4 {
-		font-size: var(--font-size-lg);
-		font-weight: var(--font-bold);
+		font-size: var(--font-size-medium);
+		font-weight: var(--font-weight-bold);
 	}
 
 	h5 {
-		font-size: var(--font-size-lg);
-		font-weight: var(--font-medium);
+		font-size: var(--font-size-medium);
+		font-weight: var(--font-weight-medium);
 	}
 
 	h6 {
-		font-size: var(--font-size-sm);
-		font-weight: var(--font-bold);
+		font-size: var(--font-size-small);
+		font-weight: var(--font-weight-bold);
 		text-transform: uppercase;
 		letter-spacing: 0.08em;
 	}
 
 	p {
-		font-size: var(--font-size-reg);
-		margin-top: var(--size-sm);
-		margin-bottom: var(--size-sm);
+		font-size: var(--font-size-small);
+		margin-top: var(--space-small);
+		margin-bottom: var(--space-small);
 	}
 	h1,
 	h2,
@@ -68,13 +68,13 @@
 	}
 
 	a {
-		color: var(--color-primary-text);
+		color: var(--brand-fg);
 		font-weight: var(--font-normal);
 		text-decoration: none;
 		&:hover {
 			text-decoration: underline;
-			color: var(--color-primary-mask-foreground);
-			background-color: var(--color-primary-mask-background);
+			color: var(--brand-fg);
+			background-color: var(--brand-bg);
 		}
 	}
 
@@ -96,19 +96,19 @@
 	ul {
 		li {
 			list-style-position: inside;
-			margin: var(--size-sm) 0;
+			margin: var(--space-small) 0;
 			line-height: 1.75em;
 			&::marker {
-				color: var(--theme-text);
+				color: var(--brand-fg);
 				font-size: 1.1em;
-				margin-right: var(--size-reg);
-				font-weight: var(--font-medium);
+				margin-right: var(--space-medium);
+				font-weight: var(--font-weight-medium);
 			}
 		}
 	}
 
 	mark {
-		//color: var(--theme-mask-foreground);
-		//background-color: var(--theme-mask-background);
+		//color: var(--brand-fg);
+		//background-color: var(--brand-bg);
 	}
 }

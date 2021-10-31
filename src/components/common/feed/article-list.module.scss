@@ -1,5 +1,5 @@
 .list {
-	--column-gap: var(--size-xsm);
+	--column-gap: var(--space-small);
 	--column-count: 3;
 
 	--column-use-gap-width: calc(var(--column-count) - 1) * var(--column-gap);

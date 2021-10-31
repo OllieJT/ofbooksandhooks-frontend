@@ -20,40 +20,40 @@
 		"cover author"
 		"cover ."
 		"content content";
-	column-gap: var(--size-reg);
+	column-gap: var(--space-medium);
 	row-gap: 0;
 
 	.title {
 		grid-area: title;
-		font-weight: var(--font-bold);
-		color: var(--color-foreground-title);
+		font-weight: var(--font-weight-bold);
+		color: var(--fg);
 	}
 
 	.subtitle {
 		grid-area: subtitle;
-		font-weight: var(--font-medium);
-		color: var(--color-foreground-detail);
+		font-weight: var(--font-weight-medium);
+		color: var(--fg-alt);
 	}
 	.type {
 		grid-area: type;
-		font-weight: var(--font-bold);
+		font-weight: var(--font-weight-bold);
 		text-transform: uppercase;
-		font-size: var(--font-size-sm);
+		font-size: var(--font-size-small);
 		letter-spacing: 0.08em;
-		color: var(--color-foreground-detail);
+		color: var(--fg-alt);
 	}
 
 	.author {
 		grid-area: author;
-		color: var(--color-primary-text);
+		color: var(--brand-fg);
 	}
 
 	.cover {
 		grid-area: cover;
 		img {
-			border-radius: var(--radius-lg);
+			border-radius: var(--radius-large);
 			overflow: hidden;
-			background-color: var(--color-background-detail);
+			background-color: var(--bg-alt);
 		}
 	}
 }
@@ -62,15 +62,15 @@
 	position: relative;
 	z-index: 5;
 	padding-left: 40px;
-	padding-top: var(--size-sm);
+	padding-top: var(--space-small);
 	&::before {
 		content: "";
 		position: absolute;
 		top: -400px;
-		left: var(--size-sm);
+		left: var(--space-small);
 		bottom: 0;
 		width: 8px;
-		background-color: var(--color-primary-mask-background);
-		border-radius: var(--radius-full);
+		background-color: var(--brand-bg);
+		border-radius: var(--radius-huge);
 	}
 }

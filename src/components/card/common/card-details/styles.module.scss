@@ -3,9 +3,10 @@
 	box-shadow: var(--level-2);
 
 	position: relative;
+	z-index: 2;
 
 	border-radius: var(--radius-large);
-	background-color: var(--color-background-surface);
+	background-color: var(--bg);
 
 	display: flex;
 	flex-direction: column;
@@ -19,7 +20,7 @@
 	}
 
 	&.small {
-		border-radius: var(--radius-small);
+		border-radius: var(--radius-medium);
 		.title {
 			font-size: var(--font-size-small);
 		}
