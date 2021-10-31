@@ -1,11 +1,6 @@
 import { useSettings } from "@lib/providers/settings";
 import { resolveSocialIcon } from "@lib/utility/resolve-platform";
-import type { GlobalMenuLinkProps } from "../layout-global-menu-link";
-import { GlobalMenuListComponent } from "./component";
-
-interface Props {
-	isOpen: boolean;
-}
+import { GlobalMenuLinkProps, GlobalMenuListComponent } from "./component";
 
 const menuLinks: GlobalMenuLinkProps[] = [
 	{
@@ -26,7 +21,7 @@ const menuLinks: GlobalMenuLinkProps[] = [
 	},
 ];
 
-export const GlobalMenuList = ({ isOpen }: Props): React.ReactElement => {
+export const GlobalMenuList = (): React.ReactElement => {
 	//TODO:Move links to sanity settings
 	const settings = useSettings();
 
@@ -42,5 +37,5 @@ export const GlobalMenuList = ({ isOpen }: Props): React.ReactElement => {
 
 	const links = [...menuLinks, ...platformLinks];
 
-	return <GlobalMenuListComponent links={links} isOpen={isOpen} />;
+	return <GlobalMenuListComponent links={links} />;
 };

@@ -13,7 +13,7 @@ export const LayoutGlobal = ({ children }: Props): React.ReactElement => {
 	const show = scrollPercentage >= 0.33;
 
 	return (
-		<div className={style.container} ref={ref}>
+		<>
 			<GlobalMenu />
 			<main id="top" className={style.main}>
 				{children}
@@ -30,6 +30,6 @@ export const LayoutGlobal = ({ children }: Props): React.ReactElement => {
 			>
 				<RiArrowUpLine />
 			</a>
-		</div>
+		</>
 	);
 };
