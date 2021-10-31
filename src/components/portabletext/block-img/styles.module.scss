@@ -1,4 +1,6 @@
-img.image {
+.image {
+	position: relative;
+	display: block;
 	width: auto;
 	border-radius: var(--radius-lg);
 	height: auto;

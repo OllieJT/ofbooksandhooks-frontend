@@ -29,7 +29,8 @@ export const BlockGallery = ({ title, images = [] }: Props) => {
 							src={image.url}
 							alt={image.alt}
 							width={image.width}
-							layout="fill"
+							height={image.height}
+							//objectFit="fill"
 						/>
 					</li>
 				);
