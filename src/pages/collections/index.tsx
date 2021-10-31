@@ -29,15 +29,19 @@ export const AllCollectionsPage = ({ collections }: Props): React.ReactElement =
 				<PageHeader title="All Collections" />
 
 				{handleFetch.data?.pages.map(({ data, page }) => {
-					return <Feed key={"collections" + page} items={handleFeedCollections(data)} columns={FeedColumns.Three} />;
+					return (
+						<Feed
+							key={"collections" + page}
+							items={handleFeedCollections(data)}
+							columns={FeedColumns.Three}
+						/>
+					);
 				})}
 
 				<ButtonText
 					isLoading={handleFetch.isFetching}
 					onClick={() => handleFetch.fetchNextPage()}
-					resting={{
-						label: "Load More",
-					}}
+					label="Load More"
 				/>
 			</LayoutSimple>
 		</>

@@ -6,31 +6,47 @@
 	justify-self: center;
 }
 .button {
-	font-size: var(--font-size-sm);
-	font-weight: var(--font-medium);
+	--button-fg: var(--brand-fg);
+	--button-bg: var(--brand-bg);
+	appearance: none;
+	outline: none;
+	border: none;
+
+	font-size: var(--font-size-tiny);
+	font-weight: var(--font-weight-medium);
 	line-height: 1em;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
 
-	padding: var(--size-sm) var(--size-reg);
-	margin: var(--size-lg) auto;
+	padding: 1em 1.5em;
+	margin: var(--space-tiny) 1px;
 
-	background-color: var(--color-blue-base);
-	color: var(--color-background-surface);
+	background-color: var(--button-bg);
+	color: var(--button-fg);
+	box-shadow: inset 24px -24px 80px -72px var(--button-fg);
 
-	border-radius: 100rem;
+	border-radius: var(--radius-large);
 	cursor: pointer;
 
-	outline: none;
-	border: none;
+	transition: all 0.24s var(--transition);
 
 	&:hover {
-		background-color: var(--color-yellow-base);
-		color: var(--color-foreground-title);
+		--button-fg: var(--brand-fg-alt);
+		--button-bg: var(--brand-bg-alt);
 	}
 
-	&.loading {
-		background-color: var(--color-background-base);
-		color: var(--color-blue-text);
+	&[data-state="active"] {
+		--button-fg: var(--brand-fg-alt);
+		--button-bg: var(--brand-bg-alt);
+		&:hover {
+			--button-fg: var(--brand-fg);
+			--button-bg: var(--brand-bg);
+		}
+	}
+
+	&[data-state="loading"] {
+		--button-fg: var(--fg-alt);
+		--button-bg: var(--bg-alt);
+		box-shadow: inset 0 0 0 0 var(--button-fg);
 	}
 }

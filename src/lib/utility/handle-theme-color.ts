@@ -1,6 +1,7 @@
 export type ThemeClass = "theme-green" | "theme-yellow" | "theme-blue";
+export type ThemeOption = "green" | "yellow" | "default" | "blue";
 
-export const handleThemeClass = (theme?: string): ThemeClass => {
+export const handleThemeClass = (theme?: string | ThemeOption): ThemeClass => {
 	switch (theme) {
 		case "secondary":
 		case "green":

@@ -25,15 +25,19 @@ export const AllPostsPage = ({ articles }: Props): React.ReactElement => {
 			<NextSeo title="Articles" />
 			<LayoutSidebar sidebar={<SidebarTaxonomy />}>
 				{handleFetch.data?.pages.map(({ data, page }) => {
-					return <Feed key={"articles-page" + page} items={handleFeedArticles(data)} columns={FeedColumns.Two} />;
+					return (
+						<Feed
+							key={"articles-page" + page}
+							items={handleFeedArticles(data)}
+							columns={FeedColumns.Two}
+						/>
+					);
 				})}
 
 				<ButtonText
 					isLoading={handleFetch.isFetching}
 					onClick={() => handleFetch.fetchNextPage()}
-					resting={{
-						label: "Load More",
-					}}
+					label="Load More"
 				/>
 			</LayoutSidebar>
 		</>
