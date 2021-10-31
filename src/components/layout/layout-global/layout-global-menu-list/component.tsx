@@ -1,4 +1,4 @@
-import { GlobalMenuLink, GlobalMenuLinkProps } from "../global-menu-link";
+import { GlobalMenuLink, GlobalMenuLinkProps } from "../layout-global-menu-link";
 import style from "./styles.module.scss";
 import { memo } from "react";
 import { useRouter } from "next/router";
@@ -16,17 +16,11 @@ const GlobalMenuList = ({ links, isOpen }: Props): React.ReactElement => {
 		<div className={menuClassName}>
 			<ul className={style.list}>
 				{links.map(({ label, link, icon }) => {
-					const isActive =
-						asPath === link || (link === "/articles" && asPath === "/");
+					const isActive = asPath === link || (link === "/articles" && asPath === "/");
 
 					return (
 						<li className={style.item} key={label + link}>
-							<GlobalMenuLink
-								label={label}
-								link={link}
-								icon={icon}
-								isActive={isActive}
-							/>
+							<GlobalMenuLink label={label} link={link} icon={icon} isActive={isActive} />
 						</li>
 					);
 				})}

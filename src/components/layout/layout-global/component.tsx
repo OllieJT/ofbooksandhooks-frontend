@@ -1,6 +1,6 @@
 import style from "./styles.module.scss";
 import { useScrollPercentage } from "react-scroll-percentage";
-import { GlobalMenu } from "@components/common/global-menu";
+import { GlobalMenu } from "@components/layout/layout-global/layout-global-menu";
 import { RiArrowUpLine } from "react-icons/ri";
 
 interface Props {
@@ -8,9 +8,7 @@ interface Props {
 }
 
 export const LayoutGlobal = ({ children }: Props): React.ReactElement => {
-	const [ref, scrollPercentage] = useScrollPercentage({
-		threshold: 0,
-	});
+	const [ref, scrollPercentage] = useScrollPercentage({ threshold: 0 });
 
 	const show = scrollPercentage >= 0.33;
 
@@ -28,7 +26,8 @@ export const LayoutGlobal = ({ children }: Props): React.ReactElement => {
 					opacity: show ? 1 : 0,
 				}}
 				className={style.scrolltop}
-				href="#top">
+				href="#top"
+			>
 				<RiArrowUpLine />
 			</a>
 		</div>

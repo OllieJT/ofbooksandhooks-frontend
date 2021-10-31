@@ -1,6 +1,6 @@
 import { useSettings } from "@lib/providers/settings";
 import { resolveSocialIcon } from "@lib/utility/resolve-platform";
-import type { GlobalMenuLinkProps } from "../global-menu-link";
+import type { GlobalMenuLinkProps } from "../layout-global-menu-link";
 import { GlobalMenuListComponent } from "./component";
 
 interface Props {

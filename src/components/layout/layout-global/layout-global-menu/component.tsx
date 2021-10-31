@@ -5,7 +5,7 @@ import { ButtonIcon } from "@components/button/button-icon";
 import { RiCloseFill, RiMenuFill } from "react-icons/ri";
 import Link from "next/link";
 import Image from "next/image";
-import { GlobalMenuList } from "../global-menu-list";
+import { GlobalMenuList } from "../layout-global-menu-list";
 
 export const GlobalMenu = (): React.ReactElement => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -24,12 +24,7 @@ export const GlobalMenu = (): React.ReactElement => {
 		<nav className={containerClassName}>
 			<Link href="/">
 				<a className={style.logo}>
-					<Image
-						src="/logo.svg"
-						width={67}
-						height={80}
-						alt="Of Books And Hooks Ampersand made of circles and a crochet hook."
-					/>
+					<Image src="/logo.svg" width={67} height={80} alt="Of Books And Hooks Ampersand made of circles and a crochet hook." />
 				</a>
 			</Link>
 
