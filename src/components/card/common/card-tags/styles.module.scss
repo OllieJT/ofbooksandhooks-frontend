@@ -20,6 +20,9 @@
 	text-transform: uppercase;
 	color: var(--fg-alt);
 
+	flex-grow: 0;
+	flex-shrink: 0;
+
 	&:last-child {
 		border-right-width: 0;
 	}

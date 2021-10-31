@@ -1,3 +1,4 @@
+import type { GroqTopicList } from "../topic-list";
 import type * as Schema from "./schema";
 
 export type GroqArticleCard = Pick<
@@ -11,8 +12,10 @@ export type GroqArticleCard = Pick<
 
 export type GroqCollectionCard_Article = Pick<
 	Schema.Article,
-	"title" | "slug" | "thumbnail" | "_id" | "_type" | "_createdAt"
->;
+	"title" | "slug" | "_id" | "_type" | "_createdAt"
+> & {
+	topics: GroqTopicList;
+};
 
 export type GroqCollectionCard = Pick<
 	Schema.Collection,

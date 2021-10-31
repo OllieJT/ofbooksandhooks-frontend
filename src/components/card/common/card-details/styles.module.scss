@@ -4,7 +4,7 @@
 
 	position: relative;
 
-	border-radius: var(--radius-reg);
+	border-radius: var(--radius-large);
 	background-color: var(--color-background-surface);
 
 	display: flex;
@@ -17,6 +17,14 @@
 		gap: var(--space-small);
 		padding: var(--space-medium);
 	}
+
+	&.small {
+		border-radius: var(--radius-small);
+		.title {
+			font-size: var(--font-size-small);
+		}
+	}
+	//&.regular {}
 }
 
 .title {

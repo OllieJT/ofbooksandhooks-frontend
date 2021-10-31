@@ -37,12 +37,15 @@ const SidebarTaxonomyComponent = () => {
 				<CardCollection
 					theme={handleThemeClass(collection.theme)}
 					title={collection.title}
-					//subtitle
 					href={resolveUrl({
 						slug: collection.slug.current,
 						type: collection._type,
 					})}
-					images={collection.articles.map((article) => article.thumbnail)}
+					articles={collection.articles.map((article) => ({
+						key: article._id,
+						title: article.title,
+						tags: article.topics?.map((topic) => topic.title),
+					}))}
 				/>
 			)}
 

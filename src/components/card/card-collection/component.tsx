@@ -1,39 +1,45 @@
 import style from "./styles.module.scss";
 import Link from "next/link";
-import { FluidImage, handleSanityImageFluid } from "@lib/utility/handle-sanity-image";
-import type { ThemeClass } from "@lib/utility/handle-theme-color";
-import { CollectionCardWrapper } from "./components/collection-card-wrapper";
-import { CollectionCardTitle } from "./components/collection-card-title";
-import Image from "next/image";
-import type { Img } from "@lib/groq";
+import { handleThemeClass, ThemeClass } from "@lib/utility/handle-theme-color";
+import { CardDetails } from "../common/card-details";
+
+export interface CardCollectionArticleProps {
+	key: string;
+	title: string;
+	tags?: string[];
+}
 
 export interface CardCollectionProps {
 	href: string;
 	title: string;
 	subtitle?: string;
-	images: Img[];
+	articles: CardCollectionArticleProps[];
 
 	theme?: ThemeClass;
 }
 
 export const CardCollection = (props: CardCollectionProps) => {
-	const articleImages: FluidImage[] = props.images.map((img) => handleSanityImageFluid({ asset: img, maxWidth: 320 }));
+	const classNames = [style.container, props.theme ? handleThemeClass(props.theme) : ""].join(
+		" ",
+	);
 
 	return (
-		<CollectionCardWrapper theme={props.theme}>
-			<Link href={props.href} passHref>
-				<a className={style.container}>
-					<CollectionCardTitle className={style.title} title={props.title} subtitle={props.subtitle} />
+		<Link href={props.href} passHref>
+			<a className={classNames}>
+				<CardDetails title={props.title} metadata={[props.subtitle ?? "Collection"]} />
 
-					<ul className={style.articles}>
-						{articleImages.map((image) => (
-							<li key={image.url}>
-								<Image src={image.url} alt={image.alt} layout="fill" />
-							</li>
-						))}
-					</ul>
-				</a>
-			</Link>
-		</CollectionCardWrapper>
+				<ul className={style.articles}>
+					{props.articles.map((article) => (
+						<li key={article.key}>
+							<CardDetails
+								title={article.title}
+								tags={article.tags}
+								size="small"
+							/>
+						</li>
+					))}
+				</ul>
+			</a>
+		</Link>
 	);
 };

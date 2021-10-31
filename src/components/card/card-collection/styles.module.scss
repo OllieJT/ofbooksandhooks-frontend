@@ -1,22 +1,33 @@
 .container {
 	width: 100%;
 	min-height: 100%;
+	text-decoration: none;
 
 	display: flex;
-	flex-direction: column;
+	flex-direction: column-reverse;
 	align-items: stretch;
 	justify-content: center;
 
 	background-color: var(--theme-mask-background);
-	transition: 0.08s box-shadow ease;
-	text-decoration: none;
-	transition: background-color 0.12s var(--transition);
+	// transition: 0.08s box-shadow ease;
+	// transition: background-color 0.12s var(--transition);
 	&:hover {
-		.title {
-			transform: translateY(calc(var(--size-sm) * -1));
-		}
-		.articles img {
-			transform: scale(1.2);
+		text-decoration: none;
+		color: var(--brand-fg);
+
+		.articles > li {
+			&:nth-child(1) {
+				transform: scale(0.7) rotateX(20deg) translateY(-6rem);
+			}
+			&:nth-child(2) {
+				transform: scale(0.8) rotateX(15deg) translateY(-3rem);
+			}
+			&:nth-child(3) {
+				transform: scale(0.9) rotateX(10deg) translateY(-1rem);
+			}
+			&:nth-child(4) {
+				transform: scale(1) rotateX(5deg);
+			}
 		}
 	}
 }
@@ -25,38 +36,36 @@
 	order: 2;
 }
 .articles {
-	order: 1;
 	flex-grow: 1;
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(2, 1fr);
 
-	img {
+	display: flex;
+	flex-direction: column;
+	padding: 0 var(--space-small);
+	gap: var(--space-tiny);
+	perspective: 500px;
+
+	> li {
 		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		//max-height: 160px;
-		transition: transform 0.32s cubic-bezier(0.33, 0.33, 0, 1.66);
-	}
-	li:nth-child(1) img {
-		transition-delay: 0.1s;
-	}
-	li:nth-child(2) img {
-		transition-delay: 0.2s;
-	}
-	li:nth-child(3) img {
-		transition-delay: 0.3s;
-	}
-	li:nth-child(4) img {
-		transition-delay: 0.4s;
-	}
-	li {
-		flex-basis: 160px;
-		flex-grow: 1;
-		flex-shrink: 1;
-		overflow: hidden;
-		width: 100%;
-		height: 100%;
+		height: auto;
+		transition: transform 0.4s var(--transition);
+		&:nth-child(1) {
+			transform: scale(0.6) rotateX(40deg);
+			margin-bottom: -6rem;
+			transition-delay: 0.3s;
+		}
+		&:nth-child(2) {
+			transform: scale(0.7) rotateX(30deg);
+			margin-bottom: -4.5rem;
+			transition-delay: 0.2s;
+		}
+		&:nth-child(3) {
+			transform: scale(0.8) rotateX(20deg);
+			margin-bottom: -3rem;
+			transition-delay: 0.1s;
+		}
+		&:nth-child(4) {
+			transform: scale(0.9) rotateX(10deg);
+		}
 	}
 }
 

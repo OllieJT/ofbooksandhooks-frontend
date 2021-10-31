@@ -28,10 +28,12 @@ export const groqSettings = async ({ client }: Props) =>
 				articles[0...4]->{
 					title,
 					slug,
-					thumbnail,
 					_id,
 					_type,
 					_createdAt,
+					topics->{
+						...
+					}
 				},
 			},
 			featureArticle->{
