@@ -15,9 +15,11 @@ export const LayoutGlobal = ({ children }: Props): React.ReactElement => {
 	return (
 		<>
 			<GlobalMenu />
-			<main id="top" className={style.main}>
+
+			<main id="top" className={style.main} ref={ref}>
 				{children}
 			</main>
+
 			<div className={style.background} />
 
 			<a
