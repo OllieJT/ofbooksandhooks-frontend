@@ -1,7 +1,9 @@
 import style from "./styles.module.scss";
 import { useScrollPercentage } from "react-scroll-percentage";
-import { GlobalMenu } from "@components/layout/layout-global/layout-global-menu";
 import { RiArrowUpLine } from "react-icons/ri";
+import Link from "next/link";
+import Image from "next/image";
+import { GlobalMenuList } from "./layout-global-menu";
 
 interface Props {
 	children: React.ReactNode;
@@ -14,7 +16,20 @@ export const LayoutGlobal = ({ children }: Props): React.ReactElement => {
 
 	return (
 		<>
-			<GlobalMenu />
+			<nav className={style.navbar}>
+				<GlobalMenuList />
+
+				<Link href="/" passHref>
+					<a className={style.logo}>
+						<Image
+							src="/logo.svg"
+							width={67}
+							height={80}
+							alt="The Of Books And Hooks logo is an Ampersand made of circles and a crochet hook."
+						/>
+					</a>
+				</Link>
+			</nav>
 
 			<main id="top" className={style.main} ref={ref}>
 				{children}

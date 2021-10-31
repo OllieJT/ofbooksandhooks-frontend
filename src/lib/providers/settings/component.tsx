@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import { getSettings } from "@lib/groq/settings";
 import { handleSanityImageFixed } from "@lib/utility/handle-sanity-image";
 import { SettingsContext } from "./context";
+import { resolveSocialIcon } from "@lib/utility/resolve-platform";
 
 interface Props {
 	children: React.ReactNode;
@@ -50,7 +51,28 @@ export const SettingsProvider = ({ children }: Props) => {
 					article: data?.featureArticle,
 					collection: data?.featureCollection,
 				},
-			}}>
+
+				menu: {
+					links: [
+						{ label: "Home", href: "/articles" },
+						{ label: "Of Books", href: "/topics/books" },
+						{ label: "Of Hooks", href: "/topics/hooks" },
+						{ label: "Collections", href: "/collections" },
+						{
+							label: "instagram",
+							icon: resolveSocialIcon("instagram"),
+							href: "https://www.instagram.com/ofbooksandhooks/",
+						},
+						{
+							label: "etsy",
+							icon: resolveSocialIcon("etsy"),
+							href: "https://www.etsy.com/shop/OfBooksAndHooks",
+						},
+					],
+					pinned: { label: "Links", href: "/links" },
+				},
+			}}
+		>
 			{children}
 		</SettingsContext.Provider>
 	);

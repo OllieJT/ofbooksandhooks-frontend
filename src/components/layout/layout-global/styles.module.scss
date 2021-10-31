@@ -58,3 +58,41 @@
 		box-shadow: var(--level-1);
 	}
 }
+
+.navbar {
+	position: sticky;
+	z-index: 900;
+	top: 0;
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+
+	@media screen and (max-width: 960px) {
+		.logo {
+			font-size: 48px;
+		}
+	}
+}
+
+.logo {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	font-size: 80px;
+
+	position: relative;
+	z-index: 10;
+
+	padding: var(--layout-gutter);
+
+	img {
+		position: relative;
+		z-index: 10;
+		width: auto;
+		height: 1em;
+	}
+}
