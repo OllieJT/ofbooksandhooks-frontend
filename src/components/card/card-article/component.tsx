@@ -5,7 +5,7 @@ import style from "./styles.module.scss";
 import Image from "next/image";
 import { handleDate } from "@lib/utility";
 import type { Img } from "@lib/groq";
-import { CardTags } from "../common/card-tags";
+import { CardDetails } from "../common/card-details";
 
 export interface CardArticleProps {
 	href: string;
@@ -18,24 +18,31 @@ export interface CardArticleProps {
 }
 
 export const CardArticle = ({ image, theme, href, date, title, tags }: CardArticleProps) => {
-	const themeClass = handleThemeClass(theme);
-	const classNames = [style.wrapper, themeClass].join(" ");
-	const articleImage = image && handleSanityImageFixed({ asset: image, width: 400, height: 400 });
+	const classNames = [style.container, theme ? handleThemeClass(theme) : ""].join(" ");
+	const articleImage =
+		image && handleSanityImageFixed({ asset: image, width: 400, height: 400 });
 	const articleDate = handleDate(date);
 	return (
-		<article className={classNames}>
-			<Link href={href} passHref>
-				<a className={style.container}>
-					{articleImage && <Image className={style.thumb} src={articleImage.url} width={articleImage.width} height={articleImage.height} alt={articleImage.alt} />}
-
-					<div className={style.details}>
-						<h4 className={style.title}>{title}</h4>
-						<p className={`${style.date} ${style.label}`}>{articleDate}</p>
-
-						{tags && <CardTags tags={tags} />}
+		<Link href={href} passHref>
+			<a className={classNames}>
+				{articleImage && (
+					<div className={style.thumb}>
+						<Image
+							className={style.image}
+							src={articleImage.url}
+							alt={articleImage.alt}
+							layout="fill"
+							width={articleImage.width}
+							height={articleImage.height}
+							objectFit="cover"
+						/>
 					</div>
-				</a>
-			</Link>
-		</article>
+				)}
+
+				<div className={style.details}>
+					<CardDetails title={title} metadata={[articleDate]} tags={tags} />
+				</div>
+			</a>
+		</Link>
 	);
 };

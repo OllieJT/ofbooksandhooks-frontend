@@ -1,9 +1,11 @@
 @use "./sizes" as *;
 
 $font-family: (
-	sans: '"Sen", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+	sans:
+		'"Sen", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
 	serif: 'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
-	mono: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+	mono:
+		'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
 );
 
 $font-weight: (
@@ -13,8 +15,8 @@ $font-weight: (
 );
 
 $font-size: (
-	tiny: 1.2rem,
-	small: 1.6rem,
+	tiny: 1.4rem,
+	small: 1.8rem,
 	medium: 2.4rem,
 	large: 4rem,
 	huge: 8rem,
