@@ -3,6 +3,8 @@ import type { GroqArticleCard, GroqCollectionCard } from "@lib/groq";
 import type { FixedImage } from "@lib/utility/handle-sanity-image";
 import type { SocialPlatform } from "@lib/utility/resolve-platform";
 import type { GlobalMenuItemProps } from "@components/layout/layout-global/layout-global-menu";
+import type { GroqTopicList } from "@lib/groq/topic-list";
+import type { GroqCollectionList } from "@lib/groq/collection-list";
 
 //TODO:Move links to sanity settings
 interface Platform {
@@ -30,6 +32,11 @@ export interface SettingsContextProps {
 		links: GlobalMenuItemProps[];
 		pinned?: GlobalMenuItemProps;
 	};
+
+	taxonomy: {
+		collections: GroqCollectionList;
+		topics: GroqTopicList;
+	};
 }
 
 export const SettingsContext = createContext<SettingsContextProps>({
@@ -51,6 +58,10 @@ export const SettingsContext = createContext<SettingsContextProps>({
 	menu: {
 		links: [],
 		pinned: undefined,
+	},
+	taxonomy: {
+		collections: [],
+		topics: [],
 	},
 });
 

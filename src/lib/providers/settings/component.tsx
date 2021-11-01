@@ -21,40 +21,40 @@ export const SettingsProvider = ({ children }: Props) => {
 		<SettingsContext.Provider
 			value={{
 				biography: {
-					description: data?.biography.description,
-					title: data?.biography.title,
+					description: data?.settings.biography.description,
+					title: data?.settings.biography.title,
 					photo:
-						data?.biography.photo &&
+						data?.settings.biography.photo &&
 						handleSanityImageFixed({
-							asset: data?.biography.photo,
+							asset: data?.settings.biography.photo,
 							width: 240,
 							height: 240,
 						}),
 				},
 				profile: {
-					name: data?.profile.name,
-					knownAs: data?.profile.knownAs,
+					name: data?.settings.profile.name,
+					knownAs: data?.settings.profile.knownAs,
 					photo:
-						data?.profile.avatar &&
+						data?.settings.profile.avatar &&
 						handleSanityImageFixed({
-							asset: data?.profile.avatar,
+							asset: data?.settings.profile.avatar,
 							width: 240,
 							height: 240,
 						}),
 					platforms:
-						data?.profile.platforms?.map((platform) => ({
+						data?.settings.profile.platforms?.map((platform) => ({
 							platform: platform.name,
 							url: platform.link,
 						})) || [],
 				},
 				featured: {
-					article: data?.featureArticle,
-					collection: data?.featureCollection,
+					article: data?.settings.featureArticle,
+					collection: data?.settings.featureCollection,
 				},
 
 				menu: {
 					links: [
-						{ label: "Home", href: "/articles" },
+						{ label: "All", href: "/articles" },
 						{ label: "Of Books", href: "/topics/books" },
 						{ label: "Of Hooks", href: "/topics/hooks" },
 						{ label: "Collections", href: "/collections" },
@@ -70,6 +70,10 @@ export const SettingsProvider = ({ children }: Props) => {
 						},
 					],
 					pinned: { label: "Links", href: "/links" },
+				},
+				taxonomy: {
+					collections: data?.collections ?? [],
+					topics: data?.topics ?? [],
 				},
 			}}
 		>

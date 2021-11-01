@@ -1,7 +1,6 @@
 import { TagList, TagProps } from "../../tag";
 import { CardAuthor } from "../../../card/card-author";
 import { useSettings } from "@lib/providers/settings";
-import { useTaxonomy } from "@lib/providers/taxonomy";
 import { resolveUrl } from "@lib/utility/resolve-url";
 import { memo } from "react";
 import { CardCollection } from "@components/card/card-collection";
@@ -11,8 +10,9 @@ const SidebarTaxonomyComponent = () => {
 	const {
 		biography,
 		featured: { collection },
+		taxonomy,
 	} = useSettings();
-	const { topics, collections } = useTaxonomy();
+	const { topics, collections } = taxonomy;
 
 	const collectionTags: TagProps[] = collections.map((collection) => ({
 		label: collection.title,
