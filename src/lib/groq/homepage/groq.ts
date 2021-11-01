@@ -10,7 +10,7 @@ export type GroqHome = Omit<Schema.Homepage, "featured" | "blocks"> & {
 };
 
 interface Props {
-	client: import("picosanity").PicoSanity;
+	client: import("@sanity/client").SanityClient;
 }
 
 export const groqPageHome = async ({ client }: Props) =>

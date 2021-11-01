@@ -10,7 +10,7 @@ interface Props {
 	from: number;
 	to: number;
 	slug: string;
-	client: import("picosanity").PicoSanity;
+	client: import("@sanity/client").SanityClient;
 }
 
 export const groqCollectionPage = async ({ from, to, slug, client }: Props) =>

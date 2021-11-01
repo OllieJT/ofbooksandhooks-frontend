@@ -3,7 +3,7 @@ import { getClient } from "@lib/sanity";
 import { handlePagination } from "@lib/utility/handle-pagination";
 
 export interface FetchProps {
-	client: import("picosanity").PicoSanity;
+	client: import("@sanity/client").SanityClient;
 	from: number;
 	to: number;
 }

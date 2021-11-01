@@ -7,6 +7,7 @@ import { ButtonText } from "@components/button/button-text";
 import { LayoutSidebar } from "@components/layout/layout-sidebar";
 import { Feed, FeedColumns } from "@components/common/feed";
 import { handleFeedArticles } from "@lib/utility/handle-feed-articles";
+import { LayoutSimple } from "@components/layout/layout-simple";
 
 interface Props {
 	preview: boolean;
@@ -23,13 +24,13 @@ export const AllPostsPage = ({ articles }: Props): React.ReactElement => {
 	return (
 		<>
 			<NextSeo title="Articles" />
-			<LayoutSidebar sidebar={<SidebarTaxonomy />}>
+			<LayoutSimple>
 				{handleFetch.data?.pages.map(({ data, page }) => {
 					return (
 						<Feed
 							key={"articles-page" + page}
 							items={handleFeedArticles(data)}
-							columns={FeedColumns.Two}
+							columns={FeedColumns.Three}
 						/>
 					);
 				})}
@@ -39,7 +40,7 @@ export const AllPostsPage = ({ articles }: Props): React.ReactElement => {
 					onClick={() => handleFetch.fetchNextPage()}
 					label="Load More"
 				/>
-			</LayoutSidebar>
+			</LayoutSimple>
 		</>
 	);
 };

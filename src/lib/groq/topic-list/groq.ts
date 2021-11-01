@@ -6,7 +6,7 @@ export type GroqTopicList = Schema.Topic[];
 interface Props {
 	from: number;
 	to: number;
-	client: import("picosanity").PicoSanity;
+	client: import("@sanity/client").SanityClient;
 }
 
 export const groqTopicList = async ({ from, to, client }: Props) =>

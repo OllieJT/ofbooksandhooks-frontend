@@ -6,7 +6,7 @@ export type GroqArticleList = GroqArticleCard[];
 interface Props {
 	from: number;
 	to: number;
-	client: import("picosanity").PicoSanity;
+	client: import("@sanity/client").SanityClient;
 }
 
 export const groqArticleList = async ({ from, to, client }: Props) =>

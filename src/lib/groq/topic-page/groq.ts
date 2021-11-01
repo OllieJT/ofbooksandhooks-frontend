@@ -1,5 +1,5 @@
 import groq from "groq";
-import { GroqArticleCard } from "../models";
+import type { GroqArticleCard } from "../models";
 import type * as Schema from "../models/schema";
 
 export type GroqTopicPage = Omit<Schema.Collection, "articles"> & {
@@ -8,7 +8,7 @@ export type GroqTopicPage = Omit<Schema.Collection, "articles"> & {
 
 interface TopicProps {
 	slug: string;
-	client: import("picosanity").PicoSanity;
+	client: import("@sanity/client").SanityClient;
 }
 
 export const groqTopicPage = async ({ slug, client }: TopicProps) =>
@@ -25,7 +25,7 @@ interface ArticlesProps {
 	slug: string;
 	from: number;
 	to: number;
-	client: import("picosanity").PicoSanity;
+	client: import("@sanity/client").SanityClient;
 }
 
 export const groqTopicArticleListQuery = groq`*[

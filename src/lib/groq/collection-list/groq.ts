@@ -1,12 +1,12 @@
 import groq from "groq";
-import { GroqCollectionCard } from "../models";
+import type { GroqCollectionCard } from "../models";
 
 export type GroqCollectionList = GroqCollectionCard[];
 
 interface Props {
 	from: number;
 	to: number;
-	client: import("picosanity").PicoSanity;
+	client: import("@sanity/client").SanityClient;
 }
 
 export const groqCollectionList = async ({ from, to, client }: Props) =>

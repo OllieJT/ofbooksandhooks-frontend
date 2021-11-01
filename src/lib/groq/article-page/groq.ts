@@ -4,10 +4,7 @@ import type * as Schema from "../models/schema";
 
 export type GroqArticlePage_Recommended = GroqArticleCard | GroqCollectionCard;
 
-export type GroqArticlePage = Omit<
-	Schema.Article,
-	"author" | "recommended" | "topics"
-> & {
+export type GroqArticlePage = Omit<Schema.Article, "author" | "recommended" | "topics"> & {
 	author: Schema.Author;
 	topics: Schema.Topic[];
 	recommended: GroqArticlePage_Recommended[];
@@ -39,7 +36,7 @@ export const groqArticlePageQuery = groq`*[_type == "article" && slug.current ==
 
 interface Props {
 	slug: string;
-	client: import("picosanity").PicoSanity;
+	client: import("@sanity/client").SanityClient;
 }
 export const groqArticlePage = ({ slug, client }: Props) =>
 	client.fetch<GroqArticlePage>(groqArticlePageQuery, { slug });

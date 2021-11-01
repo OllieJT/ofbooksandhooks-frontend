@@ -12,7 +12,7 @@ export type GroqSettings = Omit<
 };
 
 interface Props {
-	client: import("picosanity").PicoSanity;
+	client: import("@sanity/client").SanityClient;
 }
 
 export const groqSettings = async ({ client }: Props) =>

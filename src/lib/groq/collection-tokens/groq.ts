@@ -6,7 +6,7 @@ export type GroqCollectionListTokens = GroqCollectionToken[];
 interface Props {
 	from: number;
 	to: number;
-	client: import("picosanity").PicoSanity;
+	client: import("@sanity/client").SanityClient;
 }
 
 export const groqCollectionTokens = async ({ from, to, client }: Props) =>
