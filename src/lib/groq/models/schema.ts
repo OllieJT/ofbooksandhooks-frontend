@@ -10,6 +10,11 @@ import type {
 	SanityImageCrop,
 	SanityImageHotspot,
 	SanityKeyed,
+	SanityImageAsset,
+	SanityImageMetadata,
+	SanityImageDimensions,
+	SanityImagePalette,
+	SanityImagePaletteSwatch,
 } from "sanity-codegen";
 
 export type {
@@ -24,37 +29,12 @@ export type {
 	SanityImageCrop,
 	SanityImageHotspot,
 	SanityKeyed,
+	SanityImageAsset,
+	SanityImageMetadata,
+	SanityImageDimensions,
+	SanityImagePalette,
+	SanityImagePaletteSwatch,
 };
-
-/**
- * Topic
- *
- *
- */
-export interface Topic extends SanityDocument {
-	_type: "topic";
-
-	/**
-	 * Page Title — `string`
-	 *
-	 *
-	 */
-	title: string;
-
-	/**
-	 * Slug — `slug`
-	 *
-	 * This determines the URL path for the page
-	 */
-	slug: { _type: "slug"; current: string };
-
-	/**
-	 * Metadata — `metadata`
-	 *
-	 *
-	 */
-	metadata: Metadata;
-}
 
 /**
  * Collection
@@ -72,25 +52,39 @@ export interface Collection extends SanityDocument {
 	title: string;
 
 	/**
-	 * Slug — `slug`
+	 * URL Slug — `slug`
 	 *
 	 * This determines the URL path for the page
 	 */
 	slug: { _type: "slug"; current: string };
 
 	/**
-	 * theme — `theme`
+	 * Theme — `theme`
 	 *
 	 *
 	 */
 	theme?: Theme;
 
 	/**
-	 * Articles — `array`
+	 * Tags — `tags`
 	 *
 	 *
 	 */
-	articles: Array<SanityKeyedReference<Article>>;
+	tags?: Tags;
+
+	/**
+	 * Articles Before — `datetime`
+	 *
+	 * Only show articles before this date
+	 */
+	before?: string;
+
+	/**
+	 * Articles After — `datetime`
+	 *
+	 * Only show articles after this date
+	 */
+	after?: string;
 
 	/**
 	 * Metadata — `metadata`
@@ -116,13 +110,6 @@ export interface Article extends SanityDocument {
 	title: string;
 
 	/**
-	 * Call to Action — `button`
-	 *
-	 *
-	 */
-	cta?: Button;
-
-	/**
 	 * URL Slug — `slug`
 	 *
 	 * This determines the URL path for the page
@@ -130,18 +117,18 @@ export interface Article extends SanityDocument {
 	slug: { _type: "slug"; current: string };
 
 	/**
-	 * Content — `richtext`
+	 * Call to Action — `button`
 	 *
 	 *
 	 */
-	content?: Richtext;
+	cta?: Button;
 
 	/**
-	 * Topics — `array`
+	 * Author — `reference`
 	 *
 	 *
 	 */
-	topics?: Array<SanityKeyedReference<Topic>>;
+	author: SanityReference<Person>;
 
 	/**
 	 * Recommended — `array`
@@ -151,18 +138,64 @@ export interface Article extends SanityDocument {
 	recommended: Array<SanityKeyedReference<Collection | Article>>;
 
 	/**
-	 * Article Image — `img`
+	 * Article Image — `thumbnail`
 	 *
 	 *
 	 */
-	thumbnail: Img;
+	thumbnail: Thumbnail;
 
 	/**
-	 * Author — `reference`
+	 * Metadata — `metadata`
 	 *
 	 *
 	 */
-	author: SanityReference<Author>;
+	metadata: Metadata;
+
+	/**
+	 * Content — `richtext`
+	 *
+	 *
+	 */
+	content?: Richtext;
+
+	/**
+	 * Tags — `tags`
+	 *
+	 *
+	 */
+	tags?: Tags;
+}
+
+/**
+ * Links Page
+ *
+ *
+ */
+export interface Linkpage extends SanityDocument {
+	_type: "linkpage";
+
+	/**
+	 * Label — `string`
+	 *
+	 *
+	 */
+	label?: string;
+
+	/**
+	 * Title — `string`
+	 *
+	 *
+	 */
+	title: string;
+
+	/**
+	 * Links — `array`
+	 *
+	 *
+	 */
+	navigation: Array<
+		SanityKeyed<NavigationLinkInternal> | SanityKeyed<NavigationLinkExternal>
+	>;
 
 	/**
 	 * Metadata — `metadata`
@@ -173,26 +206,33 @@ export interface Article extends SanityDocument {
 }
 
 /**
- * Author
+ * Person
  *
  *
  */
-export interface Author extends SanityDocument {
-	_type: "author";
+export interface Person extends SanityDocument {
+	_type: "person";
 
 	/**
-	 * Name — `string`
+	 * First Name — `string`
 	 *
 	 *
 	 */
-	name: string;
+	nameFirst: string;
 
 	/**
-	 * Known As — `string`
+	 * Last Name — `string`
 	 *
 	 *
 	 */
-	knownAs: string;
+	nameLast?: string;
+
+	/**
+	 * Alias — `string`
+	 *
+	 * Another name this person is known as.
+	 */
+	alias: string;
 
 	/**
 	 * URL Slug — `slug`
@@ -202,18 +242,32 @@ export interface Author extends SanityDocument {
 	slug: { _type: "slug"; current: string };
 
 	/**
+	 * Avatar — `thumbnail`
+	 *
+	 *
+	 */
+	avatar?: Thumbnail;
+
+	/**
+	 * Bio — `array`
+	 *
+	 *
+	 */
+	bio?: Array<SanityKeyed<SanityBlock>>;
+
+	/**
+	 * Tags — `tags`
+	 *
+	 *
+	 */
+	tags?: Tags;
+
+	/**
 	 * Platforms — `array`
 	 *
 	 *
 	 */
 	platforms?: Array<SanityKeyed<Platform>>;
-
-	/**
-	 * Author Avatar — `img`
-	 *
-	 *
-	 */
-	avatar?: Img;
 }
 
 /**
@@ -225,18 +279,11 @@ export interface Homepage extends SanityDocument {
 	_type: "homepage";
 
 	/**
-	 * Featured Article — `reference`
+	 * Label — `string`
 	 *
 	 *
 	 */
-	featured: SanityReference<Article | Collection>;
-
-	/**
-	 * Blocks — `array`
-	 *
-	 *
-	 */
-	blocks: Array<SanityKeyedReference<Collection | Article>>;
+	label?: string;
 
 	/**
 	 * Metadata — `metadata`
@@ -255,32 +302,29 @@ export interface Settings extends SanityDocument {
 	_type: "settings";
 
 	/**
-	 * Mini Biography — `biography`
-	 *
-	 *
-	 */
-	biography: Biography;
-
-	/**
 	 * Profile — `reference`
 	 *
 	 *
 	 */
-	profile: SanityReference<Author>;
+	profile: SanityReference<Person>;
 
 	/**
-	 * Featured Collection — `reference`
+	 * Pinned Links — `array`
 	 *
 	 *
 	 */
-	featureCollection: SanityReference<Collection>;
+	navigation_pinned?: Array<
+		SanityKeyed<NavigationLinkInternal> | SanityKeyed<NavigationLinkExternal>
+	>;
 
 	/**
-	 * Featured Article — `reference`
+	 * Menu Links — `array`
 	 *
 	 *
 	 */
-	featureArticle: SanityReference<Article>;
+	navigation_menu?: Array<
+		SanityKeyed<NavigationLinkInternal> | SanityKeyed<NavigationLinkExternal>
+	>;
 }
 
 export type LinkExternal = {
@@ -300,24 +344,84 @@ export type LinkInternal = {
 	 *
 	 *
 	 */
-	reference: SanityReference<Article | Collection>;
+	reference: SanityReference<Article | Collection | Linkpage | Person | Homepage>;
 };
 
-export type Product = {
-	_type: "product";
+export type Theme = "yellow" | "green" | "blue" | "none";
+
+export type Button = {
+	_type: "button";
 	/**
-	 * Title — `string`
+	 * Button Label — `string`
 	 *
 	 *
+	 */
+	label: string;
+
+	/**
+	 * URL — `url`
+	 *
+	 *
+	 */
+	url: string;
+};
+
+export type Thumbnail = {
+	_type: "thumbnail";
+	asset: SanityReference<SanityImageAsset>;
+	crop?: SanityImageCrop;
+	hotspot?: SanityImageHotspot;
+
+	/**
+	 * Alternate Text — `string`
+	 *
+	 * Descripe this image as if someone couldn't see it.
+	 */
+	alt?: string;
+};
+
+export type Richtext = Array<
+	| SanityKeyed<SanityBlock>
+	| SanityKeyed<InlineBook>
+	| SanityKeyed<InlineCta>
+	| SanityKeyed<InlineGallery>
+	| SanityKeyed<InlineHighlight>
+	| SanityKeyed<InlineImage>
+	| SanityKeyed<InlinePeople>
+	| SanityKeyed<InlineVideo>
+>;
+
+export type ContentMin = Array<SanityKeyed<SanityBlock>>;
+
+export type Metadata = {
+	_type: "metadata";
+	/**
+	 * Page Type — `string`
+	 *
+	 * What is the primary content type for this page? If you included Profile / Book / Product blocks, the metadata will automaticallly be added for them.
+	 */
+	type: "website" | "article" | "profile" | "book";
+
+	/**
+	 * Publish Date — `datetime`
+	 *
+	 * This will be avalible but hidden on the site until after this date.
+	 */
+	publishAt: string;
+
+	/**
+	 * Page Label — `string`
+	 *
+	 * This should be very short as it appears in the browser tab.
 	 */
 	title: string;
 
 	/**
-	 * Brand — `string`
+	 * Page Title — `string`
 	 *
-	 *
+	 * This is the main title people see on social media and search engines.
 	 */
-	brand?: string;
+	headline: string;
 
 	/**
 	 * Description — `text`
@@ -327,60 +431,101 @@ export type Product = {
 	description?: string;
 
 	/**
-	 * Notice — `notice`
+	 * Images — `array`
 	 *
-	 *
+	 * The first image is used on the site, the rest are used for social media sites that support galleries.
 	 */
-	notice?: Notice;
-
-	/**
-	 * Estimated Cost — `cost`
-	 *
-	 *
-	 */
-	cost: Cost;
-
-	/**
-	 * Deal Expires — `datetime`
-	 *
-	 * If this is a limited time offer, include the time the offer expires
-	 */
-	expiresAt?: string;
-
-	/**
-	 * URL — `string`
-	 *
-	 *
-	 */
-	url: string;
-
-	/**
-	 * Thumbnail — `img`
-	 *
-	 *
-	 */
-	thumbnail: Img;
+	thumbnails: Array<SanityKeyed<Thumbnail>>;
 };
 
-export type Products = {
-	_type: "products";
+export type Platform = {
+	_type: "platform";
 	/**
-	 * List Title — `string`
+	 * Username — `string`
+	 *
+	 *
+	 */
+	name: string;
+
+	/**
+	 * Link — `url`
+	 *
+	 *
+	 */
+	link: string;
+
+	/**
+	 * Icon — `iconPicker`
+	 *
+	 *
+	 */
+	icon?: IconPicker;
+};
+
+export type Notice = {
+	_type: "notice";
+	/**
+	 * Label — `string`
+	 *
+	 *
+	 */
+	label: string;
+
+	/**
+	 * theme — `theme`
+	 *
+	 *
+	 */
+	theme?: Theme;
+};
+
+export type InlineGallery = {
+	_type: "inline_gallery";
+	/**
+	 * Gallery Title — `string`
 	 *
 	 *
 	 */
 	title: string;
 
 	/**
-	 * Products — `array`
+	 * Images — `array`
 	 *
 	 *
 	 */
-	products?: Array<SanityKeyed<Product>>;
+	images?: Array<SanityKeyed<Thumbnail>>;
 };
 
-export type People = {
-	_type: "people";
+export type InlineImage = {
+	_type: "inline_image";
+	asset: SanityReference<SanityImageAsset>;
+	crop?: SanityImageCrop;
+	hotspot?: SanityImageHotspot;
+
+	/**
+	 * Alternate Text — `string`
+	 *
+	 * Descripe this image as if someone couldn't see it.
+	 */
+	alt?: string;
+
+	/**
+	 * Inline — `string`
+	 *
+	 *
+	 */
+	float?: "none" | "left" | "right";
+
+	/**
+	 * Max Width — `string`
+	 *
+	 * Restrict the width of the image. This is useful if you want to force a larger image to sit inline next to text.
+	 */
+	maxWidth?: "none" | "large" | "medium" | "small";
+};
+
+export type InlinePeople = {
+	_type: "inline_people";
 	/**
 	 * List Title — `string`
 	 *
@@ -396,46 +541,39 @@ export type People = {
 	people: Array<SanityKeyed<Person>>;
 };
 
-export type Person = {
-	_type: "person";
+export type InlineHighlight = {
+	_type: "inline_highlight";
 	/**
-	 * Name — `string`
+	 * Title — `string`
 	 *
 	 *
 	 */
-	name: string;
+	title: string;
 
 	/**
-	 * Known As — `string`
+	 * theme — `theme`
 	 *
 	 *
 	 */
-	knownAs: string;
+	theme?: Theme;
 
 	/**
-	 * Gender — `string`
+	 * Type — `string`
 	 *
 	 *
 	 */
-	gender?: "female" | "male" | "non-binary";
+	type: "fill" | "outline";
 
 	/**
-	 * Tags — `array`
+	 * Content — `contentMin`
 	 *
 	 *
 	 */
-	tags?: Array<SanityKeyed<string>>;
-
-	/**
-	 * Photo — `img`
-	 *
-	 *
-	 */
-	photo?: Img;
+	content?: ContentMin;
 };
 
-export type Book = {
-	_type: "book";
+export type InlineBook = {
+	_type: "inline_book";
 	/**
 	 * Title — `string`
 	 *
@@ -493,18 +631,73 @@ export type Book = {
 	type: "Physical Book" | "Digital Book" | "Audio Book";
 
 	/**
-	 * Genre — `genre`
+	 * Genre — `object`
 	 *
 	 *
 	 */
-	genre: Genre;
+	genre: {
+		_type: "genre";
+		/**
+		 * Type — `string`
+		 *
+		 *
+		 */
+		type: "Fiction" | "Non Fiction";
+
+		/**
+		 * Category — `array`
+		 *
+		 *
+		 */
+		category: Array<
+			SanityKeyed<
+				| "Biography"
+				| "Cooking"
+				| "Fantasy"
+				| "Historical Fiction"
+				| "History"
+				| "Horror"
+				| "LGBT"
+				| "Literary Fiction"
+				| "Memoir"
+				| "Politics"
+				| "Psychology"
+				| "Romance"
+				| "Sci-Fi"
+				| "Science"
+				| "Spiritual"
+				| "Thriller"
+				| "Travel"
+				| "True Crime"
+				| "DIY"
+				| "Dystopian"
+				| "Mystery"
+				| "Women’s Fiction"
+				| "Business"
+				| "Career"
+				| "LGBTQ+"
+				| "Contemporary Fiction"
+				| "Graphic Novel"
+				| "Magical Realism"
+				| "Short Story"
+				| "Young Adult"
+				| "Children’s"
+				| "New Adult"
+				| "Memoir & Autobiography"
+				| "Food & Drink"
+				| "Self-Help"
+				| "Humor"
+				| "Essays"
+			>
+		>;
+	};
 
 	/**
-	 * Cover — `img`
+	 * Cover — `thumbnail`
 	 *
 	 *
 	 */
-	cover: Img;
+	cover: Thumbnail;
 
 	/**
 	 * Notes — `contentMin`
@@ -514,10 +707,8 @@ export type Book = {
 	content?: ContentMin;
 };
 
-export type Theme = "yellow" | "green" | "blue" | "none";
-
-export type Cta = {
-	_type: "cta";
+export type InlineCta = {
+	_type: "inline_cta";
 	/**
 	 * Title — `string`
 	 *
@@ -547,42 +738,8 @@ export type Cta = {
 	url: string;
 };
 
-export type Button = {
-	_type: "button";
-	/**
-	 * Button Label — `string`
-	 *
-	 *
-	 */
-	label: string;
-
-	/**
-	 * URL — `url`
-	 *
-	 *
-	 */
-	url: string;
-};
-
-export type Gallery = {
-	_type: "gallery";
-	/**
-	 * Gallery Title — `string`
-	 *
-	 *
-	 */
-	title: string;
-
-	/**
-	 * Images — `array`
-	 *
-	 *
-	 */
-	images?: Array<SanityKeyed<Img>>;
-};
-
-export type Video = {
-	_type: "video";
+export type InlineVideo = {
+	_type: "inline_video";
 	/**
 	 * URL — `url`
 	 *
@@ -619,8 +776,8 @@ export type Video = {
 	hasControls?: boolean;
 };
 
-export type Highlight = {
-	_type: "highlight";
+export type NavigationGroup = {
+	_type: "navigation_group";
 	/**
 	 * Title — `string`
 	 *
@@ -629,234 +786,22 @@ export type Highlight = {
 	title: string;
 
 	/**
-	 * theme — `theme`
+	 * Target article — `reference`
 	 *
 	 *
 	 */
-	theme?: Theme;
+	target?: SanityReference<Article>;
 
 	/**
-	 * Type — `string`
+	 * Links — `array`
 	 *
 	 *
 	 */
-	type: "fill" | "outline";
-
-	/**
-	 * Content — `contentMin`
-	 *
-	 *
-	 */
-	content?: ContentMin;
+	links: Array<SanityKeyed<NavigationLinkInternal> | SanityKeyed<NavigationLinkExternal>>;
 };
 
-export type Richtext = Array<
-	| SanityKeyed<SanityBlock>
-	| SanityKeyed<Highlight>
-	| SanityKeyed<Gallery>
-	| SanityKeyed<Img>
-	| SanityKeyed<Book>
-	| SanityKeyed<Video>
-	| SanityKeyed<People>
-	| SanityKeyed<Products>
-	| SanityKeyed<Cta>
->;
-
-export type ContentMin = Array<SanityKeyed<SanityBlock>>;
-
-export type Metadata = {
-	_type: "metadata";
-	/**
-	 * Page Type — `string`
-	 *
-	 * What is the primary content type for this page? If you included Profile / Book / Product blocks, the metadata will automaticallly be added for them.
-	 */
-	type: "website" | "article" | "profile" | "book";
-
-	/**
-	 * Publish Date — `datetime`
-	 *
-	 * This will be avalible but hidden on the site until after this date.
-	 */
-	publishAt: string;
-
-	/**
-	 * Page Label — `string`
-	 *
-	 * This should be very short as it appears in the browser tab.
-	 */
-	title: string;
-
-	/**
-	 * Page Title — `string`
-	 *
-	 * This is the main title people see on social media and search engines.
-	 */
-	headline: string;
-
-	/**
-	 * Description — `text`
-	 *
-	 *
-	 */
-	description?: string;
-
-	/**
-	 * Tags — `array`
-	 *
-	 *
-	 */
-	tags?: Array<SanityKeyed<string>>;
-
-	/**
-	 * Images — `array`
-	 *
-	 * The first image is used on the site, the rest are used for social media sites that support galleries.
-	 */
-	thumbnails: Array<SanityKeyed<Img>>;
-
-	/**
-	 * Hidden — `boolean`
-	 *
-	 * This will be hidden from discovery throughout the site. Bots, and people with the URL will still be able to access it.
-	 */
-	hidden: boolean;
-
-	/**
-	 * No follow — `boolean`
-	 *
-	 * Tells search engines to not use this page for ranking calculations.
-	 */
-	nofollow: boolean;
-
-	/**
-	 * No Index — `boolean`
-	 *
-	 * Tells search engines to not crawl this page.
-	 */
-	noindex: boolean;
-};
-
-export type Platform = {
-	_type: "platform";
-	/**
-	 * Name — `string`
-	 *
-	 *
-	 */
-	name:
-		| "twitter"
-		| "instagram"
-		| "youtube"
-		| "facebook"
-		| "reddit"
-		| "discord"
-		| "tiktok"
-		| "etsy"
-		| "pinterest"
-		| "website";
-
-	/**
-	 * Link — `url`
-	 *
-	 *
-	 */
-	link: string;
-};
-
-export type Notice = {
-	_type: "notice";
-	/**
-	 * Label — `string`
-	 *
-	 *
-	 */
-	label: string;
-
-	/**
-	 * theme — `theme`
-	 *
-	 *
-	 */
-	theme?: Theme;
-};
-
-export type Cost = {
-	_type: "cost";
-	/**
-	 * Amount — `number`
-	 *
-	 *
-	 */
-	amount: number;
-
-	/**
-	 * Currency — `string`
-	 *
-	 *
-	 */
-	currency: "USD" | "GBP" | "EUR";
-};
-
-export type Genre = {
-	_type: "genre";
-	/**
-	 * Type — `string`
-	 *
-	 *
-	 */
-	type: "Fiction" | "Non Fiction";
-
-	/**
-	 * Category — `array`
-	 *
-	 *
-	 */
-	category: Array<
-		SanityKeyed<
-			| "Biography"
-			| "Cooking"
-			| "Fantasy"
-			| "Historical Fiction"
-			| "History"
-			| "Horror"
-			| "LGBT"
-			| "Literary Fiction"
-			| "Memoir"
-			| "Politics"
-			| "Psychology"
-			| "Romance"
-			| "Sci-Fi"
-			| "Science"
-			| "Spiritual"
-			| "Thriller"
-			| "Travel"
-			| "True Crime"
-			| "DIY"
-			| "Dystopian"
-			| "Mystery"
-			| "Women’s Fiction"
-			| "Business"
-			| "Career"
-			| "LGBTQ+"
-			| "Contemporary Fiction"
-			| "Graphic Novel"
-			| "Magical Realism"
-			| "Short Story"
-			| "Young Adult"
-			| "Children’s"
-			| "New Adult"
-			| "Memoir & Autobiography"
-			| "Food & Drink"
-			| "Self-Help"
-			| "Humor"
-			| "Essays"
-		>
-	>;
-};
-
-export type Biography = {
-	_type: "biography";
+export type NavigationLinkExternal = {
+	_type: "navigation_link_external";
 	/**
 	 * Title — `string`
 	 *
@@ -865,46 +810,66 @@ export type Biography = {
 	title: string;
 
 	/**
-	 * Description — `text`
+	 * Icon — `iconPicker`
 	 *
 	 *
 	 */
-	description: string;
+	icon?: IconPicker;
 
 	/**
-	 * Photo — `img`
+	 * URL — `url`
 	 *
 	 *
 	 */
-	photo: Img;
+	href: string;
 };
 
-export type Img = {
-	_type: "img";
-	asset: SanityAsset;
-	crop?: SanityImageCrop;
-	hotspot?: SanityImageHotspot;
-
+export type NavigationLinkInternal = {
+	_type: "navigation_link_internal";
 	/**
-	 * Alternate Text — `string`
-	 *
-	 * Descripe this image as if someone couldn't see it.
-	 */
-	alt?: string;
-
-	/**
-	 * Inline — `string`
+	 * Title — `string`
 	 *
 	 *
 	 */
-	float?: "none" | "left" | "right";
+	title: string;
 
 	/**
-	 * Max Width — `string`
+	 * Icon — `iconPicker`
 	 *
-	 * Restrict the width of the image. This is useful if you want to force a larger image to sit inline next to text.
+	 *
 	 */
-	maxWidth?: "none" | "large" | "medium" | "small";
+	icon?: IconPicker;
+
+	/**
+	 * Page — `reference`
+	 *
+	 *
+	 */
+	page: SanityReference<Article | Collection | Linkpage | Person | Homepage>;
 };
 
-export type Documents = Topic | Collection | Article | Author | Homepage | Settings;
+export type Documents = Collection | Article | Linkpage | Person | Homepage | Settings;
+
+/**
+ * This interface is a stub. It was referenced in your sanity schema but
+ * the definition was not actually found. Future versions of
+ * sanity-codegen will let you type this explicity.
+ */
+export interface Tag {
+	label: "Hooks";
+	value: "Hooks";
+}
+
+export type Tags = Tag[];
+
+/**
+ * This interface is a stub. It was referenced in your sanity schema but
+ * the definition was not actually found. Future versions of
+ * sanity-codegen will let you type this explicity.
+ */
+export interface IconPicker {
+	_type: "iconPicker";
+	name: string;
+	provider: "fa" | "hi";
+	_updatedAt?: string;
+}

@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSettings } from "@lib/providers/settings";
 import { GlobalMenuItem, GlobalMenuToggle } from "../global-menu-item";
+import { handleMenuLink } from "./util";
 
 export const GlobalMenuList = (): React.ReactElement => {
-	const { menu } = useSettings();
+	const { navigation_menu, navigation_pinned } = useSettings();
 	const router = useRouter();
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -28,14 +29,18 @@ export const GlobalMenuList = (): React.ReactElement => {
 			<div className={style.spacer} />
 
 			<ul className={style.menu} data-state={handleStyleState(isOpen)}>
-				{menu.links.map((props) => (
-					<li key={props.label + props.href}>
-						<GlobalMenuItem {...props} />
-					</li>
-				))}
+				{navigation_menu.map((props) => {
+					return (
+						<li key={props._key}>
+							<GlobalMenuItem {...handleMenuLink(props)} />
+						</li>
+					);
+				})}
 			</ul>
 
-			{menu.pinned && <GlobalMenuItem {...menu.pinned} />}
+			{navigation_pinned.map((props) => {
+				return <GlobalMenuItem key={props._key} {...handleMenuLink(props)} />;
+			})}
 		</div>
 	);
 };

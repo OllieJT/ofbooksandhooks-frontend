@@ -8,6 +8,7 @@ export interface GlobalMenuItemProps {
 	label: string;
 	href?: string;
 	icon?: React.ReactNode;
+	isExternal?: boolean;
 }
 export const GlobalMenuItem = (props: GlobalMenuItemProps): React.ReactElement => {
 	const router = useRouter();
@@ -16,8 +17,6 @@ export const GlobalMenuItem = (props: GlobalMenuItemProps): React.ReactElement =
 		switch (page) {
 			case link:
 				return true;
-			case "/":
-				return link === "/articles" ? true : false;
 			default:
 				return false;
 		}
@@ -33,7 +32,11 @@ export const GlobalMenuItem = (props: GlobalMenuItemProps): React.ReactElement =
 
 	return props.href ? (
 		<Link href={props.href} passHref>
-			<a className={style.link} data-state={linkState}>
+			<a
+				className={style.link}
+				data-state={linkState}
+				target={props.isExternal ? "_blank" : undefined}
+			>
 				{inner}
 			</a>
 		</Link>
