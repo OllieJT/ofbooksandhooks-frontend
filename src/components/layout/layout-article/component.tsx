@@ -17,8 +17,6 @@ interface Props {
 }
 
 export const ArticlePageLayout = ({ children, image, date, author, tags, title }: Props) => {
-	console.log(author);
-
 	const dateTag: TagProps = {
 		label: handleDate(date),
 		value: date.toISOString(),

@@ -23,7 +23,6 @@ export const HomePage = ({ articles }: Props): React.ReactElement => {
 			<NextSeo title="Articles" />
 			<LayoutSidebar>
 				{handleFetch.data?.pages.map(({ data, page }) => {
-					console.log({ data });
 					return (
 						<Feed
 							key={"articles-page" + page}

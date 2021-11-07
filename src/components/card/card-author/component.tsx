@@ -8,7 +8,6 @@ export const CardAuthor = (props: Person) => {
 	const name = [props.nameFirst, props.nameLast].join(" ");
 	const avatarUrl = props.avatar && urlFor(props.avatar).maxWidth(240).maxHeight(240).url();
 
-	console.log({ avatar: props.avatar, avatarUrl });
 	return (
 		<article className={style.container}>
 			{avatarUrl && (

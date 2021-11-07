@@ -35,8 +35,6 @@ export const Feed = ({ items, columns = FeedColumns.Three }: Props) => {
 	const classNames = [style.list, articleListColumnStyle(columns)].join(" ");
 	let href = "";
 
-	console.log({ items });
-
 	return (
 		<ul className={classNames}>
 			{items.map((item) => {

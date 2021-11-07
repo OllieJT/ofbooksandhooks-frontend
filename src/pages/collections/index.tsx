@@ -28,7 +28,6 @@ export const AllCollectionsPage = ({ collections }: Props): React.ReactElement =
 				<HeaderPage title="All Collections" />
 
 				{handleFetch.data?.pages.map(({ data, page }) => {
-					console.log({ data });
 					return (
 						<Feed
 							key={"collections" + page}

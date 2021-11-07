@@ -79,7 +79,6 @@ export const serializers = {
 					slug: "",
 				})}
 			>
-				{console.log({ mark: mark.reference })}
 				{children}
 			</MarkLink>
 		),
