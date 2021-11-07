@@ -25,7 +25,7 @@ import { BlockImage } from "../block-img";
 export const serializers = {
 	types: {
 		//block: BlockRenderer,
-		book: ({ node }: SerializerBlock_Book) => (
+		inline_book: ({ node }: SerializerBlock_Book) => (
 			<BlockBook
 				title={node.title}
 				type={node.type}
@@ -42,7 +42,7 @@ export const serializers = {
 				subtitle={node.subtitle}
 			/>
 		),
-		highlight: ({ node }: SerializerBlock_Highlight) => (
+		inline_highlight: ({ node }: SerializerBlock_Highlight) => (
 			<BlockHighlight
 				content={node.content}
 				title={node.title}
@@ -50,14 +50,14 @@ export const serializers = {
 				type={node.type}
 			/>
 		),
-		gallery: ({ node }: SerializerBlock_Gallery) => (
+		inline_gallery: ({ node }: SerializerBlock_Gallery) => (
 			<BlockGallery title={node.title} images={node.images} />
 		),
-		img: ({ node }: SerializerBlock_Image) => <BlockImage img={node} />,
-		people: ({ node }: SerializerBlock_People) => (
+		inline_image: ({ node }: SerializerBlock_Image) => <BlockImage img={node} />,
+		inline_people: ({ node }: SerializerBlock_People) => (
 			<BlockPeople title={node.title} people={node.people} />
 		),
-		video: ({ node }: SerializerBlock_Video) => (
+		inline_video: ({ node }: SerializerBlock_Video) => (
 			<BlockVideo
 				href={node.href}
 				hasControls={node.hasControls}
@@ -66,7 +66,7 @@ export const serializers = {
 				isMuted={node.isMuted}
 			/>
 		),
-		cta: ({ node }: SerializerBlock_Cta) => (
+		inline_cta: ({ node }: SerializerBlock_Cta) => (
 			<BlockCta title={node.title} size={node.size} url={node.url} label={node.label} />
 		),
 	},

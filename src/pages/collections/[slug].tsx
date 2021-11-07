@@ -22,7 +22,13 @@ interface Props {
 export const CollectionPage = ({ data, preview }: Props): React.ReactElement => {
 	const router = useRouter();
 	const slug = data?.slug;
-	const subtitle = data.tags?.map((tag) => tag.label).join(", ");
+	let subtitle = "Collection";
+
+	if (data?.tags && data.tags.length >= 1) {
+		console.count("WE HAVE TAGS");
+		subtitle = data.tags.map((tag) => tag.label).join(", ");
+		console.count(subtitle);
+	}
 
 	if (!router.isFallback && !slug) {
 		return <ErrorPage statusCode={404} />;
@@ -74,11 +80,7 @@ export const CollectionPage = ({ data, preview }: Props): React.ReactElement => 
 			/>
 
 			<LayoutSimple>
-				<HeaderPage
-					title={data.title}
-					subtitle={subtitle ?? "Collection"}
-					theme={data.theme}
-				/>
+				<HeaderPage title={data.title} subtitle={subtitle} theme={data.theme} />
 				<Feed items={data.articles} columns={FeedColumns.Three} />
 			</LayoutSimple>
 		</>
