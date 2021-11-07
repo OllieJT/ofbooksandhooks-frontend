@@ -1,12 +1,12 @@
 import { handleSanityImageFixed } from "@lib/utility/handle-sanity-image";
 import style from "./styles.module.scss";
 import { slugify } from "@lib/utility";
-import type { Img } from "@lib/groq";
+import type { Thumbnail } from "@lib/groq";
 import Image from "next/image";
 
 interface Props {
 	title: string;
-	images?: Img[];
+	images?: Thumbnail[];
 }
 
 export const BlockGallery = ({ title, images = [] }: Props) => {

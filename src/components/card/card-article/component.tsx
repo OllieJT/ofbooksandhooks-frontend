@@ -4,15 +4,14 @@ import Link from "next/link";
 import style from "./styles.module.scss";
 import Image from "next/image";
 import { handleDate } from "@lib/utility";
-import type { Img } from "@lib/groq";
 import { CardDetails } from "../common/card-details";
+import type { Thumbnail } from "@lib/groq";
 
 export interface CardArticleProps {
-	href: string;
 	title: string;
+	href: string;
 	date: Date;
-
-	image?: Img;
+	image?: Thumbnail;
 	tags?: string[];
 	theme?: ThemeClass;
 }
@@ -22,6 +21,7 @@ export const CardArticle = ({ image, theme, href, date, title, tags }: CardArtic
 	const articleImage =
 		image && handleSanityImageFixed({ asset: image, width: 400, height: 400 });
 	const articleDate = handleDate(date);
+
 	return (
 		<Link href={href} passHref>
 			<a className={classNames}>

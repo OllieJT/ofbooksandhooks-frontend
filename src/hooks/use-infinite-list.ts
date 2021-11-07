@@ -14,7 +14,7 @@ interface Props<Type> {
 	initialData?: Type;
 }
 
-export const fetchArticleList = <T>({ id, fetchDocs, initialData }: Props<T>) => {
+export const useInfiniteList = <T>({ id, fetchDocs, initialData }: Props<T>) => {
 	const {
 		refetch,
 

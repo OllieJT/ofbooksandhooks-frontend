@@ -3,38 +3,31 @@ import ErrorPage from "next/error";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 //import { Loading } from "@components/loading";
-import { getArticlePage, getArticlePagePaths, GroqArticlePage, groqArticlePageQuery } from "@lib/groq/article-page";
+import {
+	getArticlePage,
+	getArticlePagePaths,
+	GroqArticlePage,
+	groqArticlePageQuery,
+} from "@lib/groq/article-page";
 import { ArticlePageLayout } from "@components/layout/layout-article";
 import { urlFor, useCurrentUser, usePreviewSubscription } from "@lib/sanity";
 import { NextSeo } from "next-seo";
 import { resolveUrl } from "@lib/utility/resolve-url";
 import { handleSanityImageFixed } from "@lib/utility/handle-sanity-image";
 import type { TagProps } from "@components/common/tag";
-import { RecommendedContent } from "@components/common/recommended-content";
 import { RichText } from "@components/common/rich-text";
 import { PortableText } from "@components/portabletext";
+import { resolveName } from "@lib/utility/resolve-name";
+import { slugify } from "@lib/utility";
 
 interface Props {
 	preview: boolean;
 	data?: GroqArticlePage;
 }
 
-export const getStaticProps: GetStaticProps = async ({ params, preview = false }) => {
-	const slug = (params?.slug as string) || "";
-	const data = await getArticlePage(slug, preview);
-
-	return {
-		props: {
-			preview,
-			data,
-		},
-		revalidate: 1,
-	};
-};
-
 export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 	const router = useRouter();
-	const slug = data?.slug.current;
+	const slug = data?.slug;
 	const currentUser = useCurrentUser();
 
 	const {
@@ -69,16 +62,17 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 
 	//todo: use content blocks to populate <NextSeo/>
 
-	const headerImage = post.thumbnail?.asset && handleSanityImageFixed({ asset: post.thumbnail, width: 1920, height: 720 });
+	const headerImage =
+		post.thumbnail?.asset &&
+		handleSanityImageFixed({ asset: post.thumbnail, width: 1920, height: 720 });
 
-	const topicTags: TagProps[] =
-		post.topics?.map(({ title, slug, _type }) => ({
-			label: title,
-			linkTo: resolveUrl({
-				slug: slug?.current,
-				type: _type,
-			}),
-		})) || [];
+	const topicTags: TagProps[] = (post.tags ?? []).map((tag) => ({
+		...tag,
+		href: resolveUrl({
+			slug: slugify(tag.label),
+			type: "tag",
+		}),
+	}));
 
 	return (
 		<>
@@ -90,19 +84,26 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 					title: post.metadata.headline,
 					description: post.metadata.description,
 					url: resolveUrl({
-						slug: post.slug.current,
+						slug: post.slug,
 						type: post._type,
 						isAbsolute: true,
 					}),
 
 					article: {
-						publishedTime: new Date(post.metadata.publishAt || post._createdAt).toISOString(),
+						publishedTime: new Date(
+							post.metadata.publishAt || post._createdAt,
+						).toISOString(),
 						modifiedTime: new Date(post._updatedAt).toISOString(),
 						section: "",
-						tags: post.metadata.tags,
+						tags: post.tags?.map((tag) => tag.label),
 					},
 					images: post.metadata.thumbnails?.map((img) => {
-						const imgUrl = urlFor(img).auto("format").width(400).height(400).quality(70).url();
+						const imgUrl = urlFor(img)
+							.auto("format")
+							.width(400)
+							.height(400)
+							.quality(70)
+							.url();
 
 						return {
 							url: imgUrl || "",
@@ -111,28 +112,41 @@ export const ArticlePage = ({ data, preview }: Props): React.ReactElement => {
 						};
 					}),
 				}}
-				noindex={post.metadata.noindex || false}
-				nofollow={post.metadata.nofollow || false}
 			/>
 
 			<ArticlePageLayout
 				title={post.title}
 				image={headerImage}
 				date={new Date(post.metadata.publishAt || post._createdAt)}
-				authorLink={resolveUrl({
-					slug: post.author.slug?.current,
-					type: post.author._type,
-				})}
-				authorName={post.author.name}
+				author={{
+					name: resolveName(post.author),
+					href: resolveUrl({
+						slug: post.author.slug?.current,
+						type: post.author._type,
+					}),
+				}}
 				tags={topicTags}
 			>
 				<RichText>
 					<PortableText blocks={post.content} />
 				</RichText>
-				<RecommendedContent recommendations={post.recommended} />
+				{/* <RecommendedContent recommendations={post.recommended} /> */}
 			</ArticlePageLayout>
 		</>
 	);
+};
+
+export const getStaticProps: GetStaticProps = async ({ params, preview = false }) => {
+	const slug = (params?.slug as string) || "";
+	const data = await getArticlePage(slug, preview);
+
+	return {
+		props: {
+			preview,
+			data,
+		},
+		revalidate: 1,
+	};
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

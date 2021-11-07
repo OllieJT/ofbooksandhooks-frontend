@@ -1,13 +1,12 @@
 import { NextSeo } from "next-seo";
 import type { GetStaticProps } from "next";
-import { groqCollectionList, GroqCollectionList } from "@lib/groq/collection-list/groq";
-import { fetchArticleList } from "../../hooks/fetch-infinite-list";
+import { groqCollectionList, GroqCollectionList } from "@lib/groq/collection-list";
 import { ButtonText } from "@components/button/button-text";
 import { getCollectionList } from "@lib/groq/collection-list";
 import { LayoutSimple } from "@components/layout/layout-simple";
-import { PageHeader } from "@components/common/page-header";
-import { handleFeedCollections } from "@lib/utility/handle-feed-collections";
+import { HeaderPage } from "@components/header/header-page";
 import { Feed, FeedColumns } from "@components/common/feed";
+import { useInfiniteList } from "@hooks/use-infinite-list";
 
 interface Props {
 	preview: boolean;
@@ -16,7 +15,7 @@ interface Props {
 }
 
 export const AllCollectionsPage = ({ collections }: Props): React.ReactElement => {
-	const handleFetch = fetchArticleList({
+	const handleFetch = useInfiniteList({
 		id: "collections-list",
 		fetchDocs: groqCollectionList,
 		initialData: collections,
@@ -26,13 +25,14 @@ export const AllCollectionsPage = ({ collections }: Props): React.ReactElement =
 		<>
 			<NextSeo title="Articles" />
 			<LayoutSimple>
-				<PageHeader title="All Collections" />
+				<HeaderPage title="All Collections" />
 
 				{handleFetch.data?.pages.map(({ data, page }) => {
+					console.log({ data });
 					return (
 						<Feed
 							key={"collections" + page}
-							items={handleFeedCollections(data)}
+							items={data}
 							columns={FeedColumns.Three}
 						/>
 					);

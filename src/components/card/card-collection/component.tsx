@@ -13,7 +13,8 @@ export interface CardCollectionProps {
 	href: string;
 	title: string;
 	subtitle?: string;
-	articles: CardCollectionArticleProps[];
+	//articles: CardCollectionArticleProps[];
+	articles: string[];
 
 	theme?: ThemeClass;
 }
@@ -30,6 +31,11 @@ export const CardCollection = (props: CardCollectionProps) => {
 
 				<ul className={style.articles}>
 					{props.articles.map((article) => (
+						<li key={article}>
+							<CardDetails title={article} size="small" />
+						</li>
+					))}
+					{/* {props.articles.map((article) => (
 						<li key={article.key}>
 							<CardDetails
 								title={article.title}
@@ -37,7 +43,7 @@ export const CardCollection = (props: CardCollectionProps) => {
 								size="small"
 							/>
 						</li>
-					))}
+					))} */}
 				</ul>
 			</a>
 		</Link>

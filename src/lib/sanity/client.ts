@@ -3,7 +3,7 @@ import {
 	createPreviewSubscriptionHook,
 	createCurrentUserHook,
 } from "next-sanity";
-import { Img } from "../groq/models";
+import type { Thumbnail, InlineImage } from "@lib/groq";
 import { sanityConfig } from "./config";
 
 /**
@@ -11,7 +11,8 @@ import { sanityConfig } from "./config";
  * Read more: https://www.sanity.io/docs/image-url
  **/
 export const imageBuilder = createImageUrlBuilder(sanityConfig);
-export const urlFor = (source: Img) => imageBuilder.image(source).auto("format");
+export const urlFor = (source: Thumbnail | InlineImage) =>
+	imageBuilder.image(source).auto("format");
 
 // Set up the live preview subsscription hook
 export const usePreviewSubscription = createPreviewSubscriptionHook({

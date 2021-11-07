@@ -4,6 +4,8 @@ import type * as Schema from "@lib/groq/models/schema";
 import flatten from "just-flatten-it";
 import unique from "just-unique";
 import type { MenuLink } from ".";
+import { slugify } from "@lib/utility";
+import type { TagProps } from "@components/common/tag";
 
 type FetchSettings = Omit<
 	Schema.Settings,
@@ -15,7 +17,7 @@ type FetchSettings = Omit<
 	tags: Schema.Tags[];
 };
 export type GroqSettings = Omit<FetchSettings, "tags"> & {
-	tags: Schema.Tags;
+	tags: TagProps[];
 };
 
 export const getSettings = async (preview = false) => {
@@ -33,7 +35,18 @@ export const getSettings = async (preview = false) => {
 		{},
 	);
 
-	const tags = settings.tags ? flatten(settings.tags) : [];
+	const flattenedTags = settings.tags && flatten(settings.tags);
+	const uniqueTags = flattenedTags.reduce((prev, current) => {
+		const exists = prev.find((x) => x.value === current.value);
+		if (exists) return prev;
+		return [...prev, current];
+	}, [] as Schema.Tag[]);
+
+	const tags: TagProps[] = uniqueTags.map((tag) => ({
+		label: tag.label,
+		value: tag.value,
+		href: "/tag/" + slugify(tag.value),
+	}));
 
 	const Output: GroqSettings = {
 		...settings,

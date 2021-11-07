@@ -1,6 +1,6 @@
 import style from "./styles.module.scss";
-import { TagList, TagProps } from "../tag";
-import { handleThemeClass, handleThemeColor } from "@lib/utility/handle-theme-color";
+import { TagList, TagProps } from "../../common/tag";
+import { handleThemeClass } from "@lib/utility/handle-theme-color";
 import type { Theme } from "@lib/groq";
 
 export interface TitleProps {
@@ -10,7 +10,7 @@ export interface TitleProps {
 	theme?: Theme;
 }
 
-export const PageHeader = ({ title, subtitle, tags, theme }: TitleProps) => {
+export const HeaderPage = ({ title, subtitle, tags, theme }: TitleProps) => {
 	const allTags = tags?.filter((x) => !!x);
 	const themeClass = handleThemeClass(handleThemeClass(theme));
 

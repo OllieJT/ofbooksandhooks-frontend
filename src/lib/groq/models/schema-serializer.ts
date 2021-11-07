@@ -1,14 +1,14 @@
-import {
-	Book,
-	Cta,
-	Gallery,
-	Highlight,
-	Img,
+import type {
 	LinkExternal,
 	LinkInternal,
-	People,
-	Products,
-	Video,
+	//Products,
+	InlineBook,
+	InlineCta,
+	InlineGallery,
+	InlineHighlight,
+	InlineImage,
+	InlinePeople,
+	InlineVideo,
 } from "./schema";
 
 interface PortableTextType<T> {
@@ -37,14 +37,13 @@ export type SerializerBlock_Block = PortableTextType<{
 	_key: string;
 	_type: "block";
 }>;
-export type SerializerBlock_Book = PortableTextType<Book>;
-export type SerializerBlock_Gallery = PortableTextType<Gallery>;
-export type SerializerBlock_Image = PortableTextType<Img>;
-export type SerializerBlock_Highlight = PortableTextType<Highlight>;
-export type SerializerBlock_People = PortableTextType<People>;
-export type SerializerBlock_Products = PortableTextType<Products>;
-export type SerializerBlock_Video = PortableTextType<Video>;
-export type SerializerBlock_Cta = PortableTextType<Cta>;
+export type SerializerBlock_Book = PortableTextType<InlineBook>;
+export type SerializerBlock_Gallery = PortableTextType<InlineGallery>;
+export type SerializerBlock_Image = PortableTextType<InlineImage>;
+export type SerializerBlock_Highlight = PortableTextType<InlineHighlight>;
+export type SerializerBlock_People = PortableTextType<InlinePeople>;
+export type SerializerBlock_Video = PortableTextType<InlineVideo>;
+export type SerializerBlock_Cta = PortableTextType<InlineCta>;
 
 export type SerializerMark_LinkInternal = PortableTextMark<LinkInternal>;
 export type SerializerMark_LinkExternal = PortableTextMark<LinkExternal>;

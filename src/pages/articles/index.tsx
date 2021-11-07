@@ -1,12 +1,9 @@
 import { NextSeo } from "next-seo";
 import type { GetStaticProps } from "next";
-import { SidebarTaxonomy } from "@components/common/sidebar";
-import { getArticleList, groqArticleList, GroqArticleList } from "../../lib/groq/article-list";
-import { fetchArticleList } from "../../hooks/fetch-infinite-list";
+import { getArticleList, groqArticleList, GroqArticleList } from "@lib/groq/article-list";
+import { useInfiniteList } from "@hooks/use-infinite-list";
 import { ButtonText } from "@components/button/button-text";
-import { LayoutSidebar } from "@components/layout/layout-sidebar";
 import { Feed, FeedColumns } from "@components/common/feed";
-import { handleFeedArticles } from "@lib/utility/handle-feed-articles";
 import { LayoutSimple } from "@components/layout/layout-simple";
 
 interface Props {
@@ -15,7 +12,7 @@ interface Props {
 }
 
 export const AllPostsPage = ({ articles }: Props): React.ReactElement => {
-	const handleFetch = fetchArticleList({
+	const handleFetch = useInfiniteList({
 		id: "article-list",
 		fetchDocs: groqArticleList,
 		initialData: articles,
@@ -29,7 +26,7 @@ export const AllPostsPage = ({ articles }: Props): React.ReactElement => {
 					return (
 						<Feed
 							key={"articles-page" + page}
-							items={handleFeedArticles(data)}
+							items={data}
 							columns={FeedColumns.Three}
 						/>
 					);

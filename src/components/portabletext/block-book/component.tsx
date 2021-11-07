@@ -2,7 +2,7 @@ import { handleSanityImageFixed } from "@lib/utility/handle-sanity-image";
 import { PortableText } from "..";
 import style from "./styles.module.scss";
 import Image from "next/image";
-import type { ContentMin, Genre, Img } from "@lib/groq";
+import type { ContentMin, Thumbnail } from "@lib/groq";
 
 interface Props {
 	title: string;
@@ -12,8 +12,11 @@ interface Props {
 	isbn?: string;
 	releaseDate?: string;
 	type: "Physical Book" | "Digital Book" | "Audio Book";
-	genre: Genre;
-	cover: Img;
+	genre: {
+		type: "Fiction" | "Non Fiction";
+		category: string[];
+	};
+	cover: Thumbnail;
 	content?: ContentMin;
 }
 

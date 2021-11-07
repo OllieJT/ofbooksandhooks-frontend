@@ -1,5 +1,6 @@
 import groq from "groq";
-import { GroqArticleCard, GroqCollectionCard } from "../models";
+import type { GroqArticleCard } from "../article-list";
+import type { GroqCollectionCard } from "../collection-list";
 import type * as Schema from "../models/schema";
 
 export type GroqHome_Block = GroqArticleCard | GroqCollectionCard;

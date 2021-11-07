@@ -1,10 +1,10 @@
-import type { Img } from "@lib/groq";
+import type { InlineImage } from "@lib/groq";
 import { handleSanityImageFixed, ImageFit } from "@lib/utility/handle-sanity-image";
 import style from "./styles.module.scss";
 import Image from "next/image";
 
 interface Props {
-	img: Img;
+	img: InlineImage;
 }
 
 /* TODO: handle constraints for inline images

@@ -1,5 +1,10 @@
-import { CardArticle, CardArticleProps } from "@components/card/card-article";
-import type { CardCollectionProps } from "@components/card/card-collection";
+import { CardArticle } from "@components/card/card-article";
+import { CardCollection } from "@components/card/card-collection";
+
+import type { GroqArticleCard } from "@lib/groq/article-list";
+import type { GroqCollectionCard } from "@lib/groq/collection-list";
+import { handleThemeClass } from "@lib/utility/handle-theme-color";
+import { resolveUrl } from "@lib/utility/resolve-url";
 import style from "./article-list.module.scss";
 
 export enum FeedColumns {
@@ -8,16 +13,7 @@ export enum FeedColumns {
 	Four,
 }
 
-interface FeedItemShape<Type, Props> {
-	key: string;
-	type: Type;
-	card: Props;
-}
-
-export type FeedItemArticle = FeedItemShape<"article", CardArticleProps>;
-export type FeedItemCollection = FeedItemShape<"collection", CardCollectionProps>;
-
-export type FeedItem = FeedItemArticle | FeedItemCollection;
+export type FeedItem = GroqArticleCard | GroqCollectionCard;
 
 interface Props {
 	items: FeedItem[];
@@ -37,14 +33,46 @@ const articleListColumnStyle = (columns: FeedColumns) => {
 
 export const Feed = ({ items, columns = FeedColumns.Three }: Props) => {
 	const classNames = [style.list, articleListColumnStyle(columns)].join(" ");
+	let href = "";
+
+	console.log({ items });
+
 	return (
 		<ul className={classNames}>
-			{items.map(({ key, type, card }) => {
-				switch (type) {
+			{items.map((item) => {
+				switch (item._type) {
 					case "article":
+						href = resolveUrl({ slug: item.slug, type: item._type });
+						const date = new Date(item.date);
+						const tags = item.tags.map((tag) => tag.label);
+
 						return (
-							<li key={key} className={style.item}>
-								<CardArticle {...card} />
+							<li key={item._id} className={style.item}>
+								<CardArticle
+									href={href}
+									title={item.title}
+									date={date}
+									image={item.thumbnail}
+									tags={tags}
+									// theme={item.theme}
+								/>
+							</li>
+						);
+						break;
+					case "collection":
+						href = resolveUrl({ slug: item.slug, type: item._type });
+						const subtitle = "";
+						const theme = handleThemeClass(item.theme);
+
+						return (
+							<li key={item._id} className={style.item}>
+								<CardCollection
+									href={href}
+									title={item.title}
+									subtitle={subtitle}
+									articles={item.articles}
+									theme={theme}
+								/>
 							</li>
 						);
 				}

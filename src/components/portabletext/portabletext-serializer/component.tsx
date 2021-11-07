@@ -2,7 +2,6 @@ import { BlockBook } from "../block-book";
 import { BlockHighlight } from "../block-highlight";
 import { BlockGallery } from "../block-gallery";
 import { BlockPeople } from "../block-people";
-import { BlockProducts } from "../block-products";
 import { BlockVideo } from "../block-video";
 import { MarkLink } from "../mark-link";
 //import { BlockRenderer } from "../portabletext-blockrenderer";
@@ -11,7 +10,6 @@ import type {
 	SerializerBlock_Gallery,
 	SerializerBlock_Highlight,
 	SerializerBlock_People,
-	SerializerBlock_Products,
 	SerializerBlock_Video,
 	SerializerMark_LinkInternal,
 	SerializerMark_LinkExternal,
@@ -33,7 +31,10 @@ export const serializers = {
 				type={node.type}
 				authors={node.authors}
 				cover={node.cover}
-				genre={node.genre}
+				genre={{
+					category: node.genre.category,
+					type: node.genre.type,
+				}}
 				content={node.content}
 				isbn={node.isbn}
 				narrators={node.narrators}
@@ -56,9 +57,6 @@ export const serializers = {
 		people: ({ node }: SerializerBlock_People) => (
 			<BlockPeople title={node.title} people={node.people} />
 		),
-		products: ({ node }: SerializerBlock_Products) => (
-			<BlockProducts title={node.title} products={node.products} />
-		),
 		video: ({ node }: SerializerBlock_Video) => (
 			<BlockVideo
 				href={node.href}
@@ -76,6 +74,7 @@ export const serializers = {
 		linkInternal: ({ children, mark }: SerializerMark_LinkInternal) => (
 			<MarkLink
 				url={resolveUrl({
+					//@ts-ignore
 					type: mark.reference._type,
 					slug: "",
 				})}

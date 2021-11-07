@@ -5,22 +5,23 @@ import type { ThemeClass } from "@lib/utility/handle-theme-color";
 
 export interface TagProps {
 	label: string;
-	linkTo?: string;
-	isExternal?: boolean;
+	value: string;
+	href?: string;
 	theme?: ThemeClass;
 }
 
-export const Tag = ({ label, linkTo, theme = "theme-green", isExternal }: TagProps) => {
+export const Tag = (props: TagProps) => {
+	const classNames = [style.container, props.theme].join(" ");
+	//console.log(props);
+
 	return (
-		<p className={`${style.container} ${theme}`}>
-			{!!linkTo ? (
-				<Link href={linkTo} passHref>
-					<a className={style.inner} target={isExternal ? "_blank" : ""}>
-						{label}
-					</a>
+		<p className={classNames}>
+			{!!props.href ? (
+				<Link href={props.href} passHref>
+					<a className={style.inner}>{props.label}</a>
 				</Link>
 			) : (
-				<span className={style.inner}>{label}</span>
+				<span className={style.inner}>{props.label}</span>
 			)}
 		</p>
 	);

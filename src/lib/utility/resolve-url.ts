@@ -5,7 +5,7 @@ export type LinkablePage = unknown & {
 
 interface Props {
 	slug: string | null;
-	type: "collection" | "article" | "linkpage" | "person" | "homepage" | "settings";
+	type: "collection" | "article" | "linkpage" | "person" | "homepage" | "settings" | "tag";
 	isAbsolute?: boolean;
 }
 

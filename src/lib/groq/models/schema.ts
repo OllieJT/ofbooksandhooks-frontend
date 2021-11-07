@@ -856,8 +856,8 @@ export type Documents = Collection | Article | Linkpage | Person | Homepage | Se
  * sanity-codegen will let you type this explicity.
  */
 export interface Tag {
-	label: "Hooks";
-	value: "Hooks";
+	label: string;
+	value: string;
 }
 
 export type Tags = Tag[];

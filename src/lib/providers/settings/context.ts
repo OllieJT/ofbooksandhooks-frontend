@@ -8,8 +8,8 @@ import type {
 	NavigationLinkInternal,
 	Person,
 	SanityKeyed,
-	Tags,
 } from "@lib/groq";
+import type { TagProps } from "@components/common/tag";
 
 type LinkInternal = Omit<NavigationLinkInternal, "page"> & {
 	page: Article | Collection | Linkpage | Person | Homepage;
@@ -21,7 +21,7 @@ export interface SettingsContextProps {
 	profile?: Person;
 	navigation_pinned: MenuLink[];
 	navigation_menu: MenuLink[];
-	tags: Tags;
+	tags: TagProps[];
 }
 
 export const SettingsContext = createContext<SettingsContextProps>({

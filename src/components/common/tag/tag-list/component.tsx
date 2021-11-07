@@ -16,9 +16,9 @@ export const TagList = ({ title, tags }: TagListProps) => {
 			)}
 
 			<ul className={style.list}>
-				{tags.map(({ label, linkTo, isExternal, theme }) => (
-					<li className={style.item} key={label + linkTo}>
-						<Tag label={label} linkTo={linkTo} theme={theme} isExternal={isExternal} />
+				{tags.map((tag) => (
+					<li className={style.item} key={tag.href + tag.label}>
+						<Tag {...tag} />
 					</li>
 				))}
 			</ul>

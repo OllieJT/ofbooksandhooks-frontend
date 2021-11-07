@@ -3,6 +3,7 @@ import style from "./styles.module.scss";
 import { slugify } from "@lib/utility";
 import type { Person } from "@lib/groq";
 import { CardProfile } from "@components/card/card-profile";
+import { resolveName } from "@lib/utility/resolve-name";
 interface Props {
 	title: string;
 	people: Person[];
@@ -11,24 +12,23 @@ interface Props {
 export const BlockPeople = ({ title, people = [] }: Props) => {
 	return (
 		<ul className={style.list} id={slugify(title)}>
-			{people.map(({ knownAs, name, photo, tags }) => {
+			{people.map((person) => {
 				const avatar =
-					photo &&
+					person.avatar &&
 					handleSanityImageFixed({
-						asset: photo,
+						asset: person.avatar,
 						width: 160,
 						height: 160,
 						fit: ImageFit.Min,
 					});
 
 				return (
-					<li key={knownAs + name} className={style.item}>
+					<li key={person._id} className={style.item}>
 						<CardProfile
-							name={name}
-							subtitle={knownAs}
-							tags={tags}
+							name={resolveName(person)}
+							subtitle={person.alias}
+							tags={person.tags}
 							avatar={avatar}
-							//link="/"
 						/>
 					</li>
 				);

@@ -5,33 +5,24 @@ import { useRouter } from "next/router";
 import { urlFor } from "../../lib/sanity";
 import { NextSeo } from "next-seo";
 import { resolveUrl } from "@lib/utility/resolve-url";
-import { getCollectionPagePaths, GroqCollectionPage, getCollectionPage } from "@lib/groq/collection-page";
-import { PageHeader } from "@components/common/page-header";
+import {
+	getCollectionPagePaths,
+	GroqCollectionPage,
+	getCollectionPage,
+} from "@lib/groq/collection-page";
+import { HeaderPage } from "@components/header/header-page";
 import { LayoutSimple } from "@components/layout/layout-simple";
 import { Feed, FeedColumns } from "@components/common/feed";
-import { handleFeedArticles } from "@lib/utility/handle-feed-articles";
 
 interface Props {
 	preview: boolean;
 	data: GroqCollectionPage;
 }
 
-export const getStaticProps: GetStaticProps = async ({ params, preview = false }) => {
-	const slug = (params?.slug as string) || "";
-	const data = await getCollectionPage(slug);
-
-	return {
-		props: {
-			preview,
-			data,
-		},
-		revalidate: 1,
-	};
-};
-
 export const CollectionPage = ({ data, preview }: Props): React.ReactElement => {
 	const router = useRouter();
-	const slug = data?.slug.current;
+	const slug = data?.slug;
+	const subtitle = data.tags?.map((tag) => tag.label).join(", ");
 
 	if (!router.isFallback && !slug) {
 		return <ErrorPage statusCode={404} />;
@@ -52,19 +43,26 @@ export const CollectionPage = ({ data, preview }: Props): React.ReactElement => 
 					title: data.metadata.headline,
 					description: data.metadata.description,
 					url: resolveUrl({
-						slug: data.slug.current,
+						slug: data.slug,
 						type: data._type,
 						isAbsolute: true,
 					}),
 
 					article: {
-						publishedTime: new Date(data.metadata.publishAt || data._createdAt).toISOString(),
+						publishedTime: new Date(
+							data.metadata.publishAt || data._createdAt,
+						).toISOString(),
 						modifiedTime: new Date(data._updatedAt).toISOString(),
 						section: "",
-						tags: data.metadata.tags,
+						tags: data.tags?.map((x) => x.label),
 					},
 					images: data.metadata.thumbnails?.map((img) => {
-						const imgUrl = urlFor(img).auto("format").width(400).height(400).quality(70).url();
+						const imgUrl = urlFor(img)
+							.auto("format")
+							.width(400)
+							.height(400)
+							.quality(70)
+							.url();
 
 						return {
 							url: imgUrl || "",
@@ -73,23 +71,38 @@ export const CollectionPage = ({ data, preview }: Props): React.ReactElement => 
 						};
 					}),
 				}}
-				noindex={data.metadata.noindex || false}
-				nofollow={data.metadata.nofollow || false}
 			/>
 
 			<LayoutSimple>
-				<PageHeader title={data.title} subtitle="Collection" theme={data.theme} />
-				<Feed items={handleFeedArticles(data.articles)} columns={FeedColumns.Three} />
+				<HeaderPage
+					title={data.title}
+					subtitle={subtitle ?? "Collection"}
+					theme={data.theme}
+				/>
+				<Feed items={data.articles} columns={FeedColumns.Three} />
 			</LayoutSimple>
 		</>
 	);
 };
 
+export const getStaticProps: GetStaticProps = async ({ params, preview = false }) => {
+	const slug = (params?.slug as string) || "";
+	const data = await getCollectionPage(slug);
+
+	return {
+		props: {
+			preview,
+			data,
+		},
+		revalidate: 1,
+	};
+};
+
 export const getStaticPaths: GetStaticPaths = async () => {
-	const allArticles = await getCollectionPagePaths();
+	const allCollections = await getCollectionPagePaths();
 	return {
 		paths:
-			allArticles.map((slug) => ({
+			allCollections.map((slug) => ({
 				params: {
 					slug,
 				},
