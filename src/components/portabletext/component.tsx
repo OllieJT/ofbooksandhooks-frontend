@@ -15,4 +15,14 @@ interface Props {
 	serializers: serializers,
 }); */
 
-export const PortableText = ({ blocks = [] }: Props) => <BlockContent className={style.container} blocks={blocks} serializers={serializers} dataset={process.env.NEXT_PUBLIC_SANITY_DATASET} projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID} imageOptions={{ w: 1280, h: 1280, fit: "clip" }} renderContainerOnSingleChild={false} />;
+export const PortableText = ({ blocks = [] }: Props) => (
+	<BlockContent
+		className={style.container}
+		blocks={blocks}
+		serializers={serializers}
+		dataset={process.env.NEXT_PUBLIC_SANITY_DATASET}
+		projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
+		imageOptions={{ w: 1280, h: 1280, fit: "clip" }}
+		renderContainerOnSingleChild={false}
+	/>
+);
