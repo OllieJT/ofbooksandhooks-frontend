@@ -1,17 +1,15 @@
-import { BlockBook } from "../portabletext-blocks-book";
-import { BlockHighlight } from "../portabletext-blocks-highlight";
-import { BlockGallery } from "../portabletext-blocks-gallery";
-import { BlockPeople } from "../portabletext-blocks-people";
-import { BlockProducts } from "../portabletext-blocks-products";
-import { BlockVideo } from "../portabletext-blocks-video";
-import { MarkLink } from "../portabletext-mark-link";
+import { BlockBook } from "../block-book";
+import { BlockHighlight } from "../block-highlight";
+import { BlockGallery } from "../block-gallery";
+import { BlockPeople } from "../block-people";
+import { BlockVideo } from "../block-video";
+import { MarkLink } from "../mark-link";
 //import { BlockRenderer } from "../portabletext-blockrenderer";
 import type {
 	SerializerBlock_Book,
 	SerializerBlock_Gallery,
 	SerializerBlock_Highlight,
 	SerializerBlock_People,
-	SerializerBlock_Products,
 	SerializerBlock_Video,
 	SerializerMark_LinkInternal,
 	SerializerMark_LinkExternal,
@@ -20,20 +18,23 @@ import type {
 	SerializerBlock_Image,
 } from "@lib/groq/models";
 import { resolveUrl } from "@lib/utility/resolve-url";
-import { handleThemeColor } from "@lib/utility/handle-theme-color";
-import { BlockCta } from "../portabletext-blocks-cta";
-import { BlockImage } from "../portabletext-blocks-img";
+import { handleThemeClass } from "@lib/utility/handle-theme-color";
+import { BlockCta } from "../block-cta";
+import { BlockImage } from "../block-img";
 
 export const serializers = {
 	types: {
 		//block: BlockRenderer,
-		book: ({ node }: SerializerBlock_Book) => (
+		inline_book: ({ node }: SerializerBlock_Book) => (
 			<BlockBook
 				title={node.title}
 				type={node.type}
 				authors={node.authors}
 				cover={node.cover}
-				genre={node.genre}
+				genre={{
+					category: node.genre.category,
+					type: node.genre.type,
+				}}
 				content={node.content}
 				isbn={node.isbn}
 				narrators={node.narrators}
@@ -41,25 +42,22 @@ export const serializers = {
 				subtitle={node.subtitle}
 			/>
 		),
-		highlight: ({ node }: SerializerBlock_Highlight) => (
+		inline_highlight: ({ node }: SerializerBlock_Highlight) => (
 			<BlockHighlight
 				content={node.content}
 				title={node.title}
-				theme={handleThemeColor(node.theme)}
+				theme={handleThemeClass(node.theme)}
 				type={node.type}
 			/>
 		),
-		gallery: ({ node }: SerializerBlock_Gallery) => (
+		inline_gallery: ({ node }: SerializerBlock_Gallery) => (
 			<BlockGallery title={node.title} images={node.images} />
 		),
-		img: ({ node }: SerializerBlock_Image) => <BlockImage img={node} />,
-		people: ({ node }: SerializerBlock_People) => (
+		inline_image: ({ node }: SerializerBlock_Image) => <BlockImage img={node} />,
+		inline_people: ({ node }: SerializerBlock_People) => (
 			<BlockPeople title={node.title} people={node.people} />
 		),
-		products: ({ node }: SerializerBlock_Products) => (
-			<BlockProducts title={node.title} products={node.products} />
-		),
-		video: ({ node }: SerializerBlock_Video) => (
+		inline_video: ({ node }: SerializerBlock_Video) => (
 			<BlockVideo
 				href={node.href}
 				hasControls={node.hasControls}
@@ -68,7 +66,7 @@ export const serializers = {
 				isMuted={node.isMuted}
 			/>
 		),
-		cta: ({ node }: SerializerBlock_Cta) => (
+		inline_cta: ({ node }: SerializerBlock_Cta) => (
 			<BlockCta title={node.title} size={node.size} url={node.url} label={node.label} />
 		),
 	},
@@ -76,10 +74,11 @@ export const serializers = {
 		linkInternal: ({ children, mark }: SerializerMark_LinkInternal) => (
 			<MarkLink
 				url={resolveUrl({
+					//@ts-ignore
 					type: mark.reference._type,
 					slug: "",
-				})}>
-				{console.log({ mark: mark.reference })}
+				})}
+			>
 				{children}
 			</MarkLink>
 		),

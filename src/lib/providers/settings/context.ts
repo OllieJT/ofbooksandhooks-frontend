@@ -1,49 +1,34 @@
 import { createContext, useContext } from "react";
-import type { GroqArticleCard, GroqCollectionCard } from "@lib/groq";
-import type { FixedImage } from "@lib/utility/handle-sanity-image";
-import type { SocialPlatform } from "@lib/utility/resolve-platform";
+import type {
+	Article,
+	Collection,
+	Homepage,
+	Linkpage,
+	NavigationLinkExternal,
+	NavigationLinkInternal,
+	Person,
+	SanityKeyed,
+} from "@lib/groq";
+import type { TagProps } from "@components/common/tag";
 
-interface Platform {
-	url: string;
-	platform: SocialPlatform;
-}
+type LinkInternal = Omit<NavigationLinkInternal, "page"> & {
+	page: Article | Collection | Linkpage | Person | Homepage;
+};
+
+export type MenuLink = SanityKeyed<LinkInternal> | SanityKeyed<NavigationLinkExternal>;
 
 export interface SettingsContextProps {
-	biography: {
-		description?: string;
-		title?: string;
-		photo?: FixedImage;
-	};
-	profile: {
-		name?: string;
-		knownAs?: string;
-		platforms?: Platform[];
-		photo?: FixedImage;
-	};
-	featured: {
-		article?: GroqArticleCard;
-		collection?: GroqCollectionCard;
-	};
+	profile?: Person;
+	navigation_pinned: MenuLink[];
+	navigation_menu: MenuLink[];
+	tags: TagProps[];
 }
 
 export const SettingsContext = createContext<SettingsContextProps>({
-	biography: {
-		description: undefined,
-		title: undefined,
-		photo: undefined,
-	},
-	profile: {
-		name: undefined,
-		knownAs: undefined,
-		platforms: [],
-		photo: undefined,
-	},
-	featured: {
-		article: undefined,
-		collection: undefined,
-	},
+	profile: undefined,
+	navigation_menu: [],
+	navigation_pinned: [],
+	tags: [],
 });
 
-export const useSettings = () => {
-	return useContext(SettingsContext);
-};
+export const useSettings = () => useContext(SettingsContext);

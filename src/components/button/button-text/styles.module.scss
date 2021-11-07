@@ -1,0 +1,52 @@
+.container {
+	width: 100%;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-self: center;
+}
+.button {
+	--button-fg: var(--brand-fg);
+	--button-bg: var(--brand-bg);
+	appearance: none;
+	outline: none;
+	border: none;
+
+	font-size: var(--font-size-tiny);
+	font-weight: var(--font-weight-medium);
+	line-height: 1em;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+
+	padding: 1em 1.5em;
+	margin: var(--space-tiny) 1px;
+
+	background-color: var(--button-bg);
+	color: var(--button-fg);
+	box-shadow: inset 24px -24px 80px -72px var(--button-fg);
+
+	border-radius: var(--radius-large);
+	cursor: pointer;
+
+	transition: all 0.24s var(--transition);
+
+	&:hover {
+		--button-fg: var(--brand-fg-alt);
+		--button-bg: var(--brand-bg-alt);
+	}
+
+	&[data-state="active"] {
+		--button-fg: var(--brand-fg-alt);
+		--button-bg: var(--brand-bg-alt);
+		&:hover {
+			--button-fg: var(--brand-fg);
+			--button-bg: var(--brand-bg);
+		}
+	}
+
+	&[data-state="loading"] {
+		--button-fg: var(--fg-alt);
+		--button-bg: var(--bg-alt);
+		box-shadow: inset 0 0 0 0 var(--button-fg);
+	}
+}

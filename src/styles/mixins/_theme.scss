@@ -1,0 +1,37 @@
+@use "../tokens" as *;
+
+@mixin ThemeBlue {
+	color-scheme: light;
+
+	@each $mode, $label in $themes {
+		@if $mode == blue {
+			@each $label, $value in $label {
+				--#{$label}: var(--#{$mode}-#{$label});
+			}
+		}
+	}
+}
+
+@mixin ThemeYellow {
+	color-scheme: light;
+
+	@each $mode, $label in $themes {
+		@if $mode == yellow {
+			@each $label, $value in $label {
+				--#{$label}: var(--#{$mode}-#{$label});
+			}
+		}
+	}
+}
+
+@mixin ThemeGreen {
+	color-scheme: light;
+
+	@each $mode, $label in $themes {
+		@if $mode == green {
+			@each $label, $value in $label {
+				--#{$label}: var(--#{$mode}-#{$label});
+			}
+		}
+	}
+}

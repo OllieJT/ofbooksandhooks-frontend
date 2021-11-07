@@ -1,11 +1,10 @@
 import { NextSeo } from "next-seo";
 import type { GetStaticProps } from "next";
-import { ViewSidebar } from "@components/view";
-import { SidebarTaxonomy } from "@components/sidebar";
 import { getArticleList, groqArticleList, GroqArticleList } from "@lib/groq/article-list";
-import { fetchArticleList } from "../../hooks/fetch-infinite-list";
-import { Button } from "@components/button";
-import { ArticleList, ArticleListColumns } from "@components/article";
+import { useInfiniteList } from "@hooks/use-infinite-list";
+import { ButtonText } from "@components/button/button-text";
+import { Feed, FeedColumns } from "@components/common/feed";
+import { LayoutSimple } from "@components/layout/layout-simple";
 
 interface Props {
 	preview: boolean;
@@ -13,7 +12,7 @@ interface Props {
 }
 
 export const AllPostsPage = ({ articles }: Props): React.ReactElement => {
-	const handleFetch = fetchArticleList({
+	const handleFetch = useInfiniteList({
 		id: "article-list",
 		fetchDocs: groqArticleList,
 		initialData: articles,
@@ -22,23 +21,23 @@ export const AllPostsPage = ({ articles }: Props): React.ReactElement => {
 	return (
 		<>
 			<NextSeo title="Articles" />
-			<ViewSidebar sidebar={<SidebarTaxonomy />}>
+			<LayoutSimple>
 				{handleFetch.data?.pages.map(({ data, page }) => {
 					return (
-						<ArticleList
+						<Feed
 							key={"articles-page" + page}
-							articles={data}
-							columns={ArticleListColumns.Two}
+							items={data}
+							columns={FeedColumns.Three}
 						/>
 					);
 				})}
 
-				<Button
+				<ButtonText
 					isLoading={handleFetch.isFetching}
 					onClick={() => handleFetch.fetchNextPage()}
 					label="Load More"
 				/>
-			</ViewSidebar>
+			</LayoutSimple>
 		</>
 	);
 };

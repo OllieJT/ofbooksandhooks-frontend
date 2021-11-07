@@ -1,4 +1,4 @@
-import type { Img } from "../groq";
+import type { Thumbnail, InlineImage } from "../groq";
 import { urlFor } from "../sanity";
 
 export enum ImageFit {
@@ -77,7 +77,7 @@ export interface FixedImage extends ImageDimensions {
 }; */
 
 interface SanityImageFixedProps extends ImageDimensions {
-	asset: Img;
+	asset: Thumbnail | InlineImage;
 	fit?: ImageFit;
 	alt?: string;
 	width: number;
@@ -102,7 +102,7 @@ export const handleSanityImageFixed = ({
 };
 
 interface SanityImageFluidProps {
-	asset: Img;
+	asset: Thumbnail | InlineImage;
 	fit?: ImageFit;
 	alt?: string;
 	maxWidth?: number;

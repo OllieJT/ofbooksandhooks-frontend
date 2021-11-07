@@ -1,0 +1,117 @@
+.wrapper {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.container {
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+
+	padding: var(--space-small) var(--layout-gutter);
+
+	//@media screen and (max-width: 1400px) {}
+	@media screen and (max-width: 960px) {
+		padding: var(--space-small);
+	}
+	@media screen and (max-width: 650px) {
+		padding: var(--space-small);
+	}
+
+	.image,
+	.content {
+		border-radius: var(--radius-large);
+		overflow: hidden;
+		@media screen and (max-width: 650px) {
+			border-radius: var(--radius-tiny);
+		}
+	}
+
+	.banner {
+		max-height: 50vh;
+		overflow: visible;
+	}
+
+	.image {
+		max-width: 100%;
+		height: auto;
+		min-height: min-content;
+	}
+
+	.content {
+		--layout-content-padding-y: var(--space-huge);
+		--layout-content-padding-x: var(--space-huge);
+		position: relative;
+		z-index: 5;
+		grid-area: main;
+
+		width: 100%;
+		//min-height: 100%;
+		max-width: var(--size-maxcontent);
+
+		background-color: var(--bg);
+		box-shadow: var(--level-2);
+
+		padding: var(--layout-content-padding-y) var(--layout-content-padding-x);
+
+		&.offset {
+			margin-top: calc(var(--layout-content-padding-y) * -2);
+		}
+
+		@media screen and (max-width: 1040px) {
+			--layout-content-padding-y: var(--space-large);
+			--layout-content-padding-x: var(--space-huge);
+
+			&.offset {
+				margin-top: var(--space-small);
+			}
+		}
+		@media screen and (max-width: 800px) {
+			--layout-content-padding-x: var(--space-large);
+		}
+		@media screen and (max-width: 650px) {
+			--layout-content-padding-y: var(--space-medium);
+			--layout-content-padding-x: var(--space-medium);
+		}
+	}
+}
+
+.header {
+	position: relative;
+	z-index: 20;
+
+	display: flex;
+	flex-direction: column;
+	margin-bottom: var(--space-large);
+}
+
+.metadata {
+	order: 1;
+}
+
+.title {
+	order: 2;
+	font-size: var(--font-size-large);
+	font-weight: var(--font-weight-medium);
+	line-height: 1em;
+	color: var(--fg);
+	margin: var(--space-medium) 0;
+}
+
+.author {
+	order: 3;
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-base);
+	line-height: 1em;
+	color: var(--fg);
+	a {
+		text-decoration: none;
+		color: var(--brand-fg);
+	}
+}

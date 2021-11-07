@@ -1,41 +1,19 @@
-export enum Theme {
-	Green = "green",
-	Blue = "blue",
-	Yellow = "yellow",
-	Default = "default",
-	None = "none",
-}
+export type ThemeClass = "theme-green" | "theme-yellow" | "theme-blue";
+export type ThemeOption = "green" | "yellow" | "default" | "blue";
 
-export const handleThemeColor = (theme?: string): Theme => {
+export const handleThemeClass = (theme?: string | ThemeOption): ThemeClass => {
 	switch (theme) {
-		case "primary":
+		case "secondary":
 		case "green":
 		case "teal":
-			return Theme.Green;
-		case "secondary":
-		case "blue":
-			return Theme.Blue;
+			return `theme-green`;
 		case "accent":
 		case "yellow":
-			return Theme.Yellow;
-		case "default":
-			return Theme.Default;
-		default:
-			return Theme.None;
-	}
-};
-
-export const handleThemeClass = (theme?: Theme): string => {
-	switch (theme) {
-		case Theme.Green:
-			return `theme-green`;
-		case Theme.Blue:
-			return `theme-blue`;
-		case Theme.Yellow:
 			return `theme-yellow`;
-		case Theme.Default:
-			return "theme-default";
+		case "primary":
+		case "default":
+		case "blue":
 		default:
-			return "theme-none";
+			return `theme-blue`;
 	}
 };

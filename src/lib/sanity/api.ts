@@ -14,8 +14,7 @@ export const previewClient = createClient({
 	token,
 });
 
-export const getClient = (usePreview: boolean) =>
-	usePreview ? previewClient : sanityClient;
+export const getClient = (usePreview: boolean) => (usePreview ? previewClient : sanityClient);
 
 export function overlayDrafts(docs: any[]) {
 	const documents = docs || [];

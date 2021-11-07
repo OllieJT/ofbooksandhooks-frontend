@@ -1,0 +1,32 @@
+.container {
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	//gap: var(--space-medium);
+	padding: var(--space-large) var(--space-medium);
+	border: 10px solid pink !important;
+	.title {
+		font-weight: var(--font-weight-bold);
+		color: var(--fg);
+	}
+
+	.button {
+		a {
+			font-size: var(--font-size-small);
+			line-height: 1em;
+			padding: 0.8em 1.2em;
+			border-radius: var(--radius-tiny);
+
+			background-color: var(--brand-fg);
+			color: white;
+
+			&:hover {
+				background-color: var(--brand-bg);
+				color: var(--brand-fg);
+			}
+		}
+	}
+}

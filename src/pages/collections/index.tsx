@@ -1,14 +1,12 @@
 import { NextSeo } from "next-seo";
 import type { GetStaticProps } from "next";
-import { ViewNaked } from "@components/view";
-import { groqCollectionList, GroqCollectionList } from "@lib/groq/collection-list/groq";
-import { fetchArticleList } from "../../hooks/fetch-infinite-list";
-import { Fragment } from "react";
-import { Button } from "@components/button";
+import { groqCollectionList, GroqCollectionList } from "@lib/groq/collection-list";
+import { ButtonText } from "@components/button/button-text";
 import { getCollectionList } from "@lib/groq/collection-list";
-import { CollectionList } from "@components/collection";
-import { CardListColumns } from "@components/card-list";
-import { Title } from "@components/title";
+import { LayoutSimple } from "@components/layout/layout-simple";
+import { HeaderPage } from "@components/header/header-page";
+import { Feed, FeedColumns } from "@components/common/feed";
+import { useInfiniteList } from "@hooks/use-infinite-list";
 
 interface Props {
 	preview: boolean;
@@ -17,7 +15,7 @@ interface Props {
 }
 
 export const AllCollectionsPage = ({ collections }: Props): React.ReactElement => {
-	const handleFetch = fetchArticleList({
+	const handleFetch = useInfiniteList({
 		id: "collections-list",
 		fetchDocs: groqCollectionList,
 		initialData: collections,
@@ -26,26 +24,25 @@ export const AllCollectionsPage = ({ collections }: Props): React.ReactElement =
 	return (
 		<>
 			<NextSeo title="Articles" />
-			<ViewNaked>
-				<Title title="All Collections" />
+			<LayoutSimple>
+				<HeaderPage title="All Collections" />
 
 				{handleFetch.data?.pages.map(({ data, page }) => {
 					return (
-						<Fragment key={"articles" + page}>
-							<CollectionList
-								collections={data}
-								columns={CardListColumns.Three}
-							/>
-						</Fragment>
+						<Feed
+							key={"collections" + page}
+							items={data}
+							columns={FeedColumns.Three}
+						/>
 					);
 				})}
 
-				<Button
+				<ButtonText
 					isLoading={handleFetch.isFetching}
 					onClick={() => handleFetch.fetchNextPage()}
 					label="Load More"
 				/>
-			</ViewNaked>
+			</LayoutSimple>
 		</>
 	);
 };

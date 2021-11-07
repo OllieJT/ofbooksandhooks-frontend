@@ -4,15 +4,8 @@ export type LinkablePage = unknown & {
 };
 
 interface Props {
-	slug: string;
-	type?:
-		| string
-		| "topic"
-		| "collection"
-		| "article"
-		| "author"
-		| "homepage"
-		| "settings";
+	slug: string | null;
+	type: "collection" | "article" | "linkpage" | "person" | "homepage" | "settings" | "tag";
 	isAbsolute?: boolean;
 }
 
@@ -27,14 +20,14 @@ export const resolveUrl = ({ slug, type, isAbsolute = false }: Props) => {
 	switch (type) {
 		case "homepage":
 			return `${PREFIX}/`;
+		case "linkpage":
+			return `${PREFIX}/linkpage`;
 		case "article":
 			return `${PREFIX}/articles/${slug}`;
 		case "collection":
 			return `${PREFIX}/collections/${slug}`;
-		case "topic":
-			return `${PREFIX}/topics/${slug}`;
-		case "author":
-			return `${PREFIX}/authors/${slug}`;
+		case "person":
+			return `${PREFIX}/@${slug}`;
 
 		default:
 			return PREFIX + `404`;
