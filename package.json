@@ -17,9 +17,7 @@
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
 		"start": "next start",
 		"ts": "tsc --pretty --noImplicitAny",
-		"lint": "next lint",
-		"storybook": "start-storybook -p 6006",
-		"build-storybook": "build-storybook"
+		"lint": "next lint"
 	},
 	"dependencies": {
 		"@fontsource/sen": "^4.5.0",

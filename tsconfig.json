@@ -35,6 +35,6 @@
 		},
 		"incremental": true
 	},
-	"exclude": ["node_modules"],
+	"exclude": ["node_modules", "**/____archive*", "**/____WIP*"],
 	"include": ["**/*.d.ts", "**/*.ts", "**/*.tsx"]
 }
