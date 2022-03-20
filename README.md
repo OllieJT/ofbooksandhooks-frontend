@@ -1,17 +1,11 @@
-This is a Typescript-[Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# olliejt/starter-svelte
 
-# olliejt-starter-nextjs
-
-This is a React project using [Next.js](https://nextjs.org/). project bootstrapped with [`starter-nextjs`](https://github.com/OllieJT/starter-nextjs).
-
-## Author
-
-Built by Ollie Taylor ([OllieJT](https://github.com/OllieJT))
+_Project bootstrapped with [`olliejt/starter-svelte`](https://github.com/OllieJT/starter-svelte)._
 
 ## Get started
 
-```zsh
-npx degit github:OllieJT/starter-nextjs YOUR_PROJECT_NAME
+```bash
+npx degit github:OllieJT/starter-svelte YOUR_PROJECT_NAME
 ```
 
 ### npm scripts
@@ -24,6 +18,14 @@ npx degit github:OllieJT/starter-nextjs YOUR_PROJECT_NAME
 | `format` | Format all files in /src with prettier    |
 | `ts`     | Check for typescript errors               |
 
+### Init steps
+
+1. [ ] Rename `.env.example` to `.env`
+2. [ ] Replace favicon and icons in `./static/...`
+3. [ ] Update manifest details in `./static/manifest.json`
+4. [ ] Search for `TODO` and replace values
+5. [ ] Set design tokens in `./src/styles/tokens/...`
+
 ### Developing
 
 First, run the development server:
@@ -35,18 +37,3 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

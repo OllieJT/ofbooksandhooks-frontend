@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full overflow-hidden">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<meta name="robots" content="index,follow" />
+		<meta name="googlebot" content="index,follow" />
+
+		<!-- Twitter -->
+		<!--
+			<meta name="twitter:card" content="summary_large_image" />
+			<meta name="twitter:site" content="@TODO" />
+			<meta name="twitter:creator" content="@TODO" />
+			<meta name="twitter:site:id" content="TODO" />
+		-->
+
+		<!-- OpenGraph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="en_GB" />
+		<meta property="og:site_name" content="Of Books & Hooks" />
+
+		<!-- Apple -->
+		<meta name="apple-mobile-web-app-title" content="Of Books & Hooks" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+		<meta name="apple-touch-fullscreen" content="yes" />
+
+		<!-- Microsoft -->
+		<meta name="msapplication-config" content="/browserconfig.xml" />
+		<meta name="msapplication-TileColor" content="#75D5CA" />
+
+		<!-- Universal -->
+		<meta name="theme-color" content="#75D5CA" />
+		<meta name="color-scheme" content="dark light" />
+		<link href="/manifest.json" rel="manifest" />
+		<link rel="bookmark" title="TODO" />
+
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Organization",
+				"name": "Of Books & Hooks",
+				"url": "https://ofbooksandhooks.com/",
+				"logo": "https://ofbooksandhooks.com/img/app-icon/logo-render-256.png"
+				"sameAs": [
+					"https://www.instagram.com/ofbooksandhooks/",
+					"https://www.etsy.com/shop/OfBooksAndHooksUK"
+				]
+			}
+		</script>
+
+		<!-- Icons -->
+		<link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/img/app-icon/app-icon-512.png" />
+
+		%svelte.head%
+	</head>
+	<body
+		class="h-full overflow-auto scroll-smooth bg-white text-zinc-600 selection:bg-yellow-300 selection:text-black dark:bg-zinc-900 dark:text-zinc-400"
+	>
+		<span id="top"></span>
+		<div id="svelte">%svelte.body%</div>
+	</body>
+</html>

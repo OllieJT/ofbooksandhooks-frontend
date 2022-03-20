@@ -1,40 +1,29 @@
 {
+	"extends": "./.svelte-kit/tsconfig.json",
 	"compilerOptions": {
 		"baseUrl": ".",
-		"target": "es5",
-		"lib": ["dom", "dom.iterable", "esnext"],
-		"module": "esnext",
-		"strict": false,
-		"noEmit": true,
-		"jsx": "preserve",
-		"moduleResolution": "node",
-		"importsNotUsedAsValues": "error",
-		"isolatedModules": true,
-		"resolveJsonModule": true,
-		"sourceMap": true,
-		"esModuleInterop": true,
-		"skipLibCheck": true,
-		"allowJs": true,
-		"checkJs": true,
 		/* type-checking */
 		"strictNullChecks": true,
 		"strictFunctionTypes": true,
 		"noImplicitAny": true,
 		"noImplicitThis": true,
+		"noEmit": true,
+
 		/* clean-code */
-		"forceConsistentCasingInFileNames": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
+
 		"paths": {
-			"@components/*": ["src/components/*"],
-			"@hooks/*": ["src/hooks/*"],
-			"@lib/*": ["src/lib/*"],
-			"@styles/*": ["src/styles/*"]
-		},
-		"incremental": true
+			"$lib": ["src/lib"],
+			"$lib/*": ["src/lib/*"],
+			"$api/*": ["src/lib/api/*"],
+			"$components/*": ["src/lib/components/*"],
+			"$db/*": ["src/lib/db/*"],
+			"$util/*": ["src/lib/util/*"]
+		}
 	},
-	"exclude": ["node_modules"],
-	"include": ["**/*.d.ts", "**/*.ts", "**/*.tsx"]
+	"exclude": ["node_modules/", ".svelte-kit/", "svelte.config.js", "prettier.cjs"],
+	"include": ["**/*.d.ts", "**/*.js", "**/*.ts", "**/*.svelte"]
 }

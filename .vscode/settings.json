@@ -7,15 +7,27 @@
 		"**/.gitattributes": true,
 		"**/*.Identifier": true,
 		"**/node_modules": true,
-		"**/.next": true
+		"**/.svelte-kit": true
 	},
 	"files.associations": {
 		"**/*.env*": "dotenv",
-		"**/*.md": "mdx"
+		"**/*.svx": "mdx"
 		//"*.css": "postcss"
 	},
 	"files.watcherExclude": {
 		"**/node_modules": true,
-		"**/.next": true
-	}
+		"**/.svelte-kit": true
+	},
+	"cSpell.words": [
+		"Dribbble",
+		"fortawesome",
+		"frontmatter",
+		"heroicons",
+		"imagetools",
+		"ofbooksandhooks",
+		"portabletext",
+		"remixicon",
+		"semibold",
+		"tailwindcss"
+	]
 }
