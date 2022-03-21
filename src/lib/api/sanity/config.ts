@@ -11,4 +11,5 @@ export const sanityConfig: ClientConfig = {
 	projectId,
 	useCdn,
 	apiVersion,
+	withCredentials: true,
 };
