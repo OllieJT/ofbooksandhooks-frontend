@@ -3,17 +3,20 @@ const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 const config = {
-	content: ["./src/**/*.{html,js,svelte,ts}"],
+	content: [
+		"./src/**/*.{html,js,svelte,ts}",
+		"./node_modules/@inqling/components/**/*.{html,js,svelte,ts}",
+	],
 	darkMode: "class",
 
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ["Inter var", "Inter", ...defaultTheme.fontFamily.sans],
+				sans: ["Sen", "Inter", ...defaultTheme.fontFamily.sans],
 			},
 			colors: {
-				primary: colors.yellow,
-				secondary: colors.teal,
+				primary: colors.teal,
+				secondary: colors.yellow,
 				alt: colors.sky,
 				mono: colors.slate,
 			},

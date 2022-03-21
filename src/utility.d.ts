@@ -15,3 +15,27 @@ declare interface OPTION<V extends string = string> {
 	label: string;
 	value: V;
 }
+
+type TAILWIND_COLOR =
+	| "slate"
+	| "gray"
+	| "zinc"
+	| "neutral"
+	| "stone"
+	| "red"
+	| "orange"
+	| "amber"
+	| "yellow"
+	| "lime"
+	| "green"
+	| "emerald"
+	| "teal"
+	| "cyan"
+	| "sky"
+	| "blue"
+	| "indigo"
+	| "violet"
+	| "purple"
+	| "fuchsia"
+	| "pink"
+	| "rose";
