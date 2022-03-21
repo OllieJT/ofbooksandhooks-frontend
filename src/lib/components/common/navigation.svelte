@@ -22,24 +22,24 @@
 						class="flex h-14 space-x-8 overflow-x-auto border-t px-4 pb-px sm:h-full sm:justify-center sm:overflow-visible sm:border-t-0 sm:pb-0"
 					>
 						<a
-							href="#"
+							href="/collections/books"
 							class="flex min-w-max items-center text-sm font-medium text-mono-700 hover:text-mono-800"
 						>
 							Of Books
 						</a>
 
 						<a
-							href="#"
+							href="/collections/hooks"
 							class="flex min-w-max items-center text-sm font-medium text-mono-700 hover:text-mono-800"
 						>
 							Of Hooks
 						</a>
 
 						<a
-							href="/timeline"
+							href="/collections"
 							class="flex min-w-max items-center text-sm font-medium text-mono-700 hover:text-mono-800"
 						>
-							Timeline
+							Collections
 						</a>
 
 						<a

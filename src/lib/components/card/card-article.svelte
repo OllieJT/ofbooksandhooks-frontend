@@ -10,7 +10,7 @@
 	export let author: CardAuthor | undefined;
 	export let date: Date;
 	export let duration: string | undefined;
-	export let topic: CardTopic;
+	export let tags: CardTopic[];
 </script>
 
 <a
@@ -25,10 +25,10 @@
 		/>
 	</div>
 	<div class="flex flex-1 flex-col justify-between bg-white p-6">
-		<div class="flex-1">
-			<span class="-ml-2">
-				<Badge theme={topic.color}>{topic.name}</Badge>
-			</span>
+		<div class="flex flex-1 flex-wrap items-center gap-1">
+			{#each tags as tag}
+				<Badge pill theme={tag.color}>{tag.name}</Badge>
+			{/each}
 
 			<div class="mt-2 block">
 				<p class="text-xl font-semibold text-mono-900 group-hover:text-primary-600">

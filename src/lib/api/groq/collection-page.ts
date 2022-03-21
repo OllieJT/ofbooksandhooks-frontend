@@ -21,8 +21,8 @@ interface Props {
 
 // TODO: Date Filter
 
-export const groqCollectionPage = async ({ from, to, slug, client }: Props) =>
-	client.fetch<GroqCollectionPage>(
+export async function groqCollectionPage({ from, to, slug, client }: Props) {
+	return client.fetch<GroqCollectionPage>(
 		groq`*[_type == "collection" && slug.current == $slug][0]
 			{
 
@@ -31,11 +31,15 @@ export const groqCollectionPage = async ({ from, to, slug, client }: Props) =>
 				title,
 				theme,
 				tags,
-				metadata
+				metadata,
 				_createdAt,
 				_updatedAt,
 				"slug":slug.current,
-				"articles": *[_type == "article" && count(tags[][@.value in ^.^.tags[].value]) > 0 && metadata.publishAt <= now()] | order(publishAt desc) {
+				"articles": *[
+						_type == "article"
+						&& count(tags[][@.value in ^.^.tags[].value]) > 0
+						&& metadata.publishAt <= now()
+					] | order(publishAt desc) {
 					${GroqArticleCardQuery}
 				},
 
@@ -44,6 +48,7 @@ export const groqCollectionPage = async ({ from, to, slug, client }: Props) =>
 		`,
 		{ from, to, slug },
 	);
+}
 
 export const getCollectionPage = async (slug: string, page: number = 1, limit = 12) => {
 	const { from, to } = handlePagination(limit, page);
@@ -51,11 +56,4 @@ export const getCollectionPage = async (slug: string, page: number = 1, limit = 
 	const collection = await groqCollectionPage({ from, to, client, slug });
 
 	return collection;
-};
-
-export const getCollectionPagePaths = async () => {
-	const data: string[] = await client.fetch(
-		groq`*[_type == "collection" && defined(slug)].slug.current`,
-	);
-	return data;
 };

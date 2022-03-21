@@ -13,9 +13,9 @@ export interface CardTopic {
 export interface Card {
 	href: string;
 	title: string;
-	excerpt: string;
+	excerpt?: string;
 	date: Date;
-	topic: CardTopic;
+	tags: CardTopic[];
 	src?: string;
 	author?: CardAuthor;
 	duration?: string;

@@ -52,18 +52,25 @@ export interface Collection extends SanityDocument {
 	title: string;
 
 	/**
+	 * Description — `text`
+	 *
+	 *
+	 */
+	description: string;
+
+	/**
+	 * Theme Color — `theme`
+	 *
+	 *
+	 */
+	theme: Theme;
+
+	/**
 	 * URL Slug — `slug`
 	 *
 	 * This determines the URL path for the page
 	 */
 	slug: { _type: "slug"; current: string };
-
-	/**
-	 * Theme — `theme`
-	 *
-	 *
-	 */
-	theme?: Theme;
 
 	/**
 	 * Tags — `tags`
@@ -108,6 +115,13 @@ export interface Article extends SanityDocument {
 	 *
 	 */
 	title: string;
+
+	/**
+	 * Excerpt — `text`
+	 *
+	 *
+	 */
+	excerpt?: string;
 
 	/**
 	 * URL Slug — `slug`
@@ -193,9 +207,7 @@ export interface Linkpage extends SanityDocument {
 	 *
 	 *
 	 */
-	navigation: Array<
-		SanityKeyed<NavigationLinkInternal> | SanityKeyed<NavigationLinkExternal>
-	>;
+	links: Array<SanityKeyed<FeaturedLink>>;
 
 	/**
 	 * Metadata — `metadata`
@@ -347,7 +359,16 @@ export type LinkInternal = {
 	reference: SanityReference<Article | Collection | Linkpage | Person | Homepage>;
 };
 
-export type Theme = "yellow" | "green" | "blue" | "none";
+export type Theme =
+	| "mono"
+	| "primary"
+	| "secondary"
+	| "red"
+	| "yellow"
+	| "green"
+	| "blue"
+	| "purple"
+	| "pink";
 
 export type Button = {
 	_type: "button";
@@ -810,6 +831,13 @@ export type NavigationLinkExternal = {
 	title: string;
 
 	/**
+	 * Theme Color — `theme`
+	 *
+	 *
+	 */
+	theme?: Theme;
+
+	/**
 	 * Icon — `iconPicker`
 	 *
 	 *
@@ -834,6 +862,13 @@ export type NavigationLinkInternal = {
 	title: string;
 
 	/**
+	 * Theme Color — `theme`
+	 *
+	 *
+	 */
+	theme?: Theme;
+
+	/**
 	 * Icon — `iconPicker`
 	 *
 	 *
@@ -848,6 +883,37 @@ export type NavigationLinkInternal = {
 	page: SanityReference<Article | Collection | Linkpage | Person | Homepage>;
 };
 
+export type FeaturedLink = {
+	_type: "featured_link";
+	/**
+	 * Title — `string`
+	 *
+	 *
+	 */
+	title: string;
+
+	/**
+	 * Description — `text`
+	 *
+	 *
+	 */
+	description: string;
+
+	/**
+	 * Theme Color — `theme`
+	 *
+	 *
+	 */
+	theme?: Theme;
+
+	/**
+	 * URL — `url`
+	 *
+	 *
+	 */
+	href: string;
+};
+
 export type Documents = Collection | Article | Linkpage | Person | Homepage | Settings;
 
 /**
@@ -855,7 +921,7 @@ export type Documents = Collection | Article | Linkpage | Person | Homepage | Se
  * the definition was not actually found. Future versions of
  * sanity-codegen will let you type this explicity.
  */
-type Tags = any;
+type Tags = Array<{ label: string; value: string }>;
 
 /**
  * This interface is a stub. It was referenced in your sanity schema but

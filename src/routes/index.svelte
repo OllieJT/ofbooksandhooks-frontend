@@ -1,152 +1,64 @@
 <script lang="ts" context="module">
-	export const load: Load = () => {
-		const payload = [
-			{
-				href: "/",
-				title: "Boost your conversion rate",
-				src: "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-1..1&,ix:=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80",
-				topic: { name: "Article", color: "green" },
-				author: {
-					name: "Roel Aufderehar",
-					avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-				},
-				date: new Date("2020-02-12"),
-				duration: "6 min",
-				excerpt:
-					"Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto accusantium praesentium eius, ut atque fuga culpa, similique sequi cum eos quis dolorum.",
-			},
-			{
-				href: "/",
-				title: "How to use search engine optimization to drive sales",
-				src: "https://images.unsplash.com/photo-1547586696-ea22b4d4235d?ixlib=rb-1..1&,ixid:yJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80",
-				topic: { name: "Video", color: "purple" },
-				author: {
-					name: "Brenna Goyette",
-					avatar: "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-				},
-				date: new Date("2020-04-12"),
-				duration: "4 min",
-				excerpt:
-					"Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit facilis asperiores porro quaerat doloribus, eveniet dolore. Adipisci tempora aut inventore optio animi., tempore temporibus quo laudantium.",
-			},
-			{
-				href: "/",
-				title: "Improve your customer experience",
-				src: "https://images.unsplash.com/photo-1492724441997-5dc865305da7?ixlib=rb-1..1&,ix:=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80",
-				topic: { name: "Case Study", color: "red" },
-				author: {
-					name: "Daniela Metz",
-					avatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-				},
-				date: new Date("2020-7-12"),
-				duration: "11 min",
-				excerpt:
-					"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint harum rerum voluptatem quo recusandae magni placeat saepe molestiae, sed excepturi cumque corporis perferendis hic.",
-			},
-		];
+	export const load: Load = async () => {
+		const res = await getArticleList(1);
 		return {
-			props: { articles: [...payload, ...payload, ...payload] },
+			props: {
+				articles: res.articles.map(transformArticleCard),
+			},
 		};
 	};
 </script>
 
 <script lang="ts">
 	import Wrapper from "$components/container/Wrapper.svelte";
+	import { getArticleList } from "$lib/api/groq/article-list";
 	import CardArticleMini from "$lib/components/card/card-article-mini.svelte";
 	import CardArticle from "$lib/components/card/card-article.svelte";
 	import type { Card } from "$lib/components/card/part/types";
 	import Madeline from "$lib/components/common/madeline.svelte";
-	import RecommendedArticles from "$lib/components/section/recommended-articles.svelte";
+	import { transformArticleCard } from "$lib/util/sanity/transform-article";
 	import type { Load } from "@sveltejs/kit";
 	import SvelteSeo from "svelte-seo";
 
-	export let articles: Card[];
+	export let articles: Card[] = [];
 </script>
 
 <SvelteSeo title="Homepage" />
 
-<Wrapper constrain gutter>
-	<div class="grid grid-cols-1 gap-6 py-10 md:grid-cols-2 lg:grid-cols-3">
-		<div class="lg:col-span-2">
+<Wrapper constrain gutter class="py-10">
+	<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-7">
+		<div class="lg:col-span-5">
 			<div class="grid gap-4 lg:grid-cols-2">
 				{#each articles as article}
-					{#if article.src}
-						<CardArticle
-							href={article.href}
-							title={article.title}
-							date={article.date}
-							topic={article.topic}
-							src={article.src}
-							author={article.author}
-							duration={article.duration}
-						>
-							{article.excerpt}
-						</CardArticle>
-					{:else}
-						<CardArticleMini
-							href={article.href}
-							title={article.title}
-							date={article.date}
-							topic={article.topic}
-							author={article.author}
-							duration={article.duration}
-						>
-							{article.excerpt}
-						</CardArticleMini>
-					{/if}
+					<CardArticle
+						href={article.href}
+						title={article.title}
+						date={article.date}
+						tags={article.tags}
+						src={article.src}
+						author={article.author}
+						duration={article.duration}
+					>
+						{article.excerpt}
+					</CardArticle>
+				{:else}
+					<CardArticleMini
+						href="/"
+						title="Nothing to see here..."
+						date={new Date()}
+						tags={[{ name: "404", color: "mono" }]}
+						author={undefined}
+						duration={undefined}
+					>
+						Something went wrong - I couldn't find the content you were looking for.
+					</CardArticleMini>
 				{/each}
 			</div>
 		</div>
-		<aside class="max-w-sm">
+		<aside class="max-w-sm lg:col-span-2">
 			<div class="sticky top-20">
 				<Madeline />
 			</div>
 		</aside>
 	</div>
 </Wrapper>
-
-<RecommendedArticles
-	title="Recent publications"
-	subtitle="Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet. Sapien tortor lacus arcu."
-	articles={[
-		{
-			href: "/",
-			title: "Boost your conversion rate",
-			topic: { name: "Article", color: "green" },
-			author: {
-				name: "Roel Aufderehar",
-				avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-			},
-			date: new Date("2020-02-12"),
-			duration: "6 min",
-			excerpt:
-				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto accusantium praesentium eius, ut atque fuga culpa, similique sequi cum eos quis dolorum.",
-		},
-		{
-			href: "/",
-			title: "How to use search engine optimization to drive sales",
-			topic: { name: "Video", color: "purple" },
-			author: {
-				name: "Brenna Goyette",
-				avatar: "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-			},
-			date: new Date("2020-04-12"),
-			duration: "4 min",
-			excerpt:
-				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit facilis asperiores porro quaerat doloribus, eveniet dolore. Adipisci tempora aut inventore optio animi., tempore temporibus quo laudantium.",
-		},
-		{
-			href: "/",
-			title: "Improve your customer experience",
-			topic: { name: "Case Study", color: "red" },
-			author: {
-				name: "Daniela Metz",
-				avatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-			},
-			date: new Date("2020-7-12"),
-			duration: "11 min",
-			excerpt:
-				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint harum rerum voluptatem quo recusandae magni placeat saepe molestiae, sed excepturi cumque corporis perferendis hic.",
-		},
-	]}
-/>
