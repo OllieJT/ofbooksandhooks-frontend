@@ -1,9 +1,11 @@
 <script lang="ts" context="module">
 	export const load: Load = async () => {
 		const res = await getLinkPage("todo");
+		const { recommended, ...rest } = res;
 		return {
 			props: {
-				page: res,
+				page: rest,
+				recommended: recommended.map(transformArticleCard),
 			},
 		};
 	};
@@ -16,8 +18,12 @@
 	import { getLinkPage, type GroqLinkPage } from "$lib/api/groq/links-page";
 	import type { Load } from "@sveltejs/kit";
 	import { iconFromUrl } from "$lib/util/icon-from-url";
+	import { transformArticleCard } from "$lib/util/sanity/transform-article";
+	import type { Card } from "$lib/components/card/part/types";
+	import RecommendedArticles from "$lib/components/section/recommended-articles.svelte";
 
 	export let page: GroqLinkPage;
+	export let recommended: Card[];
 </script>
 
 <SvelteSeo title="Links" />
@@ -37,3 +43,5 @@
 		}))}
 	/>
 </Wrapper>
+
+<RecommendedArticles title="Recent Content" articles={recommended} />

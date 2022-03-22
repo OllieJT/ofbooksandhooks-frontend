@@ -22,6 +22,29 @@ interface Props {
 // TODO: Date Filter
 
 export async function groqCollectionPage({ from, to, slug, client }: Props) {
+	console.log(`*[_type == "collection" && slug.current == ${slug}][0]
+	{
+
+		_id,
+		_type,
+		title,
+		theme,
+		tags,
+		metadata,
+		_createdAt,
+		_updatedAt,
+		"slug":slug.current,
+		"articles": *[
+				_type == "article"
+				&& count(tags[][@.value in ^.^.tags[].value]) > 0
+				&& metadata.publishAt <= now()
+			] | order(publishAt desc) {
+			${GroqArticleCardQuery}
+		},
+
+
+	}
+`);
 	return client.fetch<GroqCollectionPage>(
 		groq`*[_type == "collection" && slug.current == $slug][0]
 			{
