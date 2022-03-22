@@ -11,7 +11,7 @@
 	{#each links as link}
 		<FeaturedLinkCard
 			icon={link.icon}
-			theme={link.theme}
+			theme={link.theme || "mono"}
 			title={link.title}
 			description={link.description}
 			href={link.href}

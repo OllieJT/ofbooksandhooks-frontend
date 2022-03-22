@@ -1,7 +1,7 @@
 <script lang="ts">
 	//import Search from "@inqling/svelte-icons/outline/search.svelte";
 	import QuickLinks from "@inqling/svelte-icons/outline/identification.svelte";
-	import ShoppingBag from "@inqling/svelte-icons/outline/shopping-bag.svelte";
+	//import ShoppingBag from "@inqling/svelte-icons/outline/shopping-bag.svelte";
 </script>
 
 <header class="sticky top-0 z-30 border-b border-mono-200 bg-white ">
@@ -42,12 +42,13 @@
 							Collections
 						</a>
 
-						<a
+						<!-- TODO: Enable shop page -->
+						<!-- <a
 							href="#"
 							class="flex min-w-max items-center text-sm font-medium text-mono-700 hover:text-mono-800"
 						>
 							Shop
-						</a>
+						</a> -->
 					</div>
 				</div>
 
@@ -64,8 +65,8 @@
 						<QuickLinks class="h-6 w-6" />
 					</a>
 
-					<!-- Cart -->
-					<div class="ml-4 flow-root lg:ml-8">
+					<!-- TODO: Enable Cart -->
+					<!-- <div class="ml-4 flow-root lg:ml-8">
 						<a href="#" class="group -m-2 flex items-center p-2">
 							<ShoppingBag
 								class="h-6 w-6 flex-shrink-0 text-mono-400 group-hover:text-mono-500"
@@ -77,7 +78,7 @@
 							</span>
 							<span class="sr-only">items in cart, view bag</span>
 						</a>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>

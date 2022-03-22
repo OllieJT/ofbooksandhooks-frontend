@@ -38,5 +38,6 @@ export function transformCollectionLink(collection: GroqCollectionCard): Feature
 		description: "Something here",
 		href: `/collections/${collection.slug}`,
 		theme: collection.theme || "mono",
+		internal: true,
 	};
 }
