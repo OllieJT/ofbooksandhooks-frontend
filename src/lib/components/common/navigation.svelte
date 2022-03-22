@@ -1,6 +1,7 @@
 <script lang="ts">
 	//import Search from "@inqling/svelte-icons/outline/search.svelte";
 	import QuickLinks from "@inqling/svelte-icons/outline/identification.svelte";
+	import NavigationLink from "./navigation-link.svelte";
 	//import ShoppingBag from "@inqling/svelte-icons/outline/shopping-bag.svelte";
 </script>
 
@@ -21,34 +22,16 @@
 					<div
 						class="flex h-14 space-x-8 overflow-x-auto border-t px-4 pb-px sm:h-full sm:justify-center sm:overflow-visible sm:border-t-0 sm:pb-0"
 					>
-						<a
-							href="/collections/books"
-							class="flex min-w-max items-center text-sm font-medium text-mono-700 hover:text-mono-800"
-						>
-							Of Books
-						</a>
-
-						<a
-							href="/collections/hooks"
-							class="flex min-w-max items-center text-sm font-medium text-mono-700 hover:text-mono-800"
-						>
-							Of Hooks
-						</a>
-
-						<a
-							href="/collections"
-							class="flex min-w-max items-center text-sm font-medium text-mono-700 hover:text-mono-800"
-						>
-							Collections
-						</a>
+						<NavigationLink href="/collections/books">Of Books</NavigationLink>
+						<NavigationLink href="/collections/hooks">Of Hooks</NavigationLink>
+						<NavigationLink href="/collections">Collections</NavigationLink>
 
 						<!-- TODO: Enable shop page -->
-						<!-- <a
+						<!-- <NavigationLink
 							href="#"
-							class="flex min-w-max items-center text-sm font-medium text-mono-700 hover:text-mono-800"
 						>
 							Shop
-						</a> -->
+						</NavigationLink> -->
 					</div>
 				</div>
 
@@ -60,7 +43,7 @@
 							<Search class="h-6 w-6" />
 						</a>
 					-->
-					<a href="/links" class="p-2 text-mono-400 hover:text-mono-500">
+					<a href="/links" class="p-2 text-mono-400 hover:text-primary-500">
 						<span class="sr-only">Quick Links</span>
 						<QuickLinks class="h-6 w-6" />
 					</a>
