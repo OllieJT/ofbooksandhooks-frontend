@@ -1,0 +1,3 @@
+<strong class="">
+	<slot />
+</strong>

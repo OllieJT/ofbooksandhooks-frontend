@@ -1,6 +1,7 @@
 import groq from "groq";
 import { client } from "$lib/api/sanity/client";
 import type * as Schema from "$lib/api/sanity/schema";
+import { GroqArticleCardQuery, type GroqArticleCard } from "./fragments/article-list";
 
 export type GroqArticlePage = Pick<
 	Schema.Article,
@@ -15,6 +16,7 @@ export type GroqArticlePage = Pick<
 > & {
 	author: Schema.Person;
 	slug: string;
+	recommended: GroqArticleCard[];
 };
 interface Props {
 	slug: string;
@@ -36,6 +38,13 @@ export const groqArticlePageQuery = groq`*[_type == "article" && slug.current ==
 	tags,
 	thumbnail,
 	title,
+
+	"recommended": *[
+			_type == "article"
+			&& metadata.publishAt <= now()
+		] | order(publishAt desc)[0...3] {
+			${GroqArticleCardQuery}
+		},
 }
 `;
 

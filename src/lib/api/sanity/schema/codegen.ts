@@ -631,13 +631,6 @@ export type InlineBook = {
 	narrators?: Array<SanityKeyed<string>>;
 
 	/**
-	 * ISBN — `string`
-	 *
-	 * https://isbnsearch.org/
-	 */
-	isbn?: string;
-
-	/**
 	 * Release Date — `date`
 	 *
 	 *
