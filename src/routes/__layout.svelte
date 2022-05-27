@@ -1,53 +1,50 @@
 <script lang="ts">
 	import "../app.css";
-	import "@fontsource/sen/400.css";
-	import "@fontsource/sen/700.css";
-	import "@fontsource/sen/800.css";
-	import Navigation from "$lib/components/common/navigation.svelte";
-	import Instagram from "@inqling/svelte-icons/brand/instagram.svelte";
-	import Etsy from "@inqling/svelte-icons/brand/etsy.svelte";
-	import TikTok from "@inqling/svelte-icons/brand/tiktok.svelte";
+	import "@fontsource/sora/400.css";
+	import "@fontsource/sora/600.css";
+	import "@fontsource/sora/700.css";
+	// import Navigation from "$lib/components/common/navigation.svelte";
+	import MenuIcon from "@inqling/svelte-icons/solid/view-grid.svelte";
+	import UserIcon from "@inqling/svelte-icons/outline/user.svelte";
+	import CartIcon from "@inqling/svelte-icons/outline/shopping-cart.svelte";
+
+	// import Instagram from "@inqling/svelte-icons/brand/instagram.svelte";
+	// import Etsy from "@inqling/svelte-icons/brand/etsy.svelte";
+	// import TikTok from "@inqling/svelte-icons/brand/tiktok.svelte";
+	import Logo from "$ui/logo.svelte";
 
 	const year = new Date().getFullYear();
+
+	const menu = ["Women", "Men", "Company", "Stores"];
 </script>
 
-<Navigation />
+<header
+	class="flex h-auto w-full flex-row items-stretch justify-between border-b border-mono-200 bg-white"
+>
+	<div class="flex flex-row divide-x divide-mono-200">
+		<a class="flex h-24 w-24 items-center justify-center" href="/">
+			<Logo />
+		</a>
+	</div>
 
-<slot />
-
-<!-- This example requires Tailwind CSS v2.0+ -->
-<footer class="mt-auto border-t border-mono-200 bg-white">
 	<div
-		class="mx-auto max-w-7xl py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8"
+		class="hidden grow flex-row items-center justify-start border-l border-mono-200 px-6 py-2 text-base tracking-wide text-mono-500 sm:flex"
 	>
-		<div class="flex justify-center space-x-6 md:order-2">
-			<a
-				href="https://www.instagram.com/ofbooksandhooks/"
-				class="text-gray-400 hover:text-gray-500"
-			>
-				<span class="sr-only">Instagram</span>
-				<Instagram class="h-6 w-6" />
-			</a>
+		<MenuIcon class="h-6 w-6 opacity-50" />
+		<span class="px-2 text-mono-500">Explore</span>
+	</div>
 
-			<a
-				href="https://www.etsy.com/shop/OfBooksAndHooksUK"
-				class="text-gray-400 hover:text-gray-500"
-			>
-				<span class="sr-only">Etsy</span>
-				<Etsy class="h-6 w-6" />
-			</a>
-			<a
-				href="https://vm.tiktok.com/ZMLacvxNq/"
-				class="text-gray-400 hover:text-gray-500"
-			>
-				<span class="sr-only">TikTok</span>
-				<TikTok class="h-6 w-6" />
-			</a>
+	<div class="flex flex-row divide-x divide-mono-200 border-l border-mono-200">
+		<div class="flex h-24 grow items-center justify-end py-2 px-6" href="/">
+			<UserIcon class=" h-6 w-6" />
+			<span class="ml-2"> Ollie </span>
 		</div>
-		<div class="mt-8 md:order-1 md:mt-0">
-			<p class="text-center text-base text-gray-400">
-				&copy; {year} Of Books & Hooks. All rights reserved.
-			</p>
+
+		<div class="flex h-24 w-24 items-center justify-center" href="/">
+			<CartIcon class=" h-6 w-6" />
+			<span class="ml-2"> 3 </span>
 		</div>
 	</div>
-</footer>
+</header>
+
+<slot />

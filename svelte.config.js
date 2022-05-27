@@ -14,11 +14,8 @@ const config = {
 			json: { namedExports: true },
 			resolve: {
 				alias: {
-					$components: path.resolve("src/lib/components"),
-					$util: path.resolve("src/lib/util"),
-					$types: path.resolve("src/lib/types"),
-					$api: path.resolve("src/lib/api"),
-					$store: path.resolve("src/lib/store"),
+					$lib: path.resolve("src/lib"),
+					$ui: path.resolve("src/ui"),
 				},
 			},
 		},

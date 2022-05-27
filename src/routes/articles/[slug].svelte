@@ -54,7 +54,7 @@
 		<header class="mx-auto max-w-3xl py-10 text-lg">
 			<img class="mb-10 w-full rounded-2xl" {src} alt="" width="1200" height="720" />
 			<h6
-				class="mb-3 block text-center text-base font-semibold uppercase tracking-wide text-primary-600"
+				class="text-primary-600 mb-3 block text-center text-base font-semibold uppercase tracking-wide"
 			>
 				{formatDate.pretty(publishedAt)}
 			</h6>
@@ -86,10 +86,10 @@
 			<div class="relative mx-auto max-w-3xl">
 				<div class="relative">
 					<div class="absolute inset-0 flex items-center" aria-hidden="true">
-						<div class="w-full border-t border-gray-300" />
+						<div class="w-full border-t border-mono-300" />
 					</div>
 					<div class="relative flex justify-center">
-						<span class="bg-white px-3 text-lg font-medium text-gray-900">By</span>
+						<span class="bg-white px-3 text-lg font-medium text-mono-900">By</span>
 					</div>
 				</div>
 				<div class="relative">
@@ -122,7 +122,7 @@
 									</div>
 
 									<svg
-										class="mx-1 hidden h-5 w-5 text-primary-600 md:block"
+										class="text-primary-600 mx-1 hidden h-5 w-5 md:block"
 										fill="currentColor"
 										viewBox="0 0 20 20"
 									>

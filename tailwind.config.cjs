@@ -12,44 +12,37 @@ const config = {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ["Sen", "Inter", ...defaultTheme.fontFamily.sans],
+				sans: ["Sora", "Inter", ...defaultTheme.fontFamily.sans],
 			},
 			colors: {
-				alt: {
-					50: "#fcfaf8",
-					100: "#f9eee8",
-					200: "#efd6cd",
-					300: "#ddaea3",
-					400: "#cb8277",
-					500: "#b55f59",
-					600: "#9a4346",
-					700: "#76313a",
-					800: "#52222a",
-					900: "#33161b",
-				},
+				// neutral: {background: "rgba(255, 255, 255, 1)",shade: "rgba(238, 240, 246, 1)",border: "rgba(224, 227, 235, 1)",title: "rgba(9, 11, 17, 1)",content: "rgba(64, 64, 64, 1)",subtle: "rgba(121, 125, 134, 1)",},
 				primary: {
-					50: "#f6f9fa",
-					100: "#e1f1fb",
-					200: "#bddff7",
-					300: "#8dbfe9",
-					400: "#5b99d8",
-					500: "#4575c6",
-					600: "#395ab0",
-					700: "#2d438b",
-					800: "#202d63",
-					900: "#121b3e",
+					brand: "rgba(235, 196, 188, 1)",
+					lighter: "rgba(238, 203, 196, 1)",
+					base: "rgba(187, 139, 129, 1)",
+					darker: "rgba(107, 56, 46, 1)",
 				},
 				secondary: {
-					50: "#faf9f1",
-					100: "#f8efac",
-					200: "#efde6c",
-					300: "#d7bb3f",
-					400: "#bb8f23",
-					500: "#aa7323",
-					600: "#8a5118",
-					700: "#6e3b18",
-					800: "#4e2715",
-					900: "#321a11",
+					brand: "rgba(32, 62, 121, 1)",
+					lighter: "rgba(200, 210, 249, 1)",
+					base: "rgba(102, 153, 204, 1)",
+					darker: "rgba(19, 49, 108, 1)",
+				},
+				accent: {
+					brand: "rgba(242, 189, 13, 1)",
+					lighter: "rgba(252, 224, 131, 1)",
+					base: "rgba(217, 172, 38, 1)",
+					darker: "rgba(87, 58, 0, 1)",
+				},
+				success: {
+					darker: "rgba(0, 51, 4, 1)",
+					lighter: "rgba(179, 255, 185, 1)",
+					mask: "rgba(0, 51, 4, 0.66)",
+				},
+				error: {
+					darker: "rgba(128, 0, 21, 1)",
+					lighter: "rgba(255, 204, 213, 1)",
+					mask: "rgba(128, 0, 21, 0.66)",
 				},
 
 				// primary: colors.blue,
@@ -69,6 +62,7 @@ const config = {
 	plugins: [
 		require("@tailwindcss/typography"),
 		require("@tailwindcss/forms"),
+		require("@tailwindcss/aspect-ratio"),
 		plugin(function ({ addVariant }) {
 			addVariant("is-enabled", "&.is-enabled");
 			addVariant("group-is-enabled", `:merge(.group).is-enabled &`);

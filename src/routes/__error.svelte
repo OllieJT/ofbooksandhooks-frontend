@@ -9,13 +9,18 @@
 </script>
 
 <script lang="ts">
-	import Wrapper from "$components/container/Wrapper.svelte";
+	//import Wrapper from "$components/container/Wrapper.svelte";
 
 	export let status: number;
 	export let error: Error;
 	console.error(error.stack);
 </script>
 
+ERROR
+<pre>
+	{JSON.stringify({ status, error }, null, 2)}
+</pre>
+<!--
 <header>
 	<Wrapper constrain gutter>
 		<h1>Error {status}</h1>
@@ -28,3 +33,4 @@
 <Wrapper constrain gutter>
 	<slot><p>Return to <a href="/">homepage</a></p></slot>
 </Wrapper>
+ -->

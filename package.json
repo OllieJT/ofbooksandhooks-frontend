@@ -8,7 +8,7 @@
 		"url": "https://inqling.studio/"
 	},
 	"scripts": {
-		"dev": "svelte-kit dev",
+		"dev": "svelte-kit dev --host",
 		"build": "svelte-kit build",
 		"preview": "svelte-kit preview",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
@@ -21,6 +21,7 @@
 		"@portabletext/svelte": "^0.2.0",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
+		"@tailwindcss/aspect-ratio": "^0.4.0",
 		"@tailwindcss/forms": "^0.5.0",
 		"@tailwindcss/typography": "^0.5.2",
 		"@typescript-eslint/eslint-plugin": "^5.15.0",
@@ -44,7 +45,8 @@
 		"typescript": "^4.6.2"
 	},
 	"dependencies": {
-		"@fontsource/sen": "^4.5.3",
+		"@fontsource/sen": "^4.5.8",
+		"@fontsource/sora": "^4.5.8",
 		"@inqling/components": "^0.0.6",
 		"@inqling/svelte-icons": "^0.2.2",
 		"@sanity/client": "^3.2.2",

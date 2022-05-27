@@ -9,7 +9,7 @@
 	}
 	body::after {
 		content: "";
-		background-image: url(/img/pattern-o.svg);
+		background-image: url(/img/pattern-tile-outline.svg);
 		background-position: 0;
 		background-size: 600px 600px;
 
@@ -21,6 +21,14 @@
 @layer components {
 	.debug {
 		@apply border border-red-500 outline-2 outline-yellow-50;
+	}
+
+	.pattern {
+		background-image: url(/img/pattern-tile-brand.svg);
+		background-position: 0;
+		background-size: 600px 600px;
+
+		@apply bg-fixed;
 	}
 }
 

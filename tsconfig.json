@@ -18,10 +18,8 @@
 		"paths": {
 			"$lib": ["src/lib"],
 			"$lib/*": ["src/lib/*"],
-			"$api/*": ["src/lib/api/*"],
-			"$components/*": ["src/lib/components/*"],
-			"$db/*": ["src/lib/db/*"],
-			"$util/*": ["src/lib/util/*"]
+			"$ui": ["src/ui"],
+			"$ui/*": ["src/ui/*"]
 		}
 	},
 	"exclude": [

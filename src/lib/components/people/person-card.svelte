@@ -46,7 +46,7 @@
 					<a
 						href={platform.link}
 						target="_blank"
-						class="text-gray-400 hover:text-gray-500"
+						class="text-mono-400 hover:text-mono-500"
 					>
 						<span class="sr-only">{platform.name}</span>
 						<svg
